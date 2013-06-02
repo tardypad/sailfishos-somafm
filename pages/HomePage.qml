@@ -16,21 +16,24 @@ Page {
             XmlRole { name: "channelImageUrl"; query: "image/string()" }
         }
         delegate: BackgroundItem {
+                height: theme.itemSizeLarge
+
                 Image {
                     id: channelImage
+                    smooth: true
                     source: channelImageUrl
-                    height: parent.height - 10
-                    width: parent.height - 10
+                    height: parent.height - theme.paddingSmall*2
+                    width: parent.height - theme.paddingSmall*2
                     fillMode: Image.PreserveAspectCrop
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
-                    anchors.leftMargin: 5
+                    anchors.leftMargin: theme.paddingSmall
                 }
 
                 Label {
                     text: channelName
                     anchors.left: channelImage.right
-                    anchors.leftMargin: 5
+                    anchors.leftMargin: theme.paddingSmall
                 }
         }
 
