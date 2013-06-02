@@ -2,7 +2,7 @@ import QtQuick 1.1
 import Sailfish.Silica 1.0
 
 BackgroundItem {
-    id: channelItemDelegate
+    id: channelsDelegate
     height: theme.itemSizeLarge
 
     Image {
