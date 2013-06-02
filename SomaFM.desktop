@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=SomaFM
+Icon=icon-launcher-gallery
+Exec=invoker --type=j -s /opt/sdk/bin/SomaFM
+Comment=Sailfish UI application
+
+
