@@ -2,11 +2,6 @@ import QtQuick 1.1
 import Sailfish.Silica 1.0
 
 Page {
-    id: homePage
-
-    // Second page to load on startup
-    property Page secondPage
-
     Rectangle {
         color: "black"
         anchors.fill: parent
@@ -47,18 +42,5 @@ Page {
         }
     }
 
-    onStatusChanged: {
-        if (status == PageStatus.Active) {
-            if (secondPage === null) {
-                // Create second page on startup
-                secondPage = pageStack.pushExtra(Qt.resolvedUrl("PopularityPage.qml"))
-                secondPage.createObject
-            }
-            // Second page accessible with a flick
-            pageStack.forwardNavigation = true
-        } else if (status == PageStatus.Inactive) {
-            // don't loop pages
-            pageStack.forwardNavigation = false
-        }
-    }
+    onReleased: pageStack.push(Qt.resolvedUrl("PopularityPage.qml"))
 }
