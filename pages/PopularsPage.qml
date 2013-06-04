@@ -6,19 +6,19 @@ Page {
         id: listView
         anchors.fill: parent
         header: PageHeader {
-            title: "Popular Channels"
+            title: "Populars"
         }
         model: ChannelsModel { }
         delegate: ChannelsDelegate { }
 
         PullDownMenu {
             MenuItem {
-                text: "Favorites"
-                onClicked: pageStack.push(Qt.resolvedUrl("FavoritesPage.qml"))
+                text: "Genres"
+                onClicked: pageStack.replace(Qt.resolvedUrl("GenresPage.qml"))
             }
             MenuItem {
-                text: "Genres"
-                onClicked: pageStack.push(Qt.resolvedUrl("GenresPage.qml"))
+                text: "Favorites"
+                onClicked: pageStack.replace(Qt.resolvedUrl("FavoritesPage.qml"))
             }
         }
 

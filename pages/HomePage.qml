@@ -42,5 +42,5 @@ Page {
         }
     }
 
-    onReleased: pageStack.push(Qt.resolvedUrl("PopularityPage.qml"))
+    onReleased: pageStack.push(Qt.resolvedUrl("FavoritesPage.qml"))
 }
