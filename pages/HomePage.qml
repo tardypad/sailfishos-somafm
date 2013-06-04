@@ -30,6 +30,7 @@ Page {
             width: parent.width
             height: parent.height * 0.6
             fillMode: Image.PreserveAspectCrop
+            clip: true
             anchors.bottom: parent.bottom
             anchors.bottomMargin: parent.height * 0.15
         }

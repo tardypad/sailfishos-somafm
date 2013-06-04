@@ -12,6 +12,7 @@ BackgroundItem {
         height: parent.height - theme.paddingSmall*2
         width: parent.height - theme.paddingSmall*2
         fillMode: Image.PreserveAspectCrop
+        clip: true
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.leftMargin: theme.paddingSmall
