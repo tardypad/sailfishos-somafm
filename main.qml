@@ -4,6 +4,6 @@ import "pages"
 
 ApplicationWindow
 {
-    initialPage: PopularityPage { }
+    initialPage: HomePage { }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 }

@@ -1,5 +1,7 @@
 *.pro.user*
+.directory
 *~
 Makefile
 obj
+rcc
 SomaFM

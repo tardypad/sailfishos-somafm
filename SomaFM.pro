@@ -17,3 +17,5 @@ desktop.files = SomaFM.desktop
 include(sailfishapplication/sailfishapplication.pri)
 
 OTHER_FILES = rpm/SomaFM.yaml
+
+RESOURCES += SomaFM.qrc
