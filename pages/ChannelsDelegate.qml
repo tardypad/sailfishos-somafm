@@ -39,4 +39,17 @@ BackgroundItem {
         truncationMode: TruncationMode.Fade
         maximumLineCount: 2
     }
+
+    onClicked: {
+        pageStack.push(Qt.resolvedUrl("ChannelPage.qml"),
+                       {
+                           'name': channelName,
+                           'description': channelDescription,
+                           'dj': channelDj,
+                           'imageUrl': channelImageMediumUrl,
+                           'genre': channelGenre,
+                           'listeners': channelListeners
+                       }
+                       )
+    }
 }
