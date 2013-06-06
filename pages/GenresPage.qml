@@ -8,6 +8,8 @@ Page {
         header: PageHeader {
             title: "Genres"
         }
+        model: ChannelsModel { }
+        delegate: ChannelsGenresDelegate { }
 
         PullDownMenu {
             MenuItem {

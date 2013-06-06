@@ -3,4 +3,7 @@
         <file alias="background">images/background.jpg</file>
         <file alias="name">images/name.svg</file>
     </qresource>
+    <qresource prefix="/icons">
+        <file alias="listener">images/icons/listener.svg</file>
+    </qresource>
 </RCC>

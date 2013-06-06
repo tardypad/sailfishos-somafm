@@ -9,7 +9,7 @@ Page {
             title: "Populars"
         }
         model: ChannelsModel { }
-        delegate: ChannelsDelegate { }
+        delegate: ChannelsPopularsDelegate { }
 
         PullDownMenu {
             MenuItem {

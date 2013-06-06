@@ -23,6 +23,7 @@ BackgroundItem {
         text: channelName
         anchors.left: channelImage.right
         anchors.leftMargin: theme.paddingSmall
+        anchors.top: parent.top
     }
 
     Label {
