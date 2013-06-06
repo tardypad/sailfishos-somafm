@@ -10,6 +10,12 @@ Page {
         }
         model: ChannelsModel { }
         delegate: ChannelsGenresDelegate { }
+        section {
+            property: 'channelGenre'
+            delegate: SectionHeader {
+                text: section
+            }
+        }
 
         PullDownMenu {
             MenuItem {
