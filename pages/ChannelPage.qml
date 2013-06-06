@@ -6,6 +6,8 @@ Page {
     property string description
     property string dj
     property url imageUrl
+    property url mediumImageUrl
+    property url bigImageUrl
     property string genre
     property int listeners
 
@@ -48,7 +50,7 @@ Page {
 
         Label {
             id: channelDjLabel
-            text: "by " + dj
+            text: dj ? "by " + dj : ""
             anchors.top: channelDescriptionLabel.bottom
             anchors.right: parent.right
             anchors.rightMargin: theme.paddingSmall

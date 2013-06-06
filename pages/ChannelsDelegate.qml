@@ -46,7 +46,9 @@ BackgroundItem {
                            'name': channelName,
                            'description': channelDescription,
                            'dj': channelDj,
-                           'imageUrl': channelImageMediumUrl,
+                           'imageUrl': channelImageUrl,
+                           'mediumImageUrl': channelImageMediumUrl,
+                           'bigImageUrl': channelImageBigUrl,
                            'genre': channelGenre,
                            'listeners': channelListeners
                        }
