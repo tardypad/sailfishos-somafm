@@ -2,12 +2,16 @@ import QtQuick 1.1
 import Sailfish.Silica 1.0
 
 Page {
-    SilicaListView {
-        id: listView
+    SilicaGridView {
+        id: gridView
         anchors.fill: parent
         header: PageHeader {
             title: "Favorites"
         }
+        model: ChannelsModel { }
+        delegate: ChannelsFavoritesDelegate { }
+        cellWidth: parent.width / 2
+        cellHeight: parent.width / 2
 
         PullDownMenu {
             MenuItem {
@@ -20,6 +24,6 @@ Page {
             }
         }
 
-        VerticalScrollDecorator { flickable: listView }
+        VerticalScrollDecorator { flickable: gridView }
     }
 }

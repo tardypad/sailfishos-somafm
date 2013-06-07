@@ -11,7 +11,7 @@ XmlListModel
     XmlRole { name: "channelDescription";    query: "description/string()" }
     XmlRole { name: "channelImageUrl";       query: "image/string()" }
     XmlRole { name: "channelImageMediumUrl"; query: "largeimage/string()" }
-    XmlRole { name: "channelImageBigUrl";    query: "ximage/string()" }
+    XmlRole { name: "channelImageBigUrl";    query: "xlimage/string()" }
     XmlRole { name: "channelDj";             query: "dj/string()" }
     XmlRole { name: "channelGenre";          query: "genre/string()" }
     XmlRole { name: "channelListeners";      query: "listeners/string()" }
