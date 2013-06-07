@@ -28,19 +28,23 @@ Page {
             width: screen.height / 5
             fillMode: Image.PreserveAspectCrop
             clip: true
-            anchors.left: parent.left
-            anchors.leftMargin: theme.paddingSmall
-            anchors.top: header.bottom
+            anchors {
+                left: parent.left;
+                top: header.bottom;
+                leftMargin: theme.paddingSmall
+            }
         }
 
         Label {
             id: channelDescriptionLabel
             text: description
-            anchors.left: channelImage.right
-            anchors.right: parent.right
-            anchors.top: header.bottom
-            anchors.rightMargin: theme.paddingSmall
-            anchors.leftMargin: theme.paddingSmall
+            anchors {
+                left: channelImage.right;
+                right: parent.right;
+                top: header.bottom;
+                rightMargin: theme.paddingSmall;
+                leftMargin: theme.paddingSmall
+            }
             color: theme.secondaryColor
             font.pixelSize: theme.fontSizeExtraSmall
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -51,12 +55,16 @@ Page {
         Label {
             id: channelDjLabel
             text: dj ? "by " + dj : ""
-            anchors.top: channelDescriptionLabel.bottom
-            anchors.right: parent.right
-            anchors.rightMargin: theme.paddingSmall
+            anchors {
+                top: channelDescriptionLabel.bottom;
+                right: parent.right;
+                rightMargin: theme.paddingSmall
+            }
             color: theme.secondaryColor
-            font.pixelSize: theme.fontSizeExtraSmall
-            font.italic: true
+            font {
+                pixelSize: theme.fontSizeExtraSmall;
+                italic: true
+            }
             horizontalAlignment: Text.AlignRight
         }
 

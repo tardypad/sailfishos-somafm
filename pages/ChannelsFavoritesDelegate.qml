@@ -10,12 +10,16 @@ BackgroundItem {
         id: channelImage
         width: gridView.cellWidth - theme.paddingSmall*2
         height: gridView.cellHeight - theme.paddingSmall*2
-        sourceSize.width: gridView.cellWidth - theme.paddingSmall*2
-        sourceSize.height: gridView.cellHeight - theme.paddingSmall*2
+        sourceSize {
+            width: gridView.cellWidth - theme.paddingSmall*2;
+            height: gridView.cellHeight - theme.paddingSmall*2
+        }
         smooth: true
         source: channelImageMediumUrl ? channelImageMediumUrl : channelImageBigUrl
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors {
+            verticalCenter: parent.verticalCenter;
+            horizontalCenter: parent.horizontalCenter
+        }
         fillMode: Image.PreserveAspectCrop
         clip: true
     }

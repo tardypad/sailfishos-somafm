@@ -13,27 +13,33 @@ BackgroundItem {
         width: parent.height - theme.paddingSmall*2
         fillMode: Image.PreserveAspectCrop
         clip: true
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.left: parent.left
-        anchors.leftMargin: theme.paddingSmall
+        anchors {
+            verticalCenter: parent.verticalCenter;
+            left: parent.left;
+            leftMargin: theme.paddingSmall
+        }
     }
 
     Label {
         id: channelNameLabel
         text: channelName
-        anchors.left: channelImage.right
-        anchors.leftMargin: theme.paddingSmall
-        anchors.top: parent.top
+        anchors {
+            left: channelImage.right;
+            leftMargin: theme.paddingSmall;
+            top: parent.top
+        }
     }
 
     Label {
         id: channelDescriptionLabel
         text: channelDescription
-        anchors.left: channelImage.right
-        anchors.right: parent.right
-        anchors.top: channelNameLabel.bottom
-        anchors.topMargin: -theme.paddingSmall
-        anchors.leftMargin: theme.paddingSmall
+        anchors {
+            left: channelImage.right;
+            right: parent.right;
+            top: channelNameLabel.bottom;
+            topMargin: -theme.paddingSmall;
+            leftMargin: theme.paddingSmall
+        }
         color: theme.secondaryColor
         font.pixelSize: theme.fontSizeExtraSmall
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere

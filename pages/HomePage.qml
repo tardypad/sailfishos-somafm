@@ -13,9 +13,11 @@ Page {
             width: parent.width * 0.9
             height: parent.height * 0.2
             fillMode: Image.PreserveAspectFit
-            anchors.top: parent.top
-            anchors.topMargin: parent.height * 0.05
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors {
+                top: parent.top;
+                topMargin: parent.height * 0.05;
+                horizontalCenter: parent.horizontalCenter
+            }
         }
 
         Image {
@@ -26,8 +28,10 @@ Page {
             height: parent.height * 0.6
             fillMode: Image.PreserveAspectCrop
             clip: true
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: parent.height * 0.15
+            anchors {
+                bottom: parent.bottom;
+                bottomMargin: parent.height * 0.15
+            }
         }
 
         Text {
@@ -37,8 +41,10 @@ Page {
             width: parent.width
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: theme.fontSizeSmall
-            anchors.bottom: parent.bottom;
-            anchors.bottomMargin: parent.height * 0.1
+            anchors {
+                bottom: parent.bottom;
+                bottomMargin: parent.height * 0.1
+            }
         }
     }
 
