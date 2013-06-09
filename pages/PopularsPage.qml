@@ -8,7 +8,7 @@ Page {
         header: PageHeader {
             title: "Populars"
         }
-        model: ChannelsModel { }
+        model: channelsModel
         delegate: ChannelsPopularsDelegate { }
 
         PullDownMenu {

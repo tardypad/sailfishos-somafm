@@ -8,7 +8,7 @@ BackgroundItem {
     Image {
         id: channelImage
         smooth: true
-        source: channelImageUrl
+        source: imageUrl
         height: parent.height - theme.paddingSmall*2
         width: parent.height - theme.paddingSmall*2
         fillMode: Image.PreserveAspectCrop
@@ -22,7 +22,7 @@ BackgroundItem {
 
     Label {
         id: channelNameLabel
-        text: channelName
+        text: name
         anchors {
             left: channelImage.right;
             leftMargin: theme.paddingSmall;
@@ -32,7 +32,7 @@ BackgroundItem {
 
     Label {
         id: channelDescriptionLabel
-        text: channelDescription
+        text: description
         anchors {
             left: channelImage.right;
             right: parent.right;
@@ -50,14 +50,14 @@ BackgroundItem {
     onClicked: {
         pageStack.push(Qt.resolvedUrl("ChannelPage.qml"),
                        {
-                           'name': channelName,
-                           'description': channelDescription,
-                           'dj': channelDj,
-                           'imageUrl': channelImageUrl,
-                           'mediumImageUrl': channelImageMediumUrl,
-                           'bigImageUrl': channelImageBigUrl,
-                           'genre': channelGenre,
-                           'listeners': channelListeners
+                           'name': name,
+                           'description': description,
+                           'dj': dj,
+                           'imageUrl': imageUrl,
+                           'mediumImageUrl': imageMediumUrl,
+                           'bigImageUrl': imageBigUrl,
+                           'genre': genre,
+                           'listeners': listeners
                        }
                        )
     }

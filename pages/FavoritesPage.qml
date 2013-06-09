@@ -8,7 +8,7 @@ Page {
         header: PageHeader {
             title: "Favorites"
         }
-        model: ChannelsModel { }
+        model: channelsModel
         delegate: ChannelsFavoritesDelegate { }
         cellWidth: parent.width / 2
         cellHeight: parent.width / 2

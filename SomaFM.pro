@@ -2,10 +2,11 @@
 TARGET = SomaFM
 
 # C++ sources
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    src/*.cpp
 
 # C++ headers
-HEADERS +=
+HEADERS += src/*.h
 
 # QML files and folders
 qml.files = cover pages main.qml
@@ -19,3 +20,5 @@ include(sailfishapplication/sailfishapplication.pri)
 OTHER_FILES = rpm/SomaFM.yaml
 
 RESOURCES += SomaFM.qrc
+
+QT += network

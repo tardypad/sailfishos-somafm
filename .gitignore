@@ -4,5 +4,6 @@ TODO
 *~
 Makefile
 obj
+moc
 rcc
 SomaFM

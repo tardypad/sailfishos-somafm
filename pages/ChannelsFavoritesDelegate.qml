@@ -15,7 +15,7 @@ BackgroundItem {
             height: gridView.cellHeight - theme.paddingSmall*2
         }
         smooth: true
-        source: channelImageMediumUrl ? channelImageMediumUrl : channelImageBigUrl
+        source: (imageMediumUrl != "") ? imageMediumUrl : imageBigUrl
         anchors {
             verticalCenter: parent.verticalCenter;
             horizontalCenter: parent.horizontalCenter
@@ -27,14 +27,14 @@ BackgroundItem {
     onClicked: {
         pageStack.push(Qt.resolvedUrl("ChannelPage.qml"),
                        {
-                           'name': channelName,
-                           'description': channelDescription,
-                           'dj': channelDj,
-                           'imageUrl': channelImageUrl,
-                           'mediumImageUrl': channelImageMediumUrl,
-                           'bigImageUrl': channelImageBigUrl,
-                           'genre': channelGenre,
-                           'listeners': channelListeners
+                           'name': name,
+                           'description': description,
+                           'dj': dj,
+                           'imageUrl': imageUrl,
+                           'mediumImageUrl': imageMediumUrl,
+                           'bigImageUrl': imageBigUrl,
+                           'genre': genre,
+                           'listeners': listeners
                        }
                        )
     }

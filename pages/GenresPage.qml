@@ -8,7 +8,7 @@ Page {
         header: PageHeader {
             title: "Genres"
         }
-        model: ChannelsModel { }
+        model: channelsModel
         delegate: ChannelsGenresDelegate { }
         section {
             property: 'channelGenre'
