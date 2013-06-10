@@ -5,8 +5,10 @@
 #include "sailfishapplication.h"
 
 #include <QDeclarativeContext>
+#include <QSortFilterProxyModel>
 
 #include "src/channelsmodel.h"
+#include "src/channelsproxymodel.h"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
@@ -15,7 +17,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     
     ChannelsModel* channelsModel = new ChannelsModel();
     channelsModel->fetch();
-    view->rootContext()->setContextProperty("channelsModel", channelsModel);
+    ChannelsProxyModel* channelsProxyModel = new ChannelsProxyModel();
+    channelsProxyModel->setSourceModel(channelsModel);
+    view->rootContext()->setContextProperty("channelsModel", channelsProxyModel);
 
     Sailfish::showView(view.data());
     
