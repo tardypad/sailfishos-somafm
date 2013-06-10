@@ -11,7 +11,7 @@ Page {
         model: channelsModel
         delegate: ChannelsGenresDelegate { }
         section {
-            property: 'channelGenre'
+            property: 'genre'
             delegate: SectionHeader {
                 text: section
             }
