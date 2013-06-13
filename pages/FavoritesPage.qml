@@ -26,6 +26,7 @@ Page {
 
         Component.onCompleted: {
             channelsModel.showClones(false)
+            channelsModel.filterFavorites()
         }
 
         VerticalScrollDecorator { flickable: gridView }

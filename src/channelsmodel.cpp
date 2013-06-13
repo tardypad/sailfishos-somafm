@@ -118,6 +118,11 @@ void ChannelsModel::parseChannel()
         }
     }
 
+    // temporary favorites
+    if (id == "poptron" || id == "beatblender" || id == "spacestation") {
+        channel->setData(true, Channel::IsFavoriteRole);
+    }
+
     m_list.append(channel);
     duplicateGenre(channel);
 }

@@ -12,7 +12,8 @@ Channel::Channel(QObject *parent) :
     m_genres(""),
     m_listeners(-1),
     m_sortGenre(""),
-    m_isClone(false)
+    m_isClone(false),
+    m_isFavorite(false)
 {
 }
 
@@ -30,6 +31,7 @@ QHash<int, QByteArray> Channel::roleNames()
     roleNames[ListenersRole] = "listeners";
     roleNames[SortGenreRole] = "sortGenre";
     roleNames[IsCloneRole] = "isClone";
+    roleNames[IsFavoriteRole] = "isFavorite";
 
     return roleNames;
 }
@@ -59,6 +61,8 @@ QVariant Channel::data(int role) const
         return sortGenre();
     case IsCloneRole:
         return isClone();
+    case IsFavoriteRole:
+        return isFavorite();
     default:
         return QVariant();
     }
@@ -100,6 +104,9 @@ bool Channel::setData(const QVariant &value, int role)
     case IsCloneRole:
         setIsClone(value.toBool());
         return true;
+    case IsFavoriteRole:
+        setIsFavorite(value.toBool());
+        return true;
     }
 
     return false;
@@ -119,6 +126,7 @@ Channel* Channel::clone()
     newChannel->setListeners(listeners());
     newChannel->setSortGenre(sortGenre());
     newChannel->setIsClone(true);
+    newChannel->setIsFavorite(isFavorite());
 
     return newChannel;
 }

@@ -11,7 +11,9 @@ public:
     virtual bool filterAcceptsRow (int source_row, const QModelIndex& source_parent) const;
     Q_INVOKABLE void sortByListeners();
     Q_INVOKABLE void sortByGenres();
+    Q_INVOKABLE void filterFavorites();
     Q_INVOKABLE void showClones(bool show = true);
+    Q_INVOKABLE void clearFilter();
 
     inline bool isClonesShown() const { return m_isClonesShown; }
     inline void setIsClonesShown(bool isClonesShown) { m_isClonesShown = isClonesShown; }

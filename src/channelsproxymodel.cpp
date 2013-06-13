@@ -23,14 +23,35 @@ void ChannelsProxyModel::sortByGenres()
 bool ChannelsProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
     Q_UNUSED(source_parent);
-    if (isClonesShown()) return true;
+
     QModelIndex index = sourceModel()->index(source_row, 0);
-    return !sourceModel()->data(index, Channel::IsCloneRole).toBool();
+
+    bool isClone = sourceModel()->data(index, Channel::IsCloneRole).toBool();
+    if (!isClonesShown() && isClone)
+        return false;
+
+    bool isFavorite = sourceModel()->data(index, Channel::IsFavoriteRole).toBool();
+    if (filterRole() == Channel::IsFavoriteRole && !isFavorite)
+        return false;
+
+    return true;
+}
+
+void ChannelsProxyModel::clearFilter()
+{
+    setFilterRole(0);
+    invalidateFilter();
 }
 
 void ChannelsProxyModel::showClones(bool show)
 {
     if (show == isClonesShown()) return;
     setIsClonesShown(show);
+    invalidateFilter();
+}
+
+void ChannelsProxyModel::filterFavorites()
+{
+    setFilterRole(Channel::IsFavoriteRole);
     invalidateFilter();
 }
