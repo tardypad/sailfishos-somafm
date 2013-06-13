@@ -21,6 +21,7 @@ ChannelsModel::~ChannelsModel()
 {
     delete m_xmlReader;
     delete m_networkManager;
+    delete m_currentReply;
     qDeleteAll(m_list);
     m_list.clear();
 }
