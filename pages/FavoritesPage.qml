@@ -24,6 +24,10 @@ Page {
             }
         }
 
+        Component.onCompleted: {
+            channelsModel.showClones(false)
+        }
+
         VerticalScrollDecorator { flickable: gridView }
     }
 }

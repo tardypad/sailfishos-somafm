@@ -23,6 +23,7 @@ private slots:
 
 private:
     void parseChannel();
+    void duplicateGenre(Channel* channel);
 
 private:
     QList<Channel*> m_list;

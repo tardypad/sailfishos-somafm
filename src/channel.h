@@ -7,6 +7,7 @@
 #include <QVariant>
 #include <QString>
 #include <QUrl>
+#include <QStringList>
 
 class Channel : public QObject
 {
@@ -21,14 +22,17 @@ public:
         ImageMediumUrlRole,
         ImageBigUrlRole,
         DjRole,
-        GenreRole,
-        ListenersRole
+        GenresRole,
+        ListenersRole,
+        SortGenreRole,
+        IsCloneRole
     };
 
 public:
     explicit Channel(QObject *parent = 0);
     QVariant data(int role) const;
     static QHash<int, QByteArray> roleNames();
+    Channel* clone();
 
     inline QString id() const { return m_id; }
     inline QString name() const { return m_name; }
@@ -37,8 +41,10 @@ public:
     inline QUrl imageMediumUrl() const { return m_imageMediumUrl; }
     inline QUrl imageBigUrl() const { return m_imageBigUrl; }
     inline QString dj() const { return m_dj; }
-    inline QString genre() const { return m_genre; }
+    inline QStringList genres() const { return m_genres; }
     inline int listeners() const { return m_listeners; }
+    inline QString sortGenre() const { return m_sortGenre; }
+    inline bool isClone() const { return m_isClone; }
 
     inline void setId(QString id) { m_id = id; }
     inline void setName(QString name) { m_name = name; }
@@ -47,8 +53,10 @@ public:
     inline void setImageMediumUrl(QUrl imageMediumUrl) { m_imageMediumUrl = imageMediumUrl; }
     inline void setImageBigUrl(QUrl imageBigUrl) { m_imageBigUrl = imageBigUrl; }
     inline void setDj(QString dj) { m_dj = dj; }
-    inline void setGenre(QString genre) { m_genre = genre; }
+    inline void setGenres(QStringList genres) { m_genres = genres; }
     inline void setListeners(int listeners) { m_listeners = listeners; }
+    inline void setSortGenre(QString sortGenre) { m_sortGenre = sortGenre; }
+    inline void setIsClone(bool isClone) { m_isClone = isClone; }
     
 private:
     QString m_id;
@@ -58,8 +66,10 @@ private:
     QUrl m_imageMediumUrl;
     QUrl m_imageBigUrl;
     QString m_dj;
-    QString m_genre;
+    QStringList m_genres;
     int m_listeners;
+    QString m_sortGenre;
+    bool m_isClone;
     
 };
 

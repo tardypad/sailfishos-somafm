@@ -33,7 +33,7 @@ BackgroundItem {
                            'imageUrl': imageUrl,
                            'mediumImageUrl': imageMediumUrl,
                            'bigImageUrl': imageBigUrl,
-                           'genre': genre,
+                           'genres': genres,
                            'listeners': listeners
                        }
                        )

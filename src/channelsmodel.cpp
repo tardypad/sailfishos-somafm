@@ -99,7 +99,10 @@ void ChannelsModel::parseChannel()
             } else if (m_xmlReader->name() == "genre") {
                 m_xmlReader->readNext();
                 QString genre = m_xmlReader->text().toString();
-                channel->setGenre(genre);
+                QString delimiter("|");
+                QStringList genres = genre.split(delimiter);
+                channel->setGenres(genres);
+                channel->setSortGenre(genres.at(0));
             } else if (m_xmlReader->name() == "listeners") {
                 m_xmlReader->readNext();
                 int listeners = m_xmlReader->text().toString().toInt();
@@ -109,4 +112,18 @@ void ChannelsModel::parseChannel()
     }
 
     m_list.append(channel);
+    duplicateGenre(channel);
+}
+
+void ChannelsModel::duplicateGenre(Channel *channel)
+{
+    QStringList genres = channel->genres();
+    if (genres.size() > 1) {
+        channel->setSortGenre(genres.at(0));
+        for (int i = 1; i < genres.size(); ++i) {
+            Channel* newChannel = channel->clone();
+            newChannel->setSortGenre(genres.at(i));
+            m_list.append(newChannel);
+        }
+    }
 }

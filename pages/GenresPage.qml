@@ -11,7 +11,7 @@ Page {
         model: channelsModel
         delegate: ChannelsGenresDelegate { }
         section {
-            property: 'genre'
+            property: 'sortGenre'
             delegate: SectionHeader {
                 text: section
             }
@@ -26,6 +26,11 @@ Page {
                 text: "Favorites"
                 onClicked: pageStack.replace(Qt.resolvedUrl("FavoritesPage.qml"))
             }
+        }
+
+        Component.onCompleted: {
+            channelsModel.showClones(true)
+            channelsModel.sortByGenres()
         }
 
         VerticalScrollDecorator { flickable: listView }

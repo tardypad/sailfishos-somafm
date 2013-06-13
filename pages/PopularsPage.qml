@@ -22,7 +22,10 @@ Page {
             }
         }
 
-        Component.onCompleted: channelsModel.sortByListeners()
+        Component.onCompleted: {
+            channelsModel.showClones(false)
+            channelsModel.sortByListeners()
+        }
 
         VerticalScrollDecorator { flickable: listView }
     }
