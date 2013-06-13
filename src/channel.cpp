@@ -64,6 +64,47 @@ QVariant Channel::data(int role) const
     }
 }
 
+bool Channel::setData(const QVariant &value, int role)
+{
+    switch(role) {
+    case IdRole:
+        setId(value.toString());
+        return true;
+    case NameRole:
+        setName(value.toString());
+        return true;
+    case DescriptionRole:
+        setDescription(value.toString());
+        return true;
+    case ImageUrlRole:
+        setImageUrl(value.toUrl());
+        return true;
+    case ImageMediumUrlRole:
+        setImageMediumUrl(value.toUrl());
+        return true;
+    case ImageBigUrlRole:
+        setImageBigUrl(value.toUrl());
+        return true;
+    case DjRole:
+        setDj(value.toString());
+        return true;
+    case GenresRole:
+        setGenres(value.toStringList());
+        return true;
+    case ListenersRole:
+        setListeners(value.toInt());
+        return true;
+    case SortGenreRole:
+        setSortGenre(value.toString());
+        return true;
+    case IsCloneRole:
+        setIsClone(value.toBool());
+        return true;
+    }
+
+    return false;
+}
+
 Channel* Channel::clone()
 {
     Channel* newChannel = new Channel();

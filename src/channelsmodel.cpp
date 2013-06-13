@@ -38,6 +38,13 @@ QVariant ChannelsModel::data(const QModelIndex &index, int role) const
     return m_list.at(index.row())->data(role);
 }
 
+bool ChannelsModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if (index.row() < 0 || index.row() >= m_list.size())
+        return false;
+    return m_list.at(index.row())->setData(value, role);
+}
+
 void ChannelsModel::fetch()
 {
     QNetworkRequest request(QUrl("http://somafm.com/channels.xml"));
@@ -67,7 +74,7 @@ void ChannelsModel::parseChannel()
 
     QXmlStreamAttributes attributes = m_xmlReader->attributes();
     QString id = attributes.value("id").toString();
-    channel->setId(id);
+    channel->setData(id, Channel::IdRole);
 
     while (!(m_xmlReader->isEndElement() && m_xmlReader->name() == "channel")) {
         m_xmlReader->readNext();
@@ -75,38 +82,38 @@ void ChannelsModel::parseChannel()
             if (m_xmlReader->name() == "title") {
                 m_xmlReader->readNext();
                 QString name = m_xmlReader->text().toString();
-                channel->setName(name);
+                channel->setData(name, Channel::NameRole);
             } else if (m_xmlReader->name() == "description") {
                 m_xmlReader->readNext();
                 QString description = m_xmlReader->text().toString();
-                channel->setDescription(description);
+                channel->setData(description, Channel::DescriptionRole);
             } else if (m_xmlReader->name() == "image") {
                 m_xmlReader->readNext();
-                QUrl imageUrl = QUrl(m_xmlReader->text().toString());
-                channel->setImageUrl(imageUrl);
+                QString imageUrl = m_xmlReader->text().toString();
+                channel->setData(imageUrl, Channel::ImageUrlRole);
             } else if (m_xmlReader->name() == "largeimage") {
                 m_xmlReader->readNext();
-                QUrl imageMediumUrl = QUrl(m_xmlReader->text().toString());
-                channel->setImageMediumUrl(imageMediumUrl);
+                QString imageMediumUrl = m_xmlReader->text().toString();
+                channel->setData(imageMediumUrl, Channel::ImageMediumUrlRole);
             } else if (m_xmlReader->name() == "xlimage") {
                 m_xmlReader->readNext();
-                QUrl imageBigUrl = QUrl(m_xmlReader->text().toString());
-                channel->setImageBigUrl(imageBigUrl);
+                QString imageBigUrl = m_xmlReader->text().toString();
+                channel->setData(imageBigUrl, Channel::ImageBigUrlRole);
             } else if (m_xmlReader->name() == "dj") {
                 m_xmlReader->readNext();
                 QString dj = m_xmlReader->text().toString();
-                channel->setDj(dj);
+                channel->setData(dj, Channel::DjRole);
             } else if (m_xmlReader->name() == "genre") {
                 m_xmlReader->readNext();
                 QString genre = m_xmlReader->text().toString();
                 QString delimiter("|");
                 QStringList genres = genre.split(delimiter);
-                channel->setGenres(genres);
-                channel->setSortGenre(genres.at(0));
+                channel->setData(genres, Channel::GenresRole);
+                channel->setData(genres.at(0), Channel::SortGenreRole);
             } else if (m_xmlReader->name() == "listeners") {
                 m_xmlReader->readNext();
-                int listeners = m_xmlReader->text().toString().toInt();
-                channel->setListeners(listeners);
+                QString listeners = m_xmlReader->text().toString();
+                channel->setData(listeners, Channel::ListenersRole);
             }
         }
     }
@@ -117,12 +124,12 @@ void ChannelsModel::parseChannel()
 
 void ChannelsModel::duplicateGenre(Channel *channel)
 {
-    QStringList genres = channel->genres();
+    QStringList genres = channel->data(Channel::GenresRole).toStringList();
     if (genres.size() > 1) {
-        channel->setSortGenre(genres.at(0));
+        channel->setData(genres.at(0), Channel::SortGenreRole);
         for (int i = 1; i < genres.size(); ++i) {
             Channel* newChannel = channel->clone();
-            newChannel->setSortGenre(genres.at(i));
+            newChannel->setData(genres.at(i), Channel::SortGenreRole);
             m_list.append(newChannel);
         }
     }

@@ -31,6 +31,7 @@ public:
 public:
     explicit Channel(QObject *parent = 0);
     QVariant data(int role) const;
+    bool setData (const QVariant &value, int role);
     static QHash<int, QByteArray> roleNames();
     Channel* clone();
 
