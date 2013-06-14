@@ -24,7 +24,7 @@ Page {
 
         Component.onCompleted: {
             channelsModel.clearFilter()
-            channelsModel.showClones(false)
+            channelsModel.hideClones()
             channelsModel.sortByListeners()
         }
 

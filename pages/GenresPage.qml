@@ -30,7 +30,7 @@ Page {
 
         Component.onCompleted: {
             channelsModel.clearFilter()
-            channelsModel.showClones(true)
+            channelsModel.showClones()
             channelsModel.sortByGenres()
         }
 

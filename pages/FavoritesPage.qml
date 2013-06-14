@@ -25,7 +25,7 @@ Page {
         }
 
         Component.onCompleted: {
-            channelsModel.showClones(false)
+            channelsModel.hideClones()
             channelsModel.filterFavorites()
         }
 

@@ -13,6 +13,7 @@ public:
     Q_INVOKABLE void sortByGenres();
     Q_INVOKABLE void filterFavorites();
     Q_INVOKABLE void showClones(bool show = true);
+    Q_INVOKABLE void hideClones();
     Q_INVOKABLE void clearFilter();
 
     inline bool isClonesShown() const { return m_isClonesShown; }

@@ -50,6 +50,11 @@ void ChannelsProxyModel::showClones(bool show)
     invalidateFilter();
 }
 
+void ChannelsProxyModel::hideClones()
+{
+    showClones(false);
+}
+
 void ChannelsProxyModel::filterFavorites()
 {
     setFilterRole(Channel::IsFavoriteRole);
