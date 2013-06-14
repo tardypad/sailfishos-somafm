@@ -31,6 +31,7 @@ Page {
         Component.onCompleted: {
             channelsModel.clearFilter()
             channelsModel.showClones()
+            channelsModel.sortByName()
             channelsModel.sortByGenres()
         }
 

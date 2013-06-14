@@ -27,6 +27,7 @@ Page {
         Component.onCompleted: {
             channelsModel.hideClones()
             channelsModel.filterFavorites()
+            channelsModel.sortByName()
         }
 
         VerticalScrollDecorator { flickable: gridView }
