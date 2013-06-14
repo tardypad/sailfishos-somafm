@@ -10,6 +10,7 @@ Page {
     property url bigImageUrl
     property string genre
     property int listeners
+    property bool isFavorite
 
     SilicaFlickable {
         anchors.fill: parent
@@ -70,8 +71,8 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: "Add to Favorites"
-                onClicked: console.log("add to favorites")
+                text: !isFavorite ? "Add to Favorites" : "Remove from Favorites"
+                onClicked: !isFavorite ? console.log("add to favorites") : console.log("remove from favorites")
             }
         }
     }

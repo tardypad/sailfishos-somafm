@@ -57,7 +57,8 @@ BackgroundItem {
                            'mediumImageUrl': imageMediumUrl,
                            'bigImageUrl': imageBigUrl,
                            'genres': genres,
-                           'listeners': listeners
+                           'listeners': listeners,
+                           'isFavorite': isFavorite
                        }
                        )
     }
