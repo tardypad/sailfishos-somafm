@@ -50,7 +50,7 @@ void ChannelsModel::fetch()
 {
     QNetworkRequest request(QUrl("http://somafm.com/channels.xml"));
     m_currentReply = m_networkManager->get(request);
-    connect(m_currentReply, SIGNAL(readyRead()), this, SLOT(parse()));
+    connect(m_currentReply, SIGNAL(finished()), this, SLOT(parse()));
 }
 
 void ChannelsModel::parse()
@@ -67,6 +67,8 @@ void ChannelsModel::parse()
                 parseChannel();
         }
     }
+
+    m_currentReply->deleteLater();
 }
 
 void ChannelsModel::parseChannel()
