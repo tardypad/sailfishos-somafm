@@ -5,5 +5,8 @@
     </qresource>
     <qresource prefix="/icons">
         <file alias="listener">images/icons/listener.svg</file>
+        <file alias="favorites">images/icons/favorites.svg</file>
+        <file alias="genres">images/icons/genres.svg</file>
+        <file alias="populars">images/icons/populars.svg</file>
     </qresource>
 </RCC>

@@ -5,8 +5,9 @@ Page {
     SilicaListView {
         id: listView
         anchors.fill: parent
-        header: PageHeader {
-            title: "Genres"
+        header: ChannelsPageHeader {
+            text: "Genres"
+            iconSource: "qrc:/icons/genres"
         }
         model: channelsModel
         delegate: ChannelsGenresDelegate { }
@@ -18,13 +19,15 @@ Page {
         }
 
         PullDownMenu {
-            MenuItem {
+            ChannelsMenuItem {
                 text: "Populars"
-                onClicked: pageStack.replace(Qt.resolvedUrl("PopularsPage.qml"))
+                iconSource: "qrc:/icons/populars"
+                nextPage: "PopularsPage.qml"
             }
-            MenuItem {
+            ChannelsMenuItem {
                 text: "Favorites"
-                onClicked: pageStack.replace(Qt.resolvedUrl("FavoritesPage.qml"))
+                iconSource: "qrc:/icons/favorites"
+                nextPage: "FavoritesPage.qml"
             }
         }
 

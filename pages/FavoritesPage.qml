@@ -5,8 +5,9 @@ Page {
     SilicaGridView {
         id: gridView
         anchors.fill: parent
-        header: PageHeader {
-            title: "Favorites"
+        header: ChannelsPageHeader {
+            text: "Favorites"
+            iconSource: "qrc:/icons/favorites"
         }
         model: channelsModel
         delegate: ChannelsFavoritesDelegate { }
@@ -14,13 +15,15 @@ Page {
         cellHeight: parent.width / 2
 
         PullDownMenu {
-            MenuItem {
+            ChannelsMenuItem {
                 text: "Genres"
-                onClicked: pageStack.replace(Qt.resolvedUrl("GenresPage.qml"))
+                iconSource: "qrc:/icons/genres"
+                nextPage: "GenresPage.qml"
             }
-            MenuItem {
+            ChannelsMenuItem {
                 text: "Populars"
-                onClicked: pageStack.replace(Qt.resolvedUrl("PopularsPage.qml"))
+                iconSource: "qrc:/icons/populars"
+                nextPage: "PopularsPage.qml"
             }
         }
 
