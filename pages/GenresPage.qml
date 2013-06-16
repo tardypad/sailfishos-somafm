@@ -13,8 +13,15 @@ Page {
         delegate: ChannelsGenresDelegate { }
         section {
             property: 'sortGenre'
-            delegate: SectionHeader {
-                text: section
+            delegate: Item {
+                width: parent.width
+                height: sectionHeader.height * 1.5
+
+                SectionHeader {
+                    id: sectionHeader
+                    text: section
+                    anchors.bottom: parent.bottom
+                }
             }
         }
 
