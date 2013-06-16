@@ -2,6 +2,7 @@
     <qresource prefix="/images">
         <file alias="background">images/background.jpg</file>
         <file alias="name">images/name.svg</file>
+        <file alias="logo">images/logo.svg</file>
     </qresource>
     <qresource prefix="/icons">
         <file alias="listener">images/icons/listener.svg</file>
