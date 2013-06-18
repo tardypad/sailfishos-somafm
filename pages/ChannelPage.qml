@@ -37,6 +37,21 @@ Page {
             }
         }
 
+        Image {
+            id: favoriteImage
+            source: "qrc:/icons/favorites"
+            height: header.height / 4
+            width: header.height / 4
+            anchors {
+                top: header.top
+                right: header.right
+                topMargin: theme.paddingSmall
+                rightMargin: theme.paddingSmall
+            }
+            fillMode: Image.PreserveAspectFit
+            visible: isFavorite
+        }
+
         Label {
             id: channelDescriptionLabel
             text: description
