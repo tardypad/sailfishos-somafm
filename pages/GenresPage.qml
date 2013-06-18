@@ -9,7 +9,7 @@ Page {
             text: "Genres"
             iconSource: "qrc:/icons/genres"
         }
-        model: channelsModel
+        model: _channelsModel
         delegate: ChannelsGenresDelegate { }
         section {
             property: 'sortGenre'
@@ -39,10 +39,10 @@ Page {
         }
 
         Component.onCompleted: {
-            channelsModel.clearFilter()
-            channelsModel.showClones()
-            channelsModel.sortByName()
-            channelsModel.sortByGenres()
+            _channelsModel.clearFilter()
+            _channelsModel.showClones()
+            _channelsModel.sortByName()
+            _channelsModel.sortByGenres()
         }
 
         VerticalScrollDecorator { flickable: listView }

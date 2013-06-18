@@ -75,10 +75,10 @@ Page {
                 text: !isFavorite ? "Add to Favorites" : "Remove from Favorites"
                 onClicked: {
                     if (!isFavorite) {
-                        favoritesManager.addFavorite(id)
+                        _favoritesManager.addFavorite(id)
                         isFavorite = true
                     } else {
-                        favoritesManager.removeFavorite(id)
+                        _favoritesManager.removeFavorite(id)
                         isFavorite = false
                     }
                 }

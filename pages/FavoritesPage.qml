@@ -9,7 +9,7 @@ Page {
             text: "Favorites"
             iconSource: "qrc:/icons/favorites"
         }
-        model: channelsModel
+        model: _channelsModel
         delegate: ChannelsFavoritesDelegate { }
         cellWidth: parent.width / 2
         cellHeight: parent.width / 2
@@ -28,9 +28,9 @@ Page {
         }
 
         Component.onCompleted: {
-            channelsModel.hideClones()
-            channelsModel.filterFavorites()
-            channelsModel.sortByName()
+            _channelsModel.hideClones()
+            _channelsModel.filterFavorites()
+            _channelsModel.sortByName()
         }
 
         VerticalScrollDecorator { flickable: gridView }
@@ -38,7 +38,7 @@ Page {
 
     onStatusChanged: {
         if (status == PageStatus.Active) {
-            channelsModel.filterFavorites()
+            _channelsModel.filterFavorites()
         }
     }
 }

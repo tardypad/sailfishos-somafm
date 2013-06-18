@@ -9,7 +9,7 @@ Page {
             text: "Populars"
             iconSource: "qrc:/icons/populars"
         }
-        model: channelsModel
+        model: _channelsModel
         delegate: ChannelsPopularsDelegate { }
 
         PullDownMenu {
@@ -26,9 +26,9 @@ Page {
         }
 
         Component.onCompleted: {
-            channelsModel.clearFilter()
-            channelsModel.hideClones()
-            channelsModel.sortByListeners()
+            _channelsModel.clearFilter()
+            _channelsModel.hideClones()
+            _channelsModel.sortByListeners()
         }
 
         VerticalScrollDecorator { flickable: listView }
