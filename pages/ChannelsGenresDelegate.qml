@@ -50,6 +50,7 @@ BackgroundItem {
     onClicked: {
         pageStack.push(Qt.resolvedUrl("ChannelPage.qml"),
                        {
+                           'id' : id,
                            'name': name,
                            'description': description,
                            'dj': dj,

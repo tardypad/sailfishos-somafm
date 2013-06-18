@@ -7,9 +7,10 @@
 #include <QXmlStreamAttributes>
 
 #include "channel.h"
+#include "favoritesManager.h"
 
 ChannelsModel::ChannelsModel(QObject *parent) :
-    QAbstractListModel(parent)
+    QAbstractListModel(parent), m_favoritesManager(NULL)
 {
     m_networkManager = new QNetworkAccessManager(this);
     m_xmlReader = new QXmlStreamReader();
@@ -22,8 +23,16 @@ ChannelsModel::~ChannelsModel()
     delete m_xmlReader;
     delete m_networkManager;
     delete m_currentReply;
+    delete m_favoritesManager;
     qDeleteAll(m_list);
     m_list.clear();
+}
+
+void ChannelsModel::setFavoritesManager(FavoritesManager* favoritesManager)
+{
+    m_favoritesManager = favoritesManager;
+    connect(favoritesManager, SIGNAL(favoriteAdded(QString)), this, SLOT(addToFavorites(QString)));
+    connect(favoritesManager, SIGNAL(favoriteRemoved(QString)), this, SLOT(removeFromFavorites(QString)));
 }
 
 int ChannelsModel::rowCount(const QModelIndex &parent) const
@@ -44,6 +53,16 @@ bool ChannelsModel::setData(const QModelIndex &index, const QVariant &value, int
     if (index.row() < 0 || index.row() >= m_list.size())
         return false;
     return m_list.at(index.row())->setData(value, role);
+}
+
+void ChannelsModel::setDataChannel(QString channelId, const QVariant &value, int role)
+{
+    for (int row = 0; row < m_list.size(); ++row) {
+        QString id = m_list.at(row)->data(Channel::IdRole).toString();
+        if (id == channelId) {
+            m_list.at(row)->setData(value, role);
+        }
+      }
 }
 
 void ChannelsModel::fetch()
@@ -121,8 +140,7 @@ void ChannelsModel::parseChannel()
         }
     }
 
-    // temporary favorites
-    if (id == "poptron" || id == "beatblender" || id == "spacestation") {
+    if (m_favoritesManager->isFavorite(id)) {
         channel->setData(true, Channel::IsFavoriteRole);
     }
 
@@ -141,4 +159,14 @@ void ChannelsModel::duplicateGenre(Channel *channel)
             m_list.append(newChannel);
         }
     }
+}
+
+void ChannelsModel::addToFavorites(QString channelId)
+{
+    setDataChannel(channelId, true, Channel::IsFavoriteRole);
+}
+
+void ChannelsModel::removeFromFavorites(QString channelId)
+{
+    setDataChannel(channelId, false, Channel::IsFavoriteRole);
 }

@@ -35,4 +35,10 @@ Page {
 
         VerticalScrollDecorator { flickable: gridView }
     }
+
+    onStatusChanged: {
+        if (status == PageStatus.Active) {
+            channelsModel.filterFavorites()
+        }
+    }
 }

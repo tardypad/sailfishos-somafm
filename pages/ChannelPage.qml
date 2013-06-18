@@ -2,6 +2,7 @@ import QtQuick 1.1
 import Sailfish.Silica 1.0
 
 Page {
+    property string id
     property string name
     property string description
     property string dj
@@ -72,7 +73,15 @@ Page {
         PullDownMenu {
             MenuItem {
                 text: !isFavorite ? "Add to Favorites" : "Remove from Favorites"
-                onClicked: !isFavorite ? console.log("add to favorites") : console.log("remove from favorites")
+                onClicked: {
+                    if (!isFavorite) {
+                        favoritesManager.addFavorite(id)
+                        isFavorite = true
+                    } else {
+                        favoritesManager.removeFavorite(id)
+                        isFavorite = false
+                    }
+                }
             }
         }
     }
