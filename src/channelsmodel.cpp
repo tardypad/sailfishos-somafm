@@ -24,8 +24,7 @@ ChannelsModel::~ChannelsModel()
     delete m_networkManager;
     delete m_currentReply;
     delete m_favoritesManager;
-    qDeleteAll(m_list);
-    m_list.clear();
+    clear();
 }
 
 void ChannelsModel::setFavoritesManager(FavoritesManager* favoritesManager)
@@ -33,6 +32,12 @@ void ChannelsModel::setFavoritesManager(FavoritesManager* favoritesManager)
     m_favoritesManager = favoritesManager;
     connect(favoritesManager, SIGNAL(favoriteAdded(QString)), this, SLOT(addToFavorites(QString)));
     connect(favoritesManager, SIGNAL(favoriteRemoved(QString)), this, SLOT(removeFromFavorites(QString)));
+}
+
+void ChannelsModel::clear()
+{
+    qDeleteAll(m_list);
+    m_list.clear();
 }
 
 int ChannelsModel::rowCount(const QModelIndex &parent) const

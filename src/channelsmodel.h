@@ -31,6 +31,7 @@ private:
     void parseChannel();
     void duplicateGenre(Channel* channel);
     void addChannel(Channel* channel);
+    void clear();
 
 private:
     QList<Channel*> m_list;
