@@ -55,6 +55,13 @@ bool ChannelsModel::setData(const QModelIndex &index, const QVariant &value, int
     return m_list.at(index.row())->setData(value, role);
 }
 
+void ChannelsModel::addChannel(Channel *channel)
+{
+    beginInsertRows(QModelIndex(), m_list.size(), m_list.size());
+    m_list.append(channel);
+    endInsertRows();
+}
+
 void ChannelsModel::setDataChannel(QString channelId, const QVariant &value, int role)
 {
     for (int row = 0; row < m_list.size(); ++row) {
@@ -144,7 +151,7 @@ void ChannelsModel::parseChannel()
         channel->setData(true, Channel::IsFavoriteRole);
     }
 
-    m_list.append(channel);
+    addChannel(channel);
     duplicateGenre(channel);
 }
 
@@ -156,7 +163,7 @@ void ChannelsModel::duplicateGenre(Channel *channel)
         for (int i = 1; i < genres.size(); ++i) {
             Channel* newChannel = channel->clone();
             newChannel->setData(genres.at(i), Channel::SortGenreRole);
-            m_list.append(newChannel);
+            addChannel(newChannel);
         }
     }
 }
