@@ -10,7 +10,7 @@ Page {
             iconSource: "qrc:/icons/populars"
         }
         model: _channelsModel
-        delegate: ChannelsPopularsDelegate { }
+        delegate: PopularsDelegate { }
 
         PullDownMenu {
             ChannelsMenuItem {

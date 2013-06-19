@@ -10,7 +10,7 @@ Page {
             iconSource: "qrc:/icons/favorites"
         }
         model: _channelsModel
-        delegate: ChannelsFavoritesDelegate { }
+        delegate: FavoritesDelegate { }
         cellWidth: parent.width / 2
         cellHeight: parent.width / 2
 

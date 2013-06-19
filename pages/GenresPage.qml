@@ -10,7 +10,7 @@ Page {
             iconSource: "qrc:/icons/genres"
         }
         model: _channelsModel
-        delegate: ChannelsGenresDelegate { }
+        delegate: GenresDelegate { }
         section {
             property: 'sortGenre'
             delegate: Item {

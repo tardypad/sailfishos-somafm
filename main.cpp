@@ -7,8 +7,8 @@
 #include <QDeclarativeContext>
 #include <QSortFilterProxyModel>
 
-#include "src/channelsmodel.h"
-#include "src/channelsproxymodel.h"
+#include "src/channelsModel.h"
+#include "src/channelsProxyModel.h"
 #include "src/favoritesManager.h"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])

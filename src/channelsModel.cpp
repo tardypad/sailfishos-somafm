@@ -1,4 +1,4 @@
-#include "channelsmodel.h"
+#include "channelsModel.h"
 
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
