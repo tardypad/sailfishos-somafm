@@ -1,0 +1,46 @@
+#ifndef CHANNELSONG_H
+#define CHANNELSONG_H
+
+#include <QObject>
+#include <QHash>
+#include <QByteArray>
+#include <QVariant>
+#include <QString>
+#include <QDateTime>
+
+class ChannelSong : public QObject
+{
+    Q_OBJECT
+
+public:
+    enum Roles {
+        TitleRole = Qt::UserRole+1,
+        ArtistRole,
+        AlbumRole,
+        DateRole
+    };
+
+public:
+    explicit ChannelSong(QObject *parent = 0);
+    QVariant data(int role) const;
+    bool setData (const QVariant &value, int role);
+    static QHash<int, QByteArray> roleNames();
+
+    inline QString title() const { return m_title; }
+    inline QString artist() const { return m_artist; }
+    inline QString album() const { return m_album; }
+    inline QDateTime date() const { return m_date; }
+
+    inline void setTitle(QString title) { m_title = title; }
+    inline void setArtist(QString artist) { m_artist = artist; }
+    inline void setAlbum(QString album) { m_album = album; }
+    inline void setDate(QDateTime date) { m_date = date; }
+
+private:
+    QString m_title;
+    QString m_artist;
+    QString m_album;
+    QDateTime m_date;
+};
+
+#endif // CHANNELSONG_H
