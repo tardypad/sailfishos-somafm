@@ -14,8 +14,8 @@ Item {
         id: channelImage
         smooth: true
         source: imageUrl
-        height: screen.height / 5
-        width: screen.height / 5
+        height: theme.itemSizeLarge * 2
+        width: theme.itemSizeLarge * 2
         fillMode: Image.PreserveAspectCrop
         clip: true
         anchors {
