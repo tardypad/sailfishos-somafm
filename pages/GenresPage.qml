@@ -13,15 +13,10 @@ Page {
         delegate: GenresDelegate { }
         section {
             property: 'sortGenre'
-            delegate: Item {
+            delegate: SectionHeader {
+                text: section
+                height: implicitHeight + 2*theme.paddingMedium
                 width: parent.width
-                height: sectionHeader.height * 1.5
-
-                SectionHeader {
-                    id: sectionHeader
-                    text: section
-                    anchors.bottom: parent.bottom
-                }
             }
         }
 
