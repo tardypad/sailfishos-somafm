@@ -1,7 +1,7 @@
 #include "channel.h"
 
 Channel::Channel(QObject *parent) :
-    QObject(parent),
+    XmlItem(parent),
     m_id(""),
     m_name(""),
     m_description(""),
@@ -63,9 +63,9 @@ QVariant Channel::data(int role) const
         return isClone();
     case IsFavoriteRole:
         return isFavorite();
-    default:
-        return QVariant();
     }
+
+    return QVariant();
 }
 
 bool Channel::setData(const QVariant &value, int role)

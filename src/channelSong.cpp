@@ -1,7 +1,7 @@
 #include "channelSong.h"
 
 ChannelSong::ChannelSong(QObject *parent) :
-    QObject(parent),
+    XmlItem(parent),
     m_title(""),
     m_artist(""),
     m_album(""),
@@ -31,9 +31,9 @@ QVariant ChannelSong::data(int role) const
         return album();
     case DateRole:
         return date();
-    default:
-        return QVariant();
     }
+
+    return QVariant();
 }
 
 bool ChannelSong::setData(const QVariant &value, int role)

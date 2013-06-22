@@ -1,8 +1,5 @@
 #include "channelsModel.h"
 
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkRequest>
-#include <QtNetwork/QNetworkReply>
 #include <QXmlStreamReader>
 #include <QXmlStreamAttributes>
 
@@ -10,21 +7,15 @@
 #include "favoritesManager.h"
 
 ChannelsModel::ChannelsModel(QObject *parent) :
-    QAbstractListModel(parent), m_favoritesManager(NULL)
+    XmlModel(new Channel(), parent),
+    m_favoritesManager(NULL)
 {
-    m_networkManager = new QNetworkAccessManager(this);
-    m_xmlReader = new QXmlStreamReader();
-
-    setRoleNames(Channel::roleNames());
+    setResourceUrl(QUrl("http://somafm.com/channels.xml"));
 }
 
 ChannelsModel::~ChannelsModel()
 {
-    delete m_xmlReader;
-    delete m_networkManager;
-    delete m_currentReply;
     delete m_favoritesManager;
-    clear();
 }
 
 void ChannelsModel::setFavoritesManager(FavoritesManager* favoritesManager)
@@ -32,39 +23,6 @@ void ChannelsModel::setFavoritesManager(FavoritesManager* favoritesManager)
     m_favoritesManager = favoritesManager;
     connect(favoritesManager, SIGNAL(favoriteAdded(QString)), this, SLOT(addToFavorites(QString)));
     connect(favoritesManager, SIGNAL(favoriteRemoved(QString)), this, SLOT(removeFromFavorites(QString)));
-}
-
-void ChannelsModel::clear()
-{
-    qDeleteAll(m_list);
-    m_list.clear();
-}
-
-int ChannelsModel::rowCount(const QModelIndex &parent) const
-{
-    Q_UNUSED(parent);
-    return m_list.size();
-}
-
-QVariant ChannelsModel::data(const QModelIndex &index, int role) const
-{
-    if (index.row() < 0 || index.row() >= m_list.size())
-        return QVariant();
-    return m_list.at(index.row())->data(role);
-}
-
-bool ChannelsModel::setData(const QModelIndex &index, const QVariant &value, int role)
-{
-    if (index.row() < 0 || index.row() >= m_list.size())
-        return false;
-    return m_list.at(index.row())->setData(value, role);
-}
-
-void ChannelsModel::addChannel(Channel *channel)
-{
-    beginInsertRows(QModelIndex(), m_list.size(), m_list.size());
-    m_list.append(channel);
-    endInsertRows();
 }
 
 void ChannelsModel::setDataChannel(QString channelId, const QVariant &value, int role)
@@ -77,32 +35,7 @@ void ChannelsModel::setDataChannel(QString channelId, const QVariant &value, int
       }
 }
 
-void ChannelsModel::fetch()
-{
-    QNetworkRequest request(QUrl("http://somafm.com/channels.xml"));
-    m_currentReply = m_networkManager->get(request);
-    connect(m_currentReply, SIGNAL(finished()), this, SLOT(parse()));
-}
-
-void ChannelsModel::parse()
-{
-    m_xmlReader->clear();
-
-    QByteArray data = m_currentReply->readAll();
-    m_xmlReader->addData(data);
-
-    while (!m_xmlReader->atEnd()) {
-        m_xmlReader->readNext();
-        if (m_xmlReader->isStartElement()) {
-            if (m_xmlReader->name() == "channel")
-                parseChannel();
-        }
-    }
-
-    m_currentReply->deleteLater();
-}
-
-void ChannelsModel::parseChannel()
+XmlItem* ChannelsModel::parseXmlItem()
 {
     Channel* channel = new Channel();
 
@@ -156,8 +89,9 @@ void ChannelsModel::parseChannel()
         channel->setData(true, Channel::IsFavoriteRole);
     }
 
-    addChannel(channel);
     duplicateGenre(channel);
+
+    return channel;
 }
 
 void ChannelsModel::duplicateGenre(Channel *channel)
@@ -168,7 +102,7 @@ void ChannelsModel::duplicateGenre(Channel *channel)
         for (int i = 1; i < genres.size(); ++i) {
             Channel* newChannel = channel->clone();
             newChannel->setData(genres.at(i), Channel::SortGenreRole);
-            addChannel(newChannel);
+            addXmlItem(newChannel);
         }
     }
 }

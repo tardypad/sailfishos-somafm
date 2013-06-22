@@ -9,7 +9,9 @@
 #include <QUrl>
 #include <QStringList>
 
-class Channel : public QObject
+#include "xmlItem.h"
+
+class Channel : public XmlItem
 {
     Q_OBJECT
 
@@ -31,10 +33,13 @@ public:
 
 public:
     explicit Channel(QObject *parent = 0);
-    QVariant data(int role) const;
-    bool setData (const QVariant &value, int role);
-    static QHash<int, QByteArray> roleNames();
+    virtual QVariant data(int role) const;
+    virtual bool setData (const QVariant &value, int role);
+    virtual QHash<int, QByteArray> roleNames();
+
     Channel* clone();
+
+    virtual QString xmlTag() { return "channel"; }
 
     inline QString id() const { return m_id; }
     inline QString name() const { return m_name; }

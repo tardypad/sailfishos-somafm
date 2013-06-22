@@ -8,7 +8,9 @@
 #include <QString>
 #include <QDateTime>
 
-class ChannelSong : public QObject
+#include "xmlItem.h"
+
+class ChannelSong : public XmlItem
 {
     Q_OBJECT
 
@@ -22,9 +24,11 @@ public:
 
 public:
     explicit ChannelSong(QObject *parent = 0);
-    QVariant data(int role) const;
-    bool setData (const QVariant &value, int role);
-    static QHash<int, QByteArray> roleNames();
+    virtual QVariant data(int role) const;
+    virtual bool setData (const QVariant &value, int role);
+    virtual QHash<int, QByteArray> roleNames();
+
+    virtual QString xmlTag() { return "song"; }
 
     inline QString title() const { return m_title; }
     inline QString artist() const { return m_artist; }
