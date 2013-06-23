@@ -36,33 +36,37 @@ void ChannelSongsModel::setDataSong(QString artist, QString title, const QVarian
 XmlItem* ChannelSongsModel::parseXmlItem()
 {
     ChannelSong* channelSong = new ChannelSong();
+    QString title = "";
+    QString artist = "";
+    QString album = "";
+    QDateTime datetime = QDateTime();
 
-    while (!(m_xmlReader->isEndElement() && m_xmlReader->name() == "song")) {
+    while (!(m_xmlReader->isEndElement() && m_xmlReader->name() == m_xmlItemPrototype->xmlTag())) {
         m_xmlReader->readNext();
         if (m_xmlReader->isStartElement()) {
             if (m_xmlReader->name() == "title") {
                 m_xmlReader->readNext();
-                QString title = m_xmlReader->text().toString();
-                channelSong->setData(title, ChannelSong::TitleRole);
+                title = m_xmlReader->text().toString();
             } else if (m_xmlReader->name() == "artist") {
                 m_xmlReader->readNext();
-                QString artist = m_xmlReader->text().toString();
-                channelSong->setData(artist, ChannelSong::ArtistRole);
+                artist = m_xmlReader->text().toString();
             } else if (m_xmlReader->name() == "album") {
                 m_xmlReader->readNext();
-                QString album = m_xmlReader->text().toString();
-                channelSong->setData(album, ChannelSong::AlbumRole);
+                album = m_xmlReader->text().toString();
             } else if (m_xmlReader->name() == "date") {
                 m_xmlReader->readNext();
                 int timestamp = m_xmlReader->text().toString().toInt();
-                QDateTime date = QDateTime::fromTime_t(timestamp);
-                channelSong->setData(date, ChannelSong::DateRole);
+                datetime = QDateTime::fromTime_t(timestamp);
             }
         }
     }
 
-    if (m_bookmarksManager->isBookmark(channelSong->data(ChannelSong::ArtistRole).toString(),
-                                       channelSong->data(ChannelSong::TitleRole).toString())) {
+    channelSong->setData(title, ChannelSong::TitleRole);
+    channelSong->setData(artist, ChannelSong::ArtistRole);
+    channelSong->setData(album, ChannelSong::AlbumRole);
+    channelSong->setData(datetime, ChannelSong::DateRole);
+
+    if (m_bookmarksManager->isBookmark(artist, title)) {
         channelSong->setData(true, ChannelSong::IsBookmarkRole);
     }
 
