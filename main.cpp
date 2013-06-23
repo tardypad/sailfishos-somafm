@@ -23,7 +23,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     channelsProxyModel->setSourceModel(channelsModel);
     view->rootContext()->setContextProperty("_channelsModel", channelsProxyModel);
 
-    FavoritesManager* favoritesManager = new FavoritesManager();
+    FavoritesManager* favoritesManager = FavoritesManager::instance();
     view->rootContext()->setContextProperty("_favoritesManager", favoritesManager);
 
     channelsModel->setFavoritesManager(favoritesManager);

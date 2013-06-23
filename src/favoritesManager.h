@@ -8,7 +8,7 @@ class FavoritesManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit FavoritesManager(QObject *parent = 0);
+    static FavoritesManager* instance();
     Q_INVOKABLE bool addFavorite(QString channelId);
     Q_INVOKABLE bool removeFavorite(QString channelId);
     QStringList getFavorites() const;
@@ -19,6 +19,10 @@ signals:
     void favoriteRemoved(QString id);
 
 private:
+    explicit FavoritesManager(QObject *parent = 0);
+
+private:
+    static FavoritesManager* m_instance;
     QStringList m_favorites;
 };
 

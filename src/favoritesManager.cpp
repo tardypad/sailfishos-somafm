@@ -1,5 +1,7 @@
 #include "favoritesManager.h"
 
+FavoritesManager* FavoritesManager::m_instance = NULL;
+
 FavoritesManager::FavoritesManager(QObject *parent) :
     QObject(parent), m_favorites("")
 {
@@ -7,6 +9,15 @@ FavoritesManager::FavoritesManager(QObject *parent) :
     m_favorites.append("poptron");
     m_favorites.append("beatblender");
     m_favorites.append("spacestation");
+}
+
+FavoritesManager* FavoritesManager::instance()
+{
+    if (!m_instance) {
+        m_instance = new FavoritesManager();
+    }
+
+    return m_instance;
 }
 
 bool FavoritesManager::addFavorite(QString channelId)
