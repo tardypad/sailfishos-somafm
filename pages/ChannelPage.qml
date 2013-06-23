@@ -42,9 +42,19 @@ Page {
     Component {
         id: contextMenuComponent
         ContextMenu {
+            property bool isBookmark
+            property string artist
+            property string title
+
             MenuItem {
-                text: "Add to bookmarks"
-                onClicked: console.log("Add to bookmarks")
+                text: !isBookmark ? "Add to bookmarks" : "Remove from bookmarks"
+                onClicked: {
+                    if (!isBookmark) {
+                        _bookmarksManager.addBookmark(artist, title)
+                    } else {
+                        _bookmarksManager.removeBookmark(artist, title)
+                    }
+                }
             }
         }
     }

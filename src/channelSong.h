@@ -19,7 +19,8 @@ public:
         TitleRole = Qt::UserRole+1,
         ArtistRole,
         AlbumRole,
-        DateRole
+        DateRole,
+        IsBookmarkRole
     };
 
 public:
@@ -34,17 +35,20 @@ public:
     inline QString artist() const { return m_artist; }
     inline QString album() const { return m_album; }
     inline QDateTime date() const { return m_date; }
+    inline bool isBookmark() const { return m_isBookmark; }
 
     inline void setTitle(QString title) { m_title = title; }
     inline void setArtist(QString artist) { m_artist = artist; }
     inline void setAlbum(QString album) { m_album = album; }
     inline void setDate(QDateTime date) { m_date = date; }
+    inline void setIsBookmark(bool isBookmark) { m_isBookmark = isBookmark; }
 
 private:
     QString m_title;
     QString m_artist;
     QString m_album;
     QDateTime m_date;
+    bool m_isBookmark;
 };
 
 #endif // CHANNELSONG_H

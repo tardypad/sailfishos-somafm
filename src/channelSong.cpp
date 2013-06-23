@@ -5,7 +5,8 @@ ChannelSong::ChannelSong(QObject *parent) :
     m_title(""),
     m_artist(""),
     m_album(""),
-    m_date(QDateTime())
+    m_date(QDateTime()),
+    m_isBookmark(false)
 {
 }
 
@@ -16,6 +17,7 @@ QHash<int, QByteArray> ChannelSong::roleNames()
     roleNames[ArtistRole] = "artist";
     roleNames[AlbumRole] = "album";
     roleNames[DateRole] = "date";
+    roleNames[IsBookmarkRole] = "isBookmark";
 
     return roleNames;
 }
@@ -31,6 +33,8 @@ QVariant ChannelSong::data(int role) const
         return album();
     case DateRole:
         return date();
+    case IsBookmarkRole:
+        return isBookmark();
     }
 
     return QVariant();
@@ -50,6 +54,9 @@ bool ChannelSong::setData(const QVariant &value, int role)
         return true;
     case DateRole:
         setDate(value.toDateTime());
+        return true;
+    case IsBookmarkRole:
+        setIsBookmark(value.toBool());
         return true;
     }
 

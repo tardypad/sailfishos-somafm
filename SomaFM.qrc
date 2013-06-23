@@ -9,5 +9,6 @@
         <file alias="favorites">images/icons/favorites.svg</file>
         <file alias="genres">images/icons/genres.svg</file>
         <file alias="populars">images/icons/populars.svg</file>
+        <file alias="bookmark">images/icons/bookmark.svg</file>
     </qresource>
 </RCC>

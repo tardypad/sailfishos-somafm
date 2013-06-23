@@ -51,7 +51,13 @@ bool XmlModel::setData(const QModelIndex &index, const QVariant &value, int role
 {
     if (index.row() < 0 || index.row() >= m_list.size())
         return false;
-    return m_list.at(index.row())->setData(value, role);
+
+    bool result = m_list.at(index.row())->setData(value, role);
+
+    if (result)
+        emit dataChanged(index, index);
+
+    return result;
 }
 
 void XmlModel::addXmlItem(XmlItem *xmlItem)

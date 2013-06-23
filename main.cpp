@@ -11,6 +11,7 @@
 #include "src/channelsProxyModel.h"
 #include "src/favoritesManager.h"
 #include "src/channelSongsModel.h"
+#include "src/bookmarksManager.h"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
@@ -28,6 +29,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     ChannelSongsModel* channelSongsModel = new ChannelSongsModel();
     view->rootContext()->setContextProperty("_channelSongsModel", channelSongsModel);
+
+    BookmarksManager* bookmarksManager = BookmarksManager::instance();
+    view->rootContext()->setContextProperty("_bookmarksManager", bookmarksManager);
 
     Sailfish::showView(view.data());
     

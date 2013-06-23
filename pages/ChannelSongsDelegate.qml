@@ -54,9 +54,26 @@ Item {
             }
         }
 
+        Image {
+            id: bookmarkImage
+            source: "qrc:/icons/bookmark"
+            height: parent.height / 3
+            width: parent.height / 3
+            anchors {
+                right: parent.right
+                rightMargin: theme.paddingMedium
+                verticalCenter: parent.verticalCenter
+            }
+            fillMode: Image.PreserveAspectFit
+            visible: isBookmark
+        }
+
         onPressAndHold: {
             if (!listView.contextMenu)
                 listView.contextMenu = contextMenuComponent.createObject(listView)
+            listView.contextMenu.artist = artist
+            listView.contextMenu.title = title
+            listView.contextMenu.isBookmark = isBookmark
             listView.contextMenu.show(songItem)
         }
 
