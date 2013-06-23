@@ -19,6 +19,7 @@ Page {
         header: ChannelPageHeader { }
         model: _channelSongsModel
         delegate: ChannelSongsDelegate { }
+        property Item contextMenu
 
         PullDownMenu {
             MenuItem {
@@ -36,6 +37,16 @@ Page {
         }
 
         VerticalScrollDecorator { flickable: listView }
+    }
+
+    Component {
+        id: contextMenuComponent
+        ContextMenu {
+            MenuItem {
+                text: "Add to bookmarks"
+                onClicked: console.log("Add to bookmarks")
+            }
+        }
     }
 
     Component.onCompleted: {
