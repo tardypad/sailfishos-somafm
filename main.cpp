@@ -26,8 +26,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     FavoritesManager* favoritesManager = FavoritesManager::instance();
     view->rootContext()->setContextProperty("_favoritesManager", favoritesManager);
 
-    channelsModel->setFavoritesManager(favoritesManager);
-
     ChannelSongsModel* channelSongsModel = new ChannelSongsModel();
     view->rootContext()->setContextProperty("_channelSongsModel", channelSongsModel);
 

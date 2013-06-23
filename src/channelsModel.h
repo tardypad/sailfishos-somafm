@@ -13,7 +13,6 @@ public:
     explicit ChannelsModel(QObject *parent = 0);
     ~ChannelsModel();
     void setDataChannel(QString channelId, const QVariant &value, int role);
-    void setFavoritesManager(FavoritesManager* favoritesManager);
 
 private slots:
     void addToFavorites(QString channelId);

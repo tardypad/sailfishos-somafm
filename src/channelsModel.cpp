@@ -7,22 +7,17 @@
 #include "favoritesManager.h"
 
 ChannelsModel::ChannelsModel(QObject *parent) :
-    XmlModel(new Channel(), parent),
-    m_favoritesManager(NULL)
+    XmlModel(new Channel(), parent)
 {
     setResourceUrl(QUrl("http://somafm.com/channels.xml"));
+
+    m_favoritesManager = FavoritesManager::instance();
+    connect(m_favoritesManager, SIGNAL(favoriteAdded(QString)), this, SLOT(addToFavorites(QString)));
+    connect(m_favoritesManager, SIGNAL(favoriteRemoved(QString)), this, SLOT(removeFromFavorites(QString)));
 }
 
 ChannelsModel::~ChannelsModel()
 {
-    delete m_favoritesManager;
-}
-
-void ChannelsModel::setFavoritesManager(FavoritesManager* favoritesManager)
-{
-    m_favoritesManager = favoritesManager;
-    connect(favoritesManager, SIGNAL(favoriteAdded(QString)), this, SLOT(addToFavorites(QString)));
-    connect(favoritesManager, SIGNAL(favoriteRemoved(QString)), this, SLOT(removeFromFavorites(QString)));
 }
 
 void ChannelsModel::setDataChannel(QString channelId, const QVariant &value, int role)
