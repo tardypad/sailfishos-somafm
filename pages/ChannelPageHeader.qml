@@ -19,8 +19,8 @@ Item {
         fillMode: Image.PreserveAspectCrop
         clip: true
         anchors {
-            left: parent.left;
-            top: header.bottom;
+            left: parent.left
+            top: header.bottom
             leftMargin: theme.paddingSmall
         }
     }
@@ -44,10 +44,10 @@ Item {
         id: channelDescriptionLabel
         text: description
         anchors {
-            left: channelImage.right;
-            right: parent.right;
-            top: header.bottom;
-            rightMargin: theme.paddingSmall;
+            left: channelImage.right
+            right: parent.right
+            top: header.bottom
+            rightMargin: theme.paddingSmall
             leftMargin: theme.paddingSmall
         }
         color: theme.secondaryColor
@@ -61,13 +61,13 @@ Item {
         id: channelDjLabel
         text: dj ? "by " + dj : ""
         anchors {
-            top: channelDescriptionLabel.bottom;
-            right: parent.right;
+            top: channelDescriptionLabel.bottom
+            right: parent.right
             rightMargin: theme.paddingSmall
         }
         color: theme.secondaryColor
         font {
-            pixelSize: theme.fontSizeExtraSmall;
+            pixelSize: theme.fontSizeExtraSmall
             italic: true
         }
         horizontalAlignment: Text.AlignRight

@@ -13,8 +13,8 @@ MenuItem {
         height: parent.height * 0.7
         width: parent.height * 0.7
         anchors {
-            right: parent.right;
-            rightMargin: theme.paddingLarge;
+            right: parent.right
+            rightMargin: theme.paddingLarge
             verticalCenter: parent.verticalCenter
         }
         fillMode: Image.PreserveAspectFit

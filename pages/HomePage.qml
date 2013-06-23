@@ -22,8 +22,8 @@ Page {
                 height: parent.height * 0.2
                 fillMode: Image.PreserveAspectFit
                 anchors {
-                    top: parent.top;
-                    topMargin: parent.height * 0.05;
+                    top: parent.top
+                    topMargin: parent.height * 0.05
                     horizontalCenter: parent.horizontalCenter
                 }
                 z: 3
@@ -78,7 +78,7 @@ Page {
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: theme.fontSizeSmall
                 anchors {
-                    bottom: parent.bottom;
+                    bottom: parent.bottom
                     bottomMargin: parent.height * 0.1
                 }
                 z: 3

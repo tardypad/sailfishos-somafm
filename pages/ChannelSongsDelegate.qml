@@ -16,7 +16,7 @@ Item {
             id: dateLabel
             text: Qt.formatDateTime(date, 'hh:mm')
             anchors {
-                left: parent.left;
+                left: parent.left
                 leftMargin: theme.paddingMedium
                 verticalCenter: parent.verticalCenter
             }
@@ -27,7 +27,7 @@ Item {
         Column {
             width: parent.width
             anchors {
-                left: dateLabel.right;
+                left: dateLabel.right
                 leftMargin: theme.paddingMedium
                 verticalCenter: parent.verticalCenter
             }

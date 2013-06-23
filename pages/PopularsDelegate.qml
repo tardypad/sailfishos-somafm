@@ -14,8 +14,8 @@ BackgroundItem {
         fillMode: Image.PreserveAspectCrop
         clip: true
         anchors {
-            verticalCenter: parent.verticalCenter;
-            left: parent.left;
+            verticalCenter: parent.verticalCenter
+            left: parent.left
             leftMargin: theme.paddingSmall
         }
     }
@@ -24,8 +24,8 @@ BackgroundItem {
         id: channelNameLabel
         text: name
         anchors {
-            left: channelImage.right;
-            leftMargin: theme.paddingSmall;
+            left: channelImage.right
+            leftMargin: theme.paddingSmall
             top: parent.top
         }
     }
@@ -34,13 +34,13 @@ BackgroundItem {
         id: channelListenersLabel
         text: listeners
         anchors {
-            right: listenerIcon.left;
-            rightMargin: theme.paddingSmall;
+            right: listenerIcon.left
+            rightMargin: theme.paddingSmall
             verticalCenter: listenerIcon.verticalCenter
         }
         color: theme.secondaryColor
         font {
-            pixelSize: theme.fontSizeExtraSmall * 0.8;
+            pixelSize: theme.fontSizeExtraSmall * 0.8
             italic: true
         }
     }
@@ -52,8 +52,8 @@ BackgroundItem {
         height: channelNameLabel.height * 0.5
         width: channelNameLabel.height * 0.5
         anchors {
-            right: parent.right;
-            rightMargin: theme.paddingSmall;
+            right: parent.right
+            rightMargin: theme.paddingSmall
             bottom: channelNameLabel.baseline
         }
         fillMode: Image.PreserveAspectFit
@@ -63,10 +63,10 @@ BackgroundItem {
         id: channelDescriptionLabel
         text: description
         anchors {
-            left: channelImage.right;
-            right: parent.right;
-            top: channelNameLabel.bottom;
-            topMargin: -theme.paddingSmall;
+            left: channelImage.right
+            right: parent.right
+            top: channelNameLabel.bottom
+            topMargin: -theme.paddingSmall
             leftMargin: theme.paddingSmall
         }
         color: theme.secondaryColor

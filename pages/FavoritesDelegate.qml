@@ -11,13 +11,13 @@ BackgroundItem {
         width: gridView.cellWidth - theme.paddingSmall*2
         height: gridView.cellHeight - theme.paddingSmall*2
         sourceSize {
-            width: gridView.cellWidth - theme.paddingSmall*2;
+            width: gridView.cellWidth - theme.paddingSmall*2
             height: gridView.cellHeight - theme.paddingSmall*2
         }
         smooth: true
         source: (imageMediumUrl != "") ? imageMediumUrl : imageBigUrl
         anchors {
-            verticalCenter: parent.verticalCenter;
+            verticalCenter: parent.verticalCenter
             horizontalCenter: parent.horizontalCenter
         }
         fillMode: Image.PreserveAspectCrop

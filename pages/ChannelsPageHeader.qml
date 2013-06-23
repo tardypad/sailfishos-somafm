@@ -31,8 +31,8 @@ Item {
         anchors {
             verticalCenter: parent.verticalCenter
             verticalCenterOffset: 4
-            right: parent.right;
-            rightMargin: theme.paddingLarge;
+            right: parent.right
+            rightMargin: theme.paddingLarge
         }
         fillMode: Image.PreserveAspectFit
     }
