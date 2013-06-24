@@ -25,7 +25,7 @@ void ChannelsModel::setDataChannel(QString channelId, const QVariant &value, int
     for (int row = 0; row < m_list.size(); ++row) {
         QString id = m_list.at(row)->data(Channel::IdRole).toString();
         if (id == channelId) {
-            m_list.at(row)->setData(value, role);
+            setData(index(row), value, role);
         }
       }
 }
