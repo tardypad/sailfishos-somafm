@@ -90,6 +90,21 @@ Page {
             }
         }
 
+        PullDownMenu {
+            ChannelsMenuItem {
+                text: "News"
+                iconSource: "qrc:/icons/news"
+                nextPage: "NewsPage.qml"
+                isReplace: false
+            }
+            ChannelsMenuItem {
+                text: "Song bookmarks"
+                iconSource: "qrc:/icons/bookmark"
+                nextPage: "BookmarksPage.qml"
+                isReplace: false
+            }
+        }
+
         PushUpMenu {
             bottomMargin: topMargin
 

@@ -17,11 +17,13 @@ Page {
                 text: "Genres"
                 iconSource: "qrc:/icons/genres"
                 nextPage: "GenresPage.qml"
+                isReplace: true
             }
             ChannelsMenuItem {
                 text: "Favorites"
                 iconSource: "qrc:/icons/favorites"
                 nextPage: "FavoritesPage.qml"
+                isReplace: true
             }
         }
 

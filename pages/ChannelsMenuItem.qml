@@ -4,8 +4,14 @@ import Sailfish.Silica 1.0
 MenuItem {
     property alias iconSource: icon.source
     property string nextPage
+    property bool isReplace
 
-    onClicked: pageStack.replace(Qt.resolvedUrl(nextPage))
+    onClicked: {
+        if (isReplace)
+            pageStack.replace(Qt.resolvedUrl(nextPage))
+        else
+            pageStack.push(Qt.resolvedUrl(nextPage))
+    }
 
     Image {
         id: icon

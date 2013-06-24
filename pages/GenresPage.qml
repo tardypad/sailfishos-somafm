@@ -25,11 +25,13 @@ Page {
                 text: "Populars"
                 iconSource: "qrc:/icons/populars"
                 nextPage: "PopularsPage.qml"
+                isReplace: true
             }
             ChannelsMenuItem {
                 text: "Favorites"
                 iconSource: "qrc:/icons/favorites"
                 nextPage: "FavoritesPage.qml"
+                isReplace: true
             }
         }
 
