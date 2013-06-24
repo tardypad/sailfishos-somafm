@@ -1,17 +1,17 @@
-#ifndef CHANNELSONGSMODEL_H
-#define CHANNELSONGSMODEL_H
+#ifndef SONGSMODEL_H
+#define SONGSMODEL_H
 
 #include "xmlModel.h"
 
-class ChannelSong;
-class BookmarksManager;
+class Song;
+class SongsBookmarksManager;
 
-class ChannelSongsModel : public XmlModel
+class SongsModel : public XmlModel
 {
     Q_OBJECT
 public:
-    explicit ChannelSongsModel(QObject *parent = 0);
-    ~ChannelSongsModel();
+    explicit SongsModel(QObject *parent = 0);
+    ~SongsModel();
     Q_INVOKABLE void setChannelId(QString channelId);
     void setDataSong(QString artist, QString title, const QVariant &value, int role);
 
@@ -23,7 +23,7 @@ private:
     virtual XmlItem* parseXmlItem();
 
 private:
-    BookmarksManager* m_bookmarksManager;
+    SongsBookmarksManager* m_bookmarksManager;
 };
 
-#endif // CHANNELSONGSMODEL_H
+#endif // SONGSMODEL_H

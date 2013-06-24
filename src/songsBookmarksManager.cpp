@@ -1,22 +1,22 @@
-#include "bookmarksManager.h"
+#include "songsBookmarksManager.h"
 
-BookmarksManager* BookmarksManager::m_instance = NULL;
+SongsBookmarksManager* SongsBookmarksManager::m_instance = NULL;
 
-BookmarksManager::BookmarksManager(QObject *parent) :
+SongsBookmarksManager::SongsBookmarksManager(QObject *parent) :
     QObject(parent), m_bookmarks(QList<bookmark_t>())
 {
 }
 
-BookmarksManager* BookmarksManager::instance()
+SongsBookmarksManager* SongsBookmarksManager::instance()
 {
     if (!m_instance) {
-        m_instance = new BookmarksManager();
+        m_instance = new SongsBookmarksManager();
     }
 
     return m_instance;
 }
 
-bool BookmarksManager::addBookmark(QString artist, QString title)
+bool SongsBookmarksManager::addBookmark(QString artist, QString title)
 {
     if (isBookmark(artist, title)) return false;
 
@@ -30,7 +30,7 @@ bool BookmarksManager::addBookmark(QString artist, QString title)
     return true;
 }
 
-bool BookmarksManager::removeBookmark(QString artist, QString title)
+bool SongsBookmarksManager::removeBookmark(QString artist, QString title)
 {
     if (!isBookmark(artist, title)) return false;
 
@@ -41,7 +41,7 @@ bool BookmarksManager::removeBookmark(QString artist, QString title)
     return true;
 }
 
-int BookmarksManager::indexOf(QString artist, QString title)
+int SongsBookmarksManager::indexOf(QString artist, QString title)
 {
     for (int row = 0; row < m_bookmarks.size(); ++row) {
         if (m_bookmarks.at(row).artist == artist
@@ -51,12 +51,12 @@ int BookmarksManager::indexOf(QString artist, QString title)
     return -1;
 }
 
-QList<bookmark_t> BookmarksManager::getBookmarks() const
+QList<bookmark_t> SongsBookmarksManager::getBookmarks() const
 {
     return m_bookmarks;
 }
 
-bool BookmarksManager::isBookmark(QString artist, QString title) const
+bool SongsBookmarksManager::isBookmark(QString artist, QString title) const
 {
     bookmark_t bookmark;
     foreach (bookmark, m_bookmarks) {

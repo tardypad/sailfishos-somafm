@@ -5,7 +5,7 @@ Page {
     SilicaListView {
         id: listView
         anchors.fill: parent
-        header: ChannelsPageHeader {
+        header: IconPageHeader {
             text: "News"
             iconSource: "qrc:/icons/news"
         }

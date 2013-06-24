@@ -4,7 +4,7 @@
 #include "xmlModel.h"
 
 class Channel;
-class FavoritesManager;
+class ChannelsFavoritesManager;
 
 class ChannelsModel : public XmlModel
 {
@@ -23,7 +23,7 @@ private:
     void duplicateGenre(Channel* channel);
 
 private:
-    FavoritesManager* m_favoritesManager;
+    ChannelsFavoritesManager* m_favoritesManager;
 };
 
 #endif // CHANNELSMODEL_H

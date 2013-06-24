@@ -1,8 +1,8 @@
-#include "favoritesManager.h"
+#include "channelsFavoritesManager.h"
 
-FavoritesManager* FavoritesManager::m_instance = NULL;
+ChannelsFavoritesManager* ChannelsFavoritesManager::m_instance = NULL;
 
-FavoritesManager::FavoritesManager(QObject *parent) :
+ChannelsFavoritesManager::ChannelsFavoritesManager(QObject *parent) :
     QObject(parent), m_favorites("")
 {
     // temporary initial favorites
@@ -11,16 +11,16 @@ FavoritesManager::FavoritesManager(QObject *parent) :
     m_favorites.append("spacestation");
 }
 
-FavoritesManager* FavoritesManager::instance()
+ChannelsFavoritesManager* ChannelsFavoritesManager::instance()
 {
     if (!m_instance) {
-        m_instance = new FavoritesManager();
+        m_instance = new ChannelsFavoritesManager();
     }
 
     return m_instance;
 }
 
-bool FavoritesManager::addFavorite(QString channelId)
+bool ChannelsFavoritesManager::addFavorite(QString channelId)
 {
     if (isFavorite(channelId)) return false;
 
@@ -30,7 +30,7 @@ bool FavoritesManager::addFavorite(QString channelId)
     return true;
 }
 
-bool FavoritesManager::removeFavorite(QString channelId)
+bool ChannelsFavoritesManager::removeFavorite(QString channelId)
 {
     if (!isFavorite(channelId)) return false;
 
@@ -40,12 +40,12 @@ bool FavoritesManager::removeFavorite(QString channelId)
     return true;
 }
 
-QStringList FavoritesManager::getFavorites() const
+QStringList ChannelsFavoritesManager::getFavorites() const
 {
     return m_favorites;
 }
 
-bool FavoritesManager::isFavorite(QString channelId) const
+bool ChannelsFavoritesManager::isFavorite(QString channelId) const
 {
     return m_favorites.contains(channelId, Qt::CaseInsensitive);
 }

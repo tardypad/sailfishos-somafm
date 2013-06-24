@@ -1,6 +1,6 @@
-#include "channelSong.h"
+#include "song.h"
 
-ChannelSong::ChannelSong(QObject *parent) :
+Song::Song(QObject *parent) :
     XmlItem(parent),
     m_title(""),
     m_artist(""),
@@ -10,7 +10,7 @@ ChannelSong::ChannelSong(QObject *parent) :
 {
 }
 
-QHash<int, QByteArray> ChannelSong::roleNames()
+QHash<int, QByteArray> Song::roleNames()
 {
     QHash<int, QByteArray> roleNames;
     roleNames[TitleRole] = "title";
@@ -22,7 +22,7 @@ QHash<int, QByteArray> ChannelSong::roleNames()
     return roleNames;
 }
 
-QVariant ChannelSong::data(int role) const
+QVariant Song::data(int role) const
 {
     switch(role) {
     case TitleRole:
@@ -40,7 +40,7 @@ QVariant ChannelSong::data(int role) const
     return QVariant();
 }
 
-bool ChannelSong::setData(const QVariant &value, int role)
+bool Song::setData(const QVariant &value, int role)
 {
     switch(role) {
     case TitleRole:

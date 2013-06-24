@@ -1,5 +1,5 @@
-#ifndef BOOKMARKSMANAGER_H
-#define BOOKMARKSMANAGER_H
+#ifndef SONGSBOOKMARKSMANAGER_H
+#define SONGSBOOKMARKSMANAGER_H
 
 #include <QObject>
 #include <QString>
@@ -9,11 +9,11 @@ struct bookmark_t {
    QString title;
 };
 
-class BookmarksManager : public QObject
+class SongsBookmarksManager : public QObject
 {
     Q_OBJECT
 public:
-    static BookmarksManager* instance();
+    static SongsBookmarksManager* instance();
     Q_INVOKABLE bool addBookmark(QString artist, QString title);
     Q_INVOKABLE bool removeBookmark(QString artist, QString title);
     QList<bookmark_t> getBookmarks() const;
@@ -24,12 +24,12 @@ signals:
     void bookmarkRemoved(QString artist, QString title);
 
 private:
-    explicit BookmarksManager(QObject *parent = 0);
+    explicit SongsBookmarksManager(QObject *parent = 0);
     int indexOf(QString artist, QString title);
 
 private:
-    static BookmarksManager* m_instance;
+    static SongsBookmarksManager* m_instance;
     QList<bookmark_t> m_bookmarks;
 };
 
-#endif // BOOKMARKSMANAGER_H
+#endif // SONGSBOOKMARKSMANAGER_H

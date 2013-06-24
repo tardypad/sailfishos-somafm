@@ -1,14 +1,14 @@
-#ifndef FAVORITESMANAGER_H
-#define FAVORITES_H
+#ifndef CHANNELSFAVORITESMANAGER_H
+#define CHANNELSFAVORITESMANAGER_H
 
 #include <QObject>
 #include <QStringList>
 
-class FavoritesManager : public QObject
+class ChannelsFavoritesManager : public QObject
 {
     Q_OBJECT
 public:
-    static FavoritesManager* instance();
+    static ChannelsFavoritesManager* instance();
     Q_INVOKABLE bool addFavorite(QString channelId);
     Q_INVOKABLE bool removeFavorite(QString channelId);
     QStringList getFavorites() const;
@@ -19,11 +19,11 @@ signals:
     void favoriteRemoved(QString id);
 
 private:
-    explicit FavoritesManager(QObject *parent = 0);
+    explicit ChannelsFavoritesManager(QObject *parent = 0);
 
 private:
-    static FavoritesManager* m_instance;
+    static ChannelsFavoritesManager* m_instance;
     QStringList m_favorites;
 };
 
-#endif // FAVORITESMANAGER_H
+#endif // CHANNELSFAVORITESMANAGER_H

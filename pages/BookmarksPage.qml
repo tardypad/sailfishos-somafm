@@ -5,7 +5,7 @@ Page {
     SilicaListView {
         id: listView
         anchors.fill: parent
-        header: ChannelsPageHeader {
+        header: IconPageMenuItem {
             text: "Song bookmarks"
             iconSource: "qrc:/icons/bookmark"
         }

@@ -4,14 +4,14 @@
 #include <QXmlStreamAttributes>
 
 #include "channel.h"
-#include "favoritesManager.h"
+#include "channelsFavoritesManager.h"
 
 ChannelsModel::ChannelsModel(QObject *parent) :
     XmlModel(new Channel(), parent)
 {
     setResourceUrl(QUrl("http://somafm.com/channels.xml"));
 
-    m_favoritesManager = FavoritesManager::instance();
+    m_favoritesManager = ChannelsFavoritesManager::instance();
     connect(m_favoritesManager, SIGNAL(favoriteAdded(QString)), this, SLOT(addToFavorites(QString)));
     connect(m_favoritesManager, SIGNAL(favoriteRemoved(QString)), this, SLOT(removeFromFavorites(QString)));
 }

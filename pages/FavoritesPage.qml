@@ -5,7 +5,7 @@ Page {
     SilicaGridView {
         id: gridView
         anchors.fill: parent
-        header: ChannelsPageHeader {
+        header: IconPageMenuItem {
             text: "Favorites"
             iconSource: "qrc:/icons/favorites"
         }
@@ -15,13 +15,13 @@ Page {
         cellHeight: parent.width / 2
 
         PullDownMenu {
-            ChannelsMenuItem {
+            IconPageMenuItem {
                 text: "Genres"
                 iconSource: "qrc:/icons/genres"
                 nextPage: "GenresPage.qml"
                 isReplace: true
             }
-            ChannelsMenuItem {
+            IconPageMenuItem {
                 text: "Populars"
                 iconSource: "qrc:/icons/populars"
                 nextPage: "PopularsPage.qml"

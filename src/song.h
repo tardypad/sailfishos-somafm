@@ -1,5 +1,5 @@
-#ifndef CHANNELSONG_H
-#define CHANNELSONG_H
+#ifndef SONG_H
+#define SONG_H
 
 #include <QObject>
 #include <QHash>
@@ -10,7 +10,7 @@
 
 #include "xmlItem.h"
 
-class ChannelSong : public XmlItem
+class Song : public XmlItem
 {
     Q_OBJECT
 
@@ -24,7 +24,7 @@ public:
     };
 
 public:
-    explicit ChannelSong(QObject *parent = 0);
+    explicit Song(QObject *parent = 0);
     virtual QVariant data(int role) const;
     virtual bool setData (const QVariant &value, int role);
     virtual QHash<int, QByteArray> roleNames();
@@ -51,4 +51,4 @@ private:
     bool m_isBookmark;
 };
 
-#endif // CHANNELSONG_H
+#endif // SONG_H

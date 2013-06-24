@@ -91,13 +91,13 @@ Page {
         }
 
         PullDownMenu {
-            ChannelsMenuItem {
+            IconPageMenuItem {
                 text: "News"
                 iconSource: "qrc:/icons/news"
                 nextPage: "NewsPage.qml"
                 isReplace: false
             }
-            ChannelsMenuItem {
+            IconPageMenuItem {
                 text: "Song bookmarks"
                 iconSource: "qrc:/icons/bookmark"
                 nextPage: "BookmarksPage.qml"

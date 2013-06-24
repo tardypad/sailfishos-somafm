@@ -1,41 +1,41 @@
-#include "channelSongsModel.h"
+#include "songsModel.h"
 
 #include <QXmlStreamReader>
 
-#include "channelSong.h"
-#include "bookmarksManager.h"
+#include "song.h"
+#include "songsBookmarksManager.h"
 
-ChannelSongsModel::ChannelSongsModel(QObject *parent) :
-    XmlModel(new ChannelSong(), parent)
+SongsModel::SongsModel(QObject *parent) :
+    XmlModel(new Song(), parent)
 {
-    m_bookmarksManager = BookmarksManager::instance();
+    m_bookmarksManager = SongsBookmarksManager::instance();
     connect(m_bookmarksManager, SIGNAL(bookmarkAdded(QString,QString)), this, SLOT(addToBookmarks(QString,QString)));
     connect(m_bookmarksManager, SIGNAL(bookmarkRemoved(QString,QString)), this, SLOT(removeFromBookmarks(QString,QString)));
 }
 
-ChannelSongsModel::~ChannelSongsModel()
+SongsModel::~SongsModel()
 {
 }
 
-void ChannelSongsModel::setChannelId(QString channelId)
+void SongsModel::setChannelId(QString channelId)
 {
     setResourceUrl(QUrl("http://somafm.com/songs/" + channelId + ".xml"));
 }
 
-void ChannelSongsModel::setDataSong(QString artist, QString title, const QVariant &value, int role)
+void SongsModel::setDataSong(QString artist, QString title, const QVariant &value, int role)
 {
     for (int row = 0; row < m_list.size(); ++row) {
-        QString itemArtist = m_list.at(row)->data(ChannelSong::ArtistRole).toString();
-        QString itemTitle = m_list.at(row)->data(ChannelSong::TitleRole).toString();
+        QString itemArtist = m_list.at(row)->data(Song::ArtistRole).toString();
+        QString itemTitle = m_list.at(row)->data(Song::TitleRole).toString();
         if (itemArtist == artist && itemTitle == title) {
             setData(index(row) ,value, role);
         }
     }
 }
 
-XmlItem* ChannelSongsModel::parseXmlItem()
+XmlItem* SongsModel::parseXmlItem()
 {
-    ChannelSong* channelSong = new ChannelSong();
+    Song* song = new Song();
     QString title = "";
     QString artist = "";
     QString album = "";
@@ -61,24 +61,24 @@ XmlItem* ChannelSongsModel::parseXmlItem()
         }
     }
 
-    channelSong->setData(title, ChannelSong::TitleRole);
-    channelSong->setData(artist, ChannelSong::ArtistRole);
-    channelSong->setData(album, ChannelSong::AlbumRole);
-    channelSong->setData(datetime, ChannelSong::DateRole);
+    song->setData(title, Song::TitleRole);
+    song->setData(artist, Song::ArtistRole);
+    song->setData(album, Song::AlbumRole);
+    song->setData(datetime, Song::DateRole);
 
     if (m_bookmarksManager->isBookmark(artist, title)) {
-        channelSong->setData(true, ChannelSong::IsBookmarkRole);
+        song->setData(true, Song::IsBookmarkRole);
     }
 
-    return channelSong;
+    return song;
 }
 
-void ChannelSongsModel::addToBookmarks(QString artist, QString title)
+void SongsModel::addToBookmarks(QString artist, QString title)
 {
-    setDataSong(artist, title, true, ChannelSong::IsBookmarkRole);
+    setDataSong(artist, title, true, Song::IsBookmarkRole);
 }
 
-void ChannelSongsModel::removeFromBookmarks(QString artist, QString title)
+void SongsModel::removeFromBookmarks(QString artist, QString title)
 {
-    setDataSong(artist, title, false, ChannelSong::IsBookmarkRole);
+    setDataSong(artist, title, false, Song::IsBookmarkRole);
 }

@@ -5,7 +5,7 @@ Page {
     SilicaListView {
         id: listView
         anchors.fill: parent
-        header: ChannelsPageHeader {
+        header: IconPageHeader {
             text: "Populars"
             iconSource: "qrc:/icons/populars"
         }
@@ -13,13 +13,13 @@ Page {
         delegate: PopularsDelegate { }
 
         PullDownMenu {
-            ChannelsMenuItem {
+            IconPageMenuItem {
                 text: "Genres"
                 iconSource: "qrc:/icons/genres"
                 nextPage: "GenresPage.qml"
                 isReplace: true
             }
-            ChannelsMenuItem {
+            IconPageMenuItem {
                 text: "Favorites"
                 iconSource: "qrc:/icons/favorites"
                 nextPage: "FavoritesPage.qml"
