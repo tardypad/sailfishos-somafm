@@ -23,12 +23,13 @@ public:
 
 protected:
     inline void setResourceUrl(QUrl resourceUrl) { m_resourceUrl = resourceUrl; }
-    void addXmlItem(XmlItem* xmlItem);
+    void appendXmlItem(XmlItem* xmlItem);
     void clear();
 
 private slots:
     virtual void parseFirst();
     void parse();
+    virtual void parseAfter();
 
 private:
     virtual XmlItem* parseXmlItem() = 0;

@@ -60,7 +60,7 @@ bool XmlModel::setData(const QModelIndex &index, const QVariant &value, int role
     return result;
 }
 
-void XmlModel::addXmlItem(XmlItem *xmlItem)
+void XmlModel::appendXmlItem(XmlItem *xmlItem)
 {
     beginInsertRows(QModelIndex(), m_list.size(), m_list.size());
     m_list.append(xmlItem);
@@ -89,14 +89,20 @@ void XmlModel::parse()
         if (m_xmlReader->isStartElement()) {
             if (m_xmlReader->name() == m_xmlItemPrototype->xmlTag()) {
                 XmlItem* xmlItem = parseXmlItem();
-                addXmlItem(xmlItem);
+                appendXmlItem(xmlItem);
             }
         }
     }
+
+    parseAfter();
 
     m_currentReply->deleteLater();
 }
 
 void XmlModel::parseFirst()
+{
+}
+
+void XmlModel::parseAfter()
 {
 }

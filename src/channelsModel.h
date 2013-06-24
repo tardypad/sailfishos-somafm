@@ -3,6 +3,7 @@
 
 #include "xmlModel.h"
 
+
 class Channel;
 class ChannelsFavoritesManager;
 
@@ -20,7 +21,9 @@ private slots:
 
 private:
     virtual XmlItem* parseXmlItem();
-    void duplicateGenre(Channel* channel);
+    virtual void parseAfter();
+    void duplicateGenre();
+    void duplicateGenre(const QModelIndex &index);
 
 private:
     ChannelsFavoritesManager* m_favoritesManager;

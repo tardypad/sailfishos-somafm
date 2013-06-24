@@ -97,20 +97,34 @@ XmlItem* ChannelsModel::parseXmlItem()
         channel->setData(true, Channel::IsFavoriteRole);
     }
 
-    duplicateGenre(channel);
-
     return channel;
 }
 
-void ChannelsModel::duplicateGenre(Channel *channel)
+void ChannelsModel::parseAfter()
 {
+    duplicateGenre();
+}
+
+void ChannelsModel::duplicateGenre()
+{
+    for (int row = 0; row < m_list.size(); ++row) {
+        duplicateGenre(index(row));
+    }
+}
+
+void ChannelsModel::duplicateGenre(const QModelIndex &index)
+{
+    Channel* channel = (Channel*) m_list.at(index.row());
+
     QStringList genres = channel->data(Channel::GenresRole).toStringList();
-    if (genres.size() > 1) {
-        channel->setData(genres.at(0), Channel::SortGenreRole);
+    bool isClone = channel->data(Channel::IsCloneRole).toBool();
+
+    if (!isClone && genres.size() > 1) {
+        setData(index, genres.at(0), Channel::SortGenreRole);
         for (int i = 1; i < genres.size(); ++i) {
             Channel* newChannel = channel->clone();
             newChannel->setData(genres.at(i), Channel::SortGenreRole);
-            addXmlItem(newChannel);
+            appendXmlItem(newChannel);
         }
     }
 }
