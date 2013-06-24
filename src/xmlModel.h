@@ -27,6 +27,7 @@ protected:
     void clear();
 
 private slots:
+    virtual void parseFirst();
     void parse();
 
 private:

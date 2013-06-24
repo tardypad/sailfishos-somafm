@@ -82,6 +82,8 @@ void XmlModel::parse()
     QByteArray data = m_currentReply->readAll();
     m_xmlReader->addData(data);
 
+    parseFirst();
+
     while (!m_xmlReader->atEnd()) {
         m_xmlReader->readNext();
         if (m_xmlReader->isStartElement()) {
@@ -93,4 +95,8 @@ void XmlModel::parse()
     }
 
     m_currentReply->deleteLater();
+}
+
+void XmlModel::parseFirst()
+{
 }
