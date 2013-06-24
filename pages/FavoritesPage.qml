@@ -5,7 +5,7 @@ Page {
     SilicaGridView {
         id: gridView
         anchors.fill: parent
-        header: IconPageMenuItem {
+        header: IconPageHeader {
             text: "Favorites"
             iconSource: "qrc:/icons/favorites"
         }
