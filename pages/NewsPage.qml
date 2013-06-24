@@ -9,6 +9,8 @@ Page {
             text: "News"
             iconSource: "qrc:/icons/news"
         }
+        model: _newsModel
+        delegate: NewsDelegate { }
 
         VerticalScrollDecorator { flickable: listView }
     }

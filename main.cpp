@@ -12,6 +12,7 @@
 #include "src/channelsFavoritesManager.h"
 #include "src/songsModel.h"
 #include "src/songsBookmarksManager.h"
+#include "src/newsModel.h"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
@@ -32,6 +33,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     SongsBookmarksManager* bookmarksManager = SongsBookmarksManager::instance();
     view->rootContext()->setContextProperty("_bookmarksManager", bookmarksManager);
+
+    NewsModel* newsModel = new NewsModel();
+    newsModel->fetch();
+    view->rootContext()->setContextProperty("_newsModel", newsModel);
 
     Sailfish::showView(view.data());
     
