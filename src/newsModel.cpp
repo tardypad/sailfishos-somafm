@@ -31,6 +31,7 @@ XmlItem* NewsModel::parseXmlItem()
     News* news = new News();
     QString content = "";
     QDateTime datetime = QDateTime();
+    QString dateGroup = "";
 
     while (!(m_xmlReader->isEndElement() && m_xmlReader->name() == m_xmlItemPrototype->xmlTag())) {
         m_xmlReader->readNext();
@@ -46,8 +47,26 @@ XmlItem* NewsModel::parseXmlItem()
         }
     }
 
+    dateGroup = defineGroup(datetime);
+
     news->setData(content, News::ContentRole);
     news->setData(datetime, News::DateRole);
+    news->setData(dateGroup, News::DateGroupRole);
 
     return news;
+}
+
+QString NewsModel::defineGroup(QDateTime dateTime)
+{
+    if (!dateTime.isValid()) return "";
+
+    QDateTime now = QDateTime::currentDateTime();
+
+    if (dateTime.addDays(7) > now) {
+        return "Last week";
+    } else if (dateTime.addMonths(1) > now) {
+        return "Last month";
+    }
+
+    return "Older";
 }

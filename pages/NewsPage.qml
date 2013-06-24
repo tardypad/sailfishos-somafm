@@ -32,6 +32,12 @@ Page {
         }
         model: _newsModel
         delegate: NewsDelegate { }
+        section {
+            property: 'dateGroup'
+            delegate: SectionHeader {
+                text: section
+            }
+        }
 
         VerticalScrollDecorator { flickable: listView }
     }

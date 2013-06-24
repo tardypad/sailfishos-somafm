@@ -19,6 +19,7 @@ public:
 private:
     virtual XmlItem* parseXmlItem();
     virtual void parseFirst();
+    QString defineGroup(QDateTime dateTime);
 
 private:
     QString m_banner;

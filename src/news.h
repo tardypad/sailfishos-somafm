@@ -17,7 +17,8 @@ class News : public XmlItem
 public:
     enum Roles {
         ContentRole = Qt::UserRole+1,
-        DateRole
+        DateRole,
+        DateGroupRole
     };
 
 public:
@@ -30,13 +31,16 @@ public:
 
     inline QString content() const { return m_content; }
     inline QDateTime date() const { return m_date; }
+    inline QString dateGroup() const { return m_dateGroup; }
 
     inline void setContent(QString content) { m_content = content; }
     inline void setDate(QDateTime date) { m_date = date; }
+    inline void setDateGroup(QString dateGroup) { m_dateGroup = dateGroup; }
 
 private:
     QString m_content;
     QDateTime m_date;
+    QString m_dateGroup;
 };
 
 #endif // NEWS_H
