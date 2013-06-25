@@ -29,6 +29,12 @@ Page {
             }
         }
 
+        ViewPlaceholderHint {
+            enabled: gridView.count === 0
+            text: "No Favorites"
+            hintText: "You can favorite a channel from the top menu of its page"
+        }
+
         Component.onCompleted: {
             _channelsModel.hideClones()
             _channelsModel.filterFavorites()

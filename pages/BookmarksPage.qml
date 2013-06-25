@@ -10,6 +10,12 @@ Page {
             iconSource: "qrc:/icons/bookmark"
         }
 
+        ViewPlaceholderHint {
+            enabled: listView.count === 0
+            text: "No Bookmarks"
+            hintText: "You can bookmark a song by 'tap and hold' on it"
+        }
+
         VerticalScrollDecorator { flickable: listView }
     }
 }
