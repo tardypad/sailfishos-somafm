@@ -3,13 +3,14 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamAttributes>
 
+#include "somaFM.h"
 #include "channel.h"
 #include "channelsFavoritesManager.h"
 
 ChannelsModel::ChannelsModel(QObject *parent) :
     XmlModel(new Channel(), parent)
 {
-    setResourceUrl(QUrl("http://somafm.com/channels.xml"));
+    setResourceUrl(SomaFM::channelsUrl());
 
     m_favoritesManager = ChannelsFavoritesManager::instance();
     connect(m_favoritesManager, SIGNAL(favoriteAdded(QString)), this, SLOT(addToFavorites(QString)));

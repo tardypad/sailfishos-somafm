@@ -2,13 +2,14 @@
 
 #include <QXmlStreamReader>
 
+#include "somaFM.h"
 #include "news.h"
 
 NewsModel::NewsModel(QObject *parent) :
     XmlModel(new News(), parent),
     m_banner("")
 {
-    setResourceUrl(QUrl("http://somafm.com/news.xml"));
+    setResourceUrl(SomaFM::newsUrl());
 }
 
 void NewsModel::parseFirst()

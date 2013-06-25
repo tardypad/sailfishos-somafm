@@ -2,6 +2,7 @@
 
 #include <QXmlStreamReader>
 
+#include "somaFM.h"
 #include "song.h"
 #include "songsBookmarksManager.h"
 
@@ -19,7 +20,7 @@ SongsModel::~SongsModel()
 
 void SongsModel::setChannelId(QString channelId)
 {
-    setResourceUrl(QUrl("http://somafm.com/songs/" + channelId + ".xml"));
+    setResourceUrl(SomaFM::channelSongsUrl(channelId));
 }
 
 void SongsModel::setDataSong(QString artist, QString title, const QVariant &value, int role)
