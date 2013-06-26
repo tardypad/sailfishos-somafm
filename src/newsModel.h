@@ -12,7 +12,8 @@ class NewsModel : public XmlModel
     Q_OBJECT
 public:
     explicit NewsModel(QObject *parent = 0);
-    
+    Q_INVOKABLE QUrl supportUrl();
+
     Q_INVOKABLE inline QString banner() { return m_banner; }
     inline void setBanner(QString banner) { m_banner = banner; }
 

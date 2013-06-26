@@ -12,6 +12,11 @@ NewsModel::NewsModel(QObject *parent) :
     setResourceUrl(SomaFM::newsUrl());
 }
 
+QUrl NewsModel::supportUrl()
+{
+    return SomaFM::supportUrl();
+}
+
 void NewsModel::parseFirst()
 {
     QString banner = "";

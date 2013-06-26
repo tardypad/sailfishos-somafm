@@ -33,6 +33,6 @@ Item {
             top: bannerLabel.bottom
             horizontalCenter: parent.horizontalCenter
         }
-        onClicked: Qt.openUrlExternally("http://somafm.com/support")
+        onClicked: Qt.openUrlExternally(_newsModel.supportUrl())
     }
 }
