@@ -11,5 +11,7 @@
         <file alias="populars">images/icons/populars.svg</file>
         <file alias="bookmark">images/icons/bookmark.svg</file>
         <file alias="news">images/icons/news.svg</file>
+        <file alias="un-bookmark">images/icons/un-bookmark.svg</file>
+        <file alias="un-favorite">images/icons/un-favorite.svg</file>
     </qresource>
 </RCC>

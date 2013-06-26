@@ -22,7 +22,8 @@ Page {
         property Item contextMenu
 
         PullDownMenu {
-            MenuItem {
+            IconActionMenuItem {
+                iconSource: !isFavorite ? "qrc:/icons/favorites" : "qrc:/icons/un-favorite"
                 text: !isFavorite ? "Add to Favorites" : "Remove from Favorites"
                 onClicked: {
                     if (!isFavorite) {
@@ -46,7 +47,8 @@ Page {
             property string artist
             property string title
 
-            MenuItem {
+            IconActionMenuItem {
+                iconSource: !isBookmark ? "qrc:/icons/bookmark" : "qrc:/icons/un-bookmark"
                 text: !isBookmark ? "Add to bookmarks" : "Remove from bookmarks"
                 onClicked: {
                     if (!isBookmark) {
