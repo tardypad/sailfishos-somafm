@@ -21,8 +21,8 @@ ChannelsDelegate {
         id: listenerIcon
         source: "qrc:/icons/listener"
         smooth: true
-        height: parent.height / 5
-        width: parent.height / 5
+        height: 20
+        width: 20
         anchors {
             top: parent.top
             topMargin: theme.paddingSmall

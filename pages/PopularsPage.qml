@@ -11,6 +11,7 @@ Page {
         }
         model: _channelsModel
         delegate: PopularsDelegate { }
+        property Item contextMenu
 
         PullDownMenu {
             IconPageMenuItem {
@@ -24,6 +25,26 @@ Page {
                 iconSource: "qrc:/icons/favorites"
                 nextPage: "FavoritesPage.qml"
                 isReplace: true
+            }
+        }
+
+        Component {
+            id: contextMenuComponent
+            ContextMenu {
+                property bool isFavorite
+                property string id
+
+                IconActionMenuItem {
+                    iconSource: !isFavorite ? "qrc:/icons/favorites" : "qrc:/icons/un-favorite"
+                    text: !isFavorite ? "Add to favorites" : "Remove from favorites"
+                    onClicked: {
+                        if (!isFavorite) {
+                            _favoritesManager.addFavorite(id)
+                        } else {
+                            _favoritesManager.addFavorite(id)
+                        }
+                    }
+                }
             }
         }
 
