@@ -27,7 +27,7 @@ Item {
 
     Image {
         id: favoriteImage
-        source: "qrc:/icons/favorites"
+        source: "qrc:/icon/favorite"
         height: header.height / 4
         width: header.height / 4
         anchors {

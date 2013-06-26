@@ -56,7 +56,7 @@ Item {
 
         Image {
             id: bookmarkImage
-            source: "qrc:/icons/bookmark"
+            source: "qrc:/icon/bookmark"
             height: parent.height / 3
             width: parent.height / 3
             anchors {

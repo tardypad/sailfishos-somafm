@@ -19,7 +19,7 @@ ChannelsDelegate {
 
     Image {
         id: listenerIcon
-        source: "qrc:/icons/listener"
+        source: "qrc:/icon/listener"
         smooth: true
         height: 20
         width: 20

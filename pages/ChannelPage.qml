@@ -23,7 +23,7 @@ Page {
 
         PullDownMenu {
             IconActionMenuItem {
-                iconSource: !isFavorite ? "qrc:/icons/favorites" : "qrc:/icons/un-favorite"
+                iconSource: !isFavorite ? "qrc:/icon/favorite" : "qrc:/icon/un-favorite"
                 text: !isFavorite ? "Add to Favorites" : "Remove from Favorites"
                 onClicked: {
                     if (!isFavorite) {
@@ -48,7 +48,7 @@ Page {
             property string title
 
             IconActionMenuItem {
-                iconSource: !isBookmark ? "qrc:/icons/bookmark" : "qrc:/icons/un-bookmark"
+                iconSource: !isBookmark ? "qrc:/icon/bookmark" : "qrc:/icon/un-bookmark"
                 text: !isBookmark ? "Add to bookmarks" : "Remove from bookmarks"
                 onClicked: {
                     if (!isBookmark) {

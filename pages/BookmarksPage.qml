@@ -7,7 +7,7 @@ Page {
         anchors.fill: parent
         header: IconPageHeader {
             text: "Song bookmarks"
-            iconSource: "qrc:/icons/bookmark"
+            iconSource: "qrc:/icon/bookmark"
         }
 
         ViewPlaceholderHint {

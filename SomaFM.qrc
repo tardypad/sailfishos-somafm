@@ -1,14 +1,14 @@
 <RCC>
-    <qresource prefix="/images">
+    <qresource prefix="/image">
         <file alias="background">images/background.jpg</file>
         <file alias="name">images/name.svg</file>
         <file alias="logo">images/logo.svg</file>
     </qresource>
-    <qresource prefix="/icons">
+    <qresource prefix="/icon">
         <file alias="listener">images/icons/listener.svg</file>
-        <file alias="favorites">images/icons/favorites.svg</file>
-        <file alias="genres">images/icons/genres.svg</file>
-        <file alias="populars">images/icons/populars.svg</file>
+        <file alias="favorite">images/icons/favorite.svg</file>
+        <file alias="genre">images/icons/genre.svg</file>
+        <file alias="popular">images/icons/popular.svg</file>
         <file alias="bookmark">images/icons/bookmark.svg</file>
         <file alias="news">images/icons/news.svg</file>
         <file alias="un-bookmark">images/icons/un-bookmark.svg</file>

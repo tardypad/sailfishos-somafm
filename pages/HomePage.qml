@@ -16,7 +16,7 @@ Page {
 
             Image {
                 id: homeName
-                source: "qrc:/images/name"
+                source: "qrc:/image/name"
                 smooth: true
                 width: parent.width * 0.8
                 height: parent.height * 0.2
@@ -31,7 +31,7 @@ Page {
 
             Image {
                 id: homeBackground
-                source: "qrc:/images/background"
+                source: "qrc:/image/background"
                 smooth: true
                 width: parent.width
                 height: parent.height * 0.6
@@ -93,13 +93,13 @@ Page {
         PullDownMenu {
             IconPageMenuItem {
                 text: "News"
-                iconSource: "qrc:/icons/news"
+                iconSource: "qrc:/icon/news"
                 nextPage: "NewsPage.qml"
                 isReplace: false
             }
             IconPageMenuItem {
                 text: "Song bookmarks"
-                iconSource: "qrc:/icons/bookmark"
+                iconSource: "qrc:/icon/bookmark"
                 nextPage: "BookmarksPage.qml"
                 isReplace: false
             }

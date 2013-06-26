@@ -8,7 +8,7 @@ Item {
     IconPageHeader {
         id: header
         text: "News"
-        iconSource: "qrc:/icons/news"
+        iconSource: "qrc:/icon/news"
     }
 
     Label {

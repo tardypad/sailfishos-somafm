@@ -7,7 +7,7 @@ Page {
         anchors.fill: parent
         header: IconPageHeader {
             text: "Genres"
-            iconSource: "qrc:/icons/genres"
+            iconSource: "qrc:/icon/genre"
         }
         model: _channelsModel
         delegate: ChannelsDelegate { }
@@ -24,13 +24,13 @@ Page {
         PullDownMenu {
             IconPageMenuItem {
                 text: "Populars"
-                iconSource: "qrc:/icons/populars"
+                iconSource: "qrc:/icon/popular"
                 nextPage: "PopularsPage.qml"
                 isReplace: true
             }
             IconPageMenuItem {
                 text: "Favorites"
-                iconSource: "qrc:/icons/favorites"
+                iconSource: "qrc:/icon/favorite"
                 nextPage: "FavoritesPage.qml"
                 isReplace: true
             }
@@ -43,7 +43,7 @@ Page {
                 property string id
 
                 IconActionMenuItem {
-                    iconSource: !isFavorite ? "qrc:/icons/favorites" : "qrc:/icons/un-favorite"
+                    iconSource: !isFavorite ? "qrc:/icon/favorite" : "qrc:/icon/un-favorite"
                     text: !isFavorite ? "Add to favorites" : "Remove from favorites"
                     onClicked: {
                         if (!isFavorite) {
