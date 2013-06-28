@@ -7,11 +7,12 @@
 #include "songsBookmarksManager.h"
 
 SongsModel::SongsModel(QObject *parent) :
-    XmlModel(new Song(), parent)
+    XmlModel(new Song(), parent),
+    m_channelId("")
 {
     m_bookmarksManager = SongsBookmarksManager::instance();
-    connect(m_bookmarksManager, SIGNAL(bookmarkAdded(QString,QString)), this, SLOT(addToBookmarks(QString,QString)));
-    connect(m_bookmarksManager, SIGNAL(bookmarkRemoved(QString,QString)), this, SLOT(removeFromBookmarks(QString,QString)));
+    connect(m_bookmarksManager, SIGNAL(bookmarkAdded(QString,QString,QString)), this, SLOT(addToBookmarks(QString,QString,QString)));
+    connect(m_bookmarksManager, SIGNAL(bookmarkRemoved(QString,QString,QString)), this, SLOT(removeFromBookmarks(QString,QString,QString)));
 }
 
 SongsModel::~SongsModel()
@@ -20,6 +21,7 @@ SongsModel::~SongsModel()
 
 void SongsModel::setChannelId(QString channelId)
 {
+    m_channelId = channelId;
     setResourceUrl(SomaFM::channelSongsUrl(channelId));
 }
 
@@ -67,19 +69,23 @@ XmlItem* SongsModel::parseXmlItem()
     song->setData(album, Song::AlbumRole);
     song->setData(datetime, Song::DateRole);
 
-    if (m_bookmarksManager->isBookmark(artist, title)) {
+    if (m_bookmarksManager->isBookmark(m_channelId, artist, title)) {
         song->setData(true, Song::IsBookmarkRole);
     }
 
     return song;
 }
 
-void SongsModel::addToBookmarks(QString artist, QString title)
+void SongsModel::addToBookmarks(QString channelId, QString artist, QString title)
 {
+    if (channelId != m_channelId) return;
+
     setDataSong(artist, title, true, Song::IsBookmarkRole);
 }
 
-void SongsModel::removeFromBookmarks(QString artist, QString title)
+void SongsModel::removeFromBookmarks(QString channelId, QString artist, QString title)
 {
+    if (channelId != m_channelId) return;
+
     setDataSong(artist, title, false, Song::IsBookmarkRole);
 }

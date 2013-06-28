@@ -16,13 +16,14 @@ public:
     void setDataSong(QString artist, QString title, const QVariant &value, int role);
 
 private slots:
-    void addToBookmarks(QString artist, QString title);
-    void removeFromBookmarks(QString artist, QString title);
+    void addToBookmarks(QString channelId, QString artist, QString title);
+    void removeFromBookmarks(QString channelId, QString artist, QString title);
 
 private:
     virtual XmlItem* parseXmlItem();
 
 private:
+    QString m_channelId;
     SongsBookmarksManager* m_bookmarksManager;
 };
 
