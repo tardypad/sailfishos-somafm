@@ -34,6 +34,8 @@ public:
     virtual QVariant data(int role) const;
     virtual bool setData (const QVariant &value, int role);
     virtual QHash<int, QByteArray> roleNames();
+    virtual QHash<int, QByteArray> bookmarkRoleNames();
+    virtual QHash<int, QByteArray> idRoleNames();
     virtual XmlItem* create();
 
     virtual QString xmlTag() { return "channel"; }

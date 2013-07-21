@@ -23,9 +23,12 @@ public:
     virtual QVariant data(int role) const;
     virtual bool setData (const QVariant &value, int role);
     virtual QHash<int, QByteArray> roleNames();
+    virtual QHash<int, QByteArray> bookmarkRoleNames();
+    virtual QHash<int, QByteArray> idRoleNames();
     virtual QString xmlTag() = 0;
     virtual XmlItem* create() = 0;
     virtual XmlItem* clone();
+    virtual bool isEqual(XmlItem* xmlItem);
 
     inline bool isClone() const { return m_isClone; }
     inline bool isBookmark() const { return m_isBookmark; }
@@ -35,6 +38,7 @@ public:
 
 private:
     XmlItem* cloneRoles(QHash<int, QByteArray> roles);
+    bool isEqualRoles(XmlItem* xmlItem, QHash<int, QByteArray> roles);
 
 protected:
     bool m_isClone;

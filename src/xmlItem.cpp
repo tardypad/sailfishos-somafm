@@ -43,6 +43,16 @@ QHash<int, QByteArray> XmlItem::roleNames()
     return roleNames;
 }
 
+QHash<int, QByteArray> XmlItem::bookmarkRoleNames()
+{
+    return QHash<int, QByteArray>();
+}
+
+QHash<int, QByteArray> XmlItem::idRoleNames()
+{
+    return QHash<int, QByteArray>();
+}
+
 XmlItem* XmlItem::clone()
 {
     return cloneRoles(roleNames());
@@ -65,4 +75,27 @@ XmlItem* XmlItem::cloneRoles(QHash<int, QByteArray> roles)
     newXmlItem->setData(true, XmlItem::IsCloneRole);
 
     return newXmlItem;
+}
+
+bool XmlItem::isEqual(XmlItem *xmlItem)
+{
+    return isEqualRoles(xmlItem, idRoleNames());
+}
+
+bool XmlItem::isEqualRoles(XmlItem *xmlItem, QHash<int, QByteArray> roles)
+{
+    QHashIterator<int, QByteArray> iterator(roles);
+    int role;
+    QVariant value1, value2;
+
+    while (iterator.hasNext()) {
+        iterator.next();
+        role = iterator.key();
+        value1 = data(role);
+        value2 = xmlItem->data(role);
+
+        if (value1 != value2) return false;
+     }
+
+    return true;
 }

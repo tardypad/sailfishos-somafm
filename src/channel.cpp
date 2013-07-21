@@ -33,6 +33,25 @@ QHash<int, QByteArray> Channel::roleNames()
     return roleNames;
 }
 
+QHash<int, QByteArray> Channel::bookmarkRoleNames()
+{
+    QHash<int, QByteArray> bookmarkRoleNames;
+
+    bookmarkRoleNames[IdRole] = "id";
+    bookmarkRoleNames[NameRole] = "name";
+
+    return bookmarkRoleNames;
+}
+
+QHash<int, QByteArray> Channel::idRoleNames()
+{
+    QHash<int, QByteArray> idRoleNames;
+
+    idRoleNames[IdRole] = "id";
+
+    return idRoleNames;
+}
+
 QVariant Channel::data(int role) const
 {
     switch(role) {

@@ -19,7 +19,8 @@ public:
         TitleRole = XmlItem::LastRole + 1,
         ArtistRole,
         AlbumRole,
-        DateRole
+        DateRole,
+        ChannelIdRole
     };
 
 public:
@@ -27,6 +28,8 @@ public:
     virtual QVariant data(int role) const;
     virtual bool setData (const QVariant &value, int role);
     virtual QHash<int, QByteArray> roleNames();
+    virtual QHash<int, QByteArray> bookmarkRoleNames();
+    virtual QHash<int, QByteArray> idRoleNames();
     virtual XmlItem* create();
 
     virtual QString xmlTag() { return "song"; }
@@ -35,17 +38,20 @@ public:
     inline QString artist() const { return m_artist; }
     inline QString album() const { return m_album; }
     inline QDateTime date() const { return m_date; }
+    inline QString channelId() const { return m_channelId; }
 
     inline void setTitle(QString title) { m_title = title; }
     inline void setArtist(QString artist) { m_artist = artist; }
     inline void setAlbum(QString album) { m_album = album; }
     inline void setDate(QDateTime date) { m_date = date; }
+    inline void setChannelId(QString channelId) { m_channelId = channelId; }
 
 private:
     QString m_title;
     QString m_artist;
     QString m_album;
     QDateTime m_date;
+    QString m_channelId;
 };
 
 #endif // SONG_H
