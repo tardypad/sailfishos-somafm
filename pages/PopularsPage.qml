@@ -41,7 +41,7 @@ Page {
                         if (!isFavorite) {
                             _favoritesManager.addFavorite(id)
                         } else {
-                            _favoritesManager.addFavorite(id)
+                            _favoritesManager.removeFavorite(id)
                         }
                     }
                 }
