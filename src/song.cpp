@@ -56,3 +56,8 @@ bool Song::setData(const QVariant &value, int role)
 
     return XmlItem::setData(value, role);
 }
+
+XmlItem* Song::create()
+{
+    return new Song();
+}

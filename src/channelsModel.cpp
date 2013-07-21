@@ -123,7 +123,7 @@ void ChannelsModel::duplicateGenre(const QModelIndex &index)
     if (!isClone && genres.size() > 1) {
         setData(index, genres.at(0), Channel::SortGenreRole);
         for (int i = 1; i < genres.size(); ++i) {
-            Channel* newChannel = channel->clone();
+            Channel* newChannel = (Channel*) channel->clone();
             newChannel->setData(genres.at(i), Channel::SortGenreRole);
             appendXmlItem(newChannel);
         }

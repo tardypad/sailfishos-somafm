@@ -24,12 +24,17 @@ public:
     virtual bool setData (const QVariant &value, int role);
     virtual QHash<int, QByteArray> roleNames();
     virtual QString xmlTag() = 0;
+    virtual XmlItem* create() = 0;
+    virtual XmlItem* clone();
 
     inline bool isClone() const { return m_isClone; }
     inline bool isBookmark() const { return m_isBookmark; }
 
     inline void setIsClone(bool isClone) { m_isClone = isClone; }
     inline void setIsBookmark(bool isBookmark) { m_isBookmark = isBookmark; }
+
+private:
+    XmlItem* cloneRoles(QHash<int, QByteArray> roles);
 
 protected:
     bool m_isClone;

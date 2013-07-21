@@ -42,3 +42,27 @@ QHash<int, QByteArray> XmlItem::roleNames()
 
     return roleNames;
 }
+
+XmlItem* XmlItem::clone()
+{
+    return cloneRoles(roleNames());
+}
+
+XmlItem* XmlItem::cloneRoles(QHash<int, QByteArray> roles)
+{
+    QHashIterator<int, QByteArray> iterator(roles);
+    XmlItem* newXmlItem = create();
+    int role;
+    QVariant value;
+
+    while (iterator.hasNext()) {
+         iterator.next();
+         role = iterator.key();
+         value = data(role);
+         newXmlItem->setData(value, role);
+     }
+
+    newXmlItem->setData(true, XmlItem::IsCloneRole);
+
+    return newXmlItem;
+}

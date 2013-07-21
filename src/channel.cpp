@@ -99,21 +99,7 @@ bool Channel::setData(const QVariant &value, int role)
     return XmlItem::setData(value, role);
 }
 
-Channel* Channel::clone()
+XmlItem *Channel::create()
 {
-    Channel* newChannel = new Channel();
-    newChannel->setId(id());
-    newChannel->setName(name());
-    newChannel->setDescription(description());
-    newChannel->setImageUrl(imageUrl());
-    newChannel->setImageMediumUrl(imageMediumUrl());
-    newChannel->setImageBigUrl(imageBigUrl());
-    newChannel->setDj(dj());
-    newChannel->setGenres(genres());
-    newChannel->setListeners(listeners());
-    newChannel->setSortGenre(sortGenre());
-    newChannel->setIsClone(true);
-    newChannel->setIsBookmark(isBookmark());
-
-    return newChannel;
+    return new Channel();
 }
