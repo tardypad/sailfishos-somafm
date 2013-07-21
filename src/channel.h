@@ -15,9 +15,9 @@ class Channel : public XmlItem
 {
     Q_OBJECT
 
-public:
+public:    
     enum Roles {
-        IdRole = Qt::UserRole+1,
+        IdRole = XmlItem::LastRole + 1,
         NameRole,
         DescriptionRole,
         ImageUrlRole,
@@ -26,9 +26,7 @@ public:
         DjRole,
         GenresRole,
         ListenersRole,
-        SortGenreRole,
-        IsCloneRole,
-        IsFavoriteRole
+        SortGenreRole
     };
 
 public:
@@ -51,8 +49,6 @@ public:
     inline QStringList genres() const { return m_genres; }
     inline int listeners() const { return m_listeners; }
     inline QString sortGenre() const { return m_sortGenre; }
-    inline bool isClone() const { return m_isClone; }
-    inline bool isFavorite() const { return m_isFavorite; }
 
     inline void setId(QString id) { m_id = id; }
     inline void setName(QString name) { m_name = name; }
@@ -64,8 +60,6 @@ public:
     inline void setGenres(QStringList genres) { m_genres = genres; }
     inline void setListeners(int listeners) { m_listeners = listeners; }
     inline void setSortGenre(QString sortGenre) { m_sortGenre = sortGenre; }
-    inline void setIsClone(bool isClone) { m_isClone = isClone; }
-    inline void setIsFavorite(bool isFavorite) { m_isFavorite = isFavorite; }
     
 private:
     QString m_id;
@@ -78,8 +72,6 @@ private:
     QStringList m_genres;
     int m_listeners;
     QString m_sortGenre;
-    bool m_isClone;
-    bool m_isFavorite;
 };
 
 #endif // CHANNEL_H

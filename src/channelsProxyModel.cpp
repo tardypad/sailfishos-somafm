@@ -37,8 +37,8 @@ bool ChannelsProxyModel::filterAcceptsRow(int source_row, const QModelIndex &sou
     if (!isClonesShown() && isClone)
         return false;
 
-    bool isFavorite = sourceModel()->data(index, Channel::IsFavoriteRole).toBool();
-    if (filterRole() == Channel::IsFavoriteRole && !isFavorite)
+    bool isFavorite = sourceModel()->data(index, Channel::IsBookmarkRole).toBool();
+    if (filterRole() == Channel::IsBookmarkRole && !isFavorite)
         return false;
 
     return true;
@@ -64,6 +64,6 @@ void ChannelsProxyModel::hideClones()
 
 void ChannelsProxyModel::filterFavorites()
 {
-    setFilterRole(Channel::IsFavoriteRole);
+    setFilterRole(Channel::IsBookmarkRole);
     invalidateFilter();
 }

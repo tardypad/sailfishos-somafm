@@ -5,19 +5,18 @@ Song::Song(QObject *parent) :
     m_title(""),
     m_artist(""),
     m_album(""),
-    m_date(QDateTime()),
-    m_isBookmark(false)
+    m_date(QDateTime())
 {
 }
 
 QHash<int, QByteArray> Song::roleNames()
 {
-    QHash<int, QByteArray> roleNames;
+    QHash<int, QByteArray> roleNames = XmlItem::roleNames();
+
     roleNames[TitleRole] = "title";
     roleNames[ArtistRole] = "artist";
     roleNames[AlbumRole] = "album";
     roleNames[DateRole] = "date";
-    roleNames[IsBookmarkRole] = "isBookmark";
 
     return roleNames;
 }
@@ -33,11 +32,9 @@ QVariant Song::data(int role) const
         return album();
     case DateRole:
         return date();
-    case IsBookmarkRole:
-        return isBookmark();
     }
 
-    return QVariant();
+    return XmlItem::data(role);
 }
 
 bool Song::setData(const QVariant &value, int role)
@@ -55,10 +52,7 @@ bool Song::setData(const QVariant &value, int role)
     case DateRole:
         setDate(value.toDateTime());
         return true;
-    case IsBookmarkRole:
-        setIsBookmark(value.toBool());
-        return true;
     }
 
-    return false;
+    return XmlItem::setData(value, role);
 }

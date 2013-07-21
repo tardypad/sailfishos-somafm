@@ -11,15 +11,14 @@ Channel::Channel(QObject *parent) :
     m_dj(""),
     m_genres(""),
     m_listeners(-1),
-    m_sortGenre(""),
-    m_isClone(false),
-    m_isFavorite(false)
+    m_sortGenre("")
 {
 }
 
 QHash<int, QByteArray> Channel::roleNames()
 {
-    QHash<int, QByteArray> roleNames;
+    QHash<int, QByteArray> roleNames = XmlItem::roleNames();
+
     roleNames[IdRole] = "id";
     roleNames[NameRole] = "name";
     roleNames[DescriptionRole] = "description";
@@ -30,8 +29,6 @@ QHash<int, QByteArray> Channel::roleNames()
     roleNames[GenresRole] = "genres";
     roleNames[ListenersRole] = "listeners";
     roleNames[SortGenreRole] = "sortGenre";
-    roleNames[IsCloneRole] = "isClone";
-    roleNames[IsFavoriteRole] = "isFavorite";
 
     return roleNames;
 }
@@ -59,13 +56,9 @@ QVariant Channel::data(int role) const
         return listeners();
     case SortGenreRole:
         return sortGenre();
-    case IsCloneRole:
-        return isClone();
-    case IsFavoriteRole:
-        return isFavorite();
     }
 
-    return QVariant();
+    return XmlItem::data(role);
 }
 
 bool Channel::setData(const QVariant &value, int role)
@@ -101,15 +94,9 @@ bool Channel::setData(const QVariant &value, int role)
     case SortGenreRole:
         setSortGenre(value.toString());
         return true;
-    case IsCloneRole:
-        setIsClone(value.toBool());
-        return true;
-    case IsFavoriteRole:
-        setIsFavorite(value.toBool());
-        return true;
     }
 
-    return false;
+    return XmlItem::setData(value, role);
 }
 
 Channel* Channel::clone()
@@ -126,7 +113,7 @@ Channel* Channel::clone()
     newChannel->setListeners(listeners());
     newChannel->setSortGenre(sortGenre());
     newChannel->setIsClone(true);
-    newChannel->setIsFavorite(isFavorite());
+    newChannel->setIsBookmark(isBookmark());
 
     return newChannel;
 }

@@ -36,7 +36,7 @@ BackgroundItem {
                            'bigImageUrl': imageBigUrl,
                            'genres': genres,
                            'listeners': listeners,
-                           'isFavorite': isFavorite
+                           'isFavorite': isBookmark
                        }
                        )
     }

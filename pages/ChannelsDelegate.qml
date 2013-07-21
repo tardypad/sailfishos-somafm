@@ -58,7 +58,7 @@ Item {
             if (!listView.contextMenu)
                 listView.contextMenu = contextMenuComponent.createObject(listView)
             listView.contextMenu.id = id
-            listView.contextMenu.isFavorite = isFavorite
+            listView.contextMenu.isFavorite = isBookmark
             listView.contextMenu.show(channelItem)
         }
 
@@ -74,7 +74,7 @@ Item {
                                'bigImageUrl': imageBigUrl,
                                'genres': genres,
                                'listeners': listeners,
-                               'isFavorite': isFavorite
+                               'isFavorite': isBookmark
                            }
                            )
         }

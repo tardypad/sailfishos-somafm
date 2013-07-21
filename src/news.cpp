@@ -10,7 +10,8 @@ News::News(QObject *parent) :
 
 QHash<int, QByteArray> News::roleNames()
 {
-    QHash<int, QByteArray> roleNames;
+    QHash<int, QByteArray> roleNames = XmlItem::roleNames();
+
     roleNames[ContentRole] = "content";
     roleNames[DateRole] = "date";
     roleNames[DateGroupRole] = "dateGroup";
@@ -29,7 +30,7 @@ QVariant News::data(int role) const
         return dateGroup();
     }
 
-    return QVariant();
+    return XmlItem::data(role);
 }
 
 bool News::setData(const QVariant &value, int role)
@@ -46,5 +47,5 @@ bool News::setData(const QVariant &value, int role)
         return true;
     }
 
-    return false;
+    return XmlItem::setData(value, role);
 }

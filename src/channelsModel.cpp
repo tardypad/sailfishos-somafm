@@ -95,7 +95,7 @@ XmlItem* ChannelsModel::parseXmlItem()
     channel->setData(listeners, Channel::ListenersRole);
 
     if (m_favoritesManager->isFavorite(id)) {
-        channel->setData(true, Channel::IsFavoriteRole);
+        channel->setData(true, Channel::IsBookmarkRole);
     }
 
     return channel;
@@ -132,10 +132,10 @@ void ChannelsModel::duplicateGenre(const QModelIndex &index)
 
 void ChannelsModel::addToFavorites(QString channelId)
 {
-    setDataChannel(channelId, true, Channel::IsFavoriteRole);
+    setDataChannel(channelId, true, Channel::IsBookmarkRole);
 }
 
 void ChannelsModel::removeFromFavorites(QString channelId)
 {
-    setDataChannel(channelId, false, Channel::IsFavoriteRole);
+    setDataChannel(channelId, false, Channel::IsBookmarkRole);
 }

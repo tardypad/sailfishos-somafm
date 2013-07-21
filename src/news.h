@@ -16,7 +16,7 @@ class News : public XmlItem
 
 public:
     enum Roles {
-        ContentRole = Qt::UserRole+1,
+        ContentRole = XmlItem::LastRole + 1,
         DateRole,
         DateGroupRole
     };
