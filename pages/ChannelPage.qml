@@ -52,9 +52,9 @@ Page {
                 text: !isBookmark ? "Add to bookmarks" : "Remove from bookmarks"
                 onClicked: {
                     if (!isBookmark) {
-                        _bookmarksManager.addBookmark(artist, title)
+                        _bookmarksManager.addBookmark(id, artist, title)
                     } else {
-                        _bookmarksManager.removeBookmark(artist, title)
+                        _bookmarksManager.removeBookmark(id, artist, title)
                     }
                 }
             }
