@@ -15,8 +15,6 @@ Page {
             property: 'sortGenre'
             delegate: SectionHeader {
                 text: section
-                height: implicitHeight + 2*Theme.paddingMedium
-                width: parent.width
             }
         }
         property Item contextMenu
