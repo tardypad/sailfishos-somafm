@@ -1,17 +1,17 @@
 <RCC>
     <qresource prefix="/image">
         <file alias="background">images/background.jpg</file>
-        <file alias="name">images/name.svg</file>
-        <file alias="logo">images/logo.svg</file>
+        <file alias="name">images/name.png</file>
+        <file alias="logo">images/logo.png</file>
     </qresource>
     <qresource prefix="/icon">
-        <file alias="listener">images/icons/listener.svg</file>
-        <file alias="favorite">images/icons/favorite.svg</file>
-        <file alias="genre">images/icons/genre.svg</file>
-        <file alias="popular">images/icons/popular.svg</file>
-        <file alias="bookmark">images/icons/bookmark.svg</file>
-        <file alias="news">images/icons/news.svg</file>
-        <file alias="un-bookmark">images/icons/un-bookmark.svg</file>
-        <file alias="un-favorite">images/icons/un-favorite.svg</file>
+        <file alias="listener">images/icons/listener.png</file>
+        <file alias="favorite">images/icons/favorite.png</file>
+        <file alias="genre">images/icons/genre.png</file>
+        <file alias="popular">images/icons/popular.png</file>
+        <file alias="bookmark">images/icons/bookmark.png</file>
+        <file alias="news">images/icons/news.png</file>
+        <file alias="un-bookmark">images/icons/un-bookmark.png</file>
+        <file alias="un-favorite">images/icons/un-favorite.png</file>
     </qresource>
 </RCC>
