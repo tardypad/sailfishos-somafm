@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 MenuItem {
@@ -20,7 +20,7 @@ MenuItem {
         width: parent.height * 0.7
         anchors {
             right: parent.right
-            rightMargin: theme.paddingLarge
+            rightMargin: Theme.paddingLarge
             verticalCenter: parent.verticalCenter
         }
         fillMode: Image.PreserveAspectFit

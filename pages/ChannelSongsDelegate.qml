@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Item {
@@ -10,32 +10,32 @@ Item {
     BackgroundItem {
         id: contentItem
         width: parent.width
-        height: theme.itemSizeSmall
+        height: Theme.itemSizeSmall
 
         Label {
             id: dateLabel
             text: Qt.formatDateTime(date, 'hh:mm')
             anchors {
                 left: parent.left
-                leftMargin: theme.paddingMedium
+                leftMargin: Theme.paddingMedium
                 verticalCenter: parent.verticalCenter
             }
-            color: theme.secondaryColor
-            font.pixelSize: theme.fontSizeSmall
+            color: Theme.secondaryColor
+            font.pixelSize: Theme.fontSizeSmall
         }
 
         Column {
             width: parent.width
             anchors {
                 left: dateLabel.right
-                leftMargin: theme.paddingMedium
+                leftMargin: Theme.paddingMedium
                 verticalCenter: parent.verticalCenter
             }
 
             Label {
                 id: artistLabel
                 text: artist
-                font.pixelSize: theme.fontSizeSmall
+                font.pixelSize: Theme.fontSizeSmall
                 width: parent.width - dateLabel.width
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 maximumLineCount: 1
@@ -45,8 +45,8 @@ Item {
             Label {
                 id: titleLabel
                 text: title
-                color: theme.secondaryColor
-                font.pixelSize: theme.fontSizeExtraSmall
+                color: Theme.secondaryColor
+                font.pixelSize: Theme.fontSizeExtraSmall
                 width: parent.width - dateLabel.width
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 maximumLineCount: 1
@@ -61,7 +61,7 @@ Item {
             width: parent.height / 3
             anchors {
                 right: parent.right
-                rightMargin: theme.paddingMedium
+                rightMargin: Theme.paddingMedium
                 verticalCenter: parent.verticalCenter
             }
             fillMode: Image.PreserveAspectFit

@@ -2,7 +2,7 @@
 Type=Application
 Name=SomaFM
 Icon=icon-launcher-gallery
-Exec=invoker --type=j -s /opt/sdk/bin/SomaFM
+Exec=invoker --type=silica-qt5 -s /usr/bin/SomaFM
 Comment=Sailfish UI application
 
 

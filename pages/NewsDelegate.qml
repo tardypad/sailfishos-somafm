@@ -1,20 +1,20 @@
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Item {
     id: newsDelegate
-    x: theme.paddingLarge
-    width: parent.width - 2*theme.paddingLarge
-    height: childrenRect.height + theme.paddingLarge
+    x: Theme.paddingLarge
+    width: parent.width - 2*Theme.paddingLarge
+    height: childrenRect.height + Theme.paddingLarge
 
     Label {
         id: dateLabel
         text: Qt.formatDateTime(date, 'MMM, d')
         font {
-            pixelSize: theme.fontSizeExtraSmall
+            pixelSize: Theme.fontSizeExtraSmall
             italic: true
         }
-        color: theme.secondaryColor
+        color: Theme.secondaryColor
         anchors {
             left: parent.left
             top: parent.top
@@ -24,7 +24,7 @@ Item {
     Label {
         id: contentLabel
         text: content
-        font.pixelSize: theme.fontSizeExtraSmall
+        font.pixelSize: Theme.fontSizeExtraSmall
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignJustify
         anchors {

@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 ViewPlaceholder {
@@ -9,10 +9,10 @@ ViewPlaceholder {
         width: parent.width
         font {
             italic: true
-            pixelSize: theme.fontSizeExtraSmall
+            pixelSize: Theme.fontSizeExtraSmall
         }
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignHCenter
-        y: parent.height + 2*theme.paddingLarge
+        y: parent.height + 2*Theme.paddingLarge
     }
 }

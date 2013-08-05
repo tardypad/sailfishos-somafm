@@ -1,8 +1,8 @@
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Item {
-    height: childrenRect.height + theme.paddingLarge
+    height: childrenRect.height + Theme.paddingLarge
     width: parent.width
 
     IconPageHeader {
@@ -16,13 +16,13 @@ Item {
         text: _newsModel.banner()
         anchors {
             left: parent.left
-            leftMargin: theme.paddingLarge
+            leftMargin: Theme.paddingLarge
             right: parent.right
-            rightMargin: theme.paddingLarge
+            rightMargin: Theme.paddingLarge
             top: header.bottom
         }
-        color: theme.highlightColor
-        font.pixelSize: theme.fontSizeExtraSmall
+        color: Theme.highlightColor
+        font.pixelSize: Theme.fontSizeExtraSmall
         horizontalAlignment: Text.AlignJustify
         wrapMode: Text.WordWrap
     }

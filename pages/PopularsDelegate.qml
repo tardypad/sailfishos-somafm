@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 ChannelsDelegate {
@@ -7,12 +7,12 @@ ChannelsDelegate {
         text: listeners
         anchors {
             right: listenerIcon.left
-            rightMargin: theme.paddingSmall
+            rightMargin: Theme.paddingSmall
             verticalCenter: listenerIcon.verticalCenter
         }
-        color: theme.secondaryColor
+        color: Theme.secondaryColor
         font {
-            pixelSize: theme.fontSizeExtraSmall * 0.8;
+            pixelSize: Theme.fontSizeExtraSmall * 0.8;
             italic: true
         }
     }
@@ -25,9 +25,9 @@ ChannelsDelegate {
         width: 20
         anchors {
             top: parent.top
-            topMargin: theme.paddingSmall
+            topMargin: Theme.paddingSmall
             right: parent.right
-            rightMargin: theme.paddingSmall
+            rightMargin: Theme.paddingSmall
         }
         fillMode: Image.PreserveAspectFit
     }

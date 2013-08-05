@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Item {
@@ -10,20 +10,20 @@ Item {
     BackgroundItem {
         id: contentItem
         width: parent.width
-        height: theme.itemSizeLarge
+        height: Theme.itemSizeLarge
 
         Image {
             id: channelImage
             smooth: true
             source: imageUrl
-            height: parent.height - theme.paddingSmall*2
-            width: parent.height - theme.paddingSmall*2
+            height: parent.height - Theme.paddingSmall*2
+            width: parent.height - Theme.paddingSmall*2
             fillMode: Image.PreserveAspectCrop
             clip: true
             anchors {
                 verticalCenter: parent.verticalCenter
                 left: parent.left
-                leftMargin: theme.paddingSmall
+                leftMargin: Theme.paddingSmall
             }
         }
 
@@ -32,7 +32,7 @@ Item {
             text: name
             anchors {
                 left: channelImage.right
-                leftMargin: theme.paddingSmall
+                leftMargin: Theme.paddingSmall
                 top: parent.top
             }
         }
@@ -44,11 +44,11 @@ Item {
                 left: channelImage.right
                 right: parent.right
                 top: channelNameLabel.bottom
-                topMargin: -theme.paddingSmall
-                leftMargin: theme.paddingSmall
+                topMargin: -Theme.paddingSmall
+                leftMargin: Theme.paddingSmall
             }
-            color: theme.secondaryColor
-            font.pixelSize: theme.fontSizeExtraSmall
+            color: Theme.secondaryColor
+            font.pixelSize: Theme.fontSizeExtraSmall
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             truncationMode: TruncationMode.Fade
             maximumLineCount: 2

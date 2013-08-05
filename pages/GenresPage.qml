@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Page {
@@ -15,7 +15,7 @@ Page {
             property: 'sortGenre'
             delegate: SectionHeader {
                 text: section
-                height: implicitHeight + 2*theme.paddingMedium
+                height: implicitHeight + 2*Theme.paddingMedium
                 width: parent.width
             }
         }

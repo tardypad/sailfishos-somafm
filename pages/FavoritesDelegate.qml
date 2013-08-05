@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 BackgroundItem {
@@ -8,11 +8,11 @@ BackgroundItem {
 
     Image {
         id: channelImage
-        width: gridView.cellWidth - theme.paddingSmall*2
-        height: gridView.cellHeight - theme.paddingSmall*2
+        width: gridView.cellWidth - Theme.paddingSmall*2
+        height: gridView.cellHeight - Theme.paddingSmall*2
         sourceSize {
-            width: gridView.cellWidth - theme.paddingSmall*2
-            height: gridView.cellHeight - theme.paddingSmall*2
+            width: gridView.cellWidth - Theme.paddingSmall*2
+            height: gridView.cellHeight - Theme.paddingSmall*2
         }
         smooth: true
         source: (imageMediumUrl != "") ? imageMediumUrl : imageBigUrl

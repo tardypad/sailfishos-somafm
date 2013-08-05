@@ -15,8 +15,6 @@ XmlModel::XmlModel(XmlItem* xmlItemPrototype, QObject *parent) :
 {
     m_networkManager = new QNetworkAccessManager(this);
     m_xmlReader = new QXmlStreamReader();
-
-    setRoleNames(m_xmlItemPrototype->roleNames());
 }
 
 XmlModel::~XmlModel()
@@ -38,6 +36,11 @@ int XmlModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return m_list.size();
+}
+
+QHash<int,QByteArray> XmlModel::roleNames() const
+{
+    return m_xmlItemPrototype->roleNames();
 }
 
 QVariant XmlModel::data(const QModelIndex &index, int role) const

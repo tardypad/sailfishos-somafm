@@ -1,25 +1,25 @@
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Item {
     property alias text: label.text
     property alias iconSource: icon.source
 
-    height: theme.itemSizeLarge
+    height: Theme.itemSizeLarge
     width: parent.width
 
     Label {
         id: label
-        color: theme.highlightColor
+        color: Theme.highlightColor
         anchors {
             verticalCenter: parent.verticalCenter
             verticalCenterOffset: 4
             right: icon.left
-            rightMargin: theme.paddingMedium
+            rightMargin: Theme.paddingMedium
         }
         font {
-            pixelSize: theme.fontSizeLarge
-            family: theme.fontFamilyHeading
+            pixelSize: Theme.fontSizeLarge
+            family: Theme.fontFamilyHeading
         }
     }
 
@@ -32,7 +32,7 @@ Item {
             verticalCenter: parent.verticalCenter
             verticalCenterOffset: 4
             right: parent.right
-            rightMargin: theme.paddingLarge
+            rightMargin: Theme.paddingLarge
         }
         fillMode: Image.PreserveAspectFit
     }

@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Item {
@@ -14,14 +14,14 @@ Item {
         id: channelImage
         smooth: true
         source: imageUrl
-        height: theme.itemSizeLarge * 2
-        width: theme.itemSizeLarge * 2
+        height: Theme.itemSizeLarge * 2
+        width: Theme.itemSizeLarge * 2
         fillMode: Image.PreserveAspectCrop
         clip: true
         anchors {
             left: parent.left
             top: header.bottom
-            leftMargin: theme.paddingSmall
+            leftMargin: Theme.paddingSmall
         }
     }
 
@@ -33,8 +33,8 @@ Item {
         anchors {
             top: header.top
             right: header.right
-            topMargin: theme.paddingSmall
-            rightMargin: theme.paddingSmall
+            topMargin: Theme.paddingSmall
+            rightMargin: Theme.paddingSmall
         }
         fillMode: Image.PreserveAspectFit
         visible: isFavorite
@@ -47,11 +47,11 @@ Item {
             left: channelImage.right
             right: parent.right
             top: header.bottom
-            rightMargin: theme.paddingSmall
-            leftMargin: theme.paddingSmall
+            rightMargin: Theme.paddingSmall
+            leftMargin: Theme.paddingSmall
         }
-        color: theme.secondaryColor
-        font.pixelSize: theme.fontSizeExtraSmall
+        color: Theme.secondaryColor
+        font.pixelSize: Theme.fontSizeExtraSmall
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         truncationMode: TruncationMode.Fade
         maximumLineCount: 4
@@ -63,11 +63,11 @@ Item {
         anchors {
             top: channelDescriptionLabel.bottom
             right: parent.right
-            rightMargin: theme.paddingSmall
+            rightMargin: Theme.paddingSmall
         }
-        color: theme.secondaryColor
+        color: Theme.secondaryColor
         font {
-            pixelSize: theme.fontSizeExtraSmall
+            pixelSize: Theme.fontSizeExtraSmall
             italic: true
         }
         horizontalAlignment: Text.AlignRight

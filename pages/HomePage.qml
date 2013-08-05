@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Page {
@@ -9,8 +9,8 @@ Page {
 
         Rectangle {
             color: "black"
-            width: screen.width
-            height: screen.height
+            width: Screen.width
+            height: Screen.height
             anchors.top: parent.top
             z: 0
 
@@ -76,7 +76,7 @@ Page {
                 color: "white"
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: theme.fontSizeSmall
+                font.pixelSize: Theme.fontSizeSmall
                 anchors {
                     bottom: parent.bottom
                     bottomMargin: parent.height * 0.1
