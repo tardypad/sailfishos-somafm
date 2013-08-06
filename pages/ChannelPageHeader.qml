@@ -3,7 +3,7 @@ import Sailfish.Silica 1.0
 
 Item {
     height: childrenRect.height
-    width: parent.width
+    width: listView.width
 
     PageHeader {
         id: header

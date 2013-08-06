@@ -28,8 +28,10 @@ XmlModel::~XmlModel()
 
 void XmlModel::clear()
 {
+    beginResetModel();
     qDeleteAll(m_list);
     m_list.clear();
+    endResetModel();
 }
 
 int XmlModel::rowCount(const QModelIndex &parent) const
