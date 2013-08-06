@@ -72,11 +72,25 @@ Page {
 
             Text {
                 id: homeText
-                text: "Listener-supported,\ncommercial-free,\nunderground/alternative\nradio broadcasting\n from San Francisco"
+                text: "Listener-supported,\ncommercial-free,\nunderground/alternative\nradio"
                 color: "white"
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: Theme.fontSizeSmall
+                anchors {
+                    bottom: homeTextExtra.top
+                    bottomMargin: Theme.paddingMedium
+                }
+                z: 3
+            }
+
+            Text {
+                id: homeTextExtra
+                text: "broadcasting from San Francisco"
+                color: "white"
+                width: parent.width
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: Theme.fontSizeExtraSmall
                 anchors {
                     bottom: parent.bottom
                     bottomMargin: parent.height * 0.1
