@@ -32,16 +32,16 @@ Page {
             id: contextMenuComponent
             ContextMenu {
                 property bool isFavorite
-                property string id
+                property int index
 
                 IconActionMenuItem {
                     iconSource: !isFavorite ? "qrc:/icon/favorite" : "qrc:/icon/un-favorite"
                     text: !isFavorite ? "Add to favorites" : "Remove from favorites"
                     onClicked: {
                         if (!isFavorite) {
-                            _favoritesManager.addFavorite(id)
+                            _favoritesManager.addFavorite(_channelsModel.itemAt(index))
                         } else {
-                            _favoritesManager.removeFavorite(id)
+                            _favoritesManager.removeFavorite(_channelsModel.itemAt(index))
                         }
                     }
                 }

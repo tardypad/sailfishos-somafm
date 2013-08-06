@@ -3,9 +3,7 @@
 
 #include "xmlModel.h"
 
-
 class Channel;
-class ChannelsFavoritesManager;
 
 class ChannelsModel : public XmlModel
 {
@@ -13,20 +11,16 @@ class ChannelsModel : public XmlModel
 public:
     explicit ChannelsModel(QObject *parent = 0);
     ~ChannelsModel();
-    void setDataChannel(QString channelId, const QVariant &value, int role);
 
 private slots:
-    void addToFavorites(QString channelId);
-    void removeFromFavorites(QString channelId);
+    void addToFavorites(XmlItem* xmlItem);
+    void removeFromFavorites(XmlItem* xmlItem);
 
 private:
     virtual XmlItem* parseXmlItem();
     virtual void parseAfter();
     void duplicateGenre();
     void duplicateGenre(const QModelIndex &index);
-
-private:
-    ChannelsFavoritesManager* m_favoritesManager;
 };
 
 #endif // CHANNELSMODEL_H

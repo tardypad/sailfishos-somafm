@@ -2,6 +2,7 @@
 
 #include "channel.h"
 #include "channelsModel.h"
+#include "xmlItem.h"
 
 ChannelsProxyModel::ChannelsProxyModel(QObject *parent) :
     QSortFilterProxyModel(parent), m_isClonesShown(false)
@@ -66,4 +67,12 @@ void ChannelsProxyModel::filterFavorites()
 {
     setFilterRole(Channel::IsBookmarkRole);
     invalidateFilter();
+}
+
+XmlItem* ChannelsProxyModel::itemAt(int row)
+{
+    ChannelsModel* channelsModel = (ChannelsModel*) sourceModel();
+    QModelIndex sourceIndex = mapToSource(index(row, 0));
+
+    return channelsModel->itemAt(sourceIndex.row());
 }

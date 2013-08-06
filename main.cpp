@@ -6,7 +6,9 @@
 
 #include <QQmlContext>
 #include <QSortFilterProxyModel>
+#include <QtQml>
 
+#include "src/xmlItem.h"
 #include "src/channelsModel.h"
 #include "src/channelsProxyModel.h"
 #include "src/channelsFavoritesManager.h"
@@ -20,6 +22,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QScopedPointer<QQuickView> view(Sailfish::createView("main.qml"));
 
     QQmlContext* context = view->rootContext();
+
+    qmlRegisterUncreatableType<XmlItem>("my.library", 1, 0, "XmlItem", "");
 
     ChannelsModel* channelsModel = new ChannelsModel();
     channelsModel->fetch();

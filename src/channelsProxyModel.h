@@ -3,6 +3,8 @@
 
 #include <QSortFilterProxyModel>
 
+class XmlItem;
+
 class ChannelsProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
@@ -16,6 +18,7 @@ public:
     Q_INVOKABLE void showClones(bool show = true);
     Q_INVOKABLE void hideClones();
     Q_INVOKABLE void clearFilter();
+    Q_INVOKABLE XmlItem* itemAt(int row);
 
     inline bool isClonesShown() const { return m_isClonesShown; }
     inline void setIsClonesShown(bool isClonesShown) { m_isClonesShown = isClonesShown; }

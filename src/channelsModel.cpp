@@ -12,23 +12,13 @@ ChannelsModel::ChannelsModel(QObject *parent) :
 {
     setResourceUrl(SomaFM::channelsUrl());
 
-    m_favoritesManager = ChannelsFavoritesManager::instance();
-    connect(m_favoritesManager, SIGNAL(favoriteAdded(QString)), this, SLOT(addToFavorites(QString)));
-    connect(m_favoritesManager, SIGNAL(favoriteRemoved(QString)), this, SLOT(removeFromFavorites(QString)));
+    m_bookmarksManager = ChannelsFavoritesManager::instance();
+    connect(m_bookmarksManager, SIGNAL(bookmarkAdded(XmlItem*)), this, SLOT(addToFavorites(XmlItem*)));
+    connect(m_bookmarksManager, SIGNAL(bookmarkRemoved(XmlItem*)), this, SLOT(removeFromFavorites(XmlItem*)));
 }
 
 ChannelsModel::~ChannelsModel()
 {
-}
-
-void ChannelsModel::setDataChannel(QString channelId, const QVariant &value, int role)
-{
-    for (int row = 0; row < m_list.size(); ++row) {
-        QString id = m_list.at(row)->data(Channel::IdRole).toString();
-        if (id == channelId) {
-            setData(index(row), value, role);
-        }
-      }
 }
 
 XmlItem* ChannelsModel::parseXmlItem()
@@ -94,7 +84,7 @@ XmlItem* ChannelsModel::parseXmlItem()
     channel->setData(sortGenre, Channel::SortGenreRole);
     channel->setData(listeners, Channel::ListenersRole);
 
-    if (m_favoritesManager->isFavorite(id)) {
+    if (m_bookmarksManager->isBookmark(channel)) {
         channel->setData(true, Channel::IsBookmarkRole);
     }
 
@@ -130,12 +120,13 @@ void ChannelsModel::duplicateGenre(const QModelIndex &index)
     }
 }
 
-void ChannelsModel::addToFavorites(QString channelId)
+void ChannelsModel::addToFavorites(XmlItem *xmlItem)
 {
-    setDataChannel(channelId, true, Channel::IsBookmarkRole);
+   addToBookmarks(xmlItem);
 }
 
-void ChannelsModel::removeFromFavorites(QString channelId)
+
+void ChannelsModel::removeFromFavorites(XmlItem *xmlItem)
 {
-    setDataChannel(channelId, false, Channel::IsBookmarkRole);
+    removeFromBookmarks(xmlItem);
 }

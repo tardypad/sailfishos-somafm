@@ -57,14 +57,15 @@ Item {
         onPressAndHold: {
             if (!listView.contextMenu)
                 listView.contextMenu = contextMenuComponent.createObject(listView)
-            listView.contextMenu.id = id
             listView.contextMenu.isFavorite = isBookmark
+            listView.contextMenu.index = index
             listView.contextMenu.show(channelItem)
         }
 
         onClicked: {
             pageStack.push(Qt.resolvedUrl("ChannelPage.qml"),
                            {
+                               "channelIndex": index,
                                'id' : id,
                                'name': name,
                                'description': description,

@@ -71,9 +71,8 @@ Item {
         onPressAndHold: {
             if (!listView.contextMenu)
                 listView.contextMenu = contextMenuComponent.createObject(listView)
-            listView.contextMenu.artist = artist
-            listView.contextMenu.title = title
             listView.contextMenu.isBookmark = isBookmark
+            listView.contextMenu.index = index
             listView.contextMenu.show(songItem)
         }
 

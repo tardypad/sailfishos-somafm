@@ -8,6 +8,7 @@ class QXmlStreamReader;
 class QNetworkAccessManager;
 class QNetworkReply;
 
+class XmlItemBookmarkManager;
 class XmlItem;
 
 class XmlModel : public QAbstractListModel
@@ -21,11 +22,17 @@ public:
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     virtual bool setData (const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
     Q_INVOKABLE void fetch();
+    Q_INVOKABLE XmlItem* itemAt(int row);
+
+protected slots:
+    void addToBookmarks(XmlItem* xmlItem);
+    void removeFromBookmarks(XmlItem* xmlItem);
 
 protected:
     inline void setResourceUrl(QUrl resourceUrl) { m_resourceUrl = resourceUrl; }
     void appendXmlItem(XmlItem* xmlItem);
     void clear();
+    void setDataItem(XmlItem* xmlItem, const QVariant &value, int role);
 
 private slots:
     virtual void parseFirst();
@@ -42,6 +49,7 @@ protected:
     QXmlStreamReader* m_xmlReader;
     QNetworkAccessManager* m_networkManager;
     QNetworkReply* m_currentReply;
+    XmlItemBookmarkManager* m_bookmarksManager;
 };
 
 #endif // XMLMODEL_H

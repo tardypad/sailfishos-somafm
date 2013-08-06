@@ -6,11 +6,13 @@
 #include <QXmlStreamReader>
 
 #include "xmlItem.h"
+#include "xmlItemBookmarkManager.h"
 
 XmlModel::XmlModel(XmlItem* xmlItemPrototype, QObject *parent) :
     QAbstractListModel(parent),
     m_resourceUrl(""),
-    m_xmlItemPrototype(xmlItemPrototype)
+    m_xmlItemPrototype(xmlItemPrototype),
+    m_bookmarksManager(NULL)
 
 {
     m_networkManager = new QNetworkAccessManager(this);
@@ -65,6 +67,23 @@ bool XmlModel::setData(const QModelIndex &index, const QVariant &value, int role
     return result;
 }
 
+void XmlModel::setDataItem(XmlItem *xmlItem, const QVariant &value, int role)
+{
+    for (int row = 0; row < m_list.size(); ++row) {
+        if (m_list.at(row)->isEqual(xmlItem)) {
+            setData(index(row) ,value, role);
+        }
+    }
+}
+
+XmlItem* XmlModel::itemAt(int row)
+{
+    if (row < 0 || row >= m_list.size())
+        return NULL;
+
+    return m_list.at(row);
+}
+
 void XmlModel::appendXmlItem(XmlItem *xmlItem)
 {
     beginInsertRows(QModelIndex(), m_list.size(), m_list.size());
@@ -110,4 +129,15 @@ void XmlModel::parseFirst()
 
 void XmlModel::parseAfter()
 {
+}
+
+void XmlModel::addToBookmarks(XmlItem *xmlItem)
+{
+    setDataItem(xmlItem, true, XmlItem::IsBookmarkRole);
+}
+
+
+void XmlModel::removeFromBookmarks(XmlItem *xmlItem)
+{
+    setDataItem(xmlItem, false, XmlItem::IsBookmarkRole);
 }

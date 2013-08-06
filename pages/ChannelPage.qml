@@ -2,6 +2,8 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Page {
+    property int channelIndex
+
     property string id
     property string name
     property string description
@@ -27,10 +29,10 @@ Page {
                 text: !isFavorite ? "Add to Favorites" : "Remove from Favorites"
                 onClicked: {
                     if (!isFavorite) {
-                        _favoritesManager.addFavorite(id)
+                        _favoritesManager.addFavorite(_channelsModel.itemAt(channelIndex))
                         isFavorite = true
                     } else {
-                        _favoritesManager.removeFavorite(id)
+                        _favoritesManager.removeFavorite(_channelsModel.itemAt(channelIndex))
                         isFavorite = false
                     }
                 }
@@ -44,17 +46,16 @@ Page {
         id: contextMenuComponent
         ContextMenu {
             property bool isBookmark
-            property string artist
-            property string title
+            property int index
 
             IconActionMenuItem {
                 iconSource: !isBookmark ? "qrc:/icon/bookmark" : "qrc:/icon/un-bookmark"
                 text: !isBookmark ? "Add to bookmarks" : "Remove from bookmarks"
                 onClicked: {
                     if (!isBookmark) {
-                        _bookmarksManager.addBookmark(id, artist, title)
+                        _bookmarksManager.addBookmark(_channelSongsModel.itemAt(index))
                     } else {
-                        _bookmarksManager.removeBookmark(id, artist, title)
+                        _bookmarksManager.removeBookmark(_channelSongsModel.itemAt(index))
                     }
                 }
             }
