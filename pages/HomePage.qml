@@ -86,7 +86,10 @@ Page {
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: pageStack.push(Qt.resolvedUrl("FavoritesPage.qml"))
+                onClicked: {
+                    var nextPage = _favoritesManager.isEmpty() ? "PopularsPage.qml" : "FavoritesPage.qml"
+                    pageStack.push(Qt.resolvedUrl(nextPage))
+                }
             }
         }
 

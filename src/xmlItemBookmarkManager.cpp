@@ -84,3 +84,8 @@ bool XmlItemBookmarkManager::isBookmark(XmlItem *xmlItem) const
 
     return false;
 }
+
+bool XmlItemBookmarkManager::isEmpty() const
+{
+    return rowCount() == 0;
+}

@@ -16,6 +16,7 @@ public:
     Q_INVOKABLE bool addBookmark(XmlItem* xmlItem);
     Q_INVOKABLE bool removeBookmark(XmlItem* xmlItem);
     bool isBookmark(XmlItem* xmlItem) const;
+    Q_INVOKABLE bool isEmpty() const;
 
 protected:
     explicit XmlItemBookmarkManager(XmlItem* xmlItemPrototype, QObject *parent = 0);
