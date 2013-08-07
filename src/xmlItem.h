@@ -26,6 +26,7 @@ public:
     virtual QHash<int, QByteArray> bookmarkRoleNames();
     virtual QHash<int, QByteArray> idRoleNames();
     virtual QString xmlTag() = 0;
+    virtual bool stopParsing() const;
     virtual XmlItem* create() = 0;
     virtual XmlItem* clone();
     virtual bool isEqual(XmlItem* xmlItem);

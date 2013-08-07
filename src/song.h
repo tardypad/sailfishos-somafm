@@ -31,6 +31,7 @@ public:
     virtual QHash<int, QByteArray> bookmarkRoleNames();
     virtual QHash<int, QByteArray> idRoleNames();
     virtual XmlItem* create();
+    virtual bool stopParsing() const;
 
     virtual QString xmlTag() { return "song"; }
 

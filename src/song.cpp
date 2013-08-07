@@ -89,3 +89,8 @@ XmlItem* Song::create()
 {
     return new Song();
 }
+
+bool Song::stopParsing() const
+{
+    return date().addSecs(3600) < QDateTime::currentDateTime();
+}

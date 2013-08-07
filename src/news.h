@@ -27,6 +27,7 @@ public:
     virtual bool setData (const QVariant &value, int role);
     virtual QHash<int, QByteArray> roleNames();
     virtual XmlItem* create();
+    virtual bool stopParsing() const;
 
     virtual QString xmlTag() { return "item"; }
 

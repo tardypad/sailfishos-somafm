@@ -113,6 +113,10 @@ void XmlModel::parse()
         if (m_xmlReader->isStartElement()) {
             if (m_xmlReader->name() == m_xmlItemPrototype->xmlTag()) {
                 XmlItem* xmlItem = parseXmlItem();
+
+                if (xmlItem->stopParsing())
+                    break;
+
                 appendXmlItem(xmlItem);
             }
         }

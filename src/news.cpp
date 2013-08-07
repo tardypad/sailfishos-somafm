@@ -54,3 +54,8 @@ XmlItem* News::create()
 {
     return new News();
 }
+
+bool News::stopParsing() const
+{
+    return date().addMonths(2) < QDateTime::currentDateTime();
+}
