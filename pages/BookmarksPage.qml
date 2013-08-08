@@ -9,6 +9,9 @@ Page {
             text: "Song bookmarks"
             iconSource: "qrc:/icon/bookmark"
         }
+        model: _bookmarksManager
+        delegate: BookmarksDelegate { }
+        property Item contextMenu
 
         ViewPlaceholderHint {
             enabled: listView.count === 0
@@ -17,5 +20,18 @@ Page {
         }
 
         VerticalScrollDecorator { flickable: listView }
+    }
+
+    Component {
+        id: contextMenuComponent
+        ContextMenu {
+            property int index
+
+            IconActionMenuItem {
+                iconSource: "qrc:/icon/un-bookmark"
+                text: "Remove from bookmarks"
+                onClicked: _bookmarksManager.removeBookmark(_bookmarksManager.itemAt(index))
+            }
+        }
     }
 }

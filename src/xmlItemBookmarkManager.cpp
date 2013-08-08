@@ -52,11 +52,13 @@ bool XmlItemBookmarkManager::addBookmark(XmlItem *xmlItem)
 {
     if (isBookmark(xmlItem)) return false;
 
+    XmlItem* newBookmark = xmlItem->clone();
+
     beginInsertRows(QModelIndex(), m_bookmarksList.size(), m_bookmarksList.size());
-    m_bookmarksList.append(xmlItem->clone());
+    m_bookmarksList.append(newBookmark);
     endInsertRows();
 
-    emit bookmarkAdded(xmlItem);
+    emit bookmarkAdded(newBookmark);
 
     return true;
 }
@@ -67,10 +69,12 @@ bool XmlItemBookmarkManager::removeBookmark(XmlItem *xmlItem)
 
     QModelIndex index = indexOf(xmlItem);
     beginRemoveRows(QModelIndex(), index.row(), index.row());
-    delete m_bookmarksList.takeAt(index.row());
+    XmlItem* oldBookmark = m_bookmarksList.takeAt(index.row());
     endRemoveRows();
 
-    emit bookmarkRemoved(xmlItem);
+    emit bookmarkRemoved(oldBookmark);
+
+    oldBookmark->deleteLater();
 
     return true;
 }
@@ -88,4 +92,12 @@ bool XmlItemBookmarkManager::isBookmark(XmlItem *xmlItem) const
 bool XmlItemBookmarkManager::isEmpty() const
 {
     return rowCount() == 0;
+}
+
+XmlItem *XmlItemBookmarkManager::itemAt(int row)
+{
+    if (row < 0 || row >= m_bookmarksList.size())
+        return NULL;
+
+    return m_bookmarksList.at(row);
 }
