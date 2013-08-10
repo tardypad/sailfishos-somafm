@@ -9,7 +9,7 @@
 #include <QUrl>
 #include <QStringList>
 
-#include "xmlItem.h"
+#include "XmlItem.h"
 
 class Channel : public XmlItem
 {

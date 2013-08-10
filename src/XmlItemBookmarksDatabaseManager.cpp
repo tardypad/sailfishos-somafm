@@ -1,4 +1,4 @@
-#include "xmlItemBookmarksDatabaseManager.h"
+#include "XmlItemBookmarksDatabaseManager.h"
 
 #include <QDir>
 

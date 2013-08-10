@@ -1,7 +1,7 @@
 #ifndef CHANNELSFAVORITESDATABASEMANAGER_H
 #define CHANNELSFAVORITESDATABASEMANAGER_H
 
-#include "xmlItemBookmarksDatabaseManager.h"
+#include "XmlItemBookmarksDatabaseManager.h"
 
 class ChannelsFavoritesDatabaseManager : public XmlItemBookmarksDatabaseManager
 {

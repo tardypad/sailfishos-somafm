@@ -1,7 +1,7 @@
 #ifndef SONGSMODEL_H
 #define SONGSMODEL_H
 
-#include "xmlModel.h"
+#include "XmlModel.h"
 
 class Song;
 

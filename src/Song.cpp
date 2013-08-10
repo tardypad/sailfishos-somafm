@@ -1,4 +1,4 @@
-#include "song.h"
+#include "Song.h"
 
 Song::Song(QObject *parent) :
     XmlItem(parent),

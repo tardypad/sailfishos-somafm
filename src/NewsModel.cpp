@@ -1,9 +1,9 @@
-#include "newsModel.h"
+#include "NewsModel.h"
 
 #include <QXmlStreamReader>
 
-#include "somaFM.h"
-#include "news.h"
+#include "SomaFM.h"
+#include "News.h"
 
 NewsModel::NewsModel(QObject *parent) :
     XmlModel(new News(), parent),

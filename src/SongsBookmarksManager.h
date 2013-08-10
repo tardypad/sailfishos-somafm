@@ -1,7 +1,7 @@
 #ifndef SONGSBOOKMARKSMANAGER_H
 #define SONGSBOOKMARKSMANAGER_H
 
-#include "xmlItemBookmarkManager.h"
+#include "XmlItemBookmarkManager.h"
 
 class SongsBookmarksManager : public XmlItemBookmarkManager
 {

@@ -1,4 +1,4 @@
-#include "xmlItem.h"
+#include "XmlItem.h"
 
 XmlItem::XmlItem(QObject *parent) :
     QObject(parent),

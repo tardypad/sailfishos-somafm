@@ -1,12 +1,12 @@
-#include "xmlModel.h"
+#include "XmlModel.h"
 
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
 #include <QXmlStreamReader>
 
-#include "xmlItem.h"
-#include "xmlItemBookmarkManager.h"
+#include "XmlItem.h"
+#include "XmlItemBookmarkManager.h"
 
 XmlModel::XmlModel(XmlItem* xmlItemPrototype, QObject *parent) :
     QAbstractListModel(parent),

@@ -1,7 +1,7 @@
-#include "songsBookmarksManager.h"
+#include "SongsBookmarksManager.h"
 
-#include "song.h"
-#include "songsBookmarksDatabaseManager.h"
+#include "Song.h"
+#include "SongsBookmarksDatabaseManager.h"
 
 SongsBookmarksManager* SongsBookmarksManager::m_instance = NULL;
 

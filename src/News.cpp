@@ -1,4 +1,4 @@
-#include "news.h"
+#include "News.h"
 
 News::News(QObject *parent) :
     XmlItem(parent),

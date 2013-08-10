@@ -1,8 +1,8 @@
-#include "channelsProxyModel.h"
+#include "ChannelsProxyModel.h"
 
-#include "channel.h"
-#include "channelsModel.h"
-#include "xmlItem.h"
+#include "Channel.h"
+#include "ChannelsModel.h"
+#include "XmlItem.h"
 
 ChannelsProxyModel::ChannelsProxyModel(QObject *parent) :
     QSortFilterProxyModel(parent), m_isClonesShown(false)

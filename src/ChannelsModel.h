@@ -1,7 +1,7 @@
 #ifndef CHANNELSMODEL_H
 #define CHANNELSMODEL_H
 
-#include "xmlModel.h"
+#include "XmlModel.h"
 
 class Channel;
 

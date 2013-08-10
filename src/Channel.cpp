@@ -1,4 +1,4 @@
-#include "channel.h"
+#include "Channel.h"
 
 Channel::Channel(QObject *parent) :
     XmlItem(parent),

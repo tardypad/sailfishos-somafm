@@ -1,4 +1,4 @@
-#include "somaFM.h"
+#include "SomaFM.h"
 
 const QString SomaFM::_channelsUrl = "http://somafm.com/channels.xml";
 const QString SomaFM::_channelSongsUrl = "http://somafm.com/songs/:channelId:.xml";

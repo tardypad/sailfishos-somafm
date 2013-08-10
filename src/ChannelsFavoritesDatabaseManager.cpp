@@ -1,4 +1,4 @@
-#include "channelsFavoritesDatabaseManager.h"
+#include "ChannelsFavoritesDatabaseManager.h"
 
 #include <QStringList>
 #include <QSqlQuery>

@@ -1,6 +1,6 @@
-#include "xmlItemBookmarkManager.h"
+#include "XmlItemBookmarkManager.h"
 
-#include "xmlItem.h"
+#include "XmlItem.h"
 
 XmlItemBookmarkManager::XmlItemBookmarkManager(XmlItem *xmlItemPrototype, QObject *parent) :
     QAbstractListModel(parent),

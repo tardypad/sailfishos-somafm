@@ -1,7 +1,7 @@
 #ifndef NEWSMODEL_H
 #define NEWSMODEL_H
 
-#include "xmlModel.h"
+#include "XmlModel.h"
 
 #include <QString>
 

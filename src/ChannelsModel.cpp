@@ -1,11 +1,11 @@
-#include "channelsModel.h"
+#include "ChannelsModel.h"
 
 #include <QXmlStreamReader>
 #include <QXmlStreamAttributes>
 
-#include "somaFM.h"
-#include "channel.h"
-#include "channelsFavoritesManager.h"
+#include "SomaFM.h"
+#include "Channel.h"
+#include "ChannelsFavoritesManager.h"
 
 ChannelsModel::ChannelsModel(QObject *parent) :
     XmlModel(new Channel(), parent)

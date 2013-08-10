@@ -1,7 +1,7 @@
-#include "channelsFavoritesManager.h"
+#include "ChannelsFavoritesManager.h"
 
-#include "channel.h"
-#include "channelsFavoritesDatabaseManager.h"
+#include "Channel.h"
+#include "ChannelsFavoritesDatabaseManager.h"
 
 ChannelsFavoritesManager* ChannelsFavoritesManager::m_instance = NULL;
 

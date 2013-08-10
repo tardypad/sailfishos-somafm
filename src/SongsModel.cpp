@@ -1,10 +1,10 @@
-#include "songsModel.h"
+#include "SongsModel.h"
 
 #include <QXmlStreamReader>
 
-#include "somaFM.h"
-#include "song.h"
-#include "songsBookmarksManager.h"
+#include "SomaFM.h"
+#include "Song.h"
+#include "SongsBookmarksManager.h"
 
 SongsModel::SongsModel(QObject *parent) :
     XmlModel(new Song(), parent),
