@@ -5,7 +5,8 @@
 XmlItemBookmarkManager::XmlItemBookmarkManager(XmlItem *xmlItemPrototype, QObject *parent) :
     QAbstractListModel(parent),
     m_xmlItemPrototype(xmlItemPrototype),
-    m_bookmarksList(QList<XmlItem*>())
+    m_bookmarksList(QList<XmlItem*>()),
+    m_databaseManager(NULL)
 {
 }
 

@@ -4,6 +4,7 @@
 #include <QAbstractListModel>
 
 class XmlItem;
+class XmlItemBookmarksDatabaseManager;
 
 class XmlItemBookmarkManager : public QAbstractListModel
 {
@@ -31,6 +32,7 @@ signals:
 protected:
     XmlItem* m_xmlItemPrototype;
     QList<XmlItem*> m_bookmarksList;
+    XmlItemBookmarksDatabaseManager* m_databaseManager;
 };
 
 #endif // XMLITEMBOOKMARKMANAGER_H

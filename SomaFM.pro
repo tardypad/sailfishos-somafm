@@ -23,4 +23,5 @@ OTHER_FILES = \
 
 RESOURCES += SomaFM.qrc
 
-QT += network
+QT += network\
+    sql

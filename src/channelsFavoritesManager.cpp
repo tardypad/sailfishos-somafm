@@ -1,12 +1,14 @@
 #include "channelsFavoritesManager.h"
 
 #include "channel.h"
+#include "channelsFavoritesDatabaseManager.h"
 
 ChannelsFavoritesManager* ChannelsFavoritesManager::m_instance = NULL;
 
 ChannelsFavoritesManager::ChannelsFavoritesManager(QObject *parent) :
     XmlItemBookmarkManager(new Channel(), parent)
 {
+    m_databaseManager = ChannelsFavoritesDatabaseManager::instance();
 }
 
 ChannelsFavoritesManager* ChannelsFavoritesManager::instance()
