@@ -32,7 +32,7 @@ Page {
         ViewPlaceholderHint {
             enabled: gridView.count === 0
             text: "No Favorites"
-            hintText: "You can favorite a channel from the top menu of its page"
+            hintText: "You can favorite a channel from the top menu of its page, or by 'tap and hold' on it in channels lists"
         }
 
         Component.onCompleted: {

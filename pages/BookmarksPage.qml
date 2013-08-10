@@ -16,7 +16,7 @@ Page {
         ViewPlaceholderHint {
             enabled: listView.count === 0
             text: "No Bookmarks"
-            hintText: "You can bookmark a song by 'tap and hold' on it"
+            hintText: "You can bookmark a song in a channel page by 'tap and hold' on it"
         }
 
         VerticalScrollDecorator { flickable: listView }
