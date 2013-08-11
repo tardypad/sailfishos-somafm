@@ -35,7 +35,7 @@ QHash<int, QByteArray> Channel::roleNames()
 
 QHash<int, QByteArray> Channel::bookmarkRoleNames()
 {
-    QHash<int, QByteArray> bookmarkRoleNames;
+    QHash<int, QByteArray> bookmarkRoleNames = XmlItem::bookmarkRoleNames();
 
     bookmarkRoleNames[IdRole] = "id";
     bookmarkRoleNames[NameRole] = "name";

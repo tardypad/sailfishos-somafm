@@ -14,7 +14,7 @@ Item {
 
         Label {
             id: dateLabel
-            text: Qt.formatDateTime(date, 'MMM dd')
+            text: Qt.formatDateTime(bookmarkDate, 'MMM dd')
             anchors {
                 left: parent.left
                 leftMargin: Theme.paddingMedium

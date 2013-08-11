@@ -57,6 +57,7 @@ XmlItem* SongsModel::parseXmlItem()
     song->setData(artist, Song::ArtistRole);
     song->setData(album, Song::AlbumRole);
     song->setData(datetime, Song::DateRole);
+    song->setData(m_channelId, Song::ChannelIdRole);
 
     if (m_bookmarksManager->isBookmark(song)) {
         song->setData(true, Song::IsBookmarkRole);

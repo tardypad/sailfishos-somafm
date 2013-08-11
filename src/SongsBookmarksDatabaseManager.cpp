@@ -3,6 +3,7 @@
 #include <QStringList>
 #include <QSqlQuery>
 #include <QVariant>
+#include <QDateTime>
 
 #include "Song.h"
 
@@ -29,10 +30,12 @@ bool SongsBookmarksDatabaseManager::insertBookmark(XmlItem *xmlItem)
 {
     QVariant title = xmlItem->data(Song::TitleRole);
     QVariant artist = xmlItem->data(Song::ArtistRole);
+    QVariant channelId = xmlItem->data(Song::ChannelIdRole);
 
     insertBookmarkPreparedQuery.bindValue(":title", title);
     insertBookmarkPreparedQuery.bindValue(":artist", artist);
-    insertBookmarkPreparedQuery.bindValue(":channel_id", "poptron");
+    insertBookmarkPreparedQuery.bindValue(":channel_id", channelId);
+    insertBookmarkPreparedQuery.bindValue(":date", QDateTime::currentDateTime());
 
     bool result = insertBookmarkPreparedQuery.exec();
     int numRowsAffected = insertBookmarkPreparedQuery.numRowsAffected();
@@ -57,20 +60,22 @@ bool SongsBookmarksDatabaseManager::deleteBookmark(XmlItem *xmlItem)
 QList<XmlItem *> SongsBookmarksDatabaseManager::retrieveBookmarks()
 {
     QList<XmlItem *> xmlItemsBookmarks;
-    QSqlQuery query("SELECT title, artist, album, channel_id FROM " + _songsBookmarkTableName);
-    QString title, artist, album, channelId;
+    QSqlQuery query("SELECT title, artist, album, channel_id, date FROM " + _songsBookmarkTableName);
+    QVariant title, artist, album, channelId, date;
 
     while (query.next()) {
-        title = query.value(0).toString();
-        artist = query.value(1).toString();
-        album = query.value(2).toString();
-        channelId = query.value(3).toString();
+        title = query.value(0);
+        artist = query.value(1);
+        album = query.value(2);
+        channelId = query.value(3);
+        date = query.value(4);
 
         Song* song = new Song();
         song->setData(title,     Song::TitleRole);
         song->setData(artist,    Song::ArtistRole);
         song->setData(album,     Song::AlbumRole);
         song->setData(channelId, Song::ChannelIdRole);
+        song->setData(date,      Song::BookmarkDateRole);
 
         xmlItemsBookmarks.append(song);
     }
@@ -91,8 +96,8 @@ void SongsBookmarksDatabaseManager::checkStructure()
 void SongsBookmarksDatabaseManager::prepareQueries()
 {
     insertBookmarkPreparedQuery.prepare(
-                "INSERT INTO " + _songsBookmarkTableName + " (title, artist, channel_id) \n"
-                "VALUES (:title, :artist, :channel_id)"
+                "INSERT INTO " + _songsBookmarkTableName + " (title, artist, channel_id, date) \n"
+                "VALUES (:title, :artist, :channel_id, :date)"
                 );
 
     deleteBookmarkPreparedQuery.prepare(

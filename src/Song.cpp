@@ -25,10 +25,11 @@ QHash<int, QByteArray> Song::roleNames()
 
 QHash<int, QByteArray> Song::bookmarkRoleNames()
 {
-    QHash<int, QByteArray> bookmarkRoleNames;
+    QHash<int, QByteArray> bookmarkRoleNames = XmlItem::bookmarkRoleNames();
 
     bookmarkRoleNames[TitleRole] = "title";
     bookmarkRoleNames[ArtistRole] = "artist";
+    bookmarkRoleNames[AlbumRole] = "album";
     bookmarkRoleNames[ChannelIdRole] = "channelId";
 
     return bookmarkRoleNames;

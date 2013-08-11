@@ -3,6 +3,7 @@
 #include <QStringList>
 #include <QSqlQuery>
 #include <QVariant>
+#include <QDateTime>
 
 #include "Channel.h"
 
@@ -28,8 +29,11 @@ ChannelsFavoritesDatabaseManager* ChannelsFavoritesDatabaseManager::instance()
 bool ChannelsFavoritesDatabaseManager::insertBookmark(XmlItem *xmlItem)
 {
     QVariant channelId = xmlItem->data(Channel::IdRole);
+    QVariant name = xmlItem->data(Channel::NameRole);
 
     insertBookmarkPreparedQuery.bindValue(":channel_id", channelId);
+    insertBookmarkPreparedQuery.bindValue(":name", name);
+    insertBookmarkPreparedQuery.bindValue(":date", QDateTime::currentDateTime());
 
     bool result = insertBookmarkPreparedQuery.exec();
     int numRowsAffected = insertBookmarkPreparedQuery.numRowsAffected();
@@ -52,14 +56,18 @@ bool ChannelsFavoritesDatabaseManager::deleteBookmark(XmlItem *xmlItem)
 QList<XmlItem *> ChannelsFavoritesDatabaseManager::retrieveBookmarks()
 {
     QList<XmlItem *> xmlItemsBookmarks;
-    QSqlQuery query("SELECT channel_id FROM " + _channelsFavoriteTableName);
-    QString channelId;
+    QSqlQuery query("SELECT channel_id, name, date FROM " + _channelsFavoriteTableName);
+    QVariant channelId, name, date;
 
     while (query.next()) {
-        channelId = query.value(0).toString();
+        channelId = query.value(0);
+        name = query.value(1);
+        date = query.value(2);
 
         Channel* channel = new Channel();
         channel->setData(channelId, Channel::IdRole);
+        channel->setData(name, Channel::NameRole);
+        channel->setData(date, Channel::BookmarkDateRole);
 
         xmlItemsBookmarks.append(channel);
     }
@@ -80,8 +88,8 @@ void ChannelsFavoritesDatabaseManager::checkStructure()
 void ChannelsFavoritesDatabaseManager::prepareQueries()
 {
     insertBookmarkPreparedQuery.prepare(
-                "INSERT INTO " + _channelsFavoriteTableName + " (channel_id) \n"
-                "VALUES (:channel_id)"
+                "INSERT INTO " + _channelsFavoriteTableName + " (channel_id, name, date) \n"
+                "VALUES (:channel_id, :name, :date)"
                 );
 
     deleteBookmarkPreparedQuery.prepare(
@@ -96,8 +104,10 @@ bool ChannelsFavoritesDatabaseManager::createStructure()
         return false;
 
     QSqlQuery query("CREATE TABLE " + _channelsFavoriteTableName + " (\n"
-                    "id         INTEGER     PRIMARY KEY,     -- favorite id \n"
-                    "channel_id VARCHAR(50) UNIQUE NOT NULL  -- channel id \n"
+                    "id         INTEGER     PRIMARY KEY,             -- favorite id \n"
+                    "channel_id VARCHAR(50) UNIQUE NOT NULL,         -- channel id \n"
+                    "name       VARCHAR(50) NOT NULL,                -- channel name \n"
+                    "date       DATETIME    DEFAUT CURRENT_TIMESTAMP -- date of bookmark creation \n"
                     ")", db);
 
     return query.exec();

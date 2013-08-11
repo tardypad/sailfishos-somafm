@@ -31,7 +31,7 @@ int XmlItemBookmarkManager::rowCount(const QModelIndex &parent) const
 
 QHash<int,QByteArray> XmlItemBookmarkManager::roleNames() const
 {
-    return m_xmlItemPrototype->roleNames();
+    return m_xmlItemPrototype->bookmarkRoleNames();
 }
 
 QVariant XmlItemBookmarkManager::data(const QModelIndex &index, int role) const
@@ -59,7 +59,7 @@ bool XmlItemBookmarkManager::addBookmark(XmlItem *xmlItem)
 {
     if (isBookmark(xmlItem)) return false;
 
-    XmlItem* newBookmark = xmlItem->clone();
+    XmlItem* newBookmark = xmlItem->cloneAsBookmark();
 
     bool result = m_databaseManager->insertBookmark(newBookmark);
 

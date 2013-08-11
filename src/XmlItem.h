@@ -6,6 +6,7 @@
 #include <QHash>
 #include <QByteArray>
 #include <QString>
+#include <QDateTime>
 
 class XmlItem : public QObject
 {
@@ -15,6 +16,7 @@ public:
     enum Roles {
         IsCloneRole = Qt::UserRole + 1,
         IsBookmarkRole,
+        BookmarkDateRole,
         LastRole
     };
 
@@ -28,14 +30,17 @@ public:
     virtual QString xmlTag() = 0;
     virtual bool stopParsing() const;
     virtual XmlItem* create() = 0;
-    virtual XmlItem* clone();
-    virtual bool isEqual(XmlItem* xmlItem);
+    XmlItem* clone();
+    XmlItem* cloneAsBookmark();
+    bool isEqual(XmlItem* xmlItem);
 
     inline bool isClone() const { return m_isClone; }
     inline bool isBookmark() const { return m_isBookmark; }
+    inline QDateTime bookmarkDate() const { return m_bookmarkDate; }
 
     inline void setIsClone(bool isClone) { m_isClone = isClone; }
     inline void setIsBookmark(bool isBookmark) { m_isBookmark = isBookmark; }
+    inline void setBookmarkDate(QDateTime bookmarkDate) { m_bookmarkDate = bookmarkDate; }
 
 private:
     XmlItem* cloneRoles(QHash<int, QByteArray> roles);
@@ -44,6 +49,7 @@ private:
 protected:
     bool m_isClone;
     bool m_isBookmark;
+    QDateTime m_bookmarkDate;
 };
 
 #endif // XMLITEM_H
