@@ -1,6 +1,7 @@
 #include "XmlItemBookmarkManager.h"
 
 #include "XmlItem.h"
+#include "XmlItemBookmarksDatabaseManager.h"
 
 XmlItemBookmarkManager::XmlItemBookmarkManager(XmlItem *xmlItemPrototype, QObject *parent) :
     QAbstractListModel(parent),
@@ -55,6 +56,10 @@ bool XmlItemBookmarkManager::addBookmark(XmlItem *xmlItem)
 
     XmlItem* newBookmark = xmlItem->clone();
 
+    bool result = m_databaseManager->insertBookmark(newBookmark);
+
+    if (!result) return false;
+
     beginInsertRows(QModelIndex(), m_bookmarksList.size(), m_bookmarksList.size());
     m_bookmarksList.append(newBookmark);
     endInsertRows();
@@ -69,8 +74,14 @@ bool XmlItemBookmarkManager::removeBookmark(XmlItem *xmlItem)
     if (!isBookmark(xmlItem)) return false;
 
     QModelIndex index = indexOf(xmlItem);
+    XmlItem* oldBookmark = m_bookmarksList.at(index.row());
+
+    bool result = m_databaseManager->deleteBookmark(oldBookmark);
+
+    if (!result) return false;
+
     beginRemoveRows(QModelIndex(), index.row(), index.row());
-    XmlItem* oldBookmark = m_bookmarksList.takeAt(index.row());
+    m_bookmarksList.removeAt(index.row());
     endRemoveRows();
 
     emit bookmarkRemoved(oldBookmark);

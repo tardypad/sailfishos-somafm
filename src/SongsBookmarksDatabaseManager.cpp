@@ -4,6 +4,8 @@
 #include <QSqlQuery>
 #include <QVariant>
 
+#include "Song.h"
+
 const QString SongsBookmarksDatabaseManager::_songsBookmarkTableName = "song_bookmark";
 
 SongsBookmarksDatabaseManager* SongsBookmarksDatabaseManager::m_instance = NULL;
@@ -11,7 +13,7 @@ SongsBookmarksDatabaseManager* SongsBookmarksDatabaseManager::m_instance = NULL;
 SongsBookmarksDatabaseManager::SongsBookmarksDatabaseManager(QObject *parent) :
     XmlItemBookmarksDatabaseManager(parent)
 {
-    checkStructure();
+    init();
 }
 
 SongsBookmarksDatabaseManager *SongsBookmarksDatabaseManager::instance()
@@ -23,6 +25,35 @@ SongsBookmarksDatabaseManager *SongsBookmarksDatabaseManager::instance()
     return m_instance;
 }
 
+bool SongsBookmarksDatabaseManager::insertBookmark(XmlItem *xmlItem)
+{
+    QVariant title = xmlItem->data(Song::TitleRole);
+    QVariant artist = xmlItem->data(Song::ArtistRole);
+
+    insertBookmarkPreparedQuery.bindValue(":title", title);
+    insertBookmarkPreparedQuery.bindValue(":artist", artist);
+    insertBookmarkPreparedQuery.bindValue(":channel_id", "poptron");
+
+    bool result = insertBookmarkPreparedQuery.exec();
+    int numRowsAffected = insertBookmarkPreparedQuery.numRowsAffected();
+
+    return result && (numRowsAffected == 1);
+}
+
+bool SongsBookmarksDatabaseManager::deleteBookmark(XmlItem *xmlItem)
+{
+    QVariant title = xmlItem->data(Song::TitleRole);
+    QVariant artist = xmlItem->data(Song::ArtistRole);
+
+    deleteBookmarkPreparedQuery.bindValue(":title", title);
+    deleteBookmarkPreparedQuery.bindValue(":artist", artist);
+
+    bool result = deleteBookmarkPreparedQuery.exec();
+    int numRowsAffected = deleteBookmarkPreparedQuery.numRowsAffected();
+
+    return result && (numRowsAffected >= 1);
+}
+
 void SongsBookmarksDatabaseManager::checkStructure()
 {
     if (!db.isOpen())
@@ -31,6 +62,19 @@ void SongsBookmarksDatabaseManager::checkStructure()
     if (!db.tables().contains(_songsBookmarkTableName)) {
         createStructure();
     }
+}
+
+void SongsBookmarksDatabaseManager::prepareQueries()
+{
+    insertBookmarkPreparedQuery.prepare(
+                "INSERT INTO " + _songsBookmarkTableName + " (title, artist, channel_id) \n"
+                "VALUES (:title, :artist, :channel_id)"
+                );
+
+    deleteBookmarkPreparedQuery.prepare(
+                "DELETE FROM " + _songsBookmarkTableName + " \n"
+                "WHERE title=:title AND artist=:artist"
+                );
 }
 
 bool SongsBookmarksDatabaseManager::createStructure()

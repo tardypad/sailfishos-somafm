@@ -11,9 +11,12 @@ class SongsBookmarksDatabaseManager : public XmlItemBookmarksDatabaseManager
 
 public:
     static SongsBookmarksDatabaseManager* instance();
+    virtual bool insertBookmark(XmlItem *xmlItem);
+    virtual bool deleteBookmark(XmlItem *xmlItem);
     
 protected:
     virtual void checkStructure();
+    virtual void prepareQueries();
     bool createStructure();
     
 private:

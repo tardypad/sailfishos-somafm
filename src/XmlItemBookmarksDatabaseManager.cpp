@@ -9,7 +9,13 @@ QSqlDatabase XmlItemBookmarksDatabaseManager::db = QSqlDatabase::addDatabase("QS
 XmlItemBookmarksDatabaseManager::XmlItemBookmarksDatabaseManager(QObject *parent) :
     QObject(parent)
 {
-    openDatabase();
+    if (!db.isOpen()) {
+        openDatabase();
+
+        // "Relink" queries to the opened database
+        insertBookmarkPreparedQuery.clear();
+        deleteBookmarkPreparedQuery.clear();
+    }
 }
 
 XmlItemBookmarksDatabaseManager::~XmlItemBookmarksDatabaseManager()
@@ -24,5 +30,11 @@ bool XmlItemBookmarksDatabaseManager::openDatabase()
     db.setDatabaseName(dbPath);
 
     return db.open();
+}
+
+void XmlItemBookmarksDatabaseManager::init()
+{
+    checkStructure();
+    prepareQueries();
 }
 
