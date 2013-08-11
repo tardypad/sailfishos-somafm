@@ -50,6 +50,11 @@ QModelIndex XmlItemBookmarkManager::indexOf(XmlItem *xmlItem) const
     return QModelIndex();
 }
 
+void XmlItemBookmarkManager::load()
+{
+    m_bookmarksList = m_databaseManager->retrieveBookmarks();
+}
+
 bool XmlItemBookmarkManager::addBookmark(XmlItem *xmlItem)
 {
     if (isBookmark(xmlItem)) return false;

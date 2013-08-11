@@ -17,6 +17,7 @@ public:
     ~XmlItemBookmarksDatabaseManager();
     virtual bool insertBookmark(XmlItem* xmlItem) = 0;
     virtual bool deleteBookmark(XmlItem* xmlItem) = 0;
+    virtual QList<XmlItem*> retrieveBookmarks() = 0;
 
 protected:
     explicit XmlItemBookmarksDatabaseManager(QObject *parent = 0);

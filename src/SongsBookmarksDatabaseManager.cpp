@@ -54,6 +54,30 @@ bool SongsBookmarksDatabaseManager::deleteBookmark(XmlItem *xmlItem)
     return result && (numRowsAffected >= 1);
 }
 
+QList<XmlItem *> SongsBookmarksDatabaseManager::retrieveBookmarks()
+{
+    QList<XmlItem *> xmlItemsBookmarks;
+    QSqlQuery query("SELECT title, artist, album, channel_id FROM " + _songsBookmarkTableName);
+    QString title, artist, album, channelId;
+
+    while (query.next()) {
+        title = query.value(0).toString();
+        artist = query.value(1).toString();
+        album = query.value(2).toString();
+        channelId = query.value(3).toString();
+
+        Song* song = new Song();
+        song->setData(title,     Song::TitleRole);
+        song->setData(artist,    Song::ArtistRole);
+        song->setData(album,     Song::AlbumRole);
+        song->setData(channelId, Song::ChannelIdRole);
+
+        xmlItemsBookmarks.append(song);
+    }
+
+    return xmlItemsBookmarks;
+}
+
 void SongsBookmarksDatabaseManager::checkStructure()
 {
     if (!db.isOpen())

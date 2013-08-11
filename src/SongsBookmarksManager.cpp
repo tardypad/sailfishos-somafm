@@ -9,6 +9,7 @@ SongsBookmarksManager::SongsBookmarksManager(QObject *parent) :
     XmlItemBookmarkManager(new Song(), parent)
 {
     m_databaseManager = SongsBookmarksDatabaseManager::instance();
+    load();
 }
 
 SongsBookmarksManager* SongsBookmarksManager::instance()

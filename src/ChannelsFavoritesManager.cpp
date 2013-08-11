@@ -9,6 +9,7 @@ ChannelsFavoritesManager::ChannelsFavoritesManager(QObject *parent) :
     XmlItemBookmarkManager(new Channel(), parent)
 {
     m_databaseManager = ChannelsFavoritesDatabaseManager::instance();
+    load();
 }
 
 ChannelsFavoritesManager* ChannelsFavoritesManager::instance()

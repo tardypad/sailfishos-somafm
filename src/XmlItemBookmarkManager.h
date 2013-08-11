@@ -24,6 +24,7 @@ protected:
     explicit XmlItemBookmarkManager(XmlItem* xmlItemPrototype, QObject *parent = 0);
     void clear();
     QModelIndex indexOf(XmlItem* xmlItem) const;
+    void load();
 
 signals:
     void bookmarkAdded(XmlItem* xmlItem);

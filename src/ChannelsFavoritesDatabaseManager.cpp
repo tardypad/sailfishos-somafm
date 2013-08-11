@@ -49,6 +49,24 @@ bool ChannelsFavoritesDatabaseManager::deleteBookmark(XmlItem *xmlItem)
     return result && (numRowsAffected >= 1);
 }
 
+QList<XmlItem *> ChannelsFavoritesDatabaseManager::retrieveBookmarks()
+{
+    QList<XmlItem *> xmlItemsBookmarks;
+    QSqlQuery query("SELECT channel_id FROM " + _channelsFavoriteTableName);
+    QString channelId;
+
+    while (query.next()) {
+        channelId = query.value(0).toString();
+
+        Channel* channel = new Channel();
+        channel->setData(channelId, Channel::IdRole);
+
+        xmlItemsBookmarks.append(channel);
+    }
+
+    return xmlItemsBookmarks;
+}
+
 void ChannelsFavoritesDatabaseManager::checkStructure()
 {
     if (!db.isOpen())
