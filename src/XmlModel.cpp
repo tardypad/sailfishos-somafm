@@ -1,5 +1,6 @@
 #include "XmlModel.h"
 
+#include <QDebug>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>

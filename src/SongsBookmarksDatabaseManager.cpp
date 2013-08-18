@@ -1,5 +1,6 @@
 #include "SongsBookmarksDatabaseManager.h"
 
+#include <QDebug>
 #include <QStringList>
 #include <QSqlQuery>
 #include <QVariant>

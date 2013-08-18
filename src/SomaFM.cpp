@@ -1,5 +1,7 @@
 #include "SomaFM.h"
 
+#include <QDebug>
+
 const QString SomaFM::_channelsUrl = "http://somafm.com/channels.xml";
 const QString SomaFM::_channelSongsUrl = "http://somafm.com/songs/:channelId:.xml";
 const QString SomaFM::_newsUrl = "http://somafm.com/news.xml";

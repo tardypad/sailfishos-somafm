@@ -1,5 +1,6 @@
 #include "SongsModel.h"
 
+#include <QDebug>
 #include <QXmlStreamReader>
 
 #include "SomaFM.h"

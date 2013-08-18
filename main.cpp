@@ -1,9 +1,9 @@
-
 #include <QGuiApplication>
 #include <QQuickView>
 
 #include "sailfishapplication.h"
 
+#include <QDebug>
 #include <QQmlContext>
 #include <QSortFilterProxyModel>
 #include <QtQml>
@@ -48,5 +48,3 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     
     return app->exec();
 }
-
-

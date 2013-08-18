@@ -1,5 +1,7 @@
 #include "ChannelsProxyModel.h"
 
+#include <QDebug>
+
 #include "Channel.h"
 #include "ChannelsModel.h"
 #include "XmlItem.h"

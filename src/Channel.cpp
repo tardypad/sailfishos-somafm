@@ -1,5 +1,7 @@
 #include "Channel.h"
 
+#include <QDebug>
+
 Channel::Channel(QObject *parent) :
     XmlItem(parent),
     m_id(""),

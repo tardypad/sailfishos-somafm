@@ -1,5 +1,7 @@
 #include "News.h"
 
+#include <QDebug>
+
 News::News(QObject *parent) :
     XmlItem(parent),
     m_content(""),

@@ -1,5 +1,7 @@
 #include "XmlItem.h"
 
+#include <QDebug>
+
 XmlItem::XmlItem(QObject *parent) :
     QObject(parent),
     m_isClone(false),

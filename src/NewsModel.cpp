@@ -1,5 +1,6 @@
 #include "NewsModel.h"
 
+#include <QDebug>
 #include <QXmlStreamReader>
 
 #include "SomaFM.h"

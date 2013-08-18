@@ -1,5 +1,7 @@
 #include "ChannelsFavoritesManager.h"
 
+#include <QDebug>
+
 #include "Channel.h"
 #include "ChannelsFavoritesDatabaseManager.h"
 

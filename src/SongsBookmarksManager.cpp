@@ -1,5 +1,7 @@
 #include "SongsBookmarksManager.h"
 
+#include <QDebug>
+
 #include "Song.h"
 #include "SongsBookmarksDatabaseManager.h"
 

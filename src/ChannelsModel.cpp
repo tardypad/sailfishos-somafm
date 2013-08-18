@@ -1,5 +1,6 @@
 #include "ChannelsModel.h"
 
+#include <QDebug>
 #include <QXmlStreamReader>
 #include <QXmlStreamAttributes>
 

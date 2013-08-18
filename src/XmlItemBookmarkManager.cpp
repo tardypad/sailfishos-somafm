@@ -1,5 +1,7 @@
 #include "XmlItemBookmarkManager.h"
 
+#include <QDebug>
+
 #include "XmlItem.h"
 #include "XmlItemBookmarksDatabaseManager.h"
 

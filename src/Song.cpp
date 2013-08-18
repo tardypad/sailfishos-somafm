@@ -1,5 +1,7 @@
 #include "Song.h"
 
+#include <QDebug>
+
 Song::Song(QObject *parent) :
     XmlItem(parent),
     m_title(""),

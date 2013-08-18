@@ -1,5 +1,6 @@
 #include "XmlItemBookmarksDatabaseManager.h"
 
+#include <QDebug>
 #include <QDir>
 
 const QString XmlItemBookmarksDatabaseManager::_databaseName = "somafm.sqlite";
