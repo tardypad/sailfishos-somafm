@@ -62,6 +62,7 @@ bool XmlItemBookmarkManager::addBookmark(XmlItem *xmlItem)
     if (isBookmark(xmlItem)) return false;
 
     XmlItem* newBookmark = xmlItem->cloneAsBookmark();
+    newBookmark->setData(QDateTime::currentDateTime(), XmlItem::BookmarkDateRole);
 
     bool result = m_databaseManager->insertBookmark(newBookmark);
 
