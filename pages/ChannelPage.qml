@@ -63,7 +63,7 @@ Page {
     }
 
     Component.onCompleted: {
-        _channelSongsModel.setChannelId(id)
+        _channelSongsModel.setChannel(_channelsModel.itemAt(channelIndex))
         _channelSongsModel.fetch()
     }
 }

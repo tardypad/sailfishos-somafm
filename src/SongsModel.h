@@ -4,6 +4,7 @@
 #include "XmlModel.h"
 
 class Song;
+class Channel;
 
 class SongsModel : public XmlModel
 {
@@ -11,13 +12,13 @@ class SongsModel : public XmlModel
 public:
     explicit SongsModel(QObject *parent = 0);
     ~SongsModel();
-    Q_INVOKABLE void setChannelId(QString channelId);
+    Q_INVOKABLE void setChannel(XmlItem* channel);
 
 private:
     virtual XmlItem* parseXmlItem();
 
 private:
-    QString m_channelId;
+    Channel* m_channel;
 };
 
 #endif // SONGSMODEL_H

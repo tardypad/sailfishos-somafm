@@ -30,11 +30,17 @@ bool SongsBookmarksDatabaseManager::insertBookmark(XmlItem *xmlItem)
 {
     QVariant title = xmlItem->data(Song::TitleRole);
     QVariant artist = xmlItem->data(Song::ArtistRole);
+    QVariant album = xmlItem->data(Song::AlbumRole);
     QVariant channelId = xmlItem->data(Song::ChannelIdRole);
+    QVariant channelName = xmlItem->data(Song::ChannelNameRole);
+    QVariant channelImageUrl = xmlItem->data(Song::ChannelImageUrlRole);
 
     insertBookmarkPreparedQuery.bindValue(":title", title);
     insertBookmarkPreparedQuery.bindValue(":artist", artist);
+    insertBookmarkPreparedQuery.bindValue(":album", album);
     insertBookmarkPreparedQuery.bindValue(":channel_id", channelId);
+    insertBookmarkPreparedQuery.bindValue(":channel_name", channelName);
+    insertBookmarkPreparedQuery.bindValue(":channel_image_url", channelImageUrl);
     insertBookmarkPreparedQuery.bindValue(":date", QDateTime::currentDateTime());
 
     bool result = insertBookmarkPreparedQuery.exec();
@@ -60,22 +66,26 @@ bool SongsBookmarksDatabaseManager::deleteBookmark(XmlItem *xmlItem)
 QList<XmlItem *> SongsBookmarksDatabaseManager::retrieveBookmarks()
 {
     QList<XmlItem *> xmlItemsBookmarks;
-    QSqlQuery query("SELECT title, artist, album, channel_id, date FROM " + _songsBookmarkTableName);
-    QVariant title, artist, album, channelId, date;
+    QSqlQuery query("SELECT title, artist, album, channel_id, channel_name, channel_image_url, date FROM " + _songsBookmarkTableName);
+    QVariant title, artist, album, channelId, channelName, channelImageUrl, date;
 
     while (query.next()) {
         title = query.value(0);
         artist = query.value(1);
         album = query.value(2);
         channelId = query.value(3);
-        date = query.value(4);
+        channelName = query.value(4);
+        channelImageUrl = query.value(5);
+        date = query.value(6);
 
         Song* song = new Song();
-        song->setData(title,     Song::TitleRole);
-        song->setData(artist,    Song::ArtistRole);
-        song->setData(album,     Song::AlbumRole);
-        song->setData(channelId, Song::ChannelIdRole);
-        song->setData(date,      Song::BookmarkDateRole);
+        song->setData(title,           Song::TitleRole);
+        song->setData(artist,          Song::ArtistRole);
+        song->setData(album,           Song::AlbumRole);
+        song->setData(channelId,       Song::ChannelIdRole);
+        song->setData(channelName,     Song::ChannelNameRole);
+        song->setData(channelImageUrl, Song::ChannelImageUrlRole);
+        song->setData(date,            Song::BookmarkDateRole);
 
         xmlItemsBookmarks.append(song);
     }
@@ -96,8 +106,8 @@ void SongsBookmarksDatabaseManager::checkStructure()
 void SongsBookmarksDatabaseManager::prepareQueries()
 {
     insertBookmarkPreparedQuery.prepare(
-                "INSERT INTO " + _songsBookmarkTableName + " (title, artist, channel_id, date) \n"
-                "VALUES (:title, :artist, :channel_id, :date)"
+                "INSERT INTO " + _songsBookmarkTableName + " (title, artist, album, channel_id, channel_name, channel_image_url, date) \n"
+                "VALUES (:title, :artist, :album, :channel_id, :channel_name, :channel_image_url, :date)"
                 );
 
     deleteBookmarkPreparedQuery.prepare(
@@ -112,12 +122,14 @@ bool SongsBookmarksDatabaseManager::createStructure()
         return false;
 
     QSqlQuery query("CREATE TABLE " + _songsBookmarkTableName + " (\n"
-                    "id         INTEGER     PRIMARY KEY,              -- bookmark id \n"
-                    "title      VARCHAR(50) NOT NULL,                 -- song title \n"
-                    "artist     VARCHAR(50) NOT NULL,                 -- song artist \n"
-                    "album      VARCHAR(50) DEFAULT NULL,             -- song album \n"
-                    "channel_id VARCHAR(50) NOT NULL,                 -- song channel id \n"
-                    "date       DATETIME    DEFAUT CURRENT_TIMESTAMP, -- date of bookmark creation \n"
+                    "id                INTEGER     PRIMARY KEY,              -- bookmark id \n"
+                    "title             VARCHAR(50) NOT NULL,                 -- song title \n"
+                    "artist            VARCHAR(50) NOT NULL,                 -- song artist \n"
+                    "album             VARCHAR(50) DEFAULT NULL,             -- song album \n"
+                    "channel_id        VARCHAR(50) NOT NULL,                 -- song channel id \n"
+                    "channel_name      VARCHAR(50) DEFAULT NULL,             -- song channel name \n"
+                    "channel_image_url VARCHAR(80) DEFAULT NULL,             -- song channel image url \n"
+                    "date              DATETIME    DEFAUT CURRENT_TIMESTAMP, -- date of bookmark creation \n"
                     "UNIQUE (title, artist) \n"
                     ")", db);
 

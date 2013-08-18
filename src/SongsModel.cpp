@@ -4,11 +4,12 @@
 
 #include "SomaFM.h"
 #include "Song.h"
+#include "Channel.h"
 #include "SongsBookmarksManager.h"
 
 SongsModel::SongsModel(QObject *parent) :
     XmlModel(new Song(), parent),
-    m_channelId("")
+    m_channel(NULL)
 {
     m_bookmarksManager = SongsBookmarksManager::instance();
     connect(m_bookmarksManager, SIGNAL(bookmarkAdded(XmlItem*)), this, SLOT(addToBookmarks(XmlItem*)));
@@ -19,9 +20,11 @@ SongsModel::~SongsModel()
 {
 }
 
-void SongsModel::setChannelId(QString channelId)
+void SongsModel::setChannel(XmlItem *channel)
 {
-    m_channelId = channelId;
+    m_channel = (Channel*) channel;
+
+    QString channelId = m_channel->data(Channel::IdRole).toString();
     setResourceUrl(SomaFM::channelSongsUrl(channelId));
 }
 
@@ -32,6 +35,9 @@ XmlItem* SongsModel::parseXmlItem()
     QString artist = "";
     QString album = "";
     QDateTime datetime = QDateTime();
+    QString channelId = m_channel->data(Channel::IdRole).toString();
+    QString channelName = m_channel->data(Channel::NameRole).toString();
+    QUrl channelImageUrl = m_channel->data(Channel::ImageUrlRole).toString();
 
     while (!(m_xmlReader->isEndElement() && m_xmlReader->name() == m_xmlItemPrototype->xmlTag())) {
         m_xmlReader->readNext();
@@ -57,7 +63,9 @@ XmlItem* SongsModel::parseXmlItem()
     song->setData(artist, Song::ArtistRole);
     song->setData(album, Song::AlbumRole);
     song->setData(datetime, Song::DateRole);
-    song->setData(m_channelId, Song::ChannelIdRole);
+    song->setData(channelId, Song::ChannelIdRole);
+    song->setData(channelName, Song::ChannelNameRole);
+    song->setData(channelImageUrl, Song::ChannelImageUrlRole);
 
     if (m_bookmarksManager->isBookmark(song)) {
         song->setData(true, Song::IsBookmarkRole);

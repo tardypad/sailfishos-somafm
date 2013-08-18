@@ -6,7 +6,9 @@ Song::Song(QObject *parent) :
     m_artist(""),
     m_album(""),
     m_date(QDateTime()),
-    m_channelId("")
+    m_channelId(""),
+    m_channelName(""),
+    m_channelImageUrl("")
 {
 }
 
@@ -19,6 +21,8 @@ QHash<int, QByteArray> Song::roleNames()
     roleNames[AlbumRole] = "album";
     roleNames[DateRole] = "date";
     roleNames[ChannelIdRole] = "channelId";
+    roleNames[ChannelNameRole] = "channelName";
+    roleNames[ChannelImageUrlRole] = "channelImageUrl";
 
     return roleNames;
 }
@@ -31,6 +35,8 @@ QHash<int, QByteArray> Song::bookmarkRoleNames()
     bookmarkRoleNames[ArtistRole] = "artist";
     bookmarkRoleNames[AlbumRole] = "album";
     bookmarkRoleNames[ChannelIdRole] = "channelId";
+    bookmarkRoleNames[ChannelNameRole] = "channelName";
+    bookmarkRoleNames[ChannelImageUrlRole] = "channelImageUrl";
 
     return bookmarkRoleNames;
 }
@@ -58,6 +64,10 @@ QVariant Song::data(int role) const
         return date();
     case ChannelIdRole:
         return channelId();
+    case ChannelNameRole:
+        return channelName();
+    case ChannelImageUrlRole:
+        return channelImageUrl();
     }
 
     return XmlItem::data(role);
@@ -80,6 +90,12 @@ bool Song::setData(const QVariant &value, int role)
         return true;
     case ChannelIdRole:
         setChannelId(value.toString());
+        return true;
+    case ChannelNameRole:
+        setChannelName(value.toString());
+        return true;
+    case ChannelImageUrlRole:
+        setChannelImageUrl(value.toUrl());
         return true;
     }
 

@@ -7,6 +7,7 @@
 #include <QVariant>
 #include <QString>
 #include <QDateTime>
+#include <QUrl>
 
 #include "XmlItem.h"
 
@@ -20,7 +21,9 @@ public:
         ArtistRole,
         AlbumRole,
         DateRole,
-        ChannelIdRole
+        ChannelIdRole,
+        ChannelNameRole,
+        ChannelImageUrlRole
     };
 
 public:
@@ -40,12 +43,16 @@ public:
     inline QString album() const { return m_album; }
     inline QDateTime date() const { return m_date; }
     inline QString channelId() const { return m_channelId; }
+    inline QString channelName() const { return m_channelName; }
+    inline QUrl channelImageUrl() const { return m_channelImageUrl; }
 
     inline void setTitle(QString title) { m_title = title; }
     inline void setArtist(QString artist) { m_artist = artist; }
     inline void setAlbum(QString album) { m_album = album; }
     inline void setDate(QDateTime date) { m_date = date; }
     inline void setChannelId(QString channelId) { m_channelId = channelId; }
+    inline void setChannelName(QString channelName) { m_channelName = channelName; }
+    inline void setChannelImageUrl(QUrl channelImageUrl) { m_channelImageUrl = channelImageUrl; }
 
 private:
     QString m_title;
@@ -53,6 +60,8 @@ private:
     QString m_album;
     QDateTime m_date;
     QString m_channelId;
+    QString m_channelName;
+    QUrl m_channelImageUrl;
 };
 
 #endif // SONG_H

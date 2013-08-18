@@ -11,6 +11,12 @@ Page {
         }
         model: _bookmarksManager
         delegate: BookmarksDelegate { }
+        section {
+            property: 'channelName'
+            delegate: SectionHeader {
+                text: section
+            }
+        }
         property Item contextMenu
 
         ViewPlaceholderHint {
