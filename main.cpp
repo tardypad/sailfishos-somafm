@@ -14,6 +14,7 @@
 #include "src/ChannelsFavoritesManager.h"
 #include "src/SongsModel.h"
 #include "src/SongsBookmarksManager.h"
+#include "src/SongsBookmarksProxyModel.h"
 #include "src/NewsModel.h"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
@@ -38,7 +39,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     context->setContextProperty("_channelSongsModel", channelSongsModel);
 
     SongsBookmarksManager* bookmarksManager = SongsBookmarksManager::instance();
-    context->setContextProperty("_bookmarksManager", bookmarksManager);
+    SongsBookmarksProxyModel* songsBookmarkProxyModel = new SongsBookmarksProxyModel();
+    songsBookmarkProxyModel->setSourceModel(bookmarksManager);
+    context->setContextProperty("_bookmarksManager", songsBookmarkProxyModel);
 
     NewsModel* newsModel = new NewsModel();
     newsModel->fetch();

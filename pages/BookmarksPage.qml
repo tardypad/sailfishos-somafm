@@ -25,6 +25,11 @@ Page {
             hintText: "You can bookmark a song in a channel page by 'tap and hold' on it"
         }
 
+        Component.onCompleted: {
+            _bookmarksManager.sortByDate()
+            _bookmarksManager.sortByChannel()
+        }
+
         VerticalScrollDecorator { flickable: listView }
     }
 
