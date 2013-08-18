@@ -114,7 +114,7 @@ void XmlModel::parse()
             if (m_xmlReader->name() == m_xmlItemPrototype->xmlTag()) {
                 XmlItem* xmlItem = parseXmlItem();
 
-                if (xmlItem->stopParsing())
+                if (stopParsing(xmlItem))
                     break;
 
                 appendXmlItem(xmlItem);
@@ -133,6 +133,12 @@ void XmlModel::parseFirst()
 
 void XmlModel::parseAfter()
 {
+}
+
+bool XmlModel::stopParsing(XmlItem *xmlItem)
+{
+    Q_UNUSED(xmlItem);
+    return false;
 }
 
 void XmlModel::addToBookmarks(XmlItem *xmlItem)

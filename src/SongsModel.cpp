@@ -28,6 +28,13 @@ void SongsModel::setChannel(XmlItem *channel)
     setResourceUrl(SomaFM::channelSongsUrl(channelId));
 }
 
+bool SongsModel::stopParsing(XmlItem *xmlItem)
+{
+    QDateTime date = xmlItem->data(Song::DateRole).toDateTime();
+
+    return date.addSecs(3600) < QDateTime::currentDateTime();
+}
+
 XmlItem* SongsModel::parseXmlItem()
 {
     Song* song = new Song();

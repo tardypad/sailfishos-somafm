@@ -17,6 +17,13 @@ QUrl NewsModel::supportUrl()
     return SomaFM::supportUrl();
 }
 
+bool NewsModel::stopParsing(XmlItem *xmlItem)
+{
+    QDateTime date = xmlItem->data(News::DateRole).toDateTime();
+
+    return date.addMonths(2) < QDateTime::currentDateTime();
+}
+
 void NewsModel::parseFirst()
 {
     QString banner = "";

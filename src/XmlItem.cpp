@@ -62,11 +62,6 @@ QHash<int, QByteArray> XmlItem::idRoleNames()
     return QHash<int, QByteArray>();
 }
 
-bool XmlItem::stopParsing() const
-{
-    return false;
-}
-
 XmlItem* XmlItem::clone()
 {
     return cloneRoles(roleNames());

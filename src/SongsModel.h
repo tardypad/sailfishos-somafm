@@ -15,6 +15,7 @@ public:
     Q_INVOKABLE void setChannel(XmlItem* channel);
 
 private:
+    virtual bool stopParsing(XmlItem *xmlItem);
     virtual XmlItem* parseXmlItem();
 
 private:
