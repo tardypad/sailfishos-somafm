@@ -19,6 +19,7 @@ public:
     bool isBookmark(XmlItem* xmlItem) const;
     Q_INVOKABLE bool isEmpty() const;
     Q_INVOKABLE XmlItem* itemAt(int row);
+    QDateTime getBookmarkDate(XmlItem* xmlItem);
 
 protected:
     explicit XmlItemBookmarkManager(XmlItem* xmlItemPrototype, QObject *parent = 0);

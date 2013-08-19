@@ -1,6 +1,7 @@
 #include "XmlItemBookmarkManager.h"
 
 #include <QDebug>
+#include <QDateTime>
 
 #include "XmlItem.h"
 #include "XmlItemBookmarksDatabaseManager.h"
@@ -61,12 +62,16 @@ bool XmlItemBookmarkManager::addBookmark(XmlItem *xmlItem)
 {
     if (isBookmark(xmlItem)) return false;
 
+    QDateTime currentTime = QDateTime::currentDateTime();
+
     XmlItem* newBookmark = xmlItem->cloneAsBookmark();
-    newBookmark->setData(QDateTime::currentDateTime(), XmlItem::BookmarkDateRole);
+    newBookmark->setData(currentTime, XmlItem::BookmarkDateRole);
 
     bool result = m_databaseManager->insertBookmark(newBookmark);
 
     if (!result) return false;
+
+    xmlItem->setData(currentTime, XmlItem::BookmarkDateRole);
 
     beginInsertRows(QModelIndex(), m_bookmarksList.size(), m_bookmarksList.size());
     m_bookmarksList.append(newBookmark);
@@ -120,4 +125,14 @@ XmlItem *XmlItemBookmarkManager::itemAt(int row)
         return NULL;
 
     return m_bookmarksList.at(row);
+}
+
+QDateTime XmlItemBookmarkManager::getBookmarkDate(XmlItem *xmlItem)
+{
+    for(int row = 0; row < m_bookmarksList.size(); ++row) {
+      if (m_bookmarksList.at(row)->isEqual(xmlItem))
+          return m_bookmarksList.at(row)->data(XmlItem::BookmarkDateRole).toDateTime();
+    }
+
+    return QDateTime();
 }

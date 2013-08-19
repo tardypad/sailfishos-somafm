@@ -14,6 +14,7 @@ public:
     Q_INVOKABLE void sortByListeners();
     Q_INVOKABLE void sortByGenres();
     Q_INVOKABLE void sortByName();
+    Q_INVOKABLE void sortByBookmarkDate();
     Q_INVOKABLE void filterFavorites();
     Q_INVOKABLE void showClones(bool show = true);
     Q_INVOKABLE void hideClones();

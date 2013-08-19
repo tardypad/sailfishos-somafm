@@ -38,7 +38,7 @@ Page {
         Component.onCompleted: {
             _channelsModel.hideClones()
             _channelsModel.filterFavorites()
-            _channelsModel.sortByName()
+            _channelsModel.sortByBookmarkDate()
         }
 
         VerticalScrollDecorator { flickable: gridView }

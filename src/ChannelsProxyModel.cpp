@@ -30,6 +30,12 @@ void ChannelsProxyModel::sortByName()
     sort(0, Qt::AscendingOrder);
 }
 
+void ChannelsProxyModel::sortByBookmarkDate()
+{
+    setSortRole(Channel::BookmarkDateRole);
+    sort(0, Qt::AscendingOrder);
+}
+
 bool ChannelsProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
     Q_UNUSED(source_parent);

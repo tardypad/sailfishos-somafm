@@ -87,6 +87,7 @@ XmlItem* ChannelsModel::parseXmlItem()
 
     if (m_bookmarksManager->isBookmark(channel)) {
         channel->setData(true, Channel::IsBookmarkRole);
+        channel->setData(m_bookmarksManager->getBookmarkDate(channel), Channel::BookmarkDateRole);
     }
 
     return channel;
