@@ -2,8 +2,8 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 ListItem {
+    id: listItem
     menu: contextMenu
-    showMenuOnPressAndHold: false // don't use the default showMenu() without properties
     contentHeight: Theme.itemSizeSmall
     width: listView.width
 
@@ -49,19 +49,21 @@ ListItem {
         }
     }
 
-    onPressAndHold: {
-        showMenu({"index": index})
+    ListView.onRemove: animateRemoval(listItem)
+
+    function remove() {
+        remorseAction("Removing bookmark", function() {
+            listView.model.removeBookmark(listView.model.itemAt(index))
+        })
     }
 
     Component {
         id: contextMenu
         ContextMenu {
-            property int index
-
             IconActionMenuItem {
                 iconSource: "qrc:/icon/un-bookmark"
                 text: "Remove from bookmarks"
-                onClicked: _bookmarksManager.removeBookmark(_bookmarksManager.itemAt(index))
+                onClicked: remove()
             }
         }
     }
