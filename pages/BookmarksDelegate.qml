@@ -1,65 +1,68 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-Item {
-    id: bookmarkItem
-    property bool menuOpen: listView.contextMenu != null && listView.contextMenu.parent === bookmarkItem
+ListItem {
+    menu: contextMenu
+    showMenuOnPressAndHold: false // don't use the default showMenu() without properties
+    contentHeight: Theme.itemSizeSmall
     width: listView.width
-    height: menuOpen ? listView.contextMenu.height + contentItem.height : contentItem.height
 
-    BackgroundItem {
-        id: contentItem
+    Label {
+        id: dateLabel
+        text: Qt.formatDateTime(bookmarkDate, 'MMM dd')
+        anchors {
+            left: parent.left
+            leftMargin: Theme.paddingMedium
+            verticalCenter: parent.verticalCenter
+        }
+        color: Theme.secondaryColor
+        font.pixelSize: Theme.fontSizeSmall
+    }
+
+    Column {
         width: parent.width
-        height: Theme.itemSizeSmall
+        anchors {
+            left: dateLabel.right
+            leftMargin: Theme.paddingMedium
+            verticalCenter: parent.verticalCenter
+        }
 
         Label {
-            id: dateLabel
-            text: Qt.formatDateTime(bookmarkDate, 'MMM dd')
-            anchors {
-                left: parent.left
-                leftMargin: Theme.paddingMedium
-                verticalCenter: parent.verticalCenter
-            }
-            color: Theme.secondaryColor
+            id: artistLabel
+            text: artist
             font.pixelSize: Theme.fontSizeSmall
+            width: parent.width - dateLabel.width
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            maximumLineCount: 1
+            truncationMode: TruncationMode.Fade
         }
 
-        Column {
-            width: parent.width
-            anchors {
-                left: dateLabel.right
-                leftMargin: Theme.paddingMedium
-                verticalCenter: parent.verticalCenter
-            }
+        Label {
+            id: titleLabel
+            text: title
+            color: Theme.secondaryColor
+            font.pixelSize: Theme.fontSizeExtraSmall
+            width: parent.width - dateLabel.width
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            maximumLineCount: 1
+            truncationMode: TruncationMode.Fade
+        }
+    }
 
-            Label {
-                id: artistLabel
-                text: artist
-                font.pixelSize: Theme.fontSizeSmall
-                width: parent.width - dateLabel.width
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                maximumLineCount: 1
-                truncationMode: TruncationMode.Fade
-            }
+    onPressAndHold: {
+        showMenu({"index": index})
+    }
 
-            Label {
-                id: titleLabel
-                text: title
-                color: Theme.secondaryColor
-                font.pixelSize: Theme.fontSizeExtraSmall
-                width: parent.width - dateLabel.width
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                maximumLineCount: 1
-                truncationMode: TruncationMode.Fade
+    Component {
+        id: contextMenu
+        ContextMenu {
+            property int index
+
+            IconActionMenuItem {
+                iconSource: "qrc:/icon/un-bookmark"
+                text: "Remove from bookmarks"
+                onClicked: _bookmarksManager.removeBookmark(_bookmarksManager.itemAt(index))
             }
         }
-
-        onPressAndHold: {
-            if (!listView.contextMenu)
-                listView.contextMenu = contextMenuComponent.createObject(listView)
-            listView.contextMenu.index = index
-            listView.contextMenu.show(bookmarkItem)
-        }
-
     }
 }

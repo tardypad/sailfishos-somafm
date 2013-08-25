@@ -21,7 +21,6 @@ Page {
         header: ChannelPageHeader { }
         model: _channelSongsModel
         delegate: ChannelSongsDelegate { }
-        property Item contextMenu
 
         PullDownMenu {
             IconActionMenuItem {
@@ -40,26 +39,6 @@ Page {
         }
 
         VerticalScrollDecorator { flickable: listView }
-    }
-
-    Component {
-        id: contextMenuComponent
-        ContextMenu {
-            property bool isBookmark
-            property int index
-
-            IconActionMenuItem {
-                iconSource: !isBookmark ? "qrc:/icon/bookmark" : "qrc:/icon/un-bookmark"
-                text: !isBookmark ? "Add to bookmarks" : "Remove from bookmarks"
-                onClicked: {
-                    if (!isBookmark) {
-                        _bookmarksManager.addBookmark(_channelSongsModel.itemAt(index))
-                    } else {
-                        _bookmarksManager.removeBookmark(_channelSongsModel.itemAt(index))
-                    }
-                }
-            }
-        }
     }
 
     Component.onCompleted: {
