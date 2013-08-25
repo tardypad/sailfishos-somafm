@@ -26,8 +26,8 @@ Item {
     Image {
         id: icon
         smooth: true
-        height: parent.height * 0.5
-        width: parent.height * 0.5
+        height: Theme.iconSizeMedium
+        width: Theme.iconSizeMedium
         anchors {
             verticalCenter: parent.verticalCenter
             verticalCenterOffset: 4

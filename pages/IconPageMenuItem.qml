@@ -16,8 +16,8 @@ MenuItem {
     Image {
         id: icon
         smooth: true
-        height: parent.height * 0.7
-        width: parent.height * 0.7
+        height: Theme.iconSizeSmall
+        width: Theme.iconSizeSmall
         anchors {
             right: parent.right
             rightMargin: Theme.paddingLarge

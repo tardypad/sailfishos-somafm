@@ -6,8 +6,8 @@ MenuItem {
 
     Image {
         id: icon
-        height: 25
-        width: 25
+        height: Theme.iconSizeSmall
+        width: Theme.iconSizeSmall
         anchors {
             right: parent.right
             rightMargin: Theme.paddingLarge

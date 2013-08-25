@@ -52,8 +52,8 @@ ListItem {
     Image {
         id: bookmarkImage
         source: "qrc:/icon/bookmark"
-        height: parent.height / 3
-        width: parent.height / 3
+        height: Theme.iconSizeSmall
+        width: Theme.iconSizeSmall
         anchors {
             right: parent.right
             rightMargin: Theme.paddingMedium

@@ -28,8 +28,8 @@ Item {
     Image {
         id: favoriteImage
         source: "qrc:/icon/favorite"
-        height: header.height / 4
-        width: header.height / 4
+        height: Theme.iconSizeSmall * 0.75
+        width: Theme.iconSizeSmall * 0.75
         anchors {
             top: header.top
             right: header.right
