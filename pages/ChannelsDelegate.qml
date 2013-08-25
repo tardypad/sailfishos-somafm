@@ -49,12 +49,7 @@ ListItem {
         maximumLineCount: 2
     }
 
-    onPressAndHold: {
-        showMenu({
-                     "isFavorite": isBookmark,
-                     "index": index
-                 });
-    }
+    onPressAndHold: showMenu({"isFavorite": isBookmark})
 
     onClicked: {
         pageStack.push(Qt.resolvedUrl("ChannelPage.qml"),
@@ -74,20 +69,27 @@ ListItem {
                        )
     }
 
+    function addFavorite() {
+        _favoritesManager.addFavorite(listView.model.itemAt(index))
+    }
+
+    function removeFavorite() {
+        _favoritesManager.removeFavorite(listView.model.itemAt(index))
+    }
+
     Component {
         id: contextMenu
         ContextMenu {
             property bool isFavorite
-            property int index
 
             IconActionMenuItem {
                 iconSource: !isFavorite ? "qrc:/icon/favorite" : "qrc:/icon/un-favorite"
                 text: !isFavorite ? "Add to favorites" : "Remove from favorites"
                 onClicked: {
                     if (!isFavorite) {
-                        _favoritesManager.addFavorite(_channelsModel.itemAt(index))
+                        addFavorite()
                     } else {
-                        _favoritesManager.removeFavorite(_channelsModel.itemAt(index))
+                        removeFavorite()
                     }
                 }
             }

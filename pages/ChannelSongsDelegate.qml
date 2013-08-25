@@ -63,27 +63,29 @@ ListItem {
         visible: isBookmark
     }
 
-    onPressAndHold: {
-        showMenu({
-                     "isBookmark": isBookmark,
-                     "index": index
-                 })
+    onPressAndHold: showMenu({"isBookmark": isBookmark})
+
+    function addBookmark() {
+        _bookmarksManager.addBookmark(listView.model.itemAt(index))
+    }
+
+    function removeBookmark() {
+        _bookmarksManager.removeBookmark(listView.model.itemAt(index))
     }
 
     Component {
         id: contextMenu
         ContextMenu {
             property bool isBookmark
-            property int index
 
             IconActionMenuItem {
                 iconSource: !isBookmark ? "qrc:/icon/bookmark" : "qrc:/icon/un-bookmark"
                 text: !isBookmark ? "Add to bookmarks" : "Remove from bookmarks"
                 onClicked: {
                     if (!isBookmark) {
-                        _bookmarksManager.addBookmark(_channelSongsModel.itemAt(index))
+                        addBookmark()
                     } else {
-                        _bookmarksManager.removeBookmark(_channelSongsModel.itemAt(index))
+                        removeBookmark()
                     }
                 }
             }
