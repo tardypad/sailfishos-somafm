@@ -32,4 +32,7 @@ Page {
         VerticalScrollDecorator { flickable: listView }
     }
 
+    SongPanel{
+        id: songPanel
+    }
 }

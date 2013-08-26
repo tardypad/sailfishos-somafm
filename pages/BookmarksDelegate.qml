@@ -49,6 +49,25 @@ ListItem {
         }
     }
 
+    onPressAndHold: songPanel.hide()
+
+    onClicked: {
+        if (songPanel.open && songPanel.index === index) {
+            songPanel.hide()
+        } else {
+            showSongPanel()
+        }
+    }
+
+    function showSongPanel() {
+        songPanel.index = index
+        songPanel.title = title
+        songPanel.artist = artist
+        songPanel.album = album
+        songPanel.date = Qt.formatDateTime(bookmarkDate, 'ddd dd MMM, hh:mm')
+        songPanel.show()
+    }
+
     ListView.onRemove: animateRemoval(listItem)
 
     function remove() {
