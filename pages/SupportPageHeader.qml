@@ -1,14 +1,15 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-Item {
+Rectangle {
     height: childrenRect.height + Theme.paddingLarge
     width: parent.width
+    color: Theme.rgba(Theme.secondaryHighlightColor, 0.5)
 
     IconPageHeader {
         id: header
-        text: "News"
-        iconSource: "qrc:/icon/news"
+        text: "Support"
+        iconSource: "qrc:/icon/support"
     }
 
     Label {
@@ -21,7 +22,6 @@ Item {
             rightMargin: Theme.paddingLarge
             top: header.bottom
         }
-        color: Theme.highlightColor
         font.pixelSize: Theme.fontSizeExtraSmall
         horizontalAlignment: Text.AlignJustify
         wrapMode: Text.WordWrap
@@ -33,6 +33,9 @@ Item {
             top: bannerLabel.bottom
             horizontalCenter: parent.horizontalCenter
         }
-        onClicked: Qt.openUrlExternally(_newsModel.supportUrl())
+        onClicked: {
+            console.log("open support page in browser")
+            Qt.openUrlExternally(_newsModel.supportUrl())
+        }
     }
 }

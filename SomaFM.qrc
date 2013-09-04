@@ -13,5 +13,6 @@
         <file alias="news">images/icons/news.png</file>
         <file alias="un-bookmark">images/icons/un-bookmark.png</file>
         <file alias="un-favorite">images/icons/un-favorite.png</file>
+        <file alias="support">images/icons/support.png</file>
     </qresource>
 </RCC>
