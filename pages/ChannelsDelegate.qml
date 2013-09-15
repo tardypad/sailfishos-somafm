@@ -20,6 +20,12 @@ ListItem {
             left: parent.left
             leftMargin: Theme.paddingSmall
         }
+
+        BusyIndicator {
+            size: BusyIndicatorSize.Small
+            running: channelImage.status === Image.Loading
+            anchors.centerIn: parent
+        }
     }
 
     Label {

@@ -22,6 +22,12 @@ BackgroundItem {
         }
         fillMode: Image.PreserveAspectCrop
         clip: true
+
+        BusyIndicator {
+            size: BusyIndicatorSize.Medium
+            running: channelImage.status === Image.Loading
+            anchors.centerIn: parent
+        }
     }
 
     onClicked: {

@@ -23,6 +23,12 @@ Item {
             top: header.bottom
             leftMargin: Theme.paddingSmall
         }
+
+        BusyIndicator {
+            size: BusyIndicatorSize.Medium
+            running: channelImage.status === Image.Loading
+            anchors.centerIn: parent
+        }
     }
 
     Image {
