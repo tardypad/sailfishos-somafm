@@ -56,27 +56,32 @@ Page {
         BusyIndicator {
             id: indicator
             size: BusyIndicatorSize.Large
-            running: true
+            running: !_newsModel.hasDataBeenFetchedOnce()
             anchors.centerIn: listView
         }
 
         Timer {
             id: timer
             interval: 1000
-            onTriggered: drawer.show()
+            onTriggered: {
+                supportPageHeader.text = _newsModel.banner()
+                drawer.show()
+            }
         }
 
         Connections {
             target: _newsModel
             onDataFetched: {
                 indicator.running = false
-                supportPageHeader.text = _newsModel.banner()
                 timer.start()
             }
         }
 
         Component.onCompleted: {
-            _newsModel.fetch()
+            if (!_newsModel.hasDataBeenFetchedOnce())
+                _newsModel.fetch()
+            else
+                timer.start()
         }
     }
 }
