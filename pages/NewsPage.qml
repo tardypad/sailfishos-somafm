@@ -5,7 +5,7 @@ Page {
     Drawer {
         id: drawer
 
-        open: true
+        open: false
         backgroundSize: Screen.height / 2
         anchors.fill: parent
 
@@ -53,5 +53,30 @@ Page {
             VerticalScrollDecorator { flickable: listView }
         }
 
+        BusyIndicator {
+            id: indicator
+            size: BusyIndicatorSize.Large
+            running: true
+            anchors.centerIn: listView
+        }
+
+        Timer {
+            id: timer
+            interval: 1000
+            onTriggered: drawer.show()
+        }
+
+        Connections {
+            target: _newsModel
+            onDataFetched: {
+                indicator.running = false
+                supportPageHeader.text = _newsModel.banner()
+                timer.start()
+            }
+        }
+
+        Component.onCompleted: {
+            _newsModel.fetch()
+        }
     }
 }

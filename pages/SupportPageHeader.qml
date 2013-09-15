@@ -2,6 +2,8 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Rectangle {
+    property alias text: bannerLabel.text
+
     height: childrenRect.height + Theme.paddingLarge
     width: parent.width
     color: Theme.rgba(Theme.secondaryHighlightColor, 0.5)
@@ -14,7 +16,6 @@ Rectangle {
 
     Label {
         id: bannerLabel
-        text: _newsModel.banner()
         anchors {
             left: parent.left
             leftMargin: Theme.paddingLarge

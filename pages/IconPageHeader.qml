@@ -6,7 +6,7 @@ Item {
     property alias iconSource: icon.source
 
     height: Theme.itemSizeLarge
-    width: parent.width
+    width: Screen.width
 
     Label {
         id: label

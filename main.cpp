@@ -44,7 +44,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     context->setContextProperty("_bookmarksManager", songsBookmarkProxyModel);
 
     NewsModel* newsModel = new NewsModel();
-    newsModel->fetch();
     context->setContextProperty("_newsModel", newsModel);
 
     Sailfish::showView(view.data());
