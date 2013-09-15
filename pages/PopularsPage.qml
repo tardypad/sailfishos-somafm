@@ -28,11 +28,26 @@ Page {
         }
 
         Component.onCompleted: {
+            if (!_channelsModel.hasDataBeenFetchedOnce())
+                _channelsModel.fetch();
+
             _channelsModel.clearFilter()
             _channelsModel.hideClones()
             _channelsModel.sortByListeners()
         }
 
         VerticalScrollDecorator { flickable: listView }
+    }
+
+    BusyIndicator {
+        id: indicator
+        size: BusyIndicatorSize.Large
+        running: !_channelsModel.hasDataBeenFetchedOnce()
+        anchors.centerIn: listView
+    }
+
+    Connections {
+        target: _channelsModel
+        onDataFetched: indicator.running = false
     }
 }

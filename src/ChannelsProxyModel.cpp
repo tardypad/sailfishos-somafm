@@ -10,6 +10,13 @@ ChannelsProxyModel::ChannelsProxyModel(QObject *parent) :
     QSortFilterProxyModel(parent), m_isClonesShown(false)
 {
     setSortCaseSensitivity(Qt::CaseInsensitive);
+    connect(this, SIGNAL(sourceModelChanged()), this, SLOT(init()));
+}
+
+void ChannelsProxyModel::init()
+{
+    ChannelsModel* channelsModel = (ChannelsModel*) sourceModel();
+    connect(channelsModel, SIGNAL(dataFetched()), this, SIGNAL(dataFetched()));
 }
 
 void ChannelsProxyModel::sortByListeners()
@@ -84,3 +91,16 @@ XmlItem* ChannelsProxyModel::itemAt(int row)
 
     return channelsModel->itemAt(sourceIndex.row());
 }
+
+void ChannelsProxyModel::fetch()
+{
+    ChannelsModel* channelsModel = (ChannelsModel*) sourceModel();
+    channelsModel->fetch();
+}
+
+bool ChannelsProxyModel::hasDataBeenFetchedOnce()
+{
+    ChannelsModel* channelsModel = (ChannelsModel*) sourceModel();
+    return channelsModel->hasDataBeenFetchedOnce();
+}
+

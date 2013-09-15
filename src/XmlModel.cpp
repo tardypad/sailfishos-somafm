@@ -13,7 +13,8 @@ XmlModel::XmlModel(XmlItem* xmlItemPrototype, QObject *parent) :
     QAbstractListModel(parent),
     m_resourceUrl(""),
     m_xmlItemPrototype(xmlItemPrototype),
-    m_bookmarksManager(NULL)
+    m_bookmarksManager(NULL),
+    m_hasDataBeenFetchedOnce(false)
 
 {
     m_networkManager = new QNetworkAccessManager(this);
@@ -103,6 +104,7 @@ void XmlModel::fetch()
 
 void XmlModel::parse()
 {
+    this->setHasDataBeenFetchedOnce(true);
     m_xmlReader->clear();
 
     QByteArray data = m_currentReply->readAll();

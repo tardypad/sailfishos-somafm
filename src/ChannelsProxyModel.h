@@ -20,9 +20,17 @@ public:
     Q_INVOKABLE void hideClones();
     Q_INVOKABLE void clearFilter();
     Q_INVOKABLE XmlItem* itemAt(int row);
+    Q_INVOKABLE void fetch();
+    Q_INVOKABLE bool hasDataBeenFetchedOnce();
 
     inline bool isClonesShown() const { return m_isClonesShown; }
     inline void setIsClonesShown(bool isClonesShown) { m_isClonesShown = isClonesShown; }
+
+signals:
+    void dataFetched();
+
+private slots:
+    void init();
 
 private:
     bool m_isClonesShown;

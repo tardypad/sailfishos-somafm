@@ -30,12 +30,15 @@ Page {
         }
 
         ViewPlaceholderHint {
-            enabled: gridView.count === 0
+            enabled: gridView.count === 0 && _favoritesManager.isEmpty()
             text: "No Favorites"
             hintText: "You can favorite a channel from the top menu of its page, or by 'tap and hold' on it in channels lists"
         }
 
         Component.onCompleted: {
+            if (!_channelsModel.hasDataBeenFetchedOnce())
+                _channelsModel.fetch();
+
             _channelsModel.hideClones()
             _channelsModel.filterFavorites()
             _channelsModel.sortByBookmarkDate()
@@ -44,8 +47,20 @@ Page {
         VerticalScrollDecorator { flickable: gridView }
     }
 
+    BusyIndicator {
+        id: indicator
+        size: BusyIndicatorSize.Large
+        running: !_channelsModel.hasDataBeenFetchedOnce()
+        anchors.centerIn: gridView
+    }
+
+    Connections {
+        target: _channelsModel
+        onDataFetched: indicator.running = false
+    }
+
     onStatusChanged: {
-        if (status == PageStatus.Active) {
+        if (status === PageStatus.Active) {
             _channelsModel.filterFavorites()
         }
     }

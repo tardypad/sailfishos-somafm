@@ -23,6 +23,7 @@ public:
     virtual bool setData (const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
     Q_INVOKABLE void fetch();
     Q_INVOKABLE XmlItem* itemAt(int row);
+    Q_INVOKABLE bool hasDataBeenFetchedOnce() { return m_hasDataBeenFetchedOnce; }
 
 signals:
     void dataFetched();
@@ -45,6 +46,7 @@ private slots:
 private:
     virtual bool stopParsing(XmlItem* xmlItem);
     virtual XmlItem* parseXmlItem() = 0;
+    void setHasDataBeenFetchedOnce(bool hasDataBeenFetchedOnce) { m_hasDataBeenFetchedOnce = hasDataBeenFetchedOnce; }
 
 protected:
     QUrl m_resourceUrl;
@@ -54,6 +56,7 @@ protected:
     QNetworkAccessManager* m_networkManager;
     QNetworkReply* m_currentReply;
     XmlItemBookmarkManager* m_bookmarksManager;
+    bool m_hasDataBeenFetchedOnce;
 };
 
 #endif // XMLMODEL_H

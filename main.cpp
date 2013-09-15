@@ -27,7 +27,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     qmlRegisterUncreatableType<XmlItem>("my.library", 1, 0, "XmlItem", "");
 
     ChannelsModel* channelsModel = new ChannelsModel();
-    channelsModel->fetch();
     ChannelsProxyModel* channelsProxyModel = new ChannelsProxyModel();
     channelsProxyModel->setSourceModel(channelsModel);
     context->setContextProperty("_channelsModel", channelsProxyModel);

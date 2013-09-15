@@ -34,6 +34,9 @@ Page {
         }
 
         Component.onCompleted: {
+            if (!_channelsModel.hasDataBeenFetchedOnce())
+                _channelsModel.fetch();
+
             _channelsModel.clearFilter()
             _channelsModel.showClones()
             _channelsModel.sortByName()
@@ -41,5 +44,17 @@ Page {
         }
 
         VerticalScrollDecorator { flickable: listView }
+    }
+
+    BusyIndicator {
+        id: indicator
+        size: BusyIndicatorSize.Large
+        running: !_channelsModel.hasDataBeenFetchedOnce()
+        anchors.centerIn: listView
+    }
+
+    Connections {
+        target: _channelsModel
+        onDataFetched: indicator.running = false
     }
 }
