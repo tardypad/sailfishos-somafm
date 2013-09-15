@@ -24,6 +24,9 @@ public:
     Q_INVOKABLE void fetch();
     Q_INVOKABLE XmlItem* itemAt(int row);
 
+signals:
+    void dataFetched();
+
 protected slots:
     void addToBookmarks(XmlItem* xmlItem);
     void removeFromBookmarks(XmlItem* xmlItem);

@@ -94,14 +94,15 @@ void XmlModel::appendXmlItem(XmlItem *xmlItem)
 
 void XmlModel::fetch()
 {
+    clear();
     QNetworkRequest request(m_resourceUrl);
     m_currentReply = m_networkManager->get(request);
     connect(m_currentReply, SIGNAL(finished()), this, SLOT(parse()));
+    connect(m_currentReply, SIGNAL(finished()), this, SIGNAL(dataFetched()));
 }
 
 void XmlModel::parse()
 {
-    clear();
     m_xmlReader->clear();
 
     QByteArray data = m_currentReply->readAll();

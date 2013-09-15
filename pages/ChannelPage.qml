@@ -41,6 +41,18 @@ Page {
         VerticalScrollDecorator { flickable: listView }
     }
 
+    BusyIndicator {
+        id: indicator
+        size: BusyIndicatorSize.Large
+        running: true
+        anchors.centerIn: listView
+    }
+
+    Connections {
+        target: _channelSongsModel
+        onDataFetched: indicator.running = false
+    }
+
     Component.onCompleted: {
         _channelSongsModel.setChannel(_channelsModel.itemAt(channelIndex))
         _channelSongsModel.fetch()
