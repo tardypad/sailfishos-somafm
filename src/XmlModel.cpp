@@ -7,15 +7,14 @@
 #include <QXmlStreamReader>
 
 #include "XmlItem.h"
+
 #include "XmlItemBookmarkManager.h"
 
 XmlModel::XmlModel(XmlItem* xmlItemPrototype, QObject *parent) :
-    QAbstractListModel(parent),
+    XmlItemAbstractListModel(xmlItemPrototype, parent),
     m_resourceUrl(""),
-    m_xmlItemPrototype(xmlItemPrototype),
     m_bookmarksManager(NULL),
     m_hasDataBeenFetchedOnce(false)
-
 {
     m_networkManager = new QNetworkAccessManager(this);
     m_xmlReader = new QXmlStreamReader();
@@ -26,71 +25,11 @@ XmlModel::~XmlModel()
     delete m_xmlReader;
     delete m_networkManager;
     delete m_currentReply;
-    delete m_xmlItemPrototype;
-    clear();
-}
-
-void XmlModel::clear()
-{
-    beginResetModel();
-    qDeleteAll(m_list);
-    m_list.clear();
-    endResetModel();
-}
-
-int XmlModel::rowCount(const QModelIndex &parent) const
-{
-    Q_UNUSED(parent);
-    return m_list.size();
 }
 
 QHash<int,QByteArray> XmlModel::roleNames() const
 {
     return m_xmlItemPrototype->roleNames();
-}
-
-QVariant XmlModel::data(const QModelIndex &index, int role) const
-{
-    if (index.row() < 0 || index.row() >= m_list.size())
-        return QVariant();
-    return m_list.at(index.row())->data(role);
-}
-
-bool XmlModel::setData(const QModelIndex &index, const QVariant &value, int role)
-{
-    if (index.row() < 0 || index.row() >= m_list.size())
-        return false;
-
-    bool result = m_list.at(index.row())->setData(value, role);
-
-    if (result)
-        emit dataChanged(index, index);
-
-    return result;
-}
-
-void XmlModel::setDataItem(XmlItem *xmlItem, const QVariant &value, int role)
-{
-    for (int row = 0; row < m_list.size(); ++row) {
-        if (m_list.at(row)->isEqual(xmlItem)) {
-            setData(index(row) ,value, role);
-        }
-    }
-}
-
-XmlItem* XmlModel::itemAt(int row)
-{
-    if (row < 0 || row >= m_list.size())
-        return NULL;
-
-    return m_list.at(row);
-}
-
-void XmlModel::appendXmlItem(XmlItem *xmlItem)
-{
-    beginInsertRows(QModelIndex(), m_list.size(), m_list.size());
-    m_list.append(xmlItem);
-    endInsertRows();
 }
 
 void XmlModel::fetch()

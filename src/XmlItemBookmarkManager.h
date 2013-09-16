@@ -1,30 +1,23 @@
 #ifndef XMLITEMBOOKMARKMANAGER_H
 #define XMLITEMBOOKMARKMANAGER_H
 
-#include <QAbstractListModel>
+#include "XmlItemAbstractListModel.h"
 
-class XmlItem;
 class XmlItemBookmarksDatabaseManager;
 
-class XmlItemBookmarkManager : public QAbstractListModel
+class XmlItemBookmarkManager : public XmlItemAbstractListModel
 {
     Q_OBJECT
 public:
     ~XmlItemBookmarkManager();
-    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
     virtual QHash<int,QByteArray> roleNames() const;
-    virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     Q_INVOKABLE bool addBookmark(XmlItem* xmlItem);
     Q_INVOKABLE bool removeBookmark(XmlItem* xmlItem);
     bool isBookmark(XmlItem* xmlItem) const;
-    Q_INVOKABLE bool isEmpty() const;
-    Q_INVOKABLE XmlItem* itemAt(int row);
     QDateTime getBookmarkDate(XmlItem* xmlItem);
 
 protected:
     explicit XmlItemBookmarkManager(XmlItem* xmlItemPrototype, QObject *parent = 0);
-    void clear();
-    QModelIndex indexOf(XmlItem* xmlItem) const;
     void load();
 
 signals:
@@ -32,8 +25,6 @@ signals:
     void bookmarkRemoved(XmlItem* xmlItem);
 
 protected:
-    XmlItem* m_xmlItemPrototype;
-    QList<XmlItem*> m_bookmarksList;
     XmlItemBookmarksDatabaseManager* m_databaseManager;
 };
 
