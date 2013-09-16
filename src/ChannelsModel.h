@@ -1,11 +1,11 @@
 #ifndef CHANNELSMODEL_H
 #define CHANNELSMODEL_H
 
-#include "XmlModel.h"
+#include "XmlItemModel.h"
 
 class Channel;
 
-class ChannelsModel : public XmlModel
+class ChannelsModel : public XmlItemModel
 {
     Q_OBJECT
 public:

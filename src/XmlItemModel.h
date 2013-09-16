@@ -1,5 +1,5 @@
-#ifndef XMLMODEL_H
-#define XMLMODEL_H
+#ifndef XMLITEMMODEL_H
+#define XMLITEMMODEL_H
 
 #include <QUrl>
 
@@ -11,12 +11,12 @@ class QNetworkReply;
 
 class XmlItemBookmarkManager;
 
-class XmlModel : public XmlItemAbstractListModel
+class XmlItemModel : public XmlItemAbstractListModel
 {
     Q_OBJECT
 public:
-    explicit XmlModel(XmlItem* xmlItemPrototype, QObject *parent = 0);
-    ~XmlModel();
+    explicit XmlItemModel(XmlItem* xmlItemPrototype, QObject *parent = 0);
+    ~XmlItemModel();
     virtual QHash<int,QByteArray> roleNames() const;
     Q_INVOKABLE void fetch();
     Q_INVOKABLE bool hasDataBeenFetchedOnce() { return m_hasDataBeenFetchedOnce; }
@@ -50,4 +50,4 @@ protected:
     bool m_hasDataBeenFetchedOnce;
 };
 
-#endif // XMLMODEL_H
+#endif // XMLITEMMODEL_H

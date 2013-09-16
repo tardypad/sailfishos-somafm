@@ -9,7 +9,7 @@
 #include "SongsBookmarksManager.h"
 
 SongsModel::SongsModel(QObject *parent) :
-    XmlModel(new Song(), parent),
+    XmlItemModel(new Song(), parent),
     m_channel(NULL)
 {
     m_bookmarksManager = SongsBookmarksManager::instance();

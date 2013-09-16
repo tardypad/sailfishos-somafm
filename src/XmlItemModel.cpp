@@ -1,4 +1,4 @@
-#include "XmlModel.h"
+#include "XmlItemModel.h"
 
 #include <QDebug>
 #include <QtNetwork/QNetworkAccessManager>
@@ -10,7 +10,7 @@
 
 #include "XmlItemBookmarkManager.h"
 
-XmlModel::XmlModel(XmlItem* xmlItemPrototype, QObject *parent) :
+XmlItemModel::XmlItemModel(XmlItem* xmlItemPrototype, QObject *parent) :
     XmlItemAbstractListModel(xmlItemPrototype, parent),
     m_resourceUrl(""),
     m_bookmarksManager(NULL),
@@ -20,19 +20,19 @@ XmlModel::XmlModel(XmlItem* xmlItemPrototype, QObject *parent) :
     m_xmlReader = new QXmlStreamReader();
 }
 
-XmlModel::~XmlModel()
+XmlItemModel::~XmlItemModel()
 {
     delete m_xmlReader;
     delete m_networkManager;
     delete m_currentReply;
 }
 
-QHash<int,QByteArray> XmlModel::roleNames() const
+QHash<int,QByteArray> XmlItemModel::roleNames() const
 {
     return m_xmlItemPrototype->roleNames();
 }
 
-void XmlModel::fetch()
+void XmlItemModel::fetch()
 {
     clear();
     QNetworkRequest request(m_resourceUrl);
@@ -41,7 +41,7 @@ void XmlModel::fetch()
     connect(m_currentReply, SIGNAL(finished()), this, SIGNAL(dataFetched()));
 }
 
-void XmlModel::parse()
+void XmlItemModel::parse()
 {
     this->setHasDataBeenFetchedOnce(true);
     m_xmlReader->clear();
@@ -70,27 +70,27 @@ void XmlModel::parse()
     m_currentReply->deleteLater();
 }
 
-void XmlModel::parseFirst()
+void XmlItemModel::parseFirst()
 {
 }
 
-void XmlModel::parseAfter()
+void XmlItemModel::parseAfter()
 {
 }
 
-bool XmlModel::stopParsing(XmlItem *xmlItem)
+bool XmlItemModel::stopParsing(XmlItem *xmlItem)
 {
     Q_UNUSED(xmlItem);
     return false;
 }
 
-void XmlModel::addToBookmarks(XmlItem *xmlItem)
+void XmlItemModel::addToBookmarks(XmlItem *xmlItem)
 {
     setDataItem(xmlItem, true, XmlItem::IsBookmarkRole);
 }
 
 
-void XmlModel::removeFromBookmarks(XmlItem *xmlItem)
+void XmlItemModel::removeFromBookmarks(XmlItem *xmlItem)
 {
     setDataItem(xmlItem, false, XmlItem::IsBookmarkRole);
 }

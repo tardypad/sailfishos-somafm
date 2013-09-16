@@ -1,13 +1,13 @@
 #ifndef NEWSMODEL_H
 #define NEWSMODEL_H
 
-#include "XmlModel.h"
+#include "XmlItemModel.h"
 
 #include <QString>
 
 class News;
 
-class NewsModel : public XmlModel
+class NewsModel : public XmlItemModel
 {
     Q_OBJECT
 public:

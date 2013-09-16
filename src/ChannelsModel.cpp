@@ -9,7 +9,7 @@
 #include "ChannelsFavoritesManager.h"
 
 ChannelsModel::ChannelsModel(QObject *parent) :
-    XmlModel(new Channel(), parent)
+    XmlItemModel(new Channel(), parent)
 {
     setResourceUrl(SomaFM::channelsUrl());
 

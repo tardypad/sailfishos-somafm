@@ -7,7 +7,7 @@
 #include "News.h"
 
 NewsModel::NewsModel(QObject *parent) :
-    XmlModel(new News(), parent),
+    XmlItemModel(new News(), parent),
     m_banner("")
 {
     setResourceUrl(SomaFM::newsUrl());

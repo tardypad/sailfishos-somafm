@@ -1,12 +1,12 @@
 #ifndef SONGSMODEL_H
 #define SONGSMODEL_H
 
-#include "XmlModel.h"
+#include "XmlItemModel.h"
 
 class Song;
 class Channel;
 
-class SongsModel : public XmlModel
+class SongsModel : public XmlItemModel
 {
     Q_OBJECT
 public:
