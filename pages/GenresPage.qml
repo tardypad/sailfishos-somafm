@@ -9,7 +9,6 @@ Page {
             text: "Genres"
             iconSource: "qrc:/icon/genre"
         }
-        model: _channelsModel
         delegate: ChannelsDelegate { }
         section {
             property: 'sortGenre'
@@ -35,12 +34,7 @@ Page {
 
         Component.onCompleted: {
             if (!_channelsModel.hasDataBeenFetchedOnce())
-                _channelsModel.fetch();
-
-            _channelsModel.clearFilter()
-            _channelsModel.showClones()
-            _channelsModel.sortByName()
-            _channelsModel.sortByGenres()
+                _channelsModel.fetch();         
         }
 
         VerticalScrollDecorator { flickable: listView }
@@ -56,5 +50,15 @@ Page {
     Connections {
         target: _channelsModel
         onDataFetched: indicator.running = false
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Active && !listView.model) {
+            _channelsModel.clearFilter()
+            _channelsModel.showClones()
+            _channelsModel.sortByName()
+            _channelsModel.sortByGenres()
+            listView.model = _channelsModel
+        }
     }
 }

@@ -9,7 +9,6 @@ Page {
             text: "Populars"
             iconSource: "qrc:/icon/popular"
         }
-        model: _channelsModel
         delegate: PopularsDelegate { }
 
         PullDownMenu {
@@ -30,10 +29,6 @@ Page {
         Component.onCompleted: {
             if (!_channelsModel.hasDataBeenFetchedOnce())
                 _channelsModel.fetch();
-
-            _channelsModel.clearFilter()
-            _channelsModel.hideClones()
-            _channelsModel.sortByListeners()
         }
 
         VerticalScrollDecorator { flickable: listView }
@@ -49,5 +44,14 @@ Page {
     Connections {
         target: _channelsModel
         onDataFetched: indicator.running = false
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Active && !listView.model) {
+            _channelsModel.clearFilter()
+            _channelsModel.hideClones()
+            _channelsModel.sortByListeners()
+            listView.model = _channelsModel
+        }
     }
 }
