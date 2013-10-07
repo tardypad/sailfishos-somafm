@@ -28,10 +28,10 @@ Page {
             }
         }
 
-        ViewPlaceholderHint {
+        ViewPlaceholder {
             enabled: gridView.count === 0 && _favoritesManager.isEmpty()
             text: "No Favorites"
-            hintText: "You can favorite a channel from the top menu of its page, or by 'tap and hold' on it in channels lists"
+            hintText: "You can favorite a channel to access it quicker"
         }
 
         Loader {
@@ -59,7 +59,7 @@ Page {
 
     Component {
         id: networkError
-        ViewPlaceholderHint {
+        ViewPlaceholder {
             enabled: true
             text: "Network error"
             hintText: "Can't download channels list"

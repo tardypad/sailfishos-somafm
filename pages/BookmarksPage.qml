@@ -18,10 +18,10 @@ Page {
             }
         }
 
-        ViewPlaceholderHint {
+        ViewPlaceholder {
             enabled: listView.count === 0
             text: "No Bookmarks"
-            hintText: "You can bookmark a song in a channel page by 'tap and hold' on it"
+            hintText: "You can bookmark a song you loved or want to check later"
         }
 
         Component.onCompleted: {

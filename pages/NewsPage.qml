@@ -87,7 +87,7 @@ Page {
 
         Component {
             id: networkError
-            ViewPlaceholderHint {
+            ViewPlaceholder {
                 enabled: true
                 text: "Network error"
                 hintText: "Can't download news"
