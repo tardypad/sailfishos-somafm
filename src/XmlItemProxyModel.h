@@ -13,6 +13,7 @@ public:
     explicit XmlItemProxyModel(QObject *parent = 0);
     virtual bool filterAcceptsRow (int source_row, const QModelIndex& source_parent) const;
     Q_INVOKABLE void fetch();
+    Q_INVOKABLE void abortFetching();
     Q_INVOKABLE bool hasDataBeenFetchedOnce();
     Q_INVOKABLE void sortByBookmarkDate();
     Q_INVOKABLE void showClones(bool show = true);
@@ -27,6 +28,7 @@ protected:
 
 signals:
     void dataFetched();
+    void networkError();
 
 private slots:
     void init();

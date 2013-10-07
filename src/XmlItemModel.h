@@ -19,10 +19,12 @@ public:
     ~XmlItemModel();
     virtual QHash<int,QByteArray> roleNames() const;
     Q_INVOKABLE void fetch();
+    Q_INVOKABLE void abortFetching();
     Q_INVOKABLE bool hasDataBeenFetchedOnce() { return m_hasDataBeenFetchedOnce; }
 
 signals:
     void dataFetched();
+    void networkError();
 
 protected slots:
     void addToBookmarks(XmlItem* xmlItem);

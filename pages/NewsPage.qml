@@ -50,6 +50,10 @@ Page {
                 onPressAndHold: drawer.show()
             }
 
+            Loader {
+                id: loader
+            }
+
             VerticalScrollDecorator { flickable: listView }
         }
 
@@ -75,6 +79,19 @@ Page {
                 indicator.running = false
                 timer.start()
             }
+            onNetworkError: {
+                indicator.running = false
+                loader.sourceComponent = networkError
+            }
+        }
+
+        Component {
+            id: networkError
+            ViewPlaceholderHint {
+                enabled: true
+                text: "Network error"
+                hintText: "Can't download news"
+            }
         }
 
         Component.onCompleted: {
@@ -83,5 +100,10 @@ Page {
             else
                 timer.start()
         }
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Inactive)
+            _newsModel.abortFetching()
     }
 }

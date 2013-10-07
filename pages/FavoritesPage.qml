@@ -34,9 +34,8 @@ Page {
             hintText: "You can favorite a channel from the top menu of its page, or by 'tap and hold' on it in channels lists"
         }
 
-        Component.onCompleted: {
-            if (!_channelsModel.hasDataBeenFetchedOnce())
-                _channelsModel.fetch();
+        Loader {
+            id: loader
         }
 
         VerticalScrollDecorator { flickable: gridView }
@@ -52,6 +51,24 @@ Page {
     Connections {
         target: _channelsModel
         onDataFetched: indicator.running = false
+        onNetworkError: {
+            indicator.running = false
+            loader.sourceComponent = networkError
+        }
+    }
+
+    Component {
+        id: networkError
+        ViewPlaceholderHint {
+            enabled: true
+            text: "Network error"
+            hintText: "Can't download channels list"
+        }
+    }
+
+    Component.onCompleted: {
+        if (!_channelsModel.hasDataBeenFetchedOnce())
+            _channelsModel.fetch();
     }
 
     onStatusChanged: {

@@ -38,6 +38,10 @@ Page {
             }
         }
 
+        Loader {
+            id: loader
+        }
+
         VerticalScrollDecorator { flickable: listView }
     }
 
@@ -51,10 +55,28 @@ Page {
     Connections {
         target: _channelSongsModel
         onDataFetched: indicator.running = false
+        onNetworkError: {
+            indicator.running = false
+            loader.sourceComponent = networkError
+        }
+    }
+
+    Component {
+        id: networkError
+        ViewPlaceholderHint {
+            enabled: true
+            text: "Network error"
+            hintText: "Can't download songs list"
+        }
     }
 
     Component.onCompleted: {
         _channelSongsModel.setChannel(_channelsModel.itemAt(channelIndex))
         _channelSongsModel.fetch()
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Inactive)
+            _channelSongsModel.abortFetching()
     }
 }

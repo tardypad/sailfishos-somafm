@@ -13,6 +13,7 @@
 XmlItemModel::XmlItemModel(XmlItem* xmlItemPrototype, QObject *parent) :
     XmlItemAbstractListModel(xmlItemPrototype, parent),
     m_resourceUrl(""),
+    m_currentReply(NULL),
     m_bookmarksManager(NULL),
     m_hasDataBeenFetchedOnce(false)
 {
@@ -35,15 +36,32 @@ QHash<int,QByteArray> XmlItemModel::roleNames() const
 void XmlItemModel::fetch()
 {
     clear();
+    abortFetching();
+    delete m_currentReply;
+    m_currentReply = NULL;
+
     QNetworkRequest request(m_resourceUrl);
     m_currentReply = m_networkManager->get(request);
+
     connect(m_currentReply, SIGNAL(finished()), this, SLOT(parse()));
-    connect(m_currentReply, SIGNAL(finished()), this, SIGNAL(dataFetched()));
+    connect(m_currentReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SIGNAL(networkError()));
+}
+
+void XmlItemModel::abortFetching()
+{
+    if (m_currentReply != NULL && m_currentReply->isRunning()) {
+        m_currentReply->disconnect(this);
+        m_currentReply->abort();
+    }
 }
 
 void XmlItemModel::parse()
 {
+    if (m_currentReply->error() != QNetworkReply::NoError)
+        return;
+
     this->setHasDataBeenFetchedOnce(true);
+    emit dataFetched();
     m_xmlReader->clear();
 
     QByteArray data = m_currentReply->readAll();
@@ -66,8 +84,6 @@ void XmlItemModel::parse()
     }
 
     parseAfter();
-
-    m_currentReply->deleteLater();
 }
 
 void XmlItemModel::parseFirst()
