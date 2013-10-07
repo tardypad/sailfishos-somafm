@@ -5,7 +5,7 @@ Page {
 
     SilicaFlickable {
         anchors.fill: parent
-        contentHeight: childrenRect.height
+        contentHeight: Screen.height
 
         Rectangle {
             color: "black"
@@ -123,8 +123,8 @@ Page {
         }
 
         PushUpMenu {
-            bottomMargin: topMargin
-
+            topMargin: Theme.paddingSmall
+            bottomMargin: Theme.paddingMedium
             Label {
                 text: "©2000-2013 SomaFM.com"
                 anchors.horizontalCenter: parent.horizontalCenter
