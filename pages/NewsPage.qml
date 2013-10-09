@@ -54,14 +54,14 @@ Page {
                 id: loader
             }
 
-            VerticalScrollDecorator { flickable: listView }
-        }
+            LoadingIndicator {
+                id: indicator
+                running: !_newsModel.hasDataBeenFetchedOnce()
+                flickable: listView
+                text: "Loading news"
+            }
 
-        BusyIndicator {
-            id: indicator
-            size: BusyIndicatorSize.Large
-            running: !_newsModel.hasDataBeenFetchedOnce()
-            anchors.centerIn: listView
+            VerticalScrollDecorator { flickable: listView }
         }
 
         Timer {

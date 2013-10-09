@@ -38,14 +38,14 @@ Page {
             id: loader
         }
 
-        VerticalScrollDecorator { flickable: gridView }
-    }
+        LoadingIndicator {
+            id: indicator
+            running: !_channelsModel.hasDataBeenFetchedOnce()
+            flickable: gridView
+            text: "Loading channels list"
+        }
 
-    BusyIndicator {
-        id: indicator
-        size: BusyIndicatorSize.Large
-        running: !_channelsModel.hasDataBeenFetchedOnce()
-        anchors.centerIn: gridView
+        VerticalScrollDecorator { flickable: gridView }
     }
 
     Connections {

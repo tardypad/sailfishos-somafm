@@ -42,14 +42,14 @@ Page {
             id: loader
         }
 
-        VerticalScrollDecorator { flickable: listView }
-    }
+        LoadingIndicator {
+            id: indicator
+            running: true
+            flickable: listView
+            text: "Loading songs list"
+        }
 
-    BusyIndicator {
-        id: indicator
-        size: BusyIndicatorSize.Large
-        running: true
-        anchors.centerIn: listView
+        VerticalScrollDecorator { flickable: listView }
     }
 
     Connections {
