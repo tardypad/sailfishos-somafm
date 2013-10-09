@@ -47,7 +47,7 @@ Page {
             MouseArea {
                 anchors.fill: parent
                 onClicked: drawer.hide()
-                onPressAndHold: drawer.show()
+                onPressAndHold: if (supportPageHeader.text) drawer.show()
             }
 
             Loader {
