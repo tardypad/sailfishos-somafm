@@ -48,16 +48,24 @@ Page {
         onDataFetched: indicator.running = false
         onNetworkError: {
             indicator.running = false
-            loader.sourceComponent = networkError
+            loader.sourceComponent = errorComponent
+            loader.item.text = "Network error"
+            loader.item.hintText = "Can't download channels list"
+        }
+        onParsingError: {
+            indicator.running = false
+            loader.sourceComponent = errorComponent
+            loader.item.text = "Parsing error"
+            loader.item.hintText = "Can't extract channels from list"
         }
     }
 
     Component {
-        id: networkError
+        id: errorComponent
         ViewPlaceholder {
             enabled: true
-            text: "Network error"
-            hintText: "Can't download channels list"
+            text: "An error occured"
+            hintText: "Can't display channels list"
         }
     }
 

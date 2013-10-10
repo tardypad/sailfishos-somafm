@@ -29,7 +29,8 @@ void NewsModel::parseFirst()
 {
     QString banner = "";
 
-    while (!(m_xmlReader->isEndElement() && m_xmlReader->name() == "banner")) {
+    while (!m_xmlReader->atEnd() &&
+           !(m_xmlReader->isEndElement() && m_xmlReader->name() == "banner")) {
         m_xmlReader->readNext();
         if (m_xmlReader->isStartElement() && m_xmlReader->name() == "banner") {
             m_xmlReader->readNext();
@@ -37,7 +38,8 @@ void NewsModel::parseFirst()
         }
     }
 
-    setBanner(banner);
+    if (!m_xmlReader->hasError())
+        setBanner(banner);
 }
 
 XmlItem* NewsModel::parseXmlItem()
@@ -47,7 +49,8 @@ XmlItem* NewsModel::parseXmlItem()
     QDateTime datetime = QDateTime();
     QString dateGroup = "";
 
-    while (!(m_xmlReader->isEndElement() && m_xmlReader->name() == m_xmlItemPrototype->xmlTag())) {
+    while (!m_xmlReader->atEnd() &&
+           !(m_xmlReader->isEndElement() && m_xmlReader->name() == m_xmlItemPrototype->xmlTag())) {
         m_xmlReader->readNext();
         if (m_xmlReader->isStartElement()) {
             if (m_xmlReader->name() == "content") {
@@ -60,6 +63,9 @@ XmlItem* NewsModel::parseXmlItem()
             }
         }
     }
+
+    if (m_xmlReader->hasError())
+        return NULL;
 
     dateGroup = defineGroup(datetime);
 

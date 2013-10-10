@@ -37,6 +37,7 @@ void XmlItemProxyModel::init()
 {
     connect(xmlItemSourceModel(), SIGNAL(dataFetched()), this, SIGNAL(dataFetched()));
     connect(xmlItemSourceModel(), SIGNAL(networkError()), this, SIGNAL(networkError()));
+    connect(xmlItemSourceModel(), SIGNAL(parsingError()), this, SIGNAL(parsingError()));
 }
 
 void XmlItemProxyModel::fetch()

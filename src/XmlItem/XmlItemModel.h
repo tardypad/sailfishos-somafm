@@ -25,6 +25,7 @@ public:
 signals:
     void dataFetched();
     void networkError();
+    void parsingError();
 
 protected slots:
     void addToBookmarks(XmlItem* xmlItem);

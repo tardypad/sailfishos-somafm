@@ -29,6 +29,7 @@ protected:
 signals:
     void dataFetched();
     void networkError();
+    void parsingError();
 
 private slots:
     void init();

@@ -47,7 +47,8 @@ XmlItem* SongsModel::parseXmlItem()
     QString channelName = m_channel->data(Channel::NameRole).toString();
     QUrl channelImageUrl = m_channel->data(Channel::ImageUrlRole).toString();
 
-    while (!(m_xmlReader->isEndElement() && m_xmlReader->name() == m_xmlItemPrototype->xmlTag())) {
+    while (!m_xmlReader->atEnd() &&
+           !(m_xmlReader->isEndElement() && m_xmlReader->name() == m_xmlItemPrototype->xmlTag())) {
         m_xmlReader->readNext();
         if (m_xmlReader->isStartElement()) {
             if (m_xmlReader->name() == "title") {
@@ -66,6 +67,9 @@ XmlItem* SongsModel::parseXmlItem()
             }
         }
     }
+
+    if (m_xmlReader->hasError())
+        return NULL;
 
     song->setData(title, Song::TitleRole);
     song->setData(artist, Song::ArtistRole);

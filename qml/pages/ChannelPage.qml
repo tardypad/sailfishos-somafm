@@ -61,16 +61,24 @@ Page {
         onDataFetched: indicator.running = false
         onNetworkError: {
             indicator.running = false
-            loader.sourceComponent = networkError
+            loader.sourceComponent = errorComponent
+            loader.item.text = "Network error"
+            loader.item.hintText = "Can't download songs list"
+        }
+        onParsingError: {
+            indicator.running = false
+            loader.sourceComponent = errorComponent
+            loader.item.text = "Parsing error"
+            loader.item.hintText = "Can't extract songs from list"
         }
     }
 
     Component {
-        id: networkError
+        id: errorComponent
         ViewPlaceholder {
             enabled: true
-            text: "Network error"
-            hintText: "Can't download songs list"
+            text: "An error occured"
+            hintText: "Can't display songs list"
         }
     }
 

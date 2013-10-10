@@ -40,7 +40,8 @@ XmlItem* ChannelsModel::parseXmlItem()
     id = attributes.value("id").toString();
 
 
-    while (!(m_xmlReader->isEndElement() && m_xmlReader->name() == m_xmlItemPrototype->xmlTag())) {
+    while (!m_xmlReader->atEnd() &&
+           !(m_xmlReader->isEndElement() && m_xmlReader->name() == m_xmlItemPrototype->xmlTag())) {
         m_xmlReader->readNext();
         if (m_xmlReader->isStartElement()) {
             if (m_xmlReader->name() == "title") {
@@ -73,6 +74,9 @@ XmlItem* ChannelsModel::parseXmlItem()
             }
         }
     }
+
+    if (m_xmlReader->hasError())
+        return NULL;
 
     channel->setData(id, Channel::IdRole);
     channel->setData(name, Channel::NameRole);

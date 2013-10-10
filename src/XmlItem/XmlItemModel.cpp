@@ -60,7 +60,6 @@ void XmlItemModel::parse()
     if (m_currentReply->error() != QNetworkReply::NoError)
         return;
 
-    this->setHasDataBeenFetchedOnce(true);
     emit dataFetched();
     m_xmlReader->clear();
 
@@ -75,6 +74,11 @@ void XmlItemModel::parse()
             if (m_xmlReader->name() == m_xmlItemPrototype->xmlTag()) {
                 XmlItem* xmlItem = parseXmlItem();
 
+                if (!xmlItem) {
+                    emit parsingError();
+                    return;
+                }
+
                 if (stopParsing(xmlItem))
                     break;
 
@@ -82,6 +86,13 @@ void XmlItemModel::parse()
             }
         }
     }
+
+    if (m_xmlReader->hasError()) {
+        emit parsingError();
+        return;
+    }
+
+    this->setHasDataBeenFetchedOnce(true);
 
     parseAfter();
 }
