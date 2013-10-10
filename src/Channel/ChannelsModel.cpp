@@ -4,7 +4,7 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamAttributes>
 
-#include "SomaFM.h"
+#include "../SomaFM.h"
 #include "Channel.h"
 #include "ChannelsFavoritesManager.h"
 

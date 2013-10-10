@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QXmlStreamReader>
 
-#include "SomaFM.h"
+#include "../SomaFM.h"
 #include "News.h"
 
 NewsModel::NewsModel(QObject *parent) :

@@ -8,7 +8,7 @@
 #include <QString>
 #include <QDateTime>
 
-#include "XmlItem.h"
+#include "../XmlItem/XmlItem.h"
 
 class News : public XmlItem
 {

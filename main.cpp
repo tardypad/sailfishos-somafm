@@ -8,14 +8,14 @@
 #include <QSortFilterProxyModel>
 #include <QtQml>
 
-#include "src/XmlItem.h"
-#include "src/ChannelsModel.h"
-#include "src/ChannelsProxyModel.h"
-#include "src/ChannelsFavoritesManager.h"
-#include "src/SongsModel.h"
-#include "src/SongsBookmarksManager.h"
-#include "src/SongsBookmarksProxyModel.h"
-#include "src/NewsModel.h"
+#include "src/XmlItem/XmlItem.h"
+#include "src/Channel/ChannelsModel.h"
+#include "src/Channel/ChannelsProxyModel.h"
+#include "src/Channel/ChannelsFavoritesManager.h"
+#include "src/Song/SongsModel.h"
+#include "src/Song/SongsBookmarksManager.h"
+#include "src/Song/SongsBookmarksProxyModel.h"
+#include "src/News/NewsModel.h"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {

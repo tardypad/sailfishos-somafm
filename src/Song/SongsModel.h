@@ -1,7 +1,7 @@
 #ifndef SONGSMODEL_H
 #define SONGSMODEL_H
 
-#include "XmlItemModel.h"
+#include "../XmlItem/XmlItemModel.h"
 
 class Song;
 class Channel;

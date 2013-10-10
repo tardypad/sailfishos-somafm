@@ -9,7 +9,7 @@
 #include <QDateTime>
 #include <QUrl>
 
-#include "XmlItem.h"
+#include "../XmlItem/XmlItem.h"
 
 class Song : public XmlItem
 {

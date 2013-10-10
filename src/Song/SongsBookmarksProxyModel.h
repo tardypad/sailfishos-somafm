@@ -1,7 +1,7 @@
 #ifndef SONGSBOOKMARKSPROXYMODEL_H
 #define SONGSBOOKMARKSPROXYMODEL_H
 
-#include "XmlItemProxyBookmarkManager.h"
+#include "../XmlItem/XmlItemProxyBookmarkManager.h"
 
 class XmlItem;
 

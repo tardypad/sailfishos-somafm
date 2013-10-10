@@ -3,10 +3,18 @@ TARGET = SomaFM
 
 # C++ sources
 SOURCES += main.cpp \
-    src/*.cpp
+    src/*.cpp \
+    src/XmlItem/*.cpp \
+    src/Channel/*.cpp \
+    src/Song/*.cpp \
+    src/News/*.cpp
 
 # C++ headers
-HEADERS += src/*.h
+HEADERS += src/*.h \
+    src/XmlItem/*.h \
+    src/Channel/*.h \
+    src/Song/*.h \
+    src/News/*.h
 
 # QML files and folders
 qml.files = cover pages main.qml

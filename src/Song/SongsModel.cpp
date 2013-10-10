@@ -3,9 +3,9 @@
 #include <QDebug>
 #include <QXmlStreamReader>
 
-#include "SomaFM.h"
+#include "../SomaFM.h"
 #include "Song.h"
-#include "Channel.h"
+#include "../Channel/Channel.h"
 #include "SongsBookmarksManager.h"
 
 SongsModel::SongsModel(QObject *parent) :

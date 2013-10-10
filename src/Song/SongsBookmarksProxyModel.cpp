@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-#include "XmlItem.h"
+#include "../XmlItem/XmlItem.h"
 #include "Song.h"
 
 SongsBookmarksProxyModel::SongsBookmarksProxyModel(QObject *parent) :

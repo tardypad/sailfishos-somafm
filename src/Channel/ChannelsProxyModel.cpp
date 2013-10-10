@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-#include "XmlItem.h"
+#include "../XmlItem/XmlItem.h"
 #include "Channel.h"
 
 ChannelsProxyModel::ChannelsProxyModel(QObject *parent) :

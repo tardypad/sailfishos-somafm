@@ -1,7 +1,7 @@
 #ifndef CHANNELSPROXYMODEL_H
 #define CHANNELSPROXYMODEL_H
 
-#include "XmlItemProxyModel.h"
+#include "../XmlItem/XmlItemProxyModel.h"
 
 class XmlItem;
 

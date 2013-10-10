@@ -1,7 +1,7 @@
 #ifndef SONGSBOOKMARKSDATABASEMANAGER_H
 #define SONGSBOOKMARKSDATABASEMANAGER_H
 
-#include "XmlItemBookmarksDatabaseManager.h"
+#include "../XmlItem/XmlItemBookmarksDatabaseManager.h"
 
 class SongsBookmarksDatabaseManager : public XmlItemBookmarksDatabaseManager
 {
