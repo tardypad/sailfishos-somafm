@@ -24,8 +24,8 @@ XmlItemModel::XmlItemModel(XmlItem* xmlItemPrototype, QObject *parent) :
 XmlItemModel::~XmlItemModel()
 {
     delete m_xmlReader;
-    delete m_networkManager;
     delete m_currentReply;
+    delete m_networkManager;
 }
 
 QHash<int,QByteArray> XmlItemModel::roleNames() const

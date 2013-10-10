@@ -26,26 +26,26 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     qmlRegisterUncreatableType<XmlItem>("my.library", 1, 0, "XmlItem", "");
 
-    ChannelsModel* channelsModel = new ChannelsModel();
-    ChannelsProxyModel* channelsProxyModel = new ChannelsProxyModel();
-    channelsProxyModel->setSourceModel(channelsModel);
-    context->setContextProperty("_channelsModel", channelsProxyModel);
+    QScopedPointer<ChannelsModel> channelsModel(new ChannelsModel());
+    QScopedPointer<ChannelsProxyModel> channelsProxyModel(new ChannelsProxyModel());
+    channelsProxyModel->setSourceModel(channelsModel.data());
+    context->setContextProperty("_channelsModel", channelsProxyModel.data());
 
-    ChannelsFavoritesManager* favoritesManager = ChannelsFavoritesManager::instance();
-    context->setContextProperty("_favoritesManager", favoritesManager);
+    QScopedPointer<ChannelsFavoritesManager> favoritesManager(ChannelsFavoritesManager::instance());
+    context->setContextProperty("_favoritesManager", favoritesManager.data());
 
-    SongsModel* channelSongsModel = new SongsModel();
-    context->setContextProperty("_channelSongsModel", channelSongsModel);
+    QScopedPointer<SongsModel> channelSongsModel(new SongsModel());
+    context->setContextProperty("_channelSongsModel", channelSongsModel.data());
 
-    SongsBookmarksManager* bookmarksManager = SongsBookmarksManager::instance();
-    SongsBookmarksProxyModel* songsBookmarkProxyModel = new SongsBookmarksProxyModel();
-    songsBookmarkProxyModel->setSourceModel(bookmarksManager);
-    context->setContextProperty("_bookmarksManager", songsBookmarkProxyModel);
+    QScopedPointer<SongsBookmarksManager> bookmarksManager(SongsBookmarksManager::instance());
+    QScopedPointer<SongsBookmarksProxyModel> songsBookmarkProxyModel(new SongsBookmarksProxyModel());
+    songsBookmarkProxyModel->setSourceModel(bookmarksManager.data());
+    context->setContextProperty("_bookmarksManager", songsBookmarkProxyModel.data());
 
-    NewsModel* newsModel = new NewsModel();
-    context->setContextProperty("_newsModel", newsModel);
+    QScopedPointer<NewsModel> newsModel(new NewsModel());
+    context->setContextProperty("_newsModel", newsModel.data());
 
     Sailfish::showView(view.data());
-    
+
     return app->exec();
 }
