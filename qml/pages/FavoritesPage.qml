@@ -1,6 +1,9 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "utils"
+import "delegates"
+
 Page {
     SilicaGridView {
         id: gridView
@@ -17,13 +20,13 @@ Page {
             IconPageMenuItem {
                 text: "Genres"
                 iconSource: "qrc:/icon/genre"
-                nextPage: "GenresPage.qml"
+                nextPage: Qt.resolvedUrl("GenresPage.qml")
                 isReplace: true
             }
             IconPageMenuItem {
                 text: "Populars"
                 iconSource: "qrc:/icon/popular"
-                nextPage: "PopularsPage.qml"
+                nextPage: Qt.resolvedUrl("PopularsPage.qml")
                 isReplace: true
             }
         }

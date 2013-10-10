@@ -1,6 +1,9 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "utils"
+import "delegates"
+
 Page {
     SilicaListView {
         id: listView
@@ -21,13 +24,13 @@ Page {
             IconPageMenuItem {
                 text: "Populars"
                 iconSource: "qrc:/icon/popular"
-                nextPage: "PopularsPage.qml"
+                nextPage: Qt.resolvedUrl("PopularsPage.qml")
                 isReplace: true
             }
             IconPageMenuItem {
                 text: "Favorites"
                 iconSource: "qrc:/icon/favorite"
-                nextPage: "FavoritesPage.qml"
+                nextPage: Qt.resolvedUrl("FavoritesPage.qml")
                 isReplace: true
             }
         }

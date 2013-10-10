@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "utils"
+
 Page {
 
     SilicaFlickable {
@@ -111,13 +113,13 @@ Page {
             IconPageMenuItem {
                 text: "News"
                 iconSource: "qrc:/icon/news"
-                nextPage: "NewsPage.qml"
+                nextPage: Qt.resolvedUrl("NewsPage.qml")
                 isReplace: false
             }
             IconPageMenuItem {
                 text: "Song bookmarks"
                 iconSource: "qrc:/icon/bookmark"
-                nextPage: "BookmarksPage.qml"
+                nextPage: Qt.resolvedUrl("BookmarksPage.qml")
                 isReplace: false
             }
         }

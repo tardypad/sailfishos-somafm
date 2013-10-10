@@ -17,7 +17,7 @@ HEADERS += src/*.h \
     src/News/*.h
 
 # QML files and folders
-qml.files = cover pages main.qml
+qml.files = qml main.qml
 
 # The .desktop file
 desktop.files = SomaFM.desktop

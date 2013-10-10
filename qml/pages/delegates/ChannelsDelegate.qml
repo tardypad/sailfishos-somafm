@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../utils"
+
 ListItem {
     menu: contextMenu
     showMenuOnPressAndHold: false // don't use the default showMenu() without properties
@@ -58,7 +60,7 @@ ListItem {
     onPressAndHold: showMenu({"isFavorite": isBookmark})
 
     onClicked: {
-        pageStack.push(Qt.resolvedUrl("ChannelPage.qml"),
+        pageStack.push(Qt.resolvedUrl("../ChannelPage.qml"),
                        {
                            "channelIndex": index,
                            'id' : id,

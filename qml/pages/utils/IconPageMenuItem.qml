@@ -8,9 +8,9 @@ MenuItem {
 
     onClicked: {
         if (isReplace)
-            pageStack.replace(Qt.resolvedUrl(nextPage))
+            pageStack.replace(nextPage)
         else
-            pageStack.push(Qt.resolvedUrl(nextPage))
+            pageStack.push(nextPage)
     }
 
     Image {

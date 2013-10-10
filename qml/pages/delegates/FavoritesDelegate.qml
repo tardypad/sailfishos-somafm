@@ -31,7 +31,7 @@ BackgroundItem {
     }
 
     onClicked: {
-        pageStack.push(Qt.resolvedUrl("ChannelPage.qml"),
+        pageStack.push(Qt.resolvedUrl("../ChannelPage.qml"),
                        {
                            "channelIndex": index,
                            'id' : id,
