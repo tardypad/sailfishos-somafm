@@ -53,19 +53,21 @@ Page {
 
     Connections {
         target: _channelsModel
-        onDataFetched: indicator.running = false
+        onDataFetched: stopLoadingAnimation()
         onNetworkError: {
-            indicator.running = false
-            loader.sourceComponent = errorComponent
-            loader.item.text = "Network error"
-            loader.item.hintText = "Can't download channels list"
+            stopLoadingAnimation()
+            displayError("Network error", "Can't download channels list")
         }
         onParsingError: {
-            indicator.running = false
-            loader.sourceComponent = errorComponent
-            loader.item.text = "Parsing error"
-            loader.item.hintText = "Can't extract channels from list"
+            stopLoadingAnimation()
+            displayError("Parsing error", "Can't extract channels from list")
         }
+    }
+
+    function displayError(text, hintText) {
+        loader.sourceComponent = errorComponent
+        if (typeof(text) != "undefined") loader.item.text = text
+        if (typeof(hintText) != "undefined") loader.item.hintText = hintText
     }
 
     Component {
@@ -89,5 +91,9 @@ Page {
             _channelsModel.sortByBookmarkDate()
             gridView.model = _channelsModel
         }
+    }
+
+    function stopLoadingAnimation() {
+        indicator.running = false
     }
 }

@@ -51,7 +51,7 @@ Page {
             MouseArea {
                 anchors.fill: parent
                 onClicked: drawer.hide()
-                onPressAndHold: if (supportPageHeader.text) drawer.show()
+                onPressAndHold: showSupportBanner();
             }
 
             Loader {
@@ -73,27 +73,23 @@ Page {
             interval: 1000
             onTriggered: {
                 supportPageHeader.text = _newsModel.banner()
-                drawer.show()
+                showSupportBanner();
             }
         }
 
         Connections {
             target: _newsModel
             onDataFetched: {
-                indicator.running = false
+                stopLoadingAnimation()
                 timer.start()
             }
             onNetworkError: {
-                indicator.running = false
-                loader.sourceComponent = errorComponent
-                loader.item.text = "Network error"
-                loader.item.hintText = "Can't download news"
+                stopLoadingAnimation()
+                displayError("Network error", "Can't download news")
             }
             onParsingError: {
-                indicator.running = false
-                loader.sourceComponent = errorComponent
-                loader.item.text = "Parsing error"
-                loader.item.hintText = "Can't extract news"
+                stopLoadingAnimation()
+                displayError("Parsing error", "Can't extract news")
             }
         }
 
@@ -117,5 +113,19 @@ Page {
     onStatusChanged: {
         if (status === PageStatus.Inactive)
             _newsModel.abortFetching()
+    }
+
+    function showSupportBanner() {
+        if (supportPageHeader.text) drawer.show()
+    }
+
+    function displayError(text, hintText) {
+        loader.sourceComponent = errorComponent
+        if (typeof(text) != "undefined") loader.item.text = text
+        if (typeof(hintText) != "undefined") loader.item.hintText = hintText
+    }
+
+    function stopLoadingAnimation() {
+        indicator.running = false
     }
 }

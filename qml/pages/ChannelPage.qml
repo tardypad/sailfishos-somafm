@@ -58,19 +58,21 @@ Page {
 
     Connections {
         target: _channelSongsModel
-        onDataFetched: indicator.running = false
+        onDataFetched: stopLoadingAnimation()
         onNetworkError: {
-            indicator.running = false
-            loader.sourceComponent = errorComponent
-            loader.item.text = "Network error"
-            loader.item.hintText = "Can't download songs list"
+            stopLoadingAnimation()
+            displayError("Network error", "Can't download songs list")
         }
         onParsingError: {
-            indicator.running = false
-            loader.sourceComponent = errorComponent
-            loader.item.text = "Parsing error"
-            loader.item.hintText = "Can't extract songs from list"
+            stopLoadingAnimation()
+            displayError("Parsing error", "Can't extract songs from list")
         }
+    }
+
+    function displayError(text, hintText) {
+        loader.sourceComponent = errorComponent
+        if (typeof(text) != "undefined") loader.item.text = text
+        if (typeof(hintText) != "undefined") loader.item.hintText = hintText
     }
 
     Component {
@@ -90,5 +92,9 @@ Page {
     onStatusChanged: {
         if (status === PageStatus.Inactive)
             _channelSongsModel.abortFetching()
+    }
+
+    function stopLoadingAnimation() {
+        indicator.running = false
     }
 }
