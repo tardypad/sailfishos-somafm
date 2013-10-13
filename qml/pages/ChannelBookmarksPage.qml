@@ -6,6 +6,8 @@ import "delegates"
 import "components"
 
 Page {
+    property string channelId
+
     SilicaListView {
         id: listView
         anchors.fill: parent
@@ -29,9 +31,8 @@ Page {
         }
 
         Component.onCompleted: {
-            _bookmarksManager.clearFilter()
+            _bookmarksManager.filterByChannel(channelId)
             _bookmarksManager.sortByDate()
-            _bookmarksManager.sortByChannel()
         }
 
         VerticalScrollDecorator { flickable: listView }

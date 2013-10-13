@@ -10,6 +10,7 @@ class SongsBookmarksProxyModel : public XmlItemProxyBookmarkManager
     Q_OBJECT
 public:
     explicit SongsBookmarksProxyModel(QObject *parent = 0);
+    Q_INVOKABLE void filterByChannel(QString channelId);
     Q_INVOKABLE void sortByChannel();
 };
 

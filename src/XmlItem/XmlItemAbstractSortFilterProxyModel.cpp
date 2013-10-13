@@ -29,5 +29,6 @@ bool XmlItemAbstractSortFilterProxyModel::isEmpty()
 void XmlItemAbstractSortFilterProxyModel::clearFilter()
 {
     setFilterRole(0);
+    setFilterWildcard("*");
     invalidateFilter();
 }

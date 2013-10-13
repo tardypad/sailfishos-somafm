@@ -10,6 +10,13 @@ SongsBookmarksProxyModel::SongsBookmarksProxyModel(QObject *parent) :
 {
 }
 
+void SongsBookmarksProxyModel::filterByChannel(QString channelId)
+{
+    setFilterRole(Song::ChannelIdRole);
+    setFilterFixedString(channelId);
+    invalidateFilter();
+}
+
 void SongsBookmarksProxyModel::sortByChannel()
 {
     setSortRole(Song::ChannelIdRole);

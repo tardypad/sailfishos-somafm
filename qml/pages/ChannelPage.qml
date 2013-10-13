@@ -28,6 +28,11 @@ Page {
 
         PullDownMenu {
             IconActionMenuItem {
+                text: "Song bookmarks"
+                iconSource: "qrc:/icon/bookmark"
+                onClicked: pageStack.push("ChannelBookmarksPage.qml", {"channelId": id})
+            }
+            IconActionMenuItem {
                 iconSource: !isFavorite ? "qrc:/icon/favorite" : "qrc:/icon/un-favorite"
                 text: !isFavorite ? "Add to Favorites" : "Remove from Favorites"
                 onClicked: {
