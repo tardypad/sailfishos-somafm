@@ -47,46 +47,18 @@ Page {
             }
         }
 
-        Loader {
-            id: loader
-        }
-
         LoadingIndicator {
             id: indicator
             running: true
+            model: _channelSongsModel
             flickable: listView
-            text: "Loading songs list"
+            loadingText: "Loading songs list"
+            defaultErrorText: "Can't display songs list"
+            networkErrorText: "Can't download songs list"
+            parsingErrorText: "Can't extract songs from list"
         }
 
         VerticalScrollDecorator { flickable: listView }
-    }
-
-    Connections {
-        target: _channelSongsModel
-        onDataFetched: stopLoadingAnimation()
-        onNetworkError: {
-            stopLoadingAnimation()
-            displayError("Network error", "Can't download songs list")
-        }
-        onParsingError: {
-            stopLoadingAnimation()
-            displayError("Parsing error", "Can't extract songs from list")
-        }
-    }
-
-    function displayError(text, hintText) {
-        loader.sourceComponent = errorComponent
-        if (typeof(text) != "undefined") loader.item.text = text
-        if (typeof(hintText) != "undefined") loader.item.hintText = hintText
-    }
-
-    Component {
-        id: errorComponent
-        ViewPlaceholder {
-            enabled: true
-            text: "An error occured"
-            hintText: "Can't display songs list"
-        }
     }
 
     Component.onCompleted: {
@@ -97,9 +69,5 @@ Page {
     onStatusChanged: {
         if (status === PageStatus.Inactive)
             _channelSongsModel.abortFetching()
-    }
-
-    function stopLoadingAnimation() {
-        indicator.running = false
     }
 }

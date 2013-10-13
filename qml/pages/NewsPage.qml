@@ -54,15 +54,15 @@ Page {
                 onPressAndHold: showSupportBanner();
             }
 
-            Loader {
-                id: loader
-            }
-
             LoadingIndicator {
                 id: indicator
                 running: !_newsModel.hasDataBeenFetchedOnce()
+                model: _newsModel
                 flickable: listView
-                text: "Loading news"
+                loadingText: "Loading news"
+                defaultErrorText: "Can't display news"
+                networkErrorText: "Can't download news"
+                parsingErrorText: "Can't extract news"
             }
 
             VerticalScrollDecorator { flickable: listView }
@@ -79,27 +79,7 @@ Page {
 
         Connections {
             target: _newsModel
-            onDataFetched: {
-                stopLoadingAnimation()
-                timer.start()
-            }
-            onNetworkError: {
-                stopLoadingAnimation()
-                displayError("Network error", "Can't download news")
-            }
-            onParsingError: {
-                stopLoadingAnimation()
-                displayError("Parsing error", "Can't extract news")
-            }
-        }
-
-        Component {
-            id: errorComponent
-            ViewPlaceholder {
-                enabled: true
-                text: "An error occured"
-                hintText: "Can't display news"
-            }
+            onDataFetched: timer.start()
         }
 
         Component.onCompleted: {
@@ -117,15 +97,5 @@ Page {
 
     function showSupportBanner() {
         if (supportPageHeader.text) drawer.show()
-    }
-
-    function displayError(text, hintText) {
-        loader.sourceComponent = errorComponent
-        if (typeof(text) != "undefined") loader.item.text = text
-        if (typeof(hintText) != "undefined") loader.item.hintText = hintText
-    }
-
-    function stopLoadingAnimation() {
-        indicator.running = false
     }
 }

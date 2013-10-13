@@ -5,8 +5,12 @@ Item {
     id: loadingIndicator
 
     property Item flickable
+    property alias model: connections.target
     property alias running: busyIndicator.running
-    property alias text: label.text
+    property alias loadingText: label.text
+    property string defaultErrorText
+    property string networkErrorText
+    property string parsingErrorText
 
     parent: flickable.contentItem
 
@@ -35,4 +39,43 @@ Item {
         color: Theme.highlightColor
         font.pixelSize: Theme.fontSizeMedium
     }
+
+    Loader {
+        id: loader
+    }
+
+    Component {
+        id: errorComponent
+        ViewPlaceholder {
+            enabled: true
+            text: "An error occured"
+            hintText: defaultErrorText
+        }
+    }
+
+    Connections {
+        id: connections
+        target: _channelsModel
+        onDataFetched: stopLoadingAnimation()
+        onNetworkError: {
+            stopLoadingAnimation()
+            displayError("Network error", networkErrorText)
+        }
+        onParsingError: {
+            stopLoadingAnimation()
+            displayError("Parsing error", parsingErrorText)
+        }
+    }
+
+    function stopLoadingAnimation() {
+        indicator.running = false
+    }
+
+    function displayError(text, hintText) {
+        loader.sourceComponent = errorComponent
+        if (typeof(text) != "undefined") loader.item.text = text
+        if (typeof(hintText) != "undefined") loader.item.hintText = hintText
+    }
+
+    Component.onCompleted: loader.parent = flickable
 }

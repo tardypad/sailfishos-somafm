@@ -33,46 +33,18 @@ Page {
             }
         }
 
-        Loader {
-            id: loader
-        }
-
         LoadingIndicator {
             id: indicator
             running: !_channelsModel.hasDataBeenFetchedOnce()
+            model: _channelsModel
             flickable: listView
-            text: "Loading channels list"
+            loadingText: "Loading channels list"
+            defaultErrorText: "Can't display channels list"
+            networkErrorText: "Can't download channels list"
+            parsingErrorText: "Can't extract channels from list"
         }
 
         VerticalScrollDecorator { flickable: listView }
-    }
-
-    Connections {
-        target: _channelsModel
-        onDataFetched: stopLoadingAnimation()
-        onNetworkError: {
-            stopLoadingAnimation()
-            displayError("Network error", "Can't download channels list")
-        }
-        onParsingError: {
-            stopLoadingAnimation()
-            displayError("Parsing error", "Can't extract channels from list")
-        }
-    }
-
-    function displayError(text, hintText) {
-        loader.sourceComponent = errorComponent
-        if (typeof(text) != "undefined") loader.item.text = text
-        if (typeof(hintText) != "undefined") loader.item.hintText = hintText
-    }
-
-    Component {
-        id: errorComponent
-        ViewPlaceholder {
-            enabled: true
-            text: "An error occured"
-            hintText: "Can't display channels list"
-        }
     }
 
     Component.onCompleted: {
@@ -88,9 +60,5 @@ Page {
             _channelsModel.sortByGenres()
             listView.model = _channelsModel
         }
-    }
-
-    function stopLoadingAnimation() {
-        indicator.running = false
     }
 }
