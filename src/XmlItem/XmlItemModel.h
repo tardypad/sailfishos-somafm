@@ -33,6 +33,7 @@ protected slots:
 
 protected:
     inline void setResourceUrl(QUrl resourceUrl) { m_resourceUrl = resourceUrl; }
+    inline QUrl resourceUrl() const { return m_resourceUrl; }
 
 private slots:
     virtual void parseFirst();

@@ -3,15 +3,13 @@ TARGET = SomaFM
 
 # C++ sources
 SOURCES += main.cpp \
-    src/*.cpp \
     src/XmlItem/*.cpp \
     src/Channel/*.cpp \
     src/Song/*.cpp \
     src/News/*.cpp
 
 # C++ headers
-HEADERS += src/*.h \
-    src/XmlItem/*.h \
+HEADERS += src/XmlItem/*.h \
     src/Channel/*.h \
     src/Song/*.h \
     src/News/*.h

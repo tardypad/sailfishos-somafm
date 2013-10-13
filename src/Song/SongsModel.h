@@ -8,6 +8,8 @@ class Channel;
 
 class SongsModel : public XmlItemModel
 {
+    static const QUrl _channelSongsUrl;
+
     Q_OBJECT
 public:
     explicit SongsModel(QObject *parent = 0);

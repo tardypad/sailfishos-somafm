@@ -3,10 +3,11 @@
 #include <QDebug>
 #include <QXmlStreamReader>
 
-#include "../SomaFM.h"
 #include "Song.h"
 #include "../Channel/Channel.h"
 #include "SongsBookmarksManager.h"
+
+const QUrl SongsModel::_channelSongsUrl = QUrl("http://somafm.com/songs/:channelId:.xml");
 
 SongsModel::SongsModel(QObject *parent) :
     XmlItemModel(new Song(), parent),
@@ -24,9 +25,10 @@ SongsModel::~SongsModel()
 void SongsModel::setChannel(XmlItem *channel)
 {
     m_channel = (Channel*) channel;
-
     QString channelId = m_channel->data(Channel::IdRole).toString();
-    setResourceUrl(SomaFM::channelSongsUrl(channelId));
+    QString url = _channelSongsUrl.url();
+    url.replace(":channelId:", channelId);
+    setResourceUrl(url);
 }
 
 bool SongsModel::stopParsing(XmlItem *xmlItem)

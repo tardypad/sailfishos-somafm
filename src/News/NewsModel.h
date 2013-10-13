@@ -9,6 +9,9 @@ class News;
 
 class NewsModel : public XmlItemModel
 {
+    static const QUrl _newsUrl;
+    static const QUrl _supportUrl;
+
     Q_OBJECT
 public:
     explicit NewsModel(QObject *parent = 0);

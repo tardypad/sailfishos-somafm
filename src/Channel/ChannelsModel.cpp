@@ -4,14 +4,15 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamAttributes>
 
-#include "../SomaFM.h"
 #include "Channel.h"
 #include "ChannelsFavoritesManager.h"
+
+const QUrl ChannelsModel::_channelsUrl = QUrl("http://somafm.com/channels.xml");
 
 ChannelsModel::ChannelsModel(QObject *parent) :
     XmlItemModel(new Channel(), parent)
 {
-    setResourceUrl(SomaFM::channelsUrl());
+    setResourceUrl(_channelsUrl);
 
     m_bookmarksManager = ChannelsFavoritesManager::instance();
     connect(m_bookmarksManager, SIGNAL(bookmarkAdded(XmlItem*)), this, SLOT(addToFavorites(XmlItem*)));

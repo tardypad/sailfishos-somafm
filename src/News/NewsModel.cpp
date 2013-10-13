@@ -3,19 +3,21 @@
 #include <QDebug>
 #include <QXmlStreamReader>
 
-#include "../SomaFM.h"
 #include "News.h"
+
+const QUrl NewsModel::_newsUrl = QUrl("http://somafm.com/news.xml");
+const QUrl NewsModel::_supportUrl = QUrl("http://somafm.com/support");
 
 NewsModel::NewsModel(QObject *parent) :
     XmlItemModel(new News(), parent),
     m_banner("")
 {
-    setResourceUrl(SomaFM::newsUrl());
+    setResourceUrl(_newsUrl);
 }
 
 QUrl NewsModel::supportUrl()
 {
-    return SomaFM::supportUrl();
+    return _supportUrl;
 }
 
 bool NewsModel::stopParsing(XmlItem *xmlItem)

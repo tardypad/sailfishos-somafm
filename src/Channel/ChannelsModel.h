@@ -7,6 +7,8 @@ class Channel;
 
 class ChannelsModel : public XmlItemModel
 {
+    static const QUrl _channelsUrl;
+
     Q_OBJECT
 public:
     explicit ChannelsModel(QObject *parent = 0);

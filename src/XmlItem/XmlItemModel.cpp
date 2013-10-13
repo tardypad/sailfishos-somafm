@@ -40,7 +40,7 @@ void XmlItemModel::fetch()
     delete m_currentReply;
     m_currentReply = NULL;
 
-    QNetworkRequest request(m_resourceUrl);
+    QNetworkRequest request(resourceUrl());
     m_currentReply = m_networkManager->get(request);
 
     connect(m_currentReply, SIGNAL(finished()), this, SLOT(parse()));
