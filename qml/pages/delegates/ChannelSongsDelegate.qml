@@ -80,7 +80,7 @@ ListItem {
         ContextMenu {
             property bool isBookmark
 
-            IconActionMenuItem {
+            IconMenuItem {
                 iconSource: !isBookmark ? "qrc:/icon/bookmark" : "qrc:/icon/un-bookmark"
                 text: !isBookmark ? "Add to bookmarks" : "Remove from bookmarks"
                 onClicked: {

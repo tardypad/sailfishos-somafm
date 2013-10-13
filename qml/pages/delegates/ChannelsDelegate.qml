@@ -90,7 +90,7 @@ ListItem {
         ContextMenu {
             property bool isFavorite
 
-            IconActionMenuItem {
+            IconMenuItem {
                 iconSource: !isFavorite ? "qrc:/icon/favorite" : "qrc:/icon/un-favorite"
                 text: !isFavorite ? "Add to favorites" : "Remove from favorites"
                 onClicked: {

@@ -17,17 +17,15 @@ Page {
         cellHeight: parent.width / 2
 
         PullDownMenu {
-            IconPageMenuItem {
+            IconMenuItem {
                 text: "Genres"
                 iconSource: "qrc:/icon/genre"
-                nextPage: Qt.resolvedUrl("GenresPage.qml")
-                isReplace: true
+                onClicked: pageStack.replace(Qt.resolvedUrl("GenresPage.qml"))
             }
-            IconPageMenuItem {
+            IconMenuItem {
                 text: "Populars"
                 iconSource: "qrc:/icon/popular"
-                nextPage: Qt.resolvedUrl("PopularsPage.qml")
-                isReplace: true
+                onClicked: pageStack.replace(Qt.resolvedUrl("PopularsPage.qml"))
             }
         }
 

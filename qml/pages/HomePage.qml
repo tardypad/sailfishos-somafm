@@ -110,17 +110,15 @@ Page {
         }
 
         PullDownMenu {
-            IconPageMenuItem {
+            IconMenuItem {
                 text: "News"
                 iconSource: "qrc:/icon/news"
-                nextPage: Qt.resolvedUrl("NewsPage.qml")
-                isReplace: false
+                onClicked: pageStack.push(Qt.resolvedUrl("NewsPage.qml"))
             }
-            IconPageMenuItem {
+            IconMenuItem {
                 text: "Song bookmarks"
                 iconSource: "qrc:/icon/bookmark"
-                nextPage: Qt.resolvedUrl("BookmarksPage.qml")
-                isReplace: false
+                onClicked: pageStack.push(Qt.resolvedUrl("BookmarksPage.qml"))
             }
         }
 

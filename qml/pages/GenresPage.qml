@@ -21,17 +21,15 @@ Page {
         }
 
         PullDownMenu {
-            IconPageMenuItem {
+            IconMenuItem {
                 text: "Populars"
                 iconSource: "qrc:/icon/popular"
-                nextPage: Qt.resolvedUrl("PopularsPage.qml")
-                isReplace: true
+                onClicked: pageStack.replace(Qt.resolvedUrl("PopularsPage.qml"))
             }
-            IconPageMenuItem {
+            IconMenuItem {
                 text: "Favorites"
                 iconSource: "qrc:/icon/favorite"
-                nextPage: Qt.resolvedUrl("FavoritesPage.qml")
-                isReplace: true
+                onClicked: pageStack.replace(Qt.resolvedUrl("FavoritesPage.qml"))
             }
         }
 

@@ -81,7 +81,7 @@ ListItem {
     Component {
         id: contextMenu
         ContextMenu {
-            IconActionMenuItem {
+            IconMenuItem {
                 iconSource: "qrc:/icon/un-bookmark"
                 text: "Remove from bookmarks"
                 onClicked: remove()

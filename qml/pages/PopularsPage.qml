@@ -15,17 +15,15 @@ Page {
         delegate: PopularsDelegate { }
 
         PullDownMenu {
-            IconPageMenuItem {
+            IconMenuItem {
                 text: "Genres"
                 iconSource: "qrc:/icon/genre"
-                nextPage: Qt.resolvedUrl("GenresPage.qml")
-                isReplace: true
+                onClicked: pageStack.replace(Qt.resolvedUrl("GenresPage.qml"))
             }
-            IconPageMenuItem {
+            IconMenuItem {
                 text: "Favorites"
                 iconSource: "qrc:/icon/favorite"
-                nextPage: Qt.resolvedUrl("FavoritesPage.qml")
-                isReplace: true
+                onClicked: pageStack.replace(Qt.resolvedUrl("FavoritesPage.qml"))
             }
         }
 
