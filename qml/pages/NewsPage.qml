@@ -40,7 +40,7 @@ Page {
                 iconSource: "qrc:/icon/news"
             }
             model: _newsModel
-            delegate: NewsDelegate { }
+            delegate: NewsDelegate {  }
             section {
                 property: 'dateGroup'
                 delegate: SectionHeader {
@@ -50,7 +50,11 @@ Page {
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: drawer.hide()
+                propagateComposedEvents: true
+                onClicked: {
+                    mouse.accepted = false
+                    drawer.hide()
+                }
                 onPressAndHold: showSupportBanner();
             }
 
@@ -74,6 +78,7 @@ Page {
             onTriggered: {
                 supportPageHeader.text = _newsModel.banner()
                 showSupportBanner();
+                listView.footer = Qt.createComponent("components/NewsPageFooter.qml")
             }
         }
 

@@ -14,5 +14,7 @@
         <file alias="un-bookmark">images/icons/un-bookmark.png</file>
         <file alias="un-favorite">images/icons/un-favorite.png</file>
         <file alias="support">images/icons/support.png</file>
+        <file alias="facebook">images/icons/facebook.png</file>
+        <file alias="twitter">images/icons/twitter.png</file>
     </qresource>
 </RCC>

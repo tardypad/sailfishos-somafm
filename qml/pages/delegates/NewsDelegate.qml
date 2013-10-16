@@ -5,7 +5,7 @@ Item {
     id: newsDelegate
     x: Theme.paddingLarge
     width: parent.width - 2*Theme.paddingLarge
-    height: childrenRect.height + Theme.paddingLarge
+    height: dateLabel.height + contentLabel.height + Theme.paddingLarge
 
     Label {
         id: dateLabel
