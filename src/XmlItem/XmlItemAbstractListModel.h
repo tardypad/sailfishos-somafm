@@ -11,6 +11,7 @@ class XmlItemAbstractListModel : public QAbstractListModel
 public:
     explicit XmlItemAbstractListModel(XmlItem* xmlItemPrototype, QObject *parent = 0);
     ~XmlItemAbstractListModel();
+    virtual QHash<int,QByteArray> roleNames() const = 0;
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     virtual bool setData (const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
