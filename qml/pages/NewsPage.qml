@@ -10,11 +10,11 @@ Page {
         id: drawer
 
         open: false
-        backgroundSize: Screen.height / 2
         anchors.fill: parent
 
         background: Item {
             anchors.fill: parent
+            height: supportPageHeader.height
 
             SupportPageHeader {
                 id: supportPageHeader
