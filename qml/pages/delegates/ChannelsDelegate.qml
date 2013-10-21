@@ -9,6 +9,12 @@ ListItem {
     contentHeight: Theme.itemSizeLarge
     width: listView.width
 
+    Rectangle {
+        anchors.fill: parent
+        opacity: isBookmark ? 0.1 : 0
+        color: Theme.highlightBackgroundColor
+    }
+
     Image {
         id: channelImage
         smooth: true
