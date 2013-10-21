@@ -4,11 +4,17 @@
 
 #include "../XmlItem/XmlItem.h"
 #include "Channel.h"
+#include "ChannelsModel.h"
 
 ChannelsProxyModel::ChannelsProxyModel(QObject *parent) :
     XmlItemProxyModel(parent)
 {
     setSortCaseSensitivity(Qt::CaseInsensitive);
+}
+
+ChannelsModel *ChannelsProxyModel::channelsSourceModel()
+{
+    return (ChannelsModel*) sourceModel();
 }
 
 void ChannelsProxyModel::sortByListeners()
@@ -33,4 +39,11 @@ void ChannelsProxyModel::filterFavorites()
 {
     filterBookmarks();
 }
+
+int ChannelsProxyModel::maximumListeners()
+{
+    return channelsSourceModel()->maximumListeners();
+}
+
+
 

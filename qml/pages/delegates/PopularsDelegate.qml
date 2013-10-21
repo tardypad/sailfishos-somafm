@@ -2,6 +2,8 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 ChannelsDelegate {
+    property int maximumListeners: _channelsModel.maximumListeners()
+
     Label {
         id: channelListenersLabel
         text: listeners
@@ -29,6 +31,7 @@ ChannelsDelegate {
             right: parent.right
             rightMargin: Theme.paddingSmall
         }
+        opacity: 0.1 + (listeners / maximumListeners) * 0.9
         fillMode: Image.PreserveAspectFit
     }
 }

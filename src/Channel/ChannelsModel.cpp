@@ -101,6 +101,7 @@ XmlItem* ChannelsModel::parseXmlItem()
 void ChannelsModel::parseAfter()
 {
     duplicateGenre();
+    calculMaximumListeners();
 }
 
 void ChannelsModel::duplicateGenre()
@@ -136,4 +137,17 @@ void ChannelsModel::addToFavorites(XmlItem *xmlItem)
 void ChannelsModel::removeFromFavorites(XmlItem *xmlItem)
 {
     removeFromBookmarks(xmlItem);
+}
+
+void ChannelsModel::calculMaximumListeners()
+{
+    int max = 0, channelListeners;
+
+    for(int row = 0; row < m_list.size(); ++row) {
+        channelListeners = m_list.at(row)->data(Channel::ListenersRole).toInt() ;
+        if (channelListeners > max)
+            max = channelListeners;
+    }
+
+    setMaximumListeners(max);
 }
