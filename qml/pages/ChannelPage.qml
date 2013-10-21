@@ -45,6 +45,11 @@ Page {
                     }
                 }
             }
+            IconMenuItem {
+                text: "Play"
+                iconSource: "image://theme/icon-l-play"
+                onClicked: play()
+            }
         }
 
         LoadingIndicator {
@@ -59,6 +64,10 @@ Page {
         }
 
         VerticalScrollDecorator { flickable: listView }
+    }
+
+    function play() {
+        _player.play(_channelsModel.itemAt(channelIndex))
     }
 
     Component.onCompleted: {

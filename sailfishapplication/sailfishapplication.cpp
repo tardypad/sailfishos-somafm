@@ -82,7 +82,16 @@ void Sailfish::setView(QQuickView *view, const QString &file)
     if(file.contains(":")) {
         view->setSource(QUrl(file));
     } else {
-        view->setSource(QUrl::fromLocalFile(path + file));
+        if(QCoreApplication::applicationFilePath().startsWith("/opt/sdk/")) {
+            // Quick deployed under /opt/sdk
+            // parse the base path from application binary's path and use it as base
+            QString basePath = QCoreApplication::applicationFilePath();
+            basePath.chop(basePath.length() -  basePath.indexOf("/", 9)); // first index after /opt/sdk/
+            view->setSource(QUrl::fromLocalFile(basePath + path + file));
+        } else {
+            // Otherwise use deployement path as is
+            view->setSource(QUrl::fromLocalFile(path + file));
+        }
     }
 }
 
