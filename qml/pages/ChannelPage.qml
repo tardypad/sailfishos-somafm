@@ -37,11 +37,9 @@ Page {
                 text: !isFavorite ? "Add to Favorites" : "Remove from Favorites"
                 onClicked: {
                     if (!isFavorite) {
-                        _favoritesManager.addFavorite(_channelsModel.itemAt(channelIndex))
-                        isFavorite = true
+                        addToFavorites()
                     } else {
-                        _favoritesManager.removeFavorite(_channelsModel.itemAt(channelIndex))
-                        isFavorite = false
+                        removeFromFavorites()
                     }
                 }
             }
@@ -68,6 +66,16 @@ Page {
 
     function play() {
         _player.play(_channelsModel.itemAt(channelIndex))
+    }
+
+    function addToFavorites() {
+        _favoritesManager.addFavorite(_channelsModel.itemAt(channelIndex))
+        isFavorite = true
+    }
+
+    function removeFromFavorites() {
+        _favoritesManager.removeFavorite(_channelsModel.itemAt(channelIndex))
+        isFavorite = false
     }
 
     Component.onCompleted: {
