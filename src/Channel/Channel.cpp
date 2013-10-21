@@ -13,7 +13,8 @@ Channel::Channel(QObject *parent) :
     m_dj(""),
     m_genres(""),
     m_listeners(-1),
-    m_sortGenre("")
+    m_sortGenre(""),
+    m_maximumListeners(0)
 {
 }
 
@@ -31,6 +32,7 @@ QHash<int, QByteArray> Channel::roleNames()
     roleNames[GenresRole] = "genres";
     roleNames[ListenersRole] = "listeners";
     roleNames[SortGenreRole] = "sortGenre";
+    roleNames[MaximumListenersRole] = "maximumListeners";
 
     return roleNames;
 }
@@ -77,6 +79,8 @@ QVariant Channel::data(int role) const
         return listeners();
     case SortGenreRole:
         return sortGenre();
+    case MaximumListenersRole:
+        return maximumListeners();
     }
 
     return XmlItem::data(role);
@@ -114,6 +118,9 @@ bool Channel::setData(const QVariant &value, int role)
         return true;
     case SortGenreRole:
         setSortGenre(value.toString());
+        return true;
+    case MaximumListenersRole:
+        setMaximumListeners(value.toInt());
         return true;
     }
 

@@ -106,3 +106,10 @@ void XmlItemAbstractListModel::setDataItem(XmlItem *xmlItem, const QVariant &val
         }
     }
 }
+
+void XmlItemAbstractListModel::setDataAll(const QVariant &value, int role)
+{
+    for (int row = 0; row < m_list.size(); ++row) {
+        setData(index(row) ,value, role);
+    }
+}

@@ -12,9 +12,7 @@ Page {
             text: "Populars"
             iconSource: "qrc:/icon/popular"
         }
-        delegate: PopularsDelegate {
-            maximumListeners: _channelsModel.maximumListeners()
-        }
+        delegate: PopularsDelegate { }
 
         PullDownMenu {
             IconMenuItem {

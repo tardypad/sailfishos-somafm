@@ -26,7 +26,8 @@ public:
         DjRole,
         GenresRole,
         ListenersRole,
-        SortGenreRole
+        SortGenreRole,
+        MaximumListenersRole
     };
 
 public:
@@ -50,6 +51,7 @@ public:
     inline QStringList genres() const { return m_genres; }
     inline int listeners() const { return m_listeners; }
     inline QString sortGenre() const { return m_sortGenre; }
+    inline int maximumListeners() const { return m_maximumListeners; }
 
     inline void setId(QString id) { m_id = id; }
     inline void setName(QString name) { m_name = name; }
@@ -61,7 +63,8 @@ public:
     inline void setGenres(QStringList genres) { m_genres = genres; }
     inline void setListeners(int listeners) { m_listeners = listeners; }
     inline void setSortGenre(QString sortGenre) { m_sortGenre = sortGenre; }
-    
+    inline void setMaximumListeners(int maximumListeners) { m_maximumListeners = maximumListeners; }
+
 private:
     QString m_id;
     QString m_name;
@@ -73,6 +76,7 @@ private:
     QStringList m_genres;
     int m_listeners;
     QString m_sortGenre;
+    int m_maximumListeners;
 };
 
 #endif // CHANNEL_H

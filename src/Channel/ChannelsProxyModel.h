@@ -4,7 +4,6 @@
 #include "../XmlItem/XmlItemProxyModel.h"
 
 class XmlItem;
-class ChannelsModel;
 
 class ChannelsProxyModel : public XmlItemProxyModel
 {
@@ -15,10 +14,6 @@ public:
     Q_INVOKABLE void sortByGenres();
     Q_INVOKABLE void sortByName();
     Q_INVOKABLE void filterFavorites();
-    Q_INVOKABLE int maximumListeners();
-
-protected:
-    ChannelsModel* channelsSourceModel();
 };
 
 #endif // CHANNELSPROXYMODEL_H

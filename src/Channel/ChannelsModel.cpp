@@ -149,5 +149,5 @@ void ChannelsModel::calculMaximumListeners()
             max = channelListeners;
     }
 
-    setMaximumListeners(max);
+    setDataAll(max, Channel::MaximumListenersRole);
 }

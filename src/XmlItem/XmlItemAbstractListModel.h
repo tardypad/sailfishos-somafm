@@ -24,6 +24,7 @@ protected:
     void removeXmlItemAt(int row);
     QModelIndex indexOf(XmlItem* xmlItem) const;
     void setDataItem(XmlItem* xmlItem, const QVariant &value, int role);
+    void setDataAll(const QVariant &value, int role);
 
 protected:
     QList<XmlItem*> m_list;
