@@ -9,7 +9,7 @@ ApplicationWindow
 {
     initialPage: Component { HomePage { } }
     cover: CoverPage { }
-    bottomMargin: controlPanel.height
+    bottomMargin: controlPanel.enabled ? controlPanel.height : 0
 
     ControlPanel {
         id: controlPanel
