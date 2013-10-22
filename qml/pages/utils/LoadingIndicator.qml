@@ -11,6 +11,7 @@ Item {
     property string defaultErrorText
     property string networkErrorText
     property string parsingErrorText
+    property bool errorDisplayed: false
 
     parent: flickable.contentItem
 
@@ -72,6 +73,7 @@ Item {
     }
 
     function displayError(text, hintText) {
+        errorDisplayed = true
         loader.sourceComponent = errorComponent
         if (typeof(text) != "undefined") loader.item.text = text
         if (typeof(hintText) != "undefined") loader.item.hintText = hintText

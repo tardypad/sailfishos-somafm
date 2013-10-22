@@ -30,7 +30,7 @@ Page {
         }
 
         ViewPlaceholder {
-            enabled: gridView.count === 0 && _favoritesManager.isEmpty()
+            enabled: gridView.count === 0 && !indicator.running && !indicator.errorDisplayed &&_favoritesManager.isEmpty()
             text: "No Favorites"
             hintText: "You can favorite a channel to access it quicker"
         }
