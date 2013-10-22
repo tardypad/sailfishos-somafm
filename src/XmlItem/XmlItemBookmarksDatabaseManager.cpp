@@ -2,6 +2,8 @@
 
 #include <QDebug>
 #include <QStandardPaths>
+#include <QDir>
+#include <QFile>
 
 const QString XmlItemBookmarksDatabaseManager::_databaseName = "somafm.sqlite";
 
@@ -27,9 +29,25 @@ XmlItemBookmarksDatabaseManager::~XmlItemBookmarksDatabaseManager()
 bool XmlItemBookmarksDatabaseManager::openDatabase()
 {
     QString dbPath = QStandardPaths::locate(QStandardPaths::DataLocation, _databaseName);
+
+    if (dbPath.isEmpty()) {
+        dbPath = createDatabase();
+    }
+
     db.setDatabaseName(dbPath);
 
     return db.open();
+}
+
+QString XmlItemBookmarksDatabaseManager::createDatabase()
+{
+    QString dbDirPath = QStandardPaths::standardLocations(QStandardPaths::DataLocation).first();
+    QDir dbDir;
+    dbDir.mkpath(dbDirPath);
+    QString dbPath = dbDirPath.append(QDir::separator()).append(_databaseName);
+    QFile dbFile(dbPath);
+    dbFile.open(QIODevice::WriteOnly);
+    return dbPath;
 }
 
 void XmlItemBookmarksDatabaseManager::init()

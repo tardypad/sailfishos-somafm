@@ -22,6 +22,7 @@ public:
 protected:
     explicit XmlItemBookmarksDatabaseManager(QObject *parent = 0);
     bool openDatabase();
+    QString createDatabase();
     virtual void checkStructure() = 0;
     virtual void prepareQueries() = 0;
     void init();
