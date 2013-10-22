@@ -1,18 +1,21 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-Item {
+DockedPanel {
     id: controlPanel
 
     property string channelName
     property url channelImageUrl
+    property bool isPlaying: false
 
     width: parent.width
     height: Theme.itemSizeExtraLarge
-    enabled: false
+    dock: Dock.Bottom
+    enabled: !isPlaying
+    open: isPlaying
 
-    onEnabledChanged: {
-        if (enabled && !_content) {
+    onIsPlayingChanged: {
+        if (isPlaying && !_content) {
             _content = activeContent.createObject(controlPanel)
         }
     }
@@ -75,7 +78,7 @@ Item {
     Connections {
         target: _player
         onChannelChanged: {
-            enabled = true
+            isPlaying = true
             channelName = _player.channelName()
             channelImageUrl = _player.channelImageUrl()
         }

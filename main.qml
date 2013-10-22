@@ -9,10 +9,9 @@ ApplicationWindow
 {
     initialPage: Component { HomePage { } }
     cover: CoverPage { }
-    bottomMargin: controlPanel.enabled ? controlPanel.height : 0
+    bottomMargin: controlPanel.visibleSize
 
     ControlPanel {
         id: controlPanel
-        anchors.bottom: parent.bottom
     }
 }
