@@ -24,11 +24,11 @@ License:    LICENSE
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  SomaFM.yaml
 Requires:   sailfishsilica-qt5
-Requires:   mapplauncherd-booster-silica-qt5
-BuildRequires:  pkgconfig(qdeclarative5-boostable)
-BuildRequires:  pkgconfig(Qt5Core)
-BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(Qt5Qml)
+BuildRequires:  pkgconfig(Qt5Core)
+BuildRequires:  pkgconfig(sailfishapp)
+BuildRequires:  desktop-file-utils
 
 %description
 
@@ -45,7 +45,7 @@ BuildRequires:  pkgconfig(Qt5Quick)
 
 %qtc_qmake5 
 
-%qtc_make %{?jobs:-j%jobs}
+%qtc_make %{?_smp_mflags}
 
 # >> build post
 # << build post
@@ -59,11 +59,19 @@ rm -rf %{buildroot}
 # >> install post
 # << install post
 
+desktop-file-install --delete-original       \
+  --dir %{buildroot}%{_datadir}/applications             \
+   %{buildroot}%{_datadir}/applications/*.desktop
+
 %files
 %defattr(-,root,root,-)
+%{_datadir}/icons/hicolor/90x90/apps/%{name}.png
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/%{name}/qml
+%{_bindir}
+/usr/bin
 /usr/share/SomaFM
 /usr/share/applications
-/usr/share/test
-/usr/bin
+/usr/share/icons/hicolor/90x90/apps
 # >> files
 # << files

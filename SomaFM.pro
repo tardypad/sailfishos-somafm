@@ -1,35 +1,34 @@
-# The name of your app
 TARGET = SomaFM
 
-# C++ sources
-SOURCES += main.cpp \
+CONFIG += sailfishapp
+
+SOURCES += \
     src/*.cpp \
     src/XmlItem/*.cpp \
     src/Channel/*.cpp \
     src/Song/*.cpp \
     src/News/*.cpp
 
-# C++ headers
-HEADERS += src/*.h \
+HEADERS += \
+    src/*.h \
     src/XmlItem/*.h \
     src/Channel/*.h \
     src/Song/*.h \
     src/News/*.h
 
-# QML files and folders
-qml.files = qml main.qml
-
-# The .desktop file
-desktop.files = SomaFM.desktop
-
-# Please do not modify the following line.
-include(sailfishapplication/sailfishapplication.pri)
-
 OTHER_FILES = \
+    qml/*.qml \
+    qml/cover/*.qml \
+    qml/pages/*.qml \
+    qml/pages/delegates/*.qml \
+    qml/pages/components/*.qml \
+    qml/pages/utils/*.qml \
     rpm/SomaFM.yaml \
-    rpm/SomaFM.spec
+    rpm/SomaFM.spec \
+    SomaFM.desktop
 
 RESOURCES += SomaFM.qrc
 
-QT += network\
+QT += \
+    network\
     sql

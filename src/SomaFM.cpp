@@ -1,11 +1,13 @@
-#include <QGuiApplication>
-#include <QQuickView>
+#ifdef QT_QML_DEBUG
+#include <QtQuick>
+#endif
 
-#include "sailfishapplication.h"
+#include <sailfishapp.h>
 
 #include <QDebug>
+#include <QGuiApplication>
+#include <QQuickView>
 #include <QQmlContext>
-#include <QSortFilterProxyModel>
 #include <QtQml>
 
 #include "src/XmlItem/XmlItem.h"
@@ -19,10 +21,10 @@
 #include "src/News/NewsModel.h"
 #include "src/Player.h"
 
-Q_DECL_EXPORT int main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-    QScopedPointer<QGuiApplication> app(Sailfish::createApplication(argc, argv));
-    QScopedPointer<QQuickView> view(Sailfish::createView());
+    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
+    QScopedPointer<QQuickView> view(SailfishApp::createView());
 
     QQmlContext* context = view->rootContext();
 
@@ -51,8 +53,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QScopedPointer<Player> player(new Player());
     context->setContextProperty("_player", player.data());
 
-    Sailfish::setView(view.data(), "main.qml");
-    Sailfish::showView(view.data());
+    view->setSource(SailfishApp::pathTo("qml/SomaFM.qml"));
+    view->show();
 
     return app->exec();
 }

@@ -1,8 +1,6 @@
 [Desktop Entry]
 Type=Application
+X-Nemo-Application-Type=silica-qt5
 Name=SomaFM
-Icon=icon-launcher-gallery
-Exec=invoker --type=silica-qt5 -s /usr/bin/SomaFM
-Comment=Sailfish UI application
-
-
+Icon=/usr/share/icons/hicolor/90x90/apps/SomaFM.png
+Exec=SomaFM

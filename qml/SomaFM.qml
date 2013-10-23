@@ -1,9 +1,9 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import "qml/pages"
-import "qml/cover"
-import "qml/pages/components"
+import "pages"
+import "cover"
+import "pages/components"
 
 ApplicationWindow
 {
