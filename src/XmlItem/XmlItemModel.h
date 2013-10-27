@@ -26,6 +26,7 @@ signals:
     void dataFetched();
     void networkError();
     void parsingError();
+    void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
 
 protected slots:
     void addToBookmarks(XmlItem* xmlItem);

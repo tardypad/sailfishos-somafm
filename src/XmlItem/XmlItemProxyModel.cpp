@@ -38,6 +38,7 @@ void XmlItemProxyModel::init()
     connect(xmlItemSourceModel(), SIGNAL(dataFetched()), this, SIGNAL(dataFetched()));
     connect(xmlItemSourceModel(), SIGNAL(networkError()), this, SIGNAL(networkError()));
     connect(xmlItemSourceModel(), SIGNAL(parsingError()), this, SIGNAL(parsingError()));
+    connect(xmlItemSourceModel(), SIGNAL(downloadProgress(qint64,qint64)), this, SIGNAL(downloadProgress(qint64,qint64)));
 }
 
 void XmlItemProxyModel::fetch()

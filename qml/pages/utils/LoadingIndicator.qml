@@ -6,8 +6,8 @@ Item {
 
     property Item flickable
     property alias model: connections.target
-    property alias running: busyIndicator.running
-    property alias loadingText: label.text
+    property bool running: false
+    property alias loadingText: progressIndicator.label
     property string defaultErrorText
     property string networkErrorText
     property string parsingErrorText
@@ -17,28 +17,16 @@ Item {
 
     y: flickable.originY + (Screen.height - height) / 2
     width: parent.width - 2*Theme.paddingLarge
-    height: busyIndicator.height + label.height
+    height: progressIndicator.height
     anchors.horizontalCenter: parent.horizontalCenter
 
-    visible: busyIndicator.running
+    visible: running
 
-    BusyIndicator {
-        id: busyIndicator
-        size: BusyIndicatorSize.Large
+    ProgressBar {
+        id: progressIndicator
         anchors.horizontalCenter: parent.horizontalCenter
-    }
-
-    Label {
-        id: label
         width: parent.width
-        anchors {
-            top: busyIndicator.bottom
-            topMargin: Theme.paddingMedium
-        }
-        horizontalAlignment: Text.AlignHCenter
-        wrapMode: Text.Wrap
-        color: Theme.highlightColor
-        font.pixelSize: Theme.fontSizeMedium
+        indeterminate: true
     }
 
     Loader {
@@ -56,7 +44,6 @@ Item {
 
     Connections {
         id: connections
-        target: _channelsModel
         onDataFetched: stopLoadingAnimation()
         onNetworkError: {
             stopLoadingAnimation()
@@ -66,10 +53,22 @@ Item {
             stopLoadingAnimation()
             displayError("Parsing error", parsingErrorText)
         }
+        onDownloadProgress: {
+            updateProgress(bytesReceived, bytesTotal)
+        }
     }
 
     function stopLoadingAnimation() {
-        indicator.running = false
+        running = false
+    }
+
+    function updateProgress(bytesReceived, bytesTotal) {
+        if (bytesTotal === -1) {
+            progressIndicator.indeterminate = true
+        } else {
+            progressIndicator.indeterminate = false
+            progressIndicator.value = bytesReceived / bytesTotal
+        }
     }
 
     function displayError(text, hintText) {
