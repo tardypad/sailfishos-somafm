@@ -11,18 +11,38 @@ Player::Player(QObject *parent) :
 void Player::play(Channel *channel)
 {
     setChannel(channel);
+    emit playStarted();
+}
+
+void Player::play()
+{
+    if (!hasCurrentChannel()) return;
+
+    emit playStarted();
+}
+
+void Player::pause()
+{
+    if (!hasCurrentChannel()) return;
+
+    emit pauseStarted();
 }
 
 QString Player::channelName()
 {
-    if (m_channel == NULL) return "";
+    if (!hasCurrentChannel()) return "";
 
     return channel()->data(Channel::NameRole).toString();
 }
 
 QString Player::channelImageUrl()
 {
-    if (m_channel == NULL) return "";
+    if (!hasCurrentChannel()) return "";
 
     return channel()->data(Channel::ImageUrlRole).toString();
+}
+
+bool Player::hasCurrentChannel()
+{
+    return m_channel != NULL;
 }
