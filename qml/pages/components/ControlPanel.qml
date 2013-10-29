@@ -11,67 +11,63 @@ DockedPanel {
     height: Theme.itemSizeExtraLarge
     dock: Dock.Bottom
 
-    Item {
-        anchors.fill: parent
-
-        Image {
-            id: channelImage
-            height: Theme.iconSizeLarge
-            width: Theme.iconSizeLarge
-            anchors {
-                left: parent.left
-                leftMargin: Theme.paddingLarge
-                verticalCenter: parent.verticalCenter
-            }
-
-            BusyIndicator {
-                size: BusyIndicatorSize.Small
-                running: channelImage.status === Image.Loading
-                anchors.centerIn: parent
-            }
+    Image {
+        id: channelImage
+        height: Theme.iconSizeLarge
+        width: Theme.iconSizeLarge
+        anchors {
+            left: parent.left
+            leftMargin: Theme.paddingLarge
+            verticalCenter: parent.verticalCenter
         }
 
-        Label {
-            id: channelLabel
-            anchors {
-                left: channelImage.right
-                leftMargin: Theme.paddingMedium
-                right: mediaButtonPause.left
-                rightMargin: Theme.paddingMedium
-                verticalCenter: parent.verticalCenter
-            }
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            truncationMode: TruncationMode.Fade
-            maximumLineCount: 2
+        BusyIndicator {
+            size: BusyIndicatorSize.Small
+            running: channelImage.status === Image.Loading
+            anchors.centerIn: parent
         }
+    }
 
-        IconButton {
-            id: mediaButtonPause
-            icon.width: Theme.iconSizeLarge
-            icon.height: Theme.iconSizeLarge
-            anchors {
-                right: parent.right
-                rightMargin: Theme.paddingLarge
-                verticalCenter: parent.verticalCenter
-            }
-            icon.asynchronous: true
-            icon.source: "image://theme/icon-l-pause"
-            onClicked: pause()
+    Label {
+        id: channelLabel
+        anchors {
+            left: channelImage.right
+            leftMargin: Theme.paddingMedium
+            right: mediaButtonPause.left
+            rightMargin: Theme.paddingMedium
+            verticalCenter: parent.verticalCenter
         }
+        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        truncationMode: TruncationMode.Fade
+        maximumLineCount: 2
+    }
 
-        IconButton {
-            id: mediaButtonPlay
-            icon.width: Theme.iconSizeLarge
-            icon.height: Theme.iconSizeLarge
-            anchors {
-                right: parent.right
-                rightMargin: Theme.paddingLarge
-                verticalCenter: parent.verticalCenter
-            }
-            icon.asynchronous: true
-            icon.source: "image://theme/icon-l-play"
-            onClicked: play()
+    IconButton {
+        id: mediaButtonPause
+        icon.width: Theme.iconSizeLarge
+        icon.height: Theme.iconSizeLarge
+        anchors {
+            right: parent.right
+            rightMargin: Theme.paddingLarge
+            verticalCenter: parent.verticalCenter
         }
+        icon.asynchronous: true
+        icon.source: "image://theme/icon-l-pause"
+        onClicked: pause()
+    }
+
+    IconButton {
+        id: mediaButtonPlay
+        icon.width: Theme.iconSizeLarge
+        icon.height: Theme.iconSizeLarge
+        anchors {
+            right: parent.right
+            rightMargin: Theme.paddingLarge
+            verticalCenter: parent.verticalCenter
+        }
+        icon.asynchronous: true
+        icon.source: "image://theme/icon-l-play"
+        onClicked: play()
     }
 
     Connections {
@@ -120,4 +116,6 @@ DockedPanel {
                 restoreEntryValues: false
             }
         }]
+
+    onOpenChanged: if (!open && state === "playing") show()
 }
