@@ -35,7 +35,6 @@ Page {
 
         LoadingIndicator {
             id: indicator
-            running: !_channelsModel.hasDataBeenFetchedOnce()
             model: _channelsModel
             flickable: listView
             loadingText: "Loading channels list"

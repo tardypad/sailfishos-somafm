@@ -6,12 +6,10 @@ Item {
 
     property Item flickable
     property alias model: connections.target
-    property bool running: false
     property alias loadingText: progressIndicator.label
     property string defaultErrorText
     property string networkErrorText
     property string parsingErrorText
-    property bool errorDisplayed: false
 
     parent: flickable.contentItem
 
@@ -20,7 +18,7 @@ Item {
     height: progressIndicator.height
     anchors.horizontalCenter: parent.horizontalCenter
 
-    visible: running
+    state: "complete"
 
     ProgressBar {
         id: progressIndicator
@@ -30,7 +28,7 @@ Item {
     }
 
     Loader {
-        id: loader
+        id: errorLoader
     }
 
     Component {
@@ -39,27 +37,31 @@ Item {
             enabled: true
             text: "An error occured"
             hintText: defaultErrorText
+
+            IconButton {
+                anchors.horizontalCenter: parent.horizontalCenter
+                y: parent.height + Theme.paddingLarge
+                icon.width: Theme.iconSizeLarge
+                icon.height: Theme.iconSizeLarge
+                icon.asynchronous: true
+                icon.source: "image://theme/icon-m-refresh"
+                onClicked: fetch()
+            }
         }
     }
 
     Connections {
         id: connections
-        onDataFetched: stopLoadingAnimation()
-        onNetworkError: {
-            stopLoadingAnimation()
-            displayError("Network error", networkErrorText)
-        }
-        onParsingError: {
-            stopLoadingAnimation()
-            displayError("Parsing error", parsingErrorText)
-        }
-        onDownloadProgress: {
-            updateProgress(bytesReceived, bytesTotal)
-        }
+        onDataFetched: state = "complete"
+        onFetchStarted: state = "fetching"
+        onNetworkError: displayError("Network error", networkErrorText)
+        onParsingError: displayError("Parsing error", parsingErrorText)
+        onDownloadProgress: updateProgress(bytesReceived, bytesTotal)
     }
 
-    function stopLoadingAnimation() {
-        running = false
+    function fetch() {
+        progressIndicator.indeterminate = true
+        model.fetch()
     }
 
     function updateProgress(bytesReceived, bytesTotal) {
@@ -72,11 +74,52 @@ Item {
     }
 
     function displayError(text, hintText) {
-        errorDisplayed = true
-        loader.sourceComponent = errorComponent
-        if (typeof(text) != "undefined") loader.item.text = text
-        if (typeof(hintText) != "undefined") loader.item.hintText = hintText
+        state = "error"
+        errorLoader.item.text = text
+        errorLoader.item.hintText = hintText
     }
 
-    Component.onCompleted: loader.parent = flickable
+    states: [
+        State {
+            name: "fetching"
+            PropertyChanges {
+                target: loadingIndicator
+                visible: true
+            }
+            StateChangeScript {
+                script: {
+                    if (errorLoader.status === Loader.Ready)
+                        errorLoader.item.visible = false
+                }
+            }
+        },
+        State {
+            name: "error"
+            PropertyChanges {
+                target: loadingIndicator
+                visible: false
+            }
+            StateChangeScript {
+                script: {
+                    if (errorLoader.status === Loader.Null) {
+                        errorLoader.parent = flickable
+                        errorLoader.sourceComponent = errorComponent
+                    }
+                    errorLoader.item.visible = true
+                }
+            }
+        },
+        State {
+            name: "complete"
+            PropertyChanges {
+                target: loadingIndicator
+                visible: false
+            }
+            StateChangeScript {
+                script: {
+                    if (errorLoader.status === Loader.Ready)
+                        errorLoader.item.visible = false
+                }
+            }
+        }]
 }

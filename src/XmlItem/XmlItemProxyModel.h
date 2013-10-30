@@ -27,6 +27,7 @@ protected:
     XmlItemModel* xmlItemSourceModel();
 
 signals:
+    void fetchStarted();
     void dataFetched();
     void networkError();
     void parsingError();

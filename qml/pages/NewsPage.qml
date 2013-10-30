@@ -60,7 +60,6 @@ Page {
 
             LoadingIndicator {
                 id: indicator
-                running: !_newsModel.hasDataBeenFetchedOnce()
                 model: _newsModel
                 flickable: listView
                 loadingText: "Loading news"

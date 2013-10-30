@@ -43,6 +43,8 @@ void XmlItemModel::fetch()
     QNetworkRequest request(resourceUrl());
     m_currentReply = m_networkManager->get(request);
 
+    emit fetchStarted();
+
     connect(m_currentReply, SIGNAL(finished()), this, SLOT(parse()));
     connect(m_currentReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SIGNAL(networkError()));
     connect(m_currentReply, SIGNAL(downloadProgress(qint64,qint64)), this, SIGNAL(downloadProgress(qint64,qint64)));

@@ -23,6 +23,7 @@ public:
     Q_INVOKABLE bool hasDataBeenFetchedOnce() { return m_hasDataBeenFetchedOnce; }
 
 signals:
+    void fetchStarted();
     void dataFetched();
     void networkError();
     void parsingError();

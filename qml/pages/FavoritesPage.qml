@@ -30,14 +30,13 @@ Page {
         }
 
         ViewPlaceholder {
-            enabled: gridView.count === 0 && !indicator.running && !indicator.errorDisplayed &&_favoritesManager.isEmpty()
+            enabled: gridView.count === 0 && indicator.state == "complete" &&_favoritesManager.isEmpty()
             text: "No Favorites"
             hintText: "You can favorite a channel to access it quicker"
         }
 
         LoadingIndicator {
             id: indicator
-            running: !_channelsModel.hasDataBeenFetchedOnce()
             model: _channelsModel
             flickable: gridView
             loadingText: "Loading channels list"

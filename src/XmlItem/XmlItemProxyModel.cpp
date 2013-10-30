@@ -35,6 +35,7 @@ bool XmlItemProxyModel::filterAcceptsRow(int source_row, const QModelIndex &sour
 
 void XmlItemProxyModel::init()
 {
+    connect(xmlItemSourceModel(), SIGNAL(fetchStarted()), this, SIGNAL(fetchStarted()));
     connect(xmlItemSourceModel(), SIGNAL(dataFetched()), this, SIGNAL(dataFetched()));
     connect(xmlItemSourceModel(), SIGNAL(networkError()), this, SIGNAL(networkError()));
     connect(xmlItemSourceModel(), SIGNAL(parsingError()), this, SIGNAL(parsingError()));

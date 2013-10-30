@@ -52,7 +52,6 @@ Page {
 
         LoadingIndicator {
             id: indicator
-            running: true
             model: _channelSongsModel
             flickable: listView
             loadingText: "Loading songs list"
