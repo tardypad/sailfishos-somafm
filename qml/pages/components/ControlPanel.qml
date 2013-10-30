@@ -11,6 +11,16 @@ DockedPanel {
     height: Theme.itemSizeExtraLarge
     dock: Dock.Bottom
 
+    MouseArea {
+        anchors.fill: parent
+        onClicked: console.log('go to channel page')
+    }
+
+    Rectangle {
+        anchors.fill: parent
+        color: Theme.secondaryHighlightColor
+    }
+
     Image {
         id: channelImage
         height: Theme.iconSizeLarge
