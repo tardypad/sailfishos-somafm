@@ -85,13 +85,13 @@ Page {
     }
 
     function addToFavorites() {
-        _favoritesManager.addFavorite(_channelsModel.itemAt(channelIndex))
-        isFavorite = true
+        var result = _favoritesManager.addFavorite(_channelsModel.itemAt(channelIndex))
+        if (result) isFavorite = true
     }
 
     function removeFromFavorites() {
-        _favoritesManager.removeFavorite(_channelsModel.itemAt(channelIndex))
-        isFavorite = false
+        var result = _favoritesManager.removeFavorite(_channelsModel.itemAt(channelIndex))
+        if (result) isFavorite = false
     }
 
     Component.onCompleted: {
