@@ -18,6 +18,7 @@ Page {
     property string genre
     property int listeners
     property bool isFavorite
+    property bool isPlaying
 
     SilicaListView {
         id: listView
@@ -44,9 +45,15 @@ Page {
                 }
             }
             IconMenuItem {
-                text: "Play"
-                iconSource: "image://theme/icon-l-play"
-                onClicked: play()
+                iconSource: !isPlaying ? "image://theme/icon-l-play" : "image://theme/icon-l-pause"
+                text: !isPlaying ? "Play" : "Pause"
+                onClicked: {
+                    if (!isPlaying) {
+                        play()
+                    } else {
+                        pause()
+                    }
+                }
             }
         }
 
@@ -67,6 +74,16 @@ Page {
         _player.play(_channelsModel.itemAt(channelIndex))
     }
 
+    function pause() {
+        _player.pause()
+    }
+
+    Connections {
+        target: _player
+        onPlayStarted: isPlaying = true
+        onPauseStarted: isPlaying = false
+    }
+
     function addToFavorites() {
         _favoritesManager.addFavorite(_channelsModel.itemAt(channelIndex))
         isFavorite = true
@@ -80,6 +97,7 @@ Page {
     Component.onCompleted: {
         _channelSongsModel.setChannel(_channelsModel.itemAt(channelIndex))
         _channelSongsModel.fetch()
+        isPlaying = _player.isPlaying(id)
     }
 
     onStatusChanged: {

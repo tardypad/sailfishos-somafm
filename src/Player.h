@@ -14,11 +14,16 @@ public:
     Q_INVOKABLE void play(Channel* channel);
     Q_INVOKABLE void play();
     Q_INVOKABLE void pause();
+    Q_INVOKABLE bool isPlaying(QString id);
+    Q_INVOKABLE QString channelId();
     Q_INVOKABLE QString channelName();
     Q_INVOKABLE QString channelImageUrl();
 
     inline Channel* channel() const { return m_channel; }
+    inline bool isPlaying() const { return m_isPlaying; }
+
     inline void setChannel(Channel* channel) { m_channel = channel; emit channelChanged(); }
+    inline void setIsPlaying(bool isPlaying) { m_isPlaying = isPlaying; }
 
 protected:
     bool hasCurrentChannel();
@@ -30,6 +35,7 @@ signals:
 
 private:
     Channel* m_channel;
+    bool m_isPlaying;
 };
 
 #endif // PLAYER_H

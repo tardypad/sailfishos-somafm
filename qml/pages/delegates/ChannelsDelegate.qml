@@ -63,7 +63,12 @@ ListItem {
         maximumLineCount: 2
     }
 
-    onPressAndHold: showMenu({"isFavorite": isBookmark})
+    onPressAndHold: {
+        showMenu({
+                     "isFavorite": isBookmark,
+                     "isPlaying" : _player.isPlaying(id)
+                 })
+    }
 
     onClicked: {
         pageStack.push(Qt.resolvedUrl("../ChannelPage.qml"),
@@ -87,6 +92,10 @@ ListItem {
         _player.play(listView.model.itemAt(index))
     }
 
+    function pause() {
+        _player.pause()
+    }
+
     function addFavorite() {
         _favoritesManager.addFavorite(listView.model.itemAt(index))
     }
@@ -99,11 +108,18 @@ ListItem {
         id: contextMenu
         ContextMenu {
             property bool isFavorite
+            property bool isPlaying
 
             IconMenuItem {
-                text: "Play"
-                iconSource: "image://theme/icon-l-play"
-                onClicked: play()
+                iconSource: !isPlaying ? "image://theme/icon-l-play" : "image://theme/icon-l-pause"
+                text: !isPlaying ? "Play" : "Pause"
+                onClicked: {
+                    if (!isPlaying) {
+                        play()
+                    } else {
+                        pause()
+                    }
+                }
             }
 
             IconMenuItem {
