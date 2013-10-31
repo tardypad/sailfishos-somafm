@@ -80,7 +80,7 @@ Page {
 
     Connections {
         target: _player
-        onPlayStarted: isPlaying = true
+        onPlayStarted: isPlaying = _player.isPlaying(id)
         onPauseStarted: isPlaying = false
     }
 
