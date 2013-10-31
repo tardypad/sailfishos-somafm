@@ -83,6 +83,10 @@ ListItem {
                        )
     }
 
+    function play() {
+        _player.play(listView.model.itemAt(index))
+    }
+
     function addFavorite() {
         _favoritesManager.addFavorite(listView.model.itemAt(index))
     }
@@ -95,6 +99,12 @@ ListItem {
         id: contextMenu
         ContextMenu {
             property bool isFavorite
+
+            IconMenuItem {
+                text: "Play"
+                iconSource: "image://theme/icon-l-play"
+                onClicked: play()
+            }
 
             IconMenuItem {
                 iconSource: !isFavorite ? "qrc:/icon/favorite" : "qrc:/icon/un-favorite"
