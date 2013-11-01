@@ -11,6 +11,7 @@ Page {
 
         open: false
         anchors.fill: parent
+        backgroundSize: Screen.height / 2
 
         background: Item {
             anchors.fill: parent
