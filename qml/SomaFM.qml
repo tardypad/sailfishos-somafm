@@ -8,10 +8,20 @@ import "pages/components"
 ApplicationWindow
 {
     initialPage: Component { HomePage { } }
-    cover: CoverPage { }
+    cover: DefaultCover { }
     bottomMargin: controlPanel.visibleSize
 
     ControlPanel {
         id: controlPanel
+    }
+
+    Connections {
+        target: controlPanel
+        onOpenChanged: {
+            if (controlPanel.open)
+                cover = Qt.resolvedUrl("cover/PlayerCover.qml")
+            else
+                cover = Qt.resolvedUrl("cover/DefaultCover.qml")
+        }
     }
 }

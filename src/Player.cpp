@@ -1,5 +1,7 @@
 #include "Player.h"
 
+#include <QDebug>
+
 #include "Channel/Channel.h"
 
 Player::Player(QObject *parent) :
@@ -53,6 +55,13 @@ QString Player::channelImageUrl()
     if (!hasCurrentChannel()) return "";
 
     return channel()->data(Channel::ImageUrlRole).toString();
+}
+
+QString Player::channelImageMediumUrl()
+{
+    if (!hasCurrentChannel()) return "";
+
+    return channel()->data(Channel::ImageMediumUrlRole).toString();
 }
 
 bool Player::hasCurrentChannel()
