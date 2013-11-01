@@ -74,6 +74,13 @@ void XmlItemAbstractListModel::appendXmlItem(XmlItem *xmlItem)
     endInsertRows();
 }
 
+void XmlItemAbstractListModel::appendXmlItems(QList<XmlItem *> xmlItemsList)
+{
+    beginInsertRows(QModelIndex(), m_list.size(), m_list.size() + xmlItemsList.size() - 1);
+    m_list.append(xmlItemsList);
+    endInsertRows();
+}
+
 void XmlItemAbstractListModel::removeXmlItemAt(int row)
 {
     beginRemoveRows(QModelIndex(), row, row);

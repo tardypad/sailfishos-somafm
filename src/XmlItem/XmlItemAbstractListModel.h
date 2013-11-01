@@ -22,6 +22,7 @@ public:
 protected:
     void clear();
     void appendXmlItem(XmlItem* xmlItem);
+    void appendXmlItems(QList<XmlItem*> xmlItemsList);
     void removeXmlItemAt(int row);
     QModelIndex indexOf(XmlItem* xmlItem) const;
     void setDataItem(XmlItem* xmlItem, const QVariant &value, int role);

@@ -75,6 +75,8 @@ Page {
             id: timer
             interval: 1000
             onTriggered: {
+                if (indicator.state != "complete")
+                    return
                 supportPageHeader.text = _newsModel.banner()
                 showSupportBanner();
                 listView.footer = Qt.createComponent("components/NewsPageFooter.qml")
@@ -83,7 +85,7 @@ Page {
 
         Connections {
             target: _newsModel
-            onDataFetched: timer.start()
+            onDataParsed: timer.start()
         }
 
         Component.onCompleted: {

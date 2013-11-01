@@ -69,6 +69,8 @@ void XmlItemModel::parse()
     QByteArray data = m_currentReply->readAll();
     m_xmlReader->addData(data);
 
+    QList<XmlItem*> tmp_list;
+
     parseFirst();
 
     while (!m_xmlReader->atEnd()) {
@@ -85,7 +87,7 @@ void XmlItemModel::parse()
                 if (stopParsing(xmlItem))
                     break;
 
-                appendXmlItem(xmlItem);
+                tmp_list.append(xmlItem);
             }
         }
     }
@@ -94,6 +96,9 @@ void XmlItemModel::parse()
         emit parsingError();
         return;
     }
+
+    emit dataParsed();
+    appendXmlItems(tmp_list);
 
     this->setHasDataBeenFetchedOnce(true);
 

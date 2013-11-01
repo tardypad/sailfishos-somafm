@@ -29,6 +29,7 @@ protected:
 signals:
     void fetchStarted();
     void dataFetched();
+    void dataParsed();
     void networkError();
     void parsingError();
     void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);

@@ -52,7 +52,7 @@ Item {
 
     Connections {
         id: connections
-        onDataFetched: state = "complete"
+        onDataParsed: state = "complete"
         onFetchStarted: state = "fetching"
         onNetworkError: displayError("Network error", networkErrorText)
         onParsingError: displayError("Parsing error", parsingErrorText)
