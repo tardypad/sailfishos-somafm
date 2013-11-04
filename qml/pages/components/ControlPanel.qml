@@ -50,6 +50,19 @@ DockedPanel {
             maximumLineCount: 2
         }
 
+        ProgressCircle {
+            id: progressIndicator
+            width: Theme.iconSizeLarge
+            height: Theme.iconSizeLarge
+            anchors.centerIn: mediaButtonPause
+            Timer {
+                id: progressTimer
+                interval: 250
+                repeat: true
+                onTriggered: progressIndicator.value = (progressIndicator.value + 1/240) % 1.0
+            }
+        }
+
         IconButton {
             id: mediaButtonPause
             icon.width: Theme.iconSizeLarge
@@ -87,8 +100,14 @@ DockedPanel {
             channelName = _player.channelName()
             channelImageUrl = _player.channelImageUrl()
         }
-        onPlayStarted: state = "playing"
-        onPauseStarted: state = "pause"
+        onPlayStarted: {
+            progressIndicator.value = 0
+            state = "playing"
+        }
+        onPauseStarted: {
+            progressIndicator.value = 0
+            state = "pause"
+        }
     }
 
     function pause() {
@@ -102,30 +121,16 @@ DockedPanel {
     states: [
         State {
             name: "pause"
-            PropertyChanges {
-                target: mediaButtonPlay
-                visible: true
-            }
-            PropertyChanges {
-                target: mediaButtonPause
-                visible: false
-            }
+            PropertyChanges { target: mediaButtonPlay;   visible: true }
+            PropertyChanges { target: mediaButtonPause;  visible: false }
+            PropertyChanges { target: progressTimer;     running: false }
         },
         State {
             name: "playing"
-            PropertyChanges {
-                target: mediaButtonPlay
-                visible: false
-            }
-            PropertyChanges {
-                target: mediaButtonPause
-                visible: true
-            }
-            PropertyChanges {
-                target: controlPanel
-                open: true
-                restoreEntryValues: false
-            }
+            PropertyChanges { target: mediaButtonPlay;   visible: false }
+            PropertyChanges { target: mediaButtonPause;  visible: true }
+            PropertyChanges { target: controlPanel;      open: true; restoreEntryValues: false }
+            PropertyChanges { target: progressTimer;     running: true }
         }]
 
     onOpenChanged: if (!open && state === "playing") show()
