@@ -40,6 +40,7 @@ BackgroundItem {
             rectLoader.sourceComponent = rectComponent
         if (!_contextMenu)
             _contextMenu = actionsComponent.createObject(gridView)
+        _contextMenu.isPlaying = _player.isPlaying(id)
         _contextMenu.show(channelItem)
     }
 
@@ -79,6 +80,8 @@ BackgroundItem {
         id: actionsComponent
         ContextMenu {
             id: gridContextMenu
+
+            property bool isPlaying
             visible: active
 
             width: gridView.cellWidth
@@ -86,18 +89,37 @@ BackgroundItem {
             x: channelImage.x - Theme.paddingSmall
 
             IconMenuItem {
-                iconSource: "image://theme/icon-l-play"
-                text: "Play"
+                iconSource: !isPlaying ? "image://theme/icon-l-play" : "image://theme/icon-l-pause"
+                text: !isPlaying ? "Play" : "Pause"
                 height: gridView.cellHeight / 2
-                onClicked: console.log("play")
+                onClicked: {
+                    if (!isPlaying) {
+                        play()
+                    } else {
+                        pause()
+                    }
+                }
             }
 
             IconMenuItem {
                 iconSource: "qrc:/icon/un-favorite"
                 height: gridView.cellHeight / 2
                 text: "Remove"
-                onClicked: console.log("remove")
+                onClicked: removeFavorite()
             }
         }
+    }
+
+    function play() {
+        _player.play(gridView.model.itemAt(index))
+    }
+
+    function pause() {
+        _player.pause()
+    }
+
+    function removeFavorite() {
+        _contextMenu.hide();
+        _favoritesManager.removeFavorite(gridView.model.itemAt(index))
     }
 }
