@@ -1,8 +1,13 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../utils"
+
 BackgroundItem {
-    id: channelsDelegate
+    id: channelItem
+
+    property Item _contextMenu
+
     width: gridView.cellWidth
     height: gridView.cellHeight
 
@@ -30,6 +35,14 @@ BackgroundItem {
         }
     }
 
+    onPressAndHold: {
+        if (rectLoader.status === Loader.Null)
+            rectLoader.sourceComponent = rectComponent
+        if (!_contextMenu)
+            _contextMenu = actionsComponent.createObject(gridView)
+        _contextMenu.show(channelItem)
+    }
+
     onClicked: {
         pageStack.push(Qt.resolvedUrl("../ChannelPage.qml"),
                        {
@@ -46,5 +59,45 @@ BackgroundItem {
                            'isFavorite': isBookmark
                        }
                        )
+    }
+
+    Loader {
+        id: rectLoader
+        anchors.fill: channelImage
+        visible: _contextMenu ? _contextMenu.visible : false
+    }
+
+    Component {
+        id: rectComponent
+        Rectangle {
+            color: "black"
+            opacity: 0.8
+        }
+    }
+
+    Component {
+        id: actionsComponent
+        ContextMenu {
+            id: gridContextMenu
+            visible: active
+
+            width: gridView.cellWidth
+            height: gridView.cellHeight
+            x: channelImage.x - Theme.paddingSmall
+
+            IconMenuItem {
+                iconSource: "image://theme/icon-l-play"
+                text: "Play"
+                height: gridView.cellHeight / 2
+                onClicked: console.log("play")
+            }
+
+            IconMenuItem {
+                iconSource: "qrc:/icon/un-favorite"
+                height: gridView.cellHeight / 2
+                text: "Remove"
+                onClicked: console.log("remove")
+            }
+        }
     }
 }
