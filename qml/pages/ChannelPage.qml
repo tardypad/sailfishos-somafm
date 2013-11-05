@@ -15,7 +15,6 @@ Page {
     property url imageUrl
     property url mediumImageUrl
     property url bigImageUrl
-    property string genre
     property int listeners
     property bool isFavorite
     property bool isPlaying
@@ -70,6 +69,19 @@ Page {
         VerticalScrollDecorator { flickable: listView }
     }
 
+    function initData() {
+        var channelData = _channelsModel.itemNameData(channelIndex)
+        id = channelData.id;
+        name = channelData.name;
+        description = channelData.description;
+        dj = channelData.dj;
+        imageUrl = channelData.imageUrl;
+        mediumImageUrl = channelData.imageMediumUrl;
+        bigImageUrl = channelData.imageBigUrl;
+        listeners = channelData.listeners;
+        isFavorite = channelData.isBookmark;
+    }
+
     function play() {
         _player.play(_channelsModel.itemAt(channelIndex))
     }
@@ -95,6 +107,7 @@ Page {
     }
 
     Component.onCompleted: {
+        initData()
         _channelSongsModel.setChannel(_channelsModel.itemAt(channelIndex))
         _channelSongsModel.fetch()
         isPlaying = _player.isPlaying(id)

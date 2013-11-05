@@ -14,6 +14,7 @@ class XmlItemAbstractSortFilterProxyModel : public QSortFilterProxyModel
 public:
     explicit XmlItemAbstractSortFilterProxyModel(QObject *parent = 0);
     Q_INVOKABLE XmlItem* itemAt(int row);
+    Q_INVOKABLE QMap<QString, QVariant> itemNameData(int row);
     Q_INVOKABLE bool isEmpty();
     Q_INVOKABLE void clearFilter();
 

@@ -96,6 +96,28 @@ XmlItem* XmlItemAbstractListModel::itemAt(int row)
     return m_list.at(row);
 }
 
+QMap<QString, QVariant> XmlItemAbstractListModel::itemNameData(int row)
+{
+    QMap<QString, QVariant> result;
+
+    QHash<int, QByteArray> roleNames = m_xmlItemPrototype->roleNames();
+
+    QHashIterator<int, QByteArray> iterator(roleNames);
+    QVariant itemValue;
+    QString roleName;
+    int roleInt;
+
+    while (iterator.hasNext()) {
+        iterator.next();
+        roleInt = iterator.key();
+        roleName = QString(iterator.value());
+        itemValue = data(index(row), roleInt);
+        result.insert(roleName, itemValue);
+    }
+
+    return result;
+}
+
 QModelIndex XmlItemAbstractListModel::indexOf(XmlItem *xmlItem) const
 {
     for(int row = 0; row < m_list.size(); ++row) {

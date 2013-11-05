@@ -18,6 +18,7 @@ public:
     bool contains(XmlItem* xmlItem) const;
     Q_INVOKABLE bool isEmpty() const;
     Q_INVOKABLE XmlItem* itemAt(int row);
+    QMap<QString, QVariant> itemNameData(int row);
     
 protected:
     void clear();

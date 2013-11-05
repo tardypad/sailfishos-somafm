@@ -21,6 +21,12 @@ XmlItem *XmlItemAbstractSortFilterProxyModel::itemAt(int row)
     return xmlItemAbstractSourceModel()->itemAt(sourceIndex.row());
 }
 
+QMap<QString, QVariant> XmlItemAbstractSortFilterProxyModel::itemNameData(int row)
+{
+    QModelIndex sourceIndex = mapToSource(index(row, 0));
+    return xmlItemAbstractSourceModel()->itemNameData(sourceIndex.row());
+}
+
 bool XmlItemAbstractSortFilterProxyModel::isEmpty()
 {
     return xmlItemAbstractSourceModel()->isEmpty();

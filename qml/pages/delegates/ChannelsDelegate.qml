@@ -70,22 +70,10 @@ ListItem {
                  })
     }
 
-    onClicked: {
-        pageStack.push(Qt.resolvedUrl("../ChannelPage.qml"),
-                       {
-                           "channelIndex": index,
-                           'id' : id,
-                           'name': name,
-                           'description': description,
-                           'dj': dj,
-                           'imageUrl': imageUrl,
-                           'mediumImageUrl': imageMediumUrl,
-                           'bigImageUrl': imageBigUrl,
-                           'genres': genres,
-                           'listeners': listeners,
-                           'isFavorite': isBookmark
-                       }
-                       )
+    onClicked: goToChannelPage()
+
+    function goToChannelPage() {
+        pageStack.push(Qt.resolvedUrl("../ChannelPage.qml"), {"channelIndex": index})
     }
 
     function play() {

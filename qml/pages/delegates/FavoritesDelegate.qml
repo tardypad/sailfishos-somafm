@@ -44,23 +44,7 @@ BackgroundItem {
         _contextMenu.show(channelItem)
     }
 
-    onClicked: {
-        pageStack.push(Qt.resolvedUrl("../ChannelPage.qml"),
-                       {
-                           "channelIndex": index,
-                           'id' : id,
-                           'name': name,
-                           'description': description,
-                           'dj': dj,
-                           'imageUrl': imageUrl,
-                           'mediumImageUrl': imageMediumUrl,
-                           'bigImageUrl': imageBigUrl,
-                           'genres': genres,
-                           'listeners': listeners,
-                           'isFavorite': isBookmark
-                       }
-                       )
-    }
+    onClicked: goToChannelPage()
 
     Loader {
         id: rectLoader
@@ -108,6 +92,10 @@ BackgroundItem {
                 onClicked: removeFavorite()
             }
         }
+    }
+
+    function goToChannelPage() {
+        pageStack.push(Qt.resolvedUrl("../ChannelPage.qml"), {"channelIndex": index})
     }
 
     function play() {
