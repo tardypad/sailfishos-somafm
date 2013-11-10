@@ -19,13 +19,13 @@ public:
     Q_INVOKABLE bool isEmpty() const;
     Q_INVOKABLE XmlItem* itemAt(int row);
     QMap<QString, QVariant> itemNameData(int row);
+    QModelIndex indexOf(XmlItem* xmlItem) const;
     
 protected:
     void clear();
     void appendXmlItem(XmlItem* xmlItem);
     void appendXmlItems(QList<XmlItem*> xmlItemsList);
     void removeXmlItemAt(int row);
-    QModelIndex indexOf(XmlItem* xmlItem) const;
     void setDataItem(XmlItem* xmlItem, const QVariant &value, int role);
     void setDataAll(const QVariant &value, int role);
 

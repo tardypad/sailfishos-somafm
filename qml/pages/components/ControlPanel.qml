@@ -4,6 +4,7 @@ import Sailfish.Silica 1.0
 DockedPanel {
     id: controlPanel
 
+    property string channelId
     property alias channelName: channelLabel.text
     property alias channelImageUrl: channelImage.source
 
@@ -91,7 +92,7 @@ DockedPanel {
             onClicked: play()
         }
 
-        onClicked: console.log('go to channel page')
+        onClicked: goToChannelPage()
     }
 
     Connections {
@@ -99,6 +100,7 @@ DockedPanel {
         onChannelChanged: {
             channelName = _player.channelName()
             channelImageUrl = _player.channelImageUrl()
+            channelId = _player.channelId()
         }
         onPlayStarted: {
             progressIndicator.value = 0
@@ -107,6 +109,18 @@ DockedPanel {
         onPauseStarted: {
             progressIndicator.value = 0
             state = "pause"
+        }
+    }
+
+    function goToChannelPage() {
+        var currentPage = pageStack.currentPage
+        var url = Qt.resolvedUrl("../ChannelPage.qml")
+        var channelIndex = _channelsModel.rowOf(_player.channel())
+        var properties = {"channelIndex": channelIndex}
+        if (currentPage.objectName != "ChannelPage") {
+            pageStack.push(url, properties)
+        } else if (currentPage.id !== channelId) {
+            pageStack.replace(url, properties)
         }
     }
 

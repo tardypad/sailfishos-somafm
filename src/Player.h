@@ -20,7 +20,7 @@ public:
     Q_INVOKABLE QString channelImageUrl();
     Q_INVOKABLE QString channelImageMediumUrl();
 
-    inline Channel* channel() const { return m_channel; }
+    Q_INVOKABLE inline Channel* channel() const { return m_channel; }
     Q_INVOKABLE inline bool isPlaying() const { return m_isPlaying; }
 
     inline void setChannel(Channel* channel) { m_channel = channel; emit channelChanged(); }
