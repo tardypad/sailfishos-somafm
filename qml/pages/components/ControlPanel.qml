@@ -103,13 +103,18 @@ DockedPanel {
             channelId = _player.channelId()
         }
         onPlayStarted: {
-            progressIndicator.value = 0
+            reinitProgressIndicator()
             state = "playing"
         }
         onPauseStarted: {
-            progressIndicator.value = 0
+            reinitProgressIndicator()
             state = "pause"
         }
+    }
+
+    function reinitProgressIndicator() {
+        progressIndicator.value = 0
+        progressIndicator.inAlternateCycle = true
     }
 
     function goToChannelPage() {
