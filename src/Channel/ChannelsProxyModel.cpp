@@ -4,11 +4,17 @@
 
 #include "../XmlItem/XmlItem.h"
 #include "Channel.h"
+#include "ChannelsModel.h"
 
 ChannelsProxyModel::ChannelsProxyModel(QObject *parent) :
     XmlItemProxyModel(parent)
 {
     setSortCaseSensitivity(Qt::CaseInsensitive);
+}
+
+ChannelsModel *ChannelsProxyModel::channelsSourceModel()
+{
+    return (ChannelsModel*) sourceModel();
 }
 
 void ChannelsProxyModel::sortByListeners()
@@ -32,5 +38,15 @@ void ChannelsProxyModel::sortByName()
 void ChannelsProxyModel::filterFavorites()
 {
     filterBookmarks();
+}
+
+Channel *ChannelsProxyModel::channelItem(QString channelId)
+{
+    return channelsSourceModel()->channelItem(channelId);
+}
+
+QMap<QString, QVariant> ChannelsProxyModel::channelItemNameData(QString channelId)
+{
+    return channelsSourceModel()->channelItemNameData(channelId);
 }
 

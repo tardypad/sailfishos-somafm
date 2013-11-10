@@ -104,6 +104,40 @@ void ChannelsModel::parseAfter()
     calculMaximumListeners();
 }
 
+Channel *ChannelsModel::channelItem(QString channelId)
+{
+    for (int row = 0; row < m_list.size(); ++row) {
+      if (m_list.at(row)->data(Channel::IdRole).toString() == channelId)
+          return (Channel*) m_list.at(row);
+    }
+    return NULL;
+}
+
+QMap<QString, QVariant> ChannelsModel::channelItemNameData(QString channelId)
+{
+    QMap<QString, QVariant> result;
+
+    Channel* channel = channelItem(channelId);
+    if (!channel) return result;
+
+    QHash<int, QByteArray> roleNames = m_xmlItemPrototype->roleNames();
+
+    QHashIterator<int, QByteArray> iterator(roleNames);
+    QVariant itemValue;
+    QString roleName;
+    int roleInt;
+
+    while (iterator.hasNext()) {
+        iterator.next();
+        roleInt = iterator.key();
+        roleName = QString(iterator.value());
+        itemValue = channel->data(roleInt);
+        result.insert(roleName, itemValue);
+    }
+
+    return result;
+}
+
 void ChannelsModel::duplicateGenre()
 {
     for (int row = 0; row < m_list.size(); ++row) {

@@ -120,8 +120,7 @@ DockedPanel {
     function goToChannelPage() {
         var currentPage = pageStack.currentPage
         var url = Qt.resolvedUrl("../ChannelPage.qml")
-        var channelIndex = _channelsModel.rowOf(_player.channel())
-        var properties = {"channelIndex": channelIndex}
+        var properties = {"id": channelId}
         if (currentPage.objectName != "ChannelPage") {
             pageStack.push(url, properties)
         } else if (currentPage.id !== channelId) {

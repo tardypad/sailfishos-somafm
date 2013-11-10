@@ -13,6 +13,8 @@ class ChannelsModel : public XmlItemModel
 public:
     explicit ChannelsModel(QObject *parent = 0);
     ~ChannelsModel();
+    Channel* channelItem(QString channelId);
+    QMap<QString, QVariant> channelItemNameData(QString channelId);
 
 private slots:
     void addToFavorites(XmlItem* xmlItem);

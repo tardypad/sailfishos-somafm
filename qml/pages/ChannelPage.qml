@@ -8,8 +8,6 @@ import "components"
 Page {
     objectName: "ChannelPage"
 
-    property int channelIndex
-
     property string id
     property string name
     property string description
@@ -71,9 +69,12 @@ Page {
         VerticalScrollDecorator { flickable: listView }
     }
 
+    function getChannelItem() {
+        return _channelsModel.channelItem(id)
+    }
+
     function initData() {
-        var channelData = _channelsModel.itemNameData(channelIndex)
-        id = channelData.id;
+        var channelData = _channelsModel.channelItemNameData(id)
         name = channelData.name;
         description = channelData.description;
         dj = channelData.dj;
@@ -85,7 +86,7 @@ Page {
     }
 
     function play() {
-        _player.play(_channelsModel.itemAt(channelIndex))
+        _player.play(getChannelItem())
     }
 
     function pause() {
@@ -99,18 +100,18 @@ Page {
     }
 
     function addToFavorites() {
-        var result = _favoritesManager.addFavorite(_channelsModel.itemAt(channelIndex))
+        var result = _favoritesManager.addFavorite(getChannelItem())
         if (result) isFavorite = true
     }
 
     function removeFromFavorites() {
-        var result = _favoritesManager.removeFavorite(_channelsModel.itemAt(channelIndex))
+        var result = _favoritesManager.removeFavorite(getChannelItem())
         if (result) isFavorite = false
     }
 
     Component.onCompleted: {
         initData()
-        _channelSongsModel.setChannel(_channelsModel.itemAt(channelIndex))
+        _channelSongsModel.setChannel(getChannelItem())
         _channelSongsModel.fetch()
         isPlaying = _player.isPlaying(id)
     }
