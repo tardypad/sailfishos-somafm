@@ -19,19 +19,21 @@ Name:       SomaFM
 Summary:    SomaFM Application
 Version:    0.2
 Release:    1
-Group:      Qt/Qt
+Group:      Applications/Multimedia
 License:    LICENSE
+URL:        http://somafm.com
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  SomaFM.yaml
+Requires:   qt5-plugin-imageformat-gif
 Requires:   sailfishsilica-qt5
-BuildRequires:  pkgconfig(Qt5Quick)
-BuildRequires:  pkgconfig(Qt5Qml)
-BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(sailfishapp)
+BuildRequires:  pkgconfig(Qt5Core)
+BuildRequires:  pkgconfig(Qt5Qml)
+BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
 
 %description
-
+An application to fully enjoy SomaFM
 
 %prep
 %setup -q -n %{name}-%{version}
@@ -65,13 +67,9 @@ desktop-file-install --delete-original       \
 
 %files
 %defattr(-,root,root,-)
-%{_datadir}/icons/hicolor/90x90/apps/%{name}.png
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/%{name}/qml
 %{_bindir}
-/usr/bin
-/usr/share/SomaFM
-/usr/share/applications
-/usr/share/icons/hicolor/90x90/apps
+%{_datadir}/%{name}
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/icons/hicolor/90x90/apps/%{name}.png
 # >> files
 # << files

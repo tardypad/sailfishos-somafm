@@ -23,11 +23,11 @@ OTHER_FILES = \
     qml/pages/delegates/*.qml \
     qml/pages/components/*.qml \
     qml/pages/utils/*.qml \
-    rpm/SomaFM.yaml \
-    rpm/SomaFM.spec \
-    SomaFM.desktop
+    rpm/$${TARGET}.yaml \
+    rpm/$${TARGET}.spec \
+    $${TARGET}.desktop
 
-RESOURCES += SomaFM.qrc
+RESOURCES += $${TARGET}.qrc
 
 QT += \
     network\
