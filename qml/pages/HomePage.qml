@@ -123,11 +123,10 @@ Page {
         }
 
         PushUpMenu {
-            topMargin: Theme.paddingSmall
-            bottomMargin: Theme.paddingMedium
-            Label {
-                text: "©2000-2013 SomaFM.com"
-                anchors.horizontalCenter: parent.horizontalCenter
+            IconMenuItem {
+                text: "About"
+                iconSource: "image://theme/icon-m-about"
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
         }
     }
