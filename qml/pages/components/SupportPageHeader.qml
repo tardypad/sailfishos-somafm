@@ -3,15 +3,12 @@ import Sailfish.Silica 1.0
 
 import "../utils"
 
-Rectangle {
-    property alias text: bannerLabel.text
-
-    height: childrenRect.height + Theme.paddingLarge
-    width: parent.width
-    color: Theme.rgba(Theme.secondaryHighlightColor, 0.5)
+Item {
+    height: childrenRect.height
+    width: gridView.width
 
     IconPageHeader {
-        id: header
+        id: pageHeader
         text: "Support"
         iconSource: "qrc:/icon/support"
     }
@@ -19,26 +16,23 @@ Rectangle {
     Label {
         id: bannerLabel
         anchors {
-            left: parent.left
-            leftMargin: Theme.paddingLarge
-            right: parent.right
-            rightMargin: Theme.paddingLarge
-            top: header.bottom
-        }
-        font.pixelSize: Theme.fontSizeExtraSmall
-        horizontalAlignment: Text.AlignJustify
-        wrapMode: Text.WordWrap
-    }
-
-    Button {
-        text: "Donate"
-        anchors {
-            top: bannerLabel.bottom
+            top: pageHeader.bottom
             horizontalCenter: parent.horizontalCenter
         }
-        onClicked: {
-            console.log("open support page in browser")
-            Qt.openUrlExternally(_newsModel.supportUrl())
-        }
+        color: Theme.highlightColor
+        width: parent.width - 2 * Theme.paddingLarge
+        font.pixelSize: Theme.fontSizeSmall
+        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+    }
+
+    Connections {
+        target: _supportModel
+        onDataParsed: getBannerText()
+    }
+
+    Component.onCompleted: getBannerText()
+
+    function getBannerText() {
+        bannerLabel.text = _supportModel.banner()
     }
 }

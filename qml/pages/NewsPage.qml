@@ -17,7 +17,7 @@ Page {
             anchors.fill: parent
             height: supportPageHeader.height
 
-            SupportPageHeader {
+            NewsPageHeader {
                 id: supportPageHeader
                 anchors.fill: parent
             }

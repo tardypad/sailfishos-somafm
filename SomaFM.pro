@@ -7,14 +7,16 @@ SOURCES += \
     src/XmlItem/*.cpp \
     src/Channel/*.cpp \
     src/Song/*.cpp \
-    src/News/*.cpp
+    src/News/*.cpp \
+    src/Support/*.cpp
 
 HEADERS += \
     src/*.h \
     src/XmlItem/*.h \
     src/Channel/*.h \
     src/Song/*.h \
-    src/News/*.h
+    src/News/*.h \
+    src/Support/*.h
 
 OTHER_FILES = \
     qml/*.qml \

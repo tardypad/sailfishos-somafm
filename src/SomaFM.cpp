@@ -19,6 +19,7 @@
 #include "src/Song/SongsBookmarksManager.h"
 #include "src/Song/SongsBookmarksProxyModel.h"
 #include "src/News/NewsModel.h"
+#include "src/Support/SupportModel.h"
 #include "src/Player.h"
 
 int main(int argc, char *argv[])
@@ -49,6 +50,9 @@ int main(int argc, char *argv[])
 
     QScopedPointer<NewsModel> newsModel(new NewsModel());
     context->setContextProperty("_newsModel", newsModel.data());
+
+    QScopedPointer<SupportModel> supportModel(new SupportModel());
+    context->setContextProperty("_supportModel", supportModel.data());
 
     QScopedPointer<Player> player(new Player());
     context->setContextProperty("_player", player.data());

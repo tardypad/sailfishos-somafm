@@ -10,7 +10,7 @@ Item {
         id: supportButton
         text: "Support us"
         anchors.horizontalCenter: parent.horizontalCenter
-        onClicked: showSupportBanner()
+        onClicked: pageStack.push(Qt.resolvedUrl("../SupportPage.qml"))
     }
 
     Label {

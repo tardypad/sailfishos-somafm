@@ -119,7 +119,7 @@ Page {
                 source: "image://theme/icon-m-like"
                 fillMode: Image.PreserveAspectFit
             }
-            onClicked: console.log("open support page")
+            onClicked: pageStack.push(Qt.resolvedUrl("SupportPage.qml"))
         }
     }
 
