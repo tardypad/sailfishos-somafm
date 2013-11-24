@@ -61,7 +61,12 @@ QString Player::channelImageMediumUrl()
 {
     if (!hasCurrentChannel()) return "";
 
-    return channel()->data(Channel::ImageMediumUrlRole).toString();
+    QString imageMediumUrl = channel()->data(Channel::ImageMediumUrlRole).toString();
+
+    if (imageMediumUrl.isEmpty())
+        return channel()->data(Channel::ImageBigUrlRole).toString();
+
+    return imageMediumUrl;
 }
 
 bool Player::hasCurrentChannel()
