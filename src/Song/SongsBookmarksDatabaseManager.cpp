@@ -94,6 +94,37 @@ QList<XmlItem *> SongsBookmarksDatabaseManager::retrieveBookmarks()
     return xmlItemsBookmarks;
 }
 
+QList<QVariant> SongsBookmarksDatabaseManager::channelIds()
+{
+    QList<QVariant> data;
+    QSqlQuery query("SELECT DISTINCT channel_id FROM " + _songsBookmarkTableName);
+    QVariant channelId;
+
+    while (query.next()) {
+        channelId = query.value(0);
+        data.append(channelId);
+    }
+
+    return data;
+}
+
+QMap<QString, QVariant> SongsBookmarksDatabaseManager::channelData(QString channelId)
+{
+    QMap<QString, QVariant> data;
+    QSqlQuery query("SELECT channel_name, channel_image_url FROM " + _songsBookmarkTableName + " WHERE channel_id='" + channelId + "' LIMIT 1");
+    QVariant channelName, channelImageUrl;
+
+    while (query.next()) {
+        channelName = query.value(0);
+        channelImageUrl = query.value(1);
+
+        data.insert("name", channelName);
+        data.insert("image_url", channelImageUrl);
+    }
+
+    return data;
+}
+
 void SongsBookmarksDatabaseManager::checkStructure()
 {
     if (!db.isOpen())

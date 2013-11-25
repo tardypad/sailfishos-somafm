@@ -10,6 +10,9 @@ Page {
 
     SilicaListView {
         id: listView
+
+        property var channelsData
+
         anchors.fill: parent
         header: IconPageHeader {
             text: "Song bookmarks"
@@ -18,10 +21,8 @@ Page {
         model: _bookmarksManager
         delegate: BookmarksDelegate { }
         section {
-            property: 'channelName'
-            delegate: SectionHeader {
-                text: section
-            }
+            property: 'channelId'
+            delegate: BookmarksSectionDelegate { }
         }
 
         ViewPlaceholder {
@@ -31,8 +32,15 @@ Page {
         }
 
         Component.onCompleted: {
+            retrieveChannelData()
             _bookmarksManager.filterByChannel(channelId)
             _bookmarksManager.sortByDate()
+        }
+
+        function retrieveChannelData() {
+            var tmpData = new Object();
+            tmpData[channelId] = _bookmarksManager.channelData(channelId)
+            channelsData = tmpData;
         }
 
         VerticalScrollDecorator { flickable: listView }

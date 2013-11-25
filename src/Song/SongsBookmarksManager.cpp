@@ -22,3 +22,18 @@ SongsBookmarksManager* SongsBookmarksManager::instance()
 
     return m_instance;
 }
+
+SongsBookmarksDatabaseManager *SongsBookmarksManager::songsBookmarksDatabaseManager()
+{
+    return (SongsBookmarksDatabaseManager*) m_databaseManager;
+}
+
+QList<QVariant> SongsBookmarksManager::channelIds()
+{
+    return songsBookmarksDatabaseManager()->channelIds();
+}
+
+QMap<QString, QVariant> SongsBookmarksManager::channelData(QString channelId)
+{
+    return songsBookmarksDatabaseManager()->channelData(channelId);
+}
