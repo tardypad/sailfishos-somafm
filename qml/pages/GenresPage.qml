@@ -55,7 +55,6 @@ Page {
         if (status === PageStatus.Active && !listView.model) {
             _channelsModel.clearFilter()
             _channelsModel.showClones()
-            _channelsModel.sortByName()
             _channelsModel.sortByGenres()
             listView.model = _channelsModel
         }

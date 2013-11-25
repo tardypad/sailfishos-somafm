@@ -12,6 +12,7 @@ class ChannelsProxyModel : public XmlItemProxyModel
     Q_OBJECT
 public:
     explicit ChannelsProxyModel(QObject *parent = 0);
+    virtual bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
     Q_INVOKABLE void sortByListeners();
     Q_INVOKABLE void sortByGenres();
     Q_INVOKABLE void sortByName();

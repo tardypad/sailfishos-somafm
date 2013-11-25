@@ -17,6 +17,26 @@ ChannelsModel *ChannelsProxyModel::channelsSourceModel()
     return (ChannelsModel*) sourceModel();
 }
 
+bool ChannelsProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
+{
+    if (sortRole() != Channel::SortGenreRole)
+        return XmlItemProxyModel::lessThan(left, right);
+
+    QString leftGenre = sourceModel()->data(left, Channel::SortGenreRole).toString();
+    QString rightGenre = sourceModel()->data(right, Channel::SortGenreRole).toString();
+
+    if (leftGenre < rightGenre) return true;
+
+    if (leftGenre > rightGenre) return false;
+
+    QString leftName = sourceModel()->data(left, Channel::NameRole).toString();
+    QString rightName = sourceModel()->data(right, Channel::NameRole).toString();
+
+    if (leftName < rightName) return true;
+
+    return false;
+}
+
 void ChannelsProxyModel::sortByListeners()
 {
     setSortRole(Channel::ListenersRole);
