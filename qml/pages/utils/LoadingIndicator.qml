@@ -6,6 +6,7 @@ Item {
 
     property Item flickable
     property alias model: connections.target
+    property bool stopped: false
     property alias loadingText: progressIndicator.label
     property string defaultErrorText
     property string networkErrorText
@@ -52,8 +53,8 @@ Item {
 
     Connections {
         id: connections
-        onDataParsed: state = "complete"
-        onFetchStarted: state = "fetching"
+        onDataParsed: changeState("complete")
+        onFetchStarted: changeState("fetching")
         onNetworkError: displayError("Network error", networkErrorText)
         onParsingError: displayError("Parsing error", parsingErrorText)
         onDownloadProgress: updateProgress(bytesReceived, bytesTotal)
@@ -74,9 +75,14 @@ Item {
     }
 
     function displayError(text, hintText) {
-        state = "error"
+        changeState("error")
         errorLoader.item.text = text
         errorLoader.item.hintText = hintText
+    }
+
+    function changeState(newState) {
+        if (stopped) return
+        state = newState
     }
 
     states: [

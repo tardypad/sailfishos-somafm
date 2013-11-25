@@ -109,6 +109,11 @@ Page {
         if (result) isFavorite = false
     }
 
+    function stopUpdates() {
+        indicator.stopped = true
+        listView.model = null
+    }
+
     Component.onCompleted: {
         initData()
         _channelSongsModel.setChannel(getChannelItem())

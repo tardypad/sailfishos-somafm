@@ -124,6 +124,7 @@ DockedPanel {
         if (currentPage.objectName != "ChannelPage") {
             pageStack.push(url, properties)
         } else if (currentPage.id !== channelId) {
+            currentPage.stopUpdates()
             pageStack.replace(url, properties)
         }
     }
