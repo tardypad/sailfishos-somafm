@@ -14,7 +14,10 @@ Channel::Channel(QObject *parent) :
     m_genres(""),
     m_listeners(-1),
     m_sortGenre(""),
-    m_maximumListeners(0)
+    m_maximumListeners(0),
+    m_mp3Pls(QMap<StreamQuality, QUrl>()),
+    m_aacPls(QMap<StreamQuality, QUrl>()),
+    m_aacpPls(QMap<StreamQuality, QUrl>())
 {
 }
 
@@ -130,4 +133,20 @@ bool Channel::setData(const QVariant &value, int role)
 XmlItem *Channel::create()
 {
     return new Channel();
+}
+
+void Channel::addPls(QUrl pls, StreamFormat format, StreamQuality quality)
+{
+    switch (format) {
+    case Mp3Format:
+        m_mp3Pls.insertMulti(quality, pls);
+        break;
+    case AacFormat:
+        m_aacPls.insertMulti(quality, pls);
+        break;
+    case AacPlusFormat:
+        m_aacpPls.insertMulti(quality, pls);
+        break;
+
+    }
 }

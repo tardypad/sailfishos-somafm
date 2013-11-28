@@ -72,6 +72,10 @@ XmlItem* ChannelsModel::parseXmlItem()
             } else if (m_xmlReader->name() == "listeners") {
                 m_xmlReader->readNext();
                 listeners = m_xmlReader->text().toString();
+            } else if (m_xmlReader->name() == "highestpls"
+            || m_xmlReader->name() == "fastpls"
+            || m_xmlReader->name() == "slowpls") {
+                parseChannelPls(channel);
             }
         }
     }
@@ -96,6 +100,38 @@ XmlItem* ChannelsModel::parseXmlItem()
     }
 
     return channel;
+}
+
+void ChannelsModel::parseChannelPls(Channel *channel)
+{
+    QString qualityAtt = m_xmlReader->name().toString();
+    Channel::StreamQuality quality;
+    if (qualityAtt == "highestpls") {
+        quality = Channel::TopQuality;
+    } else if (qualityAtt == "fastpls") {
+        quality = Channel::GoodQuality;
+    } else if (qualityAtt == "slowpls") {
+        quality = Channel::LowQuality;
+    } else {
+        return;
+    }
+
+    QString formatAtt = m_xmlReader->attributes().value("format").toString();
+    Channel::StreamFormat format;
+    if (formatAtt == "mp3") {
+        format = Channel::Mp3Format;
+    } else if (formatAtt == "aac") {
+        format = Channel::AacFormat;
+    } else if (formatAtt == "aacp") {
+        format = Channel::AacPlusFormat;
+    }  else {
+        return;
+    }
+
+    m_xmlReader->readNext();
+    QUrl pls = m_xmlReader->text().toString();
+
+    channel->addPls(pls, format, quality);
 }
 
 void ChannelsModel::parseAfter()

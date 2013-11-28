@@ -22,6 +22,7 @@ private slots:
 
 private:
     virtual XmlItem* parseXmlItem();
+    void parseChannelPls(Channel* channel);
     virtual void parseAfter();
     void duplicateGenre();
     void duplicateGenre(const QModelIndex &index);

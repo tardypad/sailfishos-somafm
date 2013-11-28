@@ -30,6 +30,18 @@ public:
         MaximumListenersRole
     };
 
+    enum StreamQuality {
+        TopQuality,
+        GoodQuality,
+        LowQuality
+    };
+
+    enum StreamFormat {
+        Mp3Format,
+        AacFormat,
+        AacPlusFormat
+    };
+
 public:
     explicit Channel(QObject *parent = 0);
     virtual QVariant data(int role) const;
@@ -38,6 +50,7 @@ public:
     virtual QHash<int, QByteArray> bookmarkRoleNames();
     virtual QHash<int, QByteArray> idRoleNames();
     virtual XmlItem* create();
+    void addPls(QUrl pls, StreamFormat format, StreamQuality quality);
 
     virtual QString xmlTag() { return "channel"; }
 
@@ -77,6 +90,9 @@ private:
     int m_listeners;
     QString m_sortGenre;
     int m_maximumListeners;
+    QMap<StreamQuality, QUrl> m_mp3Pls;
+    QMap<StreamQuality, QUrl> m_aacPls;
+    QMap<StreamQuality, QUrl> m_aacpPls;
 };
 
 #endif // CHANNEL_H
