@@ -33,13 +33,17 @@ public:
     enum StreamQuality {
         TopQuality,
         GoodQuality,
-        LowQuality
+        LowQuality,
+        FirstQuality = TopQuality,
+        LastQuality = LowQuality
     };
 
     enum StreamFormat {
-        Mp3Format,
+        AacPlusFormat,
         AacFormat,
-        AacPlusFormat
+        Mp3Format,
+        FirstFormat = AacPlusFormat,
+        LastFormat = Mp3Format
     };
 
 public:
@@ -51,6 +55,9 @@ public:
     virtual QHash<int, QByteArray> idRoleNames();
     virtual XmlItem* create();
     void addPls(QUrl pls, StreamFormat format, StreamQuality quality);
+
+    static QString streamQuality(StreamQuality quality);
+    static QString streamFormat(StreamFormat format);
 
     virtual QString xmlTag() { return "channel"; }
 

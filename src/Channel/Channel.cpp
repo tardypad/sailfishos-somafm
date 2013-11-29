@@ -150,3 +150,31 @@ void Channel::addPls(QUrl pls, StreamFormat format, StreamQuality quality)
 
     }
 }
+
+QString Channel::streamQuality(Channel::StreamQuality quality)
+{
+    switch (quality) {
+    case TopQuality:
+        return "Top";
+    case GoodQuality:
+        return "Good";
+    case LowQuality:
+        return "Low";
+    }
+
+    return "";
+}
+
+QString Channel::streamFormat(Channel::StreamFormat format)
+{
+    switch (format) {
+    case AacPlusFormat:
+        return "AAC+";
+    case AacFormat:
+        return "AAC";
+    case Mp3Format:
+        return "MP3";
+    }
+
+    return "";
+}

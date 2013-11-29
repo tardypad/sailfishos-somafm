@@ -19,6 +19,8 @@ public:
     Q_INVOKABLE void filterFavorites();
     Q_INVOKABLE Channel* channelItem(QString channelId);
     Q_INVOKABLE QMap<QString, QVariant> channelItemNameData(QString channelId);
+    Q_INVOKABLE QList<QVariant> streamsQualities();
+    Q_INVOKABLE QList<QVariant> streamsFormats();
 
 protected:
     ChannelsModel* channelsSourceModel();
