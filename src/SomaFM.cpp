@@ -33,6 +33,11 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<XmlItem>("my.library", 1, 0, "XmlItem", "");
     qmlRegisterUncreatableType<Channel>("my.library", 1, 0, "Channel", "");
 
+    QCoreApplication::setOrganizationName("SomaFM.com");
+    QCoreApplication::setOrganizationDomain("somafm.com");
+    QCoreApplication::setApplicationName("SomaFM");
+    QCoreApplication::setApplicationVersion("0.2");
+
     QScopedPointer<ChannelsModel> channelsModel(new ChannelsModel());
     QScopedPointer<ChannelsProxyModel> channelsProxyModel(new ChannelsProxyModel());
     channelsProxyModel->setSourceModel(channelsModel.data());

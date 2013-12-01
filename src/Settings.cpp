@@ -5,7 +5,7 @@
 Settings::Settings(QObject *parent) :
     QObject(parent)
 {
-    m_settings = new QSettings("SomaFM.com", "SomaFM");
+    m_settings = new QSettings();
 }
 
 Settings::~Settings()
