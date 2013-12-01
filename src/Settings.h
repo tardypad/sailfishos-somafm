@@ -10,6 +10,8 @@ class Settings : public QObject
 public:
     explicit Settings(QObject *parent = 0);
     ~Settings();
+    Q_INVOKABLE QString streamQuality();
+    Q_INVOKABLE QString streamFormat();
     Q_INVOKABLE void saveStreamQuality(QString quality);
     Q_INVOKABLE void saveStreamFormat(QString format);
 

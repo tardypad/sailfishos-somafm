@@ -178,3 +178,13 @@ QString Channel::streamFormat(Channel::StreamFormat format)
 
     return "";
 }
+
+QString Channel::defaultStreamQuality()
+{
+    return streamQuality(GoodQuality);
+}
+
+QString Channel::defaultStreamFormat()
+{
+    return streamFormat(AacFormat);
+}

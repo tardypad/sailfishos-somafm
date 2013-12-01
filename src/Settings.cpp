@@ -2,6 +2,8 @@
 
 #include <QDebug>
 
+#include "Channel/Channel.h"
+
 Settings::Settings(QObject *parent) :
     QObject(parent)
 {
@@ -11,6 +13,24 @@ Settings::Settings(QObject *parent) :
 Settings::~Settings()
 {
     delete m_settings;
+}
+
+QString Settings::streamQuality()
+{
+    if (!m_settings->contains("stream/quality")) {
+        return Channel::defaultStreamQuality();
+    }
+
+    return value("stream/quality").toString();
+}
+
+QString Settings::streamFormat()
+{
+    if (!m_settings->contains("stream/format")) {
+        return Channel::defaultStreamFormat();
+    }
+
+    return value("stream/format").toString();
 }
 
 QVariant Settings::value(const QString &key)

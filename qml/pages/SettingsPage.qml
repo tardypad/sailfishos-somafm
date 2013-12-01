@@ -46,17 +46,25 @@ Page {
         VerticalScrollDecorator { flickable: listView }
     }
 
-    function fillQualityOptions() {
+    function defineQualityOptions() {
         var qualityOptions = _channelsModel.streamsQualities();
+        var selectedQuality = _settings.streamQuality();
         for (var i = 0; i < qualityOptions.length; ++i) {
             qualityListModel.append({"text": qualityOptions[i]})
+            if (qualityOptions[i] === selectedQuality) {
+                qualityComboBox.currentIndex = i
+            }
         }
     }
 
-    function fillFormatOptions() {
+    function defineFormatOptions() {
         var formatOptions = _channelsModel.streamsFormats();
+        var selectedFormat = _settings.streamFormat();
         for (var i = 0; i < formatOptions.length; ++i) {
             formatListModel.append({"text": formatOptions[i]})
+            if (formatOptions[i] === selectedFormat) {
+                formatComboBox.currentIndex = i
+            }
         }
     }
 
@@ -66,8 +74,8 @@ Page {
     }
 
     Component.onCompleted: {
-        fillQualityOptions()
-        fillFormatOptions()
+        defineQualityOptions()
+        defineFormatOptions()
     }
 
     onStatusChanged: {

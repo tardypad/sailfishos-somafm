@@ -58,6 +58,8 @@ public:
 
     static QString streamQuality(StreamQuality quality);
     static QString streamFormat(StreamFormat format);
+    static QString defaultStreamQuality();
+    static QString defaultStreamFormat();
 
     virtual QString xmlTag() { return "channel"; }
 
