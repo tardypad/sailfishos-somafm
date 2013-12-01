@@ -21,6 +21,7 @@
 #include "src/News/NewsModel.h"
 #include "src/Support/SupportModel.h"
 #include "src/Player.h"
+#include "src/Settings.h"
 
 int main(int argc, char *argv[])
 {
@@ -56,6 +57,9 @@ int main(int argc, char *argv[])
 
     QScopedPointer<Player> player(new Player());
     context->setContextProperty("_player", player.data());
+
+    QScopedPointer<Settings> settings(new Settings());
+    context->setContextProperty("_settings", settings.data());
 
     view->setSource(SailfishApp::pathTo("qml/SomaFM.qml"));
     view->show();

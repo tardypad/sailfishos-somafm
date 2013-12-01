@@ -19,6 +19,7 @@ Page {
             }
 
             ComboBox {
+                id: qualityComboBox
                 width: parent.width
                 label: "Preferred quality"
                 menu: ContextMenu {
@@ -30,6 +31,7 @@ Page {
             }
 
             ComboBox {
+                id: formatComboBox
                 width: parent.width
                 label: "Preferred format"
                 menu: ContextMenu {
@@ -58,8 +60,19 @@ Page {
         }
     }
 
+    function saveOptions() {
+        _settings.saveStreamQuality(qualityComboBox.value);
+        _settings.saveStreamFormat(formatComboBox.value);
+    }
+
     Component.onCompleted: {
         fillQualityOptions()
         fillFormatOptions()
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Deactivating) {
+            saveOptions()
+        }
     }
 }
