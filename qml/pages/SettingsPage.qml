@@ -30,6 +30,23 @@ Page {
                 }
             }
 
+            Label {
+                text: "Better quality requires better connection"
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.paddingLarge
+                    right: parent.right
+                    rightMargin: Theme.paddingLarge
+                }
+                font {
+                    italic: true
+                    pixelSize: Theme.fontSizeExtraSmall
+                }
+                horizontalAlignment: Text.AlignRight
+                visible: qualityComboBox._menuOpen
+                height: visible ? implicitHeight : 0
+            }
+
             ComboBox {
                 id: formatComboBox
                 width: parent.width
