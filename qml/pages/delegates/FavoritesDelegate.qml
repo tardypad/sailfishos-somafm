@@ -20,7 +20,7 @@ BackgroundItem {
             height: gridView.cellHeight - Theme.paddingSmall*2
         }
         smooth: true
-        source: (imageMediumUrl != "") ? imageMediumUrl : imageBigUrl
+        source: imageMediumUrl
         anchors {
             verticalCenter: parent.verticalCenter
             horizontalCenter: parent.horizontalCenter

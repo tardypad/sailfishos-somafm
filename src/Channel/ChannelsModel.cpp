@@ -86,13 +86,26 @@ XmlItem* ChannelsModel::parseXmlItem()
     channel->setData(id, Channel::IdRole);
     channel->setData(name, Channel::NameRole);
     channel->setData(description, Channel::DescriptionRole);
-    channel->setData(imageUrl, Channel::ImageUrlRole);
-    channel->setData(imageMediumUrl, Channel::ImageMediumUrlRole);
-    channel->setData(imageBigUrl, Channel::ImageBigUrlRole);
     channel->setData(dj, Channel::DjRole);
     channel->setData(genres, Channel::GenresRole);
     channel->setData(sortGenre, Channel::SortGenreRole);
     channel->setData(listeners, Channel::ListenersRole);
+
+    channel->setData(imageUrl, Channel::ImageUrlRole);
+    if (!imageMediumUrl.isEmpty()) {
+        channel->setData(imageMediumUrl, Channel::ImageMediumUrlRole);
+    } else if (!imageBigUrl.isEmpty()) {
+        channel->setData(imageBigUrl, Channel::ImageMediumUrlRole);
+    } else {
+        channel->setData(imageUrl, Channel::ImageMediumUrlRole);
+    }
+    if (!imageBigUrl.isEmpty()) {
+        channel->setData(imageBigUrl, Channel::ImageBigUrlRole);
+    } else if (!imageMediumUrl.isEmpty()){
+        channel->setData(imageMediumUrl, Channel::ImageBigUrlRole);
+    } else {
+        channel->setData(imageUrl, Channel::ImageBigUrlRole);
+    }
 
     if (m_bookmarksManager->isBookmark(channel)) {
         channel->setData(true, Channel::IsBookmarkRole);
