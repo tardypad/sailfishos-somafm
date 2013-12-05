@@ -83,17 +83,23 @@ void Player::chosePls()
     QMap<Channel::StreamQuality, QMap<Channel::StreamFormat, QUrl> > allPls = channel()->getAllPlsQuality();
 
     Channel::StreamQuality preferedQuality = Channel::streamQuality(settings.streamQuality());
+    Channel::StreamQuality defaultQuality = Channel::defaultStreamQuality();
     QMap<Channel::StreamFormat, QUrl> qualityPls;
     if (allPls.contains(preferedQuality)) {
         qualityPls = allPls.value(preferedQuality);
+    } else if (allPls.contains(defaultQuality)) {
+        qualityPls = allPls.value(defaultQuality);
     } else {
         qualityPls = allPls.values().first();
     }
 
     Channel::StreamFormat preferedFormat = Channel::streamFormat(settings.streamFormat());
+    Channel::StreamFormat defaultFormat = Channel::defaultStreamFormat();
     QUrl pls;
     if (qualityPls.contains(preferedFormat)) {
         pls = qualityPls.value(preferedFormat);
+    } else if (qualityPls.contains(defaultFormat)) {
+        pls = qualityPls.value(defaultFormat);
     } else {
         pls = qualityPls.values().first();
     }
