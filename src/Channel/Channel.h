@@ -55,11 +55,16 @@ public:
     virtual QHash<int, QByteArray> idRoleNames();
     virtual XmlItem* create();
     void addPls(QUrl pls, StreamFormat format, StreamQuality quality);
+    QMap<StreamQuality, QMap<StreamFormat, QUrl> > getAllPlsQuality();
 
-    static QString streamQuality(StreamQuality quality);
-    static QString streamFormat(StreamFormat format);
-    static QString defaultStreamQuality();
-    static QString defaultStreamFormat();
+    static QString streamQualityText(StreamQuality quality);
+    static QString streamFormatText(StreamFormat format);
+    static QString defaultStreamQualityText();
+    static QString defaultStreamFormatText();
+    static StreamQuality streamQuality(QString quality);
+    static StreamFormat streamFormat(QString format);
+    static StreamQuality defaultStreamQuality();
+    static StreamFormat defaultStreamFormat();
 
     virtual QString xmlTag() { return "channel"; }
 

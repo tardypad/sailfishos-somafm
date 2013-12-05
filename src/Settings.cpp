@@ -18,7 +18,7 @@ Settings::~Settings()
 QString Settings::streamQuality()
 {
     if (!m_settings->contains("stream/quality")) {
-        return Channel::defaultStreamQuality();
+        return Channel::defaultStreamQualityText();
     }
 
     return value("stream/quality").toString();
@@ -27,7 +27,7 @@ QString Settings::streamQuality()
 QString Settings::streamFormat()
 {
     if (!m_settings->contains("stream/format")) {
-        return Channel::defaultStreamFormat();
+        return Channel::defaultStreamFormatText();
     }
 
     return value("stream/format").toString();

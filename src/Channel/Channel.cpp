@@ -147,11 +147,34 @@ void Channel::addPls(QUrl pls, StreamFormat format, StreamQuality quality)
     case AacPlusFormat:
         m_aacpPls.insertMulti(quality, pls);
         break;
-
     }
 }
 
-QString Channel::streamQuality(Channel::StreamQuality quality)
+QMap<Channel::StreamQuality, QMap<Channel::StreamFormat, QUrl> > Channel::getAllPlsQuality()
+{
+    QMap<StreamQuality, QMap<StreamFormat, QUrl> > result;
+    QMap<StreamFormat, QUrl> qualityPls;
+    StreamQuality quality;
+
+    for (int q = FirstQuality; q <= LastQuality; ++q) {
+        quality = (StreamQuality) q;
+        qualityPls.clear();
+
+        if (m_aacpPls.contains(quality))
+            qualityPls.insert(AacPlusFormat, m_aacpPls.value(quality));
+        if (m_aacPls.contains(quality))
+            qualityPls.insert(AacFormat, m_aacPls.value(quality));
+        if (m_mp3Pls.contains(quality))
+            qualityPls.insert(Mp3Format, m_mp3Pls.value(quality));
+
+        if (!qualityPls.empty())
+            result.insert(quality, qualityPls);
+    }
+
+    return result;
+}
+
+QString Channel::streamQualityText(Channel::StreamQuality quality)
 {
     switch (quality) {
     case TopQuality:
@@ -162,10 +185,23 @@ QString Channel::streamQuality(Channel::StreamQuality quality)
         return "Low";
     }
 
-    return "";
+    return defaultStreamQualityText();
 }
 
-QString Channel::streamFormat(Channel::StreamFormat format)
+Channel::StreamQuality Channel::streamQuality(QString quality)
+{
+    if (quality == "Top") {
+        return TopQuality;
+    } else if (quality == "Good") {
+        return GoodQuality;
+    } else if (quality == "Low") {
+        return LowQuality;
+    }
+
+    return defaultStreamQuality();
+}
+
+QString Channel::streamFormatText(Channel::StreamFormat format)
 {
     switch (format) {
     case AacPlusFormat:
@@ -176,15 +212,38 @@ QString Channel::streamFormat(Channel::StreamFormat format)
         return "MP3";
     }
 
-    return "";
+    return defaultStreamFormatText();
 }
 
-QString Channel::defaultStreamQuality()
+Channel::StreamFormat Channel::streamFormat(QString format)
 {
-    return streamQuality(GoodQuality);
+    if (format == "AAC+") {
+        return AacPlusFormat;
+    } else if (format == "AAC") {
+        return AacFormat;
+    } else if (format == "MP3") {
+        return Mp3Format;
+    }
+
+    return defaultStreamFormat();
 }
 
-QString Channel::defaultStreamFormat()
+Channel::StreamQuality Channel::defaultStreamQuality()
 {
-    return streamFormat(AacFormat);
+    return GoodQuality;
+}
+
+Channel::StreamFormat Channel::defaultStreamFormat()
+{
+    return AacFormat;
+}
+
+QString Channel::defaultStreamQualityText()
+{
+    return streamQualityText(defaultStreamQuality());
+}
+
+QString Channel::defaultStreamFormatText()
+{
+    return streamFormatText(defaultStreamFormat());
 }

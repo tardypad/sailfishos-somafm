@@ -3,11 +3,14 @@
 #include <QDebug>
 
 #include "Channel/Channel.h"
+#include "Settings.h"
 
 Player::Player(QObject *parent) :
     QObject(parent),
-    m_channel(NULL)
+    m_channel(NULL),
+    m_pls("")
 {
+    connect(this, SIGNAL(channelChanged()), this, SLOT(chosePls()));
 }
 
 void Player::play(Channel *channel)
@@ -72,4 +75,28 @@ QString Player::channelImageMediumUrl()
 bool Player::hasCurrentChannel()
 {
     return m_channel != NULL;
+}
+
+void Player::chosePls()
+{
+    Settings settings;
+    QMap<Channel::StreamQuality, QMap<Channel::StreamFormat, QUrl> > allPls = channel()->getAllPlsQuality();
+
+    Channel::StreamQuality preferedQuality = Channel::streamQuality(settings.streamQuality());
+    QMap<Channel::StreamFormat, QUrl> qualityPls;
+    if (allPls.contains(preferedQuality)) {
+        qualityPls = allPls.value(preferedQuality);
+    } else {
+        qualityPls = allPls.values().first();
+    }
+
+    Channel::StreamFormat preferedFormat = Channel::streamFormat(settings.streamFormat());
+    QUrl pls;
+    if (qualityPls.contains(preferedFormat)) {
+        pls = qualityPls.value(preferedFormat);
+    } else {
+        pls = qualityPls.values().first();
+    }
+
+    setPls(pls);
 }

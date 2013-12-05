@@ -74,7 +74,7 @@ QList<QVariant> ChannelsProxyModel::streamsQualities()
 {
     QList<QVariant> qualities;
     for (int q = Channel::FirstQuality; q <= Channel::LastQuality; ++q) {
-        qualities.append(Channel::streamQuality( (Channel::StreamQuality) q ));
+        qualities.append(Channel::streamQualityText( (Channel::StreamQuality) q ));
     }
     return qualities;
 }
@@ -83,7 +83,7 @@ QList<QVariant> ChannelsProxyModel::streamsFormats()
 {
     QList<QVariant> formats;
     for (int f = Channel::FirstFormat; f <= Channel::LastFormat; ++f) {
-        formats.append(Channel::streamFormat( (Channel::StreamFormat) f ));
+        formats.append(Channel::streamFormatText( (Channel::StreamFormat) f ));
     }
     return formats;
 }
