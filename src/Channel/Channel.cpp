@@ -247,3 +247,21 @@ QString Channel::defaultStreamFormatText()
 {
     return streamFormatText(defaultStreamFormat());
 }
+
+QList<QString> Channel::streamQualityTextList()
+{
+    QList<QString> qualities;
+    for (int q = FirstQuality; q <= LastQuality; ++q) {
+        qualities.append(streamQualityText( (Channel::StreamQuality) q ));
+    }
+    return qualities;
+}
+
+QList<QString> Channel::streamFormatTextList()
+{
+    QList<QString> formats;
+    for (int f = FirstFormat; f <= LastFormat; ++f) {
+        formats.append(streamFormatText( (Channel::StreamFormat) f ));
+    }
+    return formats;
+}

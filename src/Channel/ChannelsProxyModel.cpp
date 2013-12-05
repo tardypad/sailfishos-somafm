@@ -70,21 +70,13 @@ QMap<QString, QVariant> ChannelsProxyModel::channelItemNameData(QString channelI
     return channelsSourceModel()->channelItemNameData(channelId);
 }
 
-QList<QVariant> ChannelsProxyModel::streamsQualities()
+QList<QString> ChannelsProxyModel::streamsQualities()
 {
-    QList<QVariant> qualities;
-    for (int q = Channel::FirstQuality; q <= Channel::LastQuality; ++q) {
-        qualities.append(Channel::streamQualityText( (Channel::StreamQuality) q ));
-    }
-    return qualities;
+    return Channel::streamQualityTextList();
 }
 
-QList<QVariant> ChannelsProxyModel::streamsFormats()
+QList<QString> ChannelsProxyModel::streamsFormats()
 {
-    QList<QVariant> formats;
-    for (int f = Channel::FirstFormat; f <= Channel::LastFormat; ++f) {
-        formats.append(Channel::streamFormatText( (Channel::StreamFormat) f ));
-    }
-    return formats;
+    return Channel::streamFormatTextList();
 }
 
