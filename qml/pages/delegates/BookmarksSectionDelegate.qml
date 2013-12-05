@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../components"
+
 Item {
     height: sectionHeader.height
     width: parent.width
@@ -14,23 +16,15 @@ Item {
         }
     }
 
-    Image {
+    ChannelImage {
         id: channelImage
-        smooth: false
+        size: BusyIndicatorSize.Small
         source: listView.channelsData[section] ? listView.channelsData[section]["image_url"] : ""
         height: sectionHeader.height
         width: sectionHeader.height
-        fillMode: Image.PreserveAspectCrop
-        clip: true
         anchors {
             right: parent.right
             rightMargin: Theme.paddingMedium
-        }
-
-        BusyIndicator {
-            size: BusyIndicatorSize.Small
-            running: channelImage.status === Image.Loading
-            anchors.centerIn: parent
         }
     }
 }

@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import "../utils"
+import "../components"
 
 ListItem {
     menu: contextMenu
@@ -15,24 +16,16 @@ ListItem {
         color: Theme.highlightBackgroundColor
     }
 
-    Image {
+    ChannelImage {
         id: channelImage
-        smooth: true
+        size: BusyIndicatorSize.Small
         source: imageUrl
         height: parent.height - Theme.paddingSmall*2
         width: parent.height - Theme.paddingSmall*2
-        fillMode: Image.PreserveAspectCrop
-        clip: true
         anchors {
             verticalCenter: parent.verticalCenter
             left: parent.left
             leftMargin: Theme.paddingSmall
-        }
-
-        BusyIndicator {
-            size: BusyIndicatorSize.Small
-            running: channelImage.status === Image.Loading
-            anchors.centerIn: parent
         }
     }
 

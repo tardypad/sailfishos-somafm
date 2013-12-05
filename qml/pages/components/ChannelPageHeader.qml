@@ -10,24 +10,16 @@ Item {
         title: name
     }
 
-    Image {
+    ChannelImage {
         id: channelImage
-        smooth: true
+        size: BusyIndicatorSize.Medium
         source: imageUrl
         height: Theme.itemSizeLarge * 2
         width: Theme.itemSizeLarge * 2
-        fillMode: Image.PreserveAspectCrop
-        clip: true
         anchors {
             left: parent.left
             top: header.bottom
             leftMargin: Theme.paddingSmall
-        }
-
-        BusyIndicator {
-            size: BusyIndicatorSize.Medium
-            running: channelImage.status === Image.Loading
-            anchors.centerIn: parent
         }
     }
 

@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import "../utils"
+import "../components"
 
 BackgroundItem {
     id: channelItem
@@ -11,27 +12,15 @@ BackgroundItem {
     width: gridView.cellWidth
     height: gridView.cellHeight
 
-    Image {
+    ChannelImage {
         id: channelImage
+        size: BusyIndicatorSize.Medium
         width: gridView.cellWidth - Theme.paddingSmall*2
         height: gridView.cellHeight - Theme.paddingSmall*2
-        sourceSize {
-            width: gridView.cellWidth - Theme.paddingSmall*2
-            height: gridView.cellHeight - Theme.paddingSmall*2
-        }
-        smooth: true
         source: imageMediumUrl
         anchors {
             verticalCenter: parent.verticalCenter
             horizontalCenter: parent.horizontalCenter
-        }
-        fillMode: Image.PreserveAspectCrop
-        clip: true
-
-        BusyIndicator {
-            size: BusyIndicatorSize.Medium
-            running: channelImage.status === Image.Loading
-            anchors.centerIn: parent
         }
     }
 

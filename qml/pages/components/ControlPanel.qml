@@ -20,20 +20,15 @@ DockedPanel {
             color: Theme.secondaryHighlightColor
         }
 
-        Image {
+        ChannelImage {
             id: channelImage
+            size: BusyIndicatorSize.Small
             height: Theme.iconSizeLarge
             width: Theme.iconSizeLarge
             anchors {
                 left: parent.left
                 leftMargin: Theme.paddingLarge
                 verticalCenter: parent.verticalCenter
-            }
-
-            BusyIndicator {
-                size: BusyIndicatorSize.Small
-                running: channelImage.status === Image.Loading
-                anchors.centerIn: parent
             }
         }
 
