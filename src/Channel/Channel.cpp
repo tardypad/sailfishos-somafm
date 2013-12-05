@@ -190,11 +190,11 @@ QString Channel::streamQualityText(Channel::StreamQuality quality)
 
 Channel::StreamQuality Channel::streamQuality(QString quality)
 {
-    if (quality == "Top") {
+    if (quality.compare("top", Qt::CaseInsensitive) == 0) {
         return TopQuality;
-    } else if (quality == "Good") {
+    } else if (quality.compare("good", Qt::CaseInsensitive) == 0) {
         return GoodQuality;
-    } else if (quality == "Low") {
+    } else if (quality.compare("low", Qt::CaseInsensitive) == 0) {
         return LowQuality;
     }
 
@@ -217,11 +217,11 @@ QString Channel::streamFormatText(Channel::StreamFormat format)
 
 Channel::StreamFormat Channel::streamFormat(QString format)
 {
-    if (format == "AAC+") {
+    if (format.compare("aac+", Qt::CaseInsensitive) == 0) {
         return AacPlusFormat;
-    } else if (format == "AAC") {
+    } else if (format.compare("aac", Qt::CaseInsensitive) == 0) {
         return AacFormat;
-    } else if (format == "MP3") {
+    } else if (format.compare("mp3", Qt::CaseInsensitive) == 0) {
         return Mp3Format;
     }
 
