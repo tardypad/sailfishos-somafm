@@ -32,5 +32,6 @@ Item {
             left: parent.left
             right: parent.right
         }
+        linkColor: Theme.highlightColor
     }
 }

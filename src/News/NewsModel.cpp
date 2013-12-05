@@ -97,7 +97,7 @@ QString NewsModel::defineGroup(QDateTime dateTime)
     QDateTime now = QDateTime::currentDateTime();
 
     if (dateTime.addDays(7) > now) {
-        return "Last week";
+        return "This week";
     } else if (dateTime.addMonths(1) > now) {
         return "Last month";
     }
