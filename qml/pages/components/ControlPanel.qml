@@ -1,19 +1,29 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../utils"
+
 DockedPanel {
     id: controlPanel
 
     property string channelId
     property alias channelName: channelLabel.text
     property alias channelImageUrl: channelImage.source
+    property bool menuOpen: _contextMenu ? _contextMenu._open : false
+    property Item _contextMenu
 
     width: parent.width
-    height: Theme.itemSizeExtraLarge
+    height: menuOpen ? backgroundItem.height + _contextMenu.height : backgroundItem.height
     dock: Dock.Bottom
 
     BackgroundItem {
-        anchors.fill: parent
+        id: backgroundItem
+        anchors {
+            top: parent.top
+            left: parent.left
+        }
+        width: parent.width
+        height: Theme.itemSizeExtraLarge
 
         Rectangle {
             anchors.fill: parent
@@ -88,6 +98,24 @@ DockedPanel {
         }
 
         onClicked: goToChannelPage()
+
+        onPressAndHold: openContextMenu()
+    }
+
+    Component {
+        id: menuComponent
+        ContextMenu {
+            IconMenuItem {
+                iconSource: "image://theme/icon-m-music"
+                text: "Change quality/format"
+                onClicked: console.log("Change quality/format")
+            }
+            IconMenuItem {
+                iconSource: "qrc:/icon/un-bookmark"
+                text: "Bookmark current song"
+                onClicked: console.log("Bookmark current song")
+            }
+        }
     }
 
     Connections {
@@ -122,6 +150,12 @@ DockedPanel {
             currentPage.stopUpdates()
             pageStack.replace(url, properties)
         }
+    }
+
+    function openContextMenu() {
+        if (!_contextMenu)
+            _contextMenu = menuComponent.createObject(controlPanel)
+        _contextMenu.show(controlPanel)
     }
 
     function pause() {
