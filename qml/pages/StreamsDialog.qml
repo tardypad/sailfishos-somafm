@@ -9,6 +9,10 @@ Dialog {
     property string channelId
     property string selectedQuality
     property string selectedFormat
+    property string currentQuality
+    property string currentFormat
+    property color selectedColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
+    property color currentColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity / 3)
 
     SilicaListView {
         id: listView
@@ -43,8 +47,10 @@ Dialog {
         }
         delegate: BackgroundItem {
             property bool selected: quality === selectedQuality && format === selectedFormat
+            property bool current: quality === currentQuality && format === currentFormat
             height: Theme.itemSizeSmall
-            highlighted: down || selected
+            highlighted: down || selected || current
+            highlightedColor: current ? currentColor : selectedColor
             Label {
                 text: format + " format"
                 anchors.centerIn: parent
@@ -67,8 +73,10 @@ Dialog {
     }
 
     function defineSelected() {
-        selectedQuality = _player.streamQualityText();
-        selectedFormat = _player.streamFormatText();
+        currentQuality = _player.streamQualityText();
+        currentFormat = _player.streamFormatText();
+        selectedQuality = currentQuality
+        selectedFormat = currentFormat
     }
 
     Component.onCompleted: {
