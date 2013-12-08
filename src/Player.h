@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QUrl>
-class Channel;
+#include "Channel/Channel.h"
 
 class Player : public QObject
 {
@@ -19,14 +19,20 @@ public:
     Q_INVOKABLE QString channelName();
     Q_INVOKABLE QString channelImageUrl();
     Q_INVOKABLE QString channelImageMediumUrl();
+    Q_INVOKABLE QString streamQualityText();
+    Q_INVOKABLE QString streamFormatText();
 
     Q_INVOKABLE inline Channel* channel() const { return m_channel; }
     Q_INVOKABLE inline bool isPlaying() const { return m_isPlaying; }
     inline QUrl pls() const { return m_pls; }
+    inline Channel::StreamQuality streamQuality() const { return m_streamQuality; }
+    inline Channel::StreamFormat streamFormat() const { return m_streamFormat; }
 
     inline void setChannel(Channel* channel) { m_channel = channel; emit channelChanged(); }
     inline void setIsPlaying(bool isPlaying) { m_isPlaying = isPlaying; }
     inline void setPls(QUrl pls) { m_pls = pls; }
+    inline void setStreamQuality(Channel::StreamQuality streamQuality) { m_streamQuality = streamQuality; }
+    inline void setStreamFormat(Channel::StreamFormat streamFormat) { m_streamFormat = streamFormat; }
 
 protected:
     bool hasCurrentChannel();
@@ -43,6 +49,8 @@ private:
     Channel* m_channel;
     bool m_isPlaying;
     QUrl m_pls;
+    Channel::StreamQuality m_streamQuality;
+    Channel::StreamFormat m_streamFormat;
 };
 
 #endif // PLAYER_H

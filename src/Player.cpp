@@ -2,7 +2,6 @@
 
 #include <QDebug>
 
-#include "Channel/Channel.h"
 #include "Settings.h"
 
 Player::Player(QObject *parent) :
@@ -67,6 +66,16 @@ QString Player::channelImageMediumUrl()
     return channel()->data(Channel::ImageMediumUrlRole).toString();
 }
 
+QString Player::streamQualityText()
+{
+    return Channel::streamQualityText(streamQuality());
+}
+
+QString Player::streamFormatText()
+{
+    return Channel::streamFormatText(streamFormat());
+}
+
 bool Player::hasCurrentChannel()
 {
     return m_channel != NULL;
@@ -79,25 +88,31 @@ void Player::chosePls()
 
     Channel::StreamQuality preferedQuality = Channel::streamQuality(settings.streamQuality());
     Channel::StreamQuality defaultQuality = Channel::defaultStreamQuality();
+    Channel::StreamQuality quality;
     QMap<Channel::StreamFormat, QUrl> qualityPls;
     if (allPls.contains(preferedQuality)) {
-        qualityPls = allPls.value(preferedQuality);
+        quality = preferedQuality;
     } else if (allPls.contains(defaultQuality)) {
-        qualityPls = allPls.value(defaultQuality);
+        quality = defaultQuality;
     } else {
-        qualityPls = allPls.values().first();
+        quality = allPls.keys().first();
     }
+    qualityPls = allPls.value(quality);
 
     Channel::StreamFormat preferedFormat = Channel::streamFormat(settings.streamFormat());
     Channel::StreamFormat defaultFormat = Channel::defaultStreamFormat();
+    Channel::StreamFormat format;
     QUrl pls;
     if (qualityPls.contains(preferedFormat)) {
-        pls = qualityPls.value(preferedFormat);
+        format = preferedFormat;
     } else if (qualityPls.contains(defaultFormat)) {
-        pls = qualityPls.value(defaultFormat);
+        format = defaultFormat;
     } else {
-        pls = qualityPls.values().first();
+        format = qualityPls.keys().first();
     }
+    pls = qualityPls.value(format);
 
+    setStreamQuality(quality);
+    setStreamFormat(format);
     setPls(pls);
 }

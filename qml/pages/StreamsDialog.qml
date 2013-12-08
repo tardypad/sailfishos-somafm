@@ -27,7 +27,9 @@ Dialog {
             }
         }
         delegate: BackgroundItem {
+            property bool selected: quality === selectedQuality && format === selectedFormat
             height: Theme.itemSizeSmall
+            highlighted: down || selected
             Label {
                 text: format + " format"
                 anchors.centerIn: parent
@@ -49,5 +51,13 @@ Dialog {
         }
     }
 
-    Component.onCompleted: fillStreamsList()
+    function defineSelected() {
+        selectedQuality = _player.streamQualityText();
+        selectedFormat = _player.streamFormatText();
+    }
+
+    Component.onCompleted: {
+        defineSelected()
+        fillStreamsList()
+    }
 }
