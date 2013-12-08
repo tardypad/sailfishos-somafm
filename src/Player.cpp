@@ -76,6 +76,24 @@ QString Player::streamFormatText()
     return Channel::streamFormatText(streamFormat());
 }
 
+void Player::changeStream(QString qualityText, QString formatText)
+{
+    Channel::StreamQuality quality = Channel::streamQuality(qualityText);
+    Channel::StreamFormat format = Channel::streamFormat(formatText);
+
+    if (quality == streamQuality() && format == streamFormat()) return;
+
+    QMap<Channel::StreamQuality, QMap<Channel::StreamFormat, QUrl> > allPls = channel()->getAllPlsQuality();
+
+    if (!allPls.contains(quality) || !allPls.value(quality).contains(format)) return;
+
+    QUrl pls = allPls.value(quality).value(format);
+
+    setStreamQuality(quality);
+    setStreamFormat(format);
+    setPls(pls);
+}
+
 bool Player::hasCurrentChannel()
 {
     return m_channel != NULL;

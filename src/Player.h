@@ -21,6 +21,7 @@ public:
     Q_INVOKABLE QString channelImageMediumUrl();
     Q_INVOKABLE QString streamQualityText();
     Q_INVOKABLE QString streamFormatText();
+    Q_INVOKABLE void changeStream(QString qualityText, QString formatText);
 
     Q_INVOKABLE inline Channel* channel() const { return m_channel; }
     Q_INVOKABLE inline bool isPlaying() const { return m_isPlaying; }

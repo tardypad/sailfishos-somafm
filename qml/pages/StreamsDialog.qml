@@ -80,6 +80,13 @@ Dialog {
         selectedFormat = currentFormat
     }
 
+    function changeStreams() {
+        if (selectedQuality != currentQuality || selectedFormat != currentFormat)
+            _player.changeStream(selectedQuality, selectedFormat)
+    }
+
+    onAccepted: changeStreams()
+
     Connections {
         target: controlPanel
         onClose: close()
