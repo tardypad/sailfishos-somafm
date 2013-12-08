@@ -14,7 +14,7 @@ Page {
         model: _supportModel
         delegate: SupportDelegate { }
         cellWidth: parent.width / 2
-        cellHeight: parent.width / 2
+        cellHeight: parent.width / 3
 
         LoadingIndicator {
             id: indicator

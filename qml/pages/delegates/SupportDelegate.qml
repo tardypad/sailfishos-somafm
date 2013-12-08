@@ -5,35 +5,22 @@ BackgroundItem {
     width: gridView.cellWidth
     height: gridView.cellHeight
 
-    Image {
-        id: imageItem
-        width: gridView.cellWidth * 0.6
-        height: gridView.cellHeight * 0.6
-        anchors {
-            top: parent.top
-            topMargin: Theme.paddingMedium
-            horizontalCenter: parent.horizontalCenter
-        }
-        smooth: true
-        source: "image://theme/icon-l-developer-mode"
-        fillMode: Image.PreserveAspectFit
+    Rectangle {
+        anchors.centerIn: parent
+        width: parent.width - 2 * Theme.paddingSmall
+        height: parent.height - 2 * Theme.paddingSmall
+        color: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity / 3)
     }
 
     Label {
         id: contentLabel
         text: content
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            top: imageItem.bottom
-            topMargin: Theme.paddingMedium
-            bottom: parent.bottom
-            bottomMargin: Theme.paddingMedium
-        }
+        anchors.centerIn: parent
         width: parent.width - 2 * Theme.paddingMedium
         font.pixelSize: Theme.fontSizeExtraSmall
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-        maximumLineCount: 2
+        maximumLineCount: 3
     }
 
     onClicked: openItem()
