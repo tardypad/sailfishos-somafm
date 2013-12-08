@@ -187,6 +187,29 @@ QMap<QString, QVariant> ChannelsModel::channelItemNameData(QString channelId)
     return result;
 }
 
+QMap<QString, QVariant> ChannelsModel::channelStreams(QString channelId)
+{
+    QMap<QString, QVariant> result;
+
+    Channel* channel = channelItem(channelId);
+    QMap<Channel::StreamQuality, QMap<Channel::StreamFormat, QUrl> > allPls = channel->getAllPlsQuality();
+
+    QMapIterator<Channel::StreamQuality, QMap<Channel::StreamFormat, QUrl> > iterator(allPls);
+    QString quality, format;
+    while (iterator.hasNext()) {
+        iterator.next();
+        quality = Channel::streamQualityText(iterator.key());
+        QMapIterator<Channel::StreamFormat, QUrl> iterator2(iterator.value());
+        while (iterator2.hasNext()) {
+            iterator2.next();
+            format = Channel::streamFormatText(iterator2.key());
+            result.insertMulti(quality, format);
+        }
+    }
+
+    return result;
+}
+
 void ChannelsModel::duplicateGenre()
 {
     for (int row = 0; row < m_list.size(); ++row) {

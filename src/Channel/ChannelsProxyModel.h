@@ -21,6 +21,7 @@ public:
     Q_INVOKABLE QMap<QString, QVariant> channelItemNameData(QString channelId);
     Q_INVOKABLE QList<QString> streamsQualities();
     Q_INVOKABLE QList<QString> streamsFormats();
+    Q_INVOKABLE QMap<QString, QVariant> channelStreams(QString channelId);
 
 protected:
     ChannelsModel* channelsSourceModel();

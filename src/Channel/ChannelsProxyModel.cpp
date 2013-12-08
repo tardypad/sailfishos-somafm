@@ -80,3 +80,21 @@ QList<QString> ChannelsProxyModel::streamsFormats()
     return Channel::streamFormatTextList();
 }
 
+QMap<QString, QVariant> ChannelsProxyModel::channelStreams(QString channelId)
+{
+    QMap<QString, QVariant> streams = channelsSourceModel()->channelStreams(channelId);
+
+    // QVariantList on QML side doesn't support multiple keys
+    QMap<QString, QVariant> result;
+
+    QMapIterator<QString, QVariant> iterator(streams);
+    int i = 0;
+    while (iterator.hasNext()) {
+        i++;
+        iterator.next();
+        result.insert(iterator.key() + QString::number(i), iterator.value());
+    }
+
+    return result;
+}
+

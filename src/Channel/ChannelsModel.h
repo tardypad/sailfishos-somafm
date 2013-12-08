@@ -15,6 +15,7 @@ public:
     ~ChannelsModel();
     Channel* channelItem(QString channelId);
     QMap<QString, QVariant> channelItemNameData(QString channelId);
+    QMap<QString, QVariant> channelStreams(QString channelId);
 
 private slots:
     void addToFavorites(XmlItem* xmlItem);

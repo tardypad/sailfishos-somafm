@@ -108,7 +108,7 @@ DockedPanel {
             IconMenuItem {
                 iconSource: "image://theme/icon-m-music"
                 text: "Change quality/format"
-                onClicked: console.log("Change quality/format")
+                onClicked: openStreamsDialog()
             }
             IconMenuItem {
                 iconSource: "qrc:/icon/un-bookmark"
@@ -156,6 +156,11 @@ DockedPanel {
         if (!_contextMenu)
             _contextMenu = menuComponent.createObject(controlPanel)
         _contextMenu.show(controlPanel)
+    }
+
+    function openStreamsDialog() {
+        pageStack.push(Qt.resolvedUrl("../StreamsDialog.qml"),
+            {"channelId": channelId})
     }
 
     function pause() {
