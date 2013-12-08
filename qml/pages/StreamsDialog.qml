@@ -80,6 +80,11 @@ Dialog {
         selectedFormat = currentFormat
     }
 
+    Connections {
+        target: controlPanel
+        onClose: close()
+    }
+
     Component.onCompleted: {
         defineSelected()
         fillStreamsList()

@@ -12,6 +12,8 @@ DockedPanel {
     property bool menuOpen: _contextMenu ? _contextMenu._open : false
     property Item _contextMenu
 
+    signal close
+
     width: parent.width
     height: menuOpen ? backgroundItem.height + _contextMenu.height : backgroundItem.height
     dock: Dock.Bottom
@@ -191,5 +193,13 @@ DockedPanel {
             PropertyChanges { target: progressTimer;     running: true }
         }]
 
-    onOpenChanged: if (!open && state === "playing") show()
+    onOpenChanged: {
+        if (!open) {
+            if (state === "playing") {
+                show()
+            } else {
+                close()
+            }
+        }
+    }
 }
