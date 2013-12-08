@@ -51,7 +51,7 @@ Dialog {
             property bool current: quality === currentQuality && format === currentFormat
             height: Theme.itemSizeSmall
             highlighted: down || selected || current
-            highlightedColor: current ? currentColor : selectedColor
+            highlightedColor: selected || down ? selectedColor : currentColor
             Label {
                 text: format + " format"
                 anchors.centerIn: parent
