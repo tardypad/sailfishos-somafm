@@ -17,6 +17,21 @@ Dialog {
             acceptText: selectedQuality + ", " + selectedFormat
             dialog: dialog
         }
+        footer: Label {
+            text: "Better quality requires better connection"
+            anchors {
+                left: parent.left
+                leftMargin: Theme.paddingLarge
+                right: parent.right
+                rightMargin: Theme.paddingLarge
+            }
+            font {
+                italic: true
+                pixelSize: Theme.fontSizeExtraSmall
+            }
+            horizontalAlignment: Text.AlignRight
+            height: implicitHeight
+        }
         model: ListModel {
             id: listModel
         }
