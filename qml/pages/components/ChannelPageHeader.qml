@@ -69,5 +69,15 @@ Item {
             italic: true
         }
         horizontalAlignment: Text.AlignRight
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: mailDj()
+        }
+    }
+
+    function mailDj() {
+        if (djMail)
+            Qt.openUrlExternally("mailto:"+djMail+"?subject=["+name+"] ")
     }
 }

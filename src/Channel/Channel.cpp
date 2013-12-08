@@ -11,6 +11,7 @@ Channel::Channel(QObject *parent) :
     m_imageMediumUrl(""),
     m_imageBigUrl(""),
     m_dj(""),
+    m_djMail(""),
     m_genres(""),
     m_listeners(-1),
     m_sortGenre(""),
@@ -32,6 +33,7 @@ QHash<int, QByteArray> Channel::roleNames()
     roleNames[ImageMediumUrlRole] = "imageMediumUrl";
     roleNames[ImageBigUrlRole] = "imageBigUrl";
     roleNames[DjRole] = "dj";
+    roleNames[DjMailRole] = "djMail";
     roleNames[GenresRole] = "genres";
     roleNames[ListenersRole] = "listeners";
     roleNames[SortGenreRole] = "sortGenre";
@@ -76,6 +78,8 @@ QVariant Channel::data(int role) const
         return imageBigUrl();
     case DjRole:
         return dj();
+    case DjMailRole:
+        return djMail();
     case GenresRole:
         return genres();
     case ListenersRole:
@@ -112,6 +116,9 @@ bool Channel::setData(const QVariant &value, int role)
         return true;
     case DjRole:
         setDj(value.toString());
+        return true;
+    case DjMailRole:
+        setDjMail(value.toString());
         return true;
     case GenresRole:
         setGenres(value.toStringList());

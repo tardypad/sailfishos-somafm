@@ -24,6 +24,7 @@ public:
         ImageMediumUrlRole,
         ImageBigUrlRole,
         DjRole,
+        DjMailRole,
         GenresRole,
         ListenersRole,
         SortGenreRole,
@@ -77,6 +78,7 @@ public:
     inline QUrl imageMediumUrl() const { return m_imageMediumUrl; }
     inline QUrl imageBigUrl() const { return m_imageBigUrl; }
     inline QString dj() const { return m_dj; }
+    inline QString djMail() const { return m_djMail; }
     inline QStringList genres() const { return m_genres; }
     inline int listeners() const { return m_listeners; }
     inline QString sortGenre() const { return m_sortGenre; }
@@ -89,6 +91,7 @@ public:
     inline void setImageMediumUrl(QUrl imageMediumUrl) { m_imageMediumUrl = imageMediumUrl; }
     inline void setImageBigUrl(QUrl imageBigUrl) { m_imageBigUrl = imageBigUrl; }
     inline void setDj(QString dj) { m_dj = dj; }
+    inline void setDjMail(QString djMail) { m_djMail = djMail; }
     inline void setGenres(QStringList genres) { m_genres = genres; }
     inline void setListeners(int listeners) { m_listeners = listeners; }
     inline void setSortGenre(QString sortGenre) { m_sortGenre = sortGenre; }
@@ -102,6 +105,7 @@ private:
     QUrl m_imageMediumUrl;
     QUrl m_imageBigUrl;
     QString m_dj;
+    QString m_djMail;
     QStringList m_genres;
     int m_listeners;
     QString m_sortGenre;

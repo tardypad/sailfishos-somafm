@@ -12,6 +12,7 @@ Page {
     property string name
     property string description
     property string dj
+    property string djMail
     property url imageUrl
     property url mediumImageUrl
     property url bigImageUrl
@@ -75,14 +76,15 @@ Page {
 
     function initData() {
         var channelData = _channelsModel.channelItemNameData(id)
-        name = channelData.name;
-        description = channelData.description;
-        dj = channelData.dj;
-        imageUrl = channelData.imageUrl;
-        mediumImageUrl = channelData.imageMediumUrl;
-        bigImageUrl = channelData.imageBigUrl;
-        listeners = channelData.listeners;
-        isFavorite = channelData.isBookmark;
+        name = channelData.name
+        description = channelData.description
+        dj = channelData.dj
+        djMail = channelData.djMail
+        imageUrl = channelData.imageUrl
+        mediumImageUrl = channelData.imageMediumUrl
+        bigImageUrl = channelData.imageBigUrl
+        listeners = channelData.listeners
+        isFavorite = channelData.isBookmark
     }
 
     function play() {

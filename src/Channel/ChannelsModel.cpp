@@ -33,6 +33,7 @@ XmlItem* ChannelsModel::parseXmlItem()
     QString imageMediumUrl = "";
     QString imageBigUrl = "";
     QString dj = "";
+    QString djMail = "";
     QStringList genres = QStringList();
     QString sortGenre = "";
     QString listeners = "";
@@ -63,6 +64,9 @@ XmlItem* ChannelsModel::parseXmlItem()
             } else if (m_xmlReader->name() == "dj") {
                 m_xmlReader->readNext();
                 dj = m_xmlReader->text().toString();
+            } else if (m_xmlReader->name() == "djmail") {
+                m_xmlReader->readNext();
+                djMail = m_xmlReader->text().toString();
             } else if (m_xmlReader->name() == "genre") {
                 m_xmlReader->readNext();
                 QString genre = m_xmlReader->text().toString();
@@ -87,6 +91,7 @@ XmlItem* ChannelsModel::parseXmlItem()
     channel->setData(name, Channel::NameRole);
     channel->setData(description, Channel::DescriptionRole);
     channel->setData(dj, Channel::DjRole);
+    channel->setData(djMail, Channel::DjMailRole);
     channel->setData(genres, Channel::GenresRole);
     channel->setData(sortGenre, Channel::SortGenreRole);
     channel->setData(listeners, Channel::ListenersRole);
