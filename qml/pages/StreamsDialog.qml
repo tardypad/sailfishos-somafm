@@ -5,6 +5,7 @@ import "components"
 
 Dialog {
     id: dialog
+    objectName: "StreamDialog"
 
     property string channelId
     property string selectedQuality

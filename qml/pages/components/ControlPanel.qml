@@ -142,6 +142,8 @@ DockedPanel {
 
     function goToChannelPage() {
         var currentPage = pageStack.currentPage
+        if (currentPage.objectName == "StreamDialog") return
+
         var url = Qt.resolvedUrl("../ChannelPage.qml")
         var properties = {"id": channelId}
         if (currentPage.objectName != "ChannelPage") {
@@ -153,6 +155,9 @@ DockedPanel {
     }
 
     function openContextMenu() {
+        var currentPage = pageStack.currentPage
+        if (currentPage.objectName == "StreamDialog") return
+
         if (!_contextMenu)
             _contextMenu = menuComponent.createObject(controlPanel)
         _contextMenu.show(controlPanel)
