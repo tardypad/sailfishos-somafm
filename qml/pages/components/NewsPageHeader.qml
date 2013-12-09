@@ -12,7 +12,7 @@ Rectangle {
 
     IconPageHeader {
         id: header
-        text: "Support"
+        title: "Support"
         iconSource: "qrc:/icon/support"
     }
 

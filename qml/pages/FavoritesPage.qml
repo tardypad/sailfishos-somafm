@@ -9,7 +9,7 @@ Page {
         id: gridView
         anchors.fill: parent
         header: IconPageHeader {
-            text: "Favorites"
+            title: "Favorites"
             iconSource: "qrc:/icon/favorite"
         }
         delegate: FavoritesGridDelegate { }

@@ -9,7 +9,7 @@ Page {
         id: listView
         anchors.fill: parent
         header: IconPageHeader {
-            text: "Populars"
+            title: "Populars"
             iconSource: "qrc:/icon/popular"
         }
         delegate: PopularsListDelegate { }

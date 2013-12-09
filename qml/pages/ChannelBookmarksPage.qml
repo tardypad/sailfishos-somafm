@@ -15,7 +15,7 @@ Page {
 
         anchors.fill: parent
         header: IconPageHeader {
-            text: "Song bookmarks"
+            title: "Song bookmarks"
             iconSource: "qrc:/icon/bookmark"
         }
         model: _bookmarksManager

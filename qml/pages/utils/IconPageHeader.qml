@@ -1,27 +1,10 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-Item {
-    property alias text: label.text
+PageHeader {
     property alias iconSource: icon.source
 
-    height: Theme.itemSizeLarge
-    width: Screen.width
-
-    Label {
-        id: label
-        color: Theme.highlightColor
-        anchors {
-            verticalCenter: parent.verticalCenter
-            verticalCenterOffset: 4
-            right: icon.left
-            rightMargin: Theme.paddingMedium
-        }
-        font {
-            pixelSize: Theme.fontSizeLarge
-            family: Theme.fontFamilyHeading
-        }
-    }
+    state: "reanchored"
 
     Image {
         id: icon
@@ -35,5 +18,13 @@ Item {
             rightMargin: Theme.paddingLarge
         }
         fillMode: Image.PreserveAspectFit
+    }
+
+    states: State {
+        name: "reanchored"
+        AnchorChanges {
+            target: _titleItem
+            anchors.right: icon.left
+        }
     }
 }

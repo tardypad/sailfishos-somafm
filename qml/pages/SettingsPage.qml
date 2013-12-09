@@ -9,7 +9,7 @@ Page {
         id: listView
         anchors.fill: parent
         header: IconPageHeader {
-            text: "Settings"
+            title: "Settings"
             iconSource: "image://theme/icon-camera-settings"
         }
         model: VisualItemModel {

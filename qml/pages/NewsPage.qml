@@ -37,7 +37,7 @@ Page {
             anchors.fill: parent
             header: IconPageHeader {
                 id: header
-                text: "News"
+                title: "News"
                 iconSource: "qrc:/icon/news"
             }
             model: _newsModel

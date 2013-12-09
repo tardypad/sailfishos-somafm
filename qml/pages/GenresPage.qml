@@ -9,7 +9,7 @@ Page {
         id: listView
         anchors.fill: parent
         header: IconPageHeader {
-            text: "Genres"
+            title: "Genres"
             iconSource: "qrc:/icon/genre"
         }
         delegate: ChannelsListDelegate { }

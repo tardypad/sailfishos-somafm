@@ -10,7 +10,7 @@ Page {
             top: parent.top
             left: parent.left
         }
-        text: "About"
+        title: "About"
         iconSource: "image://theme/icon-m-about"
     }
 
