@@ -41,7 +41,7 @@ Page {
                 iconSource: "qrc:/icon/news"
             }
             model: _newsModel
-            delegate: NewsDelegate {  }
+            delegate: NewsListDelegate {  }
             section {
                 property: 'dateGroup'
                 delegate: SectionHeader {

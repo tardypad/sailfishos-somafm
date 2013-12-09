@@ -12,7 +12,7 @@ Page {
         anchors.fill: parent
         header: SupportPageHeader { }
         model: _supportModel
-        delegate: SupportDelegate { }
+        delegate: SupportGridDelegate { }
         cellWidth: parent.width / 2
         cellHeight: parent.width / 3
 

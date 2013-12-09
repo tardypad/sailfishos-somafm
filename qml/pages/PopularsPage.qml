@@ -12,7 +12,7 @@ Page {
             text: "Populars"
             iconSource: "qrc:/icon/popular"
         }
-        delegate: PopularsDelegate { }
+        delegate: PopularsListDelegate { }
 
         PullDownMenu {
             IconMenuItem {

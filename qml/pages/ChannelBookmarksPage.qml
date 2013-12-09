@@ -19,7 +19,7 @@ Page {
             iconSource: "qrc:/icon/bookmark"
         }
         model: _bookmarksManager
-        delegate: BookmarksDelegate { }
+        delegate: BookmarksListDelegate { }
         section {
             property: 'channelId'
             delegate: BookmarksSectionDelegate { }

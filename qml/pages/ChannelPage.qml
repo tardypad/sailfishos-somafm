@@ -25,7 +25,7 @@ Page {
         anchors.fill: parent
         header: ChannelPageHeader { }
         model: _channelSongsModel
-        delegate: ChannelSongsDelegate { }
+        delegate: ChannelSongsListDelegate { }
 
         PullDownMenu {
             IconMenuItem {

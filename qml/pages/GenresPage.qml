@@ -12,7 +12,7 @@ Page {
             text: "Genres"
             iconSource: "qrc:/icon/genre"
         }
-        delegate: ChannelsDelegate { }
+        delegate: ChannelsListDelegate { }
         section {
             property: 'sortGenre'
             delegate: SectionHeader {

@@ -12,7 +12,7 @@ Page {
             text: "Favorites"
             iconSource: "qrc:/icon/favorite"
         }
-        delegate: FavoritesDelegate { }
+        delegate: FavoritesGridDelegate { }
         cellWidth: parent.width / 2
         cellHeight: parent.width / 2
 
