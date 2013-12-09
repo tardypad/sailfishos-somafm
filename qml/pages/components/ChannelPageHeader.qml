@@ -48,7 +48,6 @@ Item {
             rightMargin: Theme.paddingSmall
             leftMargin: Theme.paddingSmall
         }
-        color: Theme.secondaryColor
         font.pixelSize: Theme.fontSizeExtraSmall
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         truncationMode: TruncationMode.Fade
@@ -63,7 +62,7 @@ Item {
             right: parent.right
             rightMargin: Theme.paddingSmall
         }
-        color: Theme.secondaryColor
+        color: Theme.highlightColor
         font {
             pixelSize: Theme.fontSizeExtraSmall
             italic: true
