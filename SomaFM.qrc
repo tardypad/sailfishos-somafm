@@ -16,5 +16,6 @@
         <file alias="support">images/icons/support.png</file>
         <file alias="facebook">images/icons/facebook.png</file>
         <file alias="twitter">images/icons/twitter.png</file>
+        <file alias="google">images/icons/google.png</file>
     </qresource>
 </RCC>

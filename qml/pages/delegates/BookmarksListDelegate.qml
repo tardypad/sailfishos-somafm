@@ -78,6 +78,13 @@ ListItem {
         })
     }
 
+    function searchGoogle() {
+        var url = "http://www.google.com/search?q="+artist+"+"+title
+        console.log("open search Google page in browser")
+        console.log(url)
+        Qt.openUrlExternally(url)
+    }
+
     Component {
         id: contextMenu
         ContextMenu {
@@ -85,6 +92,11 @@ ListItem {
                 iconSource: "qrc:/icon/un-bookmark"
                 text: "Remove from bookmarks"
                 onClicked: remove()
+            }
+            IconMenuItem {
+                iconSource: "qrc:/icon/google"
+                text: "Search on Google"
+                onClicked: searchGoogle()
             }
         }
     }
