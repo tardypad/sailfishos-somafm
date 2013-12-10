@@ -72,10 +72,9 @@ Page {
                 }
             }
 
-            Text {
+            Label {
                 id: homeText
                 text: "Listener-supported,\ncommercial-free,\nunderground/alternative\nradio"
-                color: "white"
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: Theme.fontSizeSmall
@@ -86,10 +85,9 @@ Page {
                 z: 3
             }
 
-            Text {
+            Label {
                 id: homeTextExtra
                 text: "broadcasting from San Francisco"
-                color: "white"
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
