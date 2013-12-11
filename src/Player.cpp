@@ -1,6 +1,10 @@
 #include "Player.h"
 
 #include <QDebug>
+#include <QtMultimedia/QMediaPlaylist>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkRequest>
+#include <QtNetwork/QNetworkReply>
 
 #include "Settings.h"
 
@@ -9,7 +13,16 @@ Player::Player(QObject *parent) :
     m_channel(NULL),
     m_pls("")
 {
+    m_playlist = new QMediaPlaylist(this);
+    m_playlist->setPlaybackMode(QMediaPlaylist::Sequential);
+
     connect(this, SIGNAL(channelChanged()), this, SLOT(chosePls()));
+    connect(this, SIGNAL(plsChanged()), this, SLOT(fetchPls()));
+}
+
+Player::~Player()
+{
+    delete m_playlist;
 }
 
 void Player::play(Channel *channel)
@@ -133,4 +146,36 @@ void Player::chosePls()
     setStreamQuality(quality);
     setStreamFormat(format);
     setPls(pls);
+}
+
+void Player::fetchPls()
+{
+    QNetworkRequest request(pls());
+    QNetworkAccessManager* networkManager = new QNetworkAccessManager(this);
+    networkManager->get(request);
+
+    connect(networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(fillPlaylist(QNetworkReply*)));
+}
+
+void Player::fillPlaylist(QNetworkReply *plsReply)
+{
+    m_playlist->clear();
+
+    QString data(plsReply->readAll());
+
+    // QMediaPlaylist only support loading of M3U file format
+    QStringList streamUrls;
+    int pos = 0;
+    QRegExp streamRegExp("\nFile\\d=(.*)\n");
+    streamRegExp.setMinimal(true);
+
+    while ((pos = streamRegExp.indexIn(data, pos)) != -1) {
+        streamUrls << streamRegExp.cap(1);
+        pos += streamRegExp.matchedLength();
+    }
+
+    for (int i = 0; i < streamUrls.size(); ++i)
+        m_playlist->addMedia(QUrl(streamUrls.at(i)));
+
+    m_playlist->setCurrentIndex(0);
 }

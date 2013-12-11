@@ -16,6 +16,7 @@ PkgConfigBR:
 - Qt5Core
 - Qt5Qml
 - Qt5Quick
+- Qt5Multimedia
 Requires:
 - qt5-plugin-imageformat-gif
 - sailfishsilica-qt5

@@ -5,12 +5,16 @@
 #include <QUrl>
 #include "Channel/Channel.h"
 
+class QMediaPlaylist;
+class QNetworkReply;
+
 class Player : public QObject
 {
     Q_OBJECT
 
 public:
     explicit Player(QObject *parent = 0);
+    ~Player();
     Q_INVOKABLE void play(Channel* channel);
     Q_INVOKABLE void play();
     Q_INVOKABLE void pause();
@@ -28,10 +32,11 @@ public:
     inline QUrl pls() const { return m_pls; }
     inline Channel::StreamQuality streamQuality() const { return m_streamQuality; }
     inline Channel::StreamFormat streamFormat() const { return m_streamFormat; }
+    inline QMediaPlaylist* playlist() const { return m_playlist; }
 
     inline void setChannel(Channel* channel) { m_channel = channel; emit channelChanged(); }
     inline void setIsPlaying(bool isPlaying) { m_isPlaying = isPlaying; }
-    inline void setPls(QUrl pls) { m_pls = pls; }
+    inline void setPls(QUrl pls) { m_pls = pls; emit plsChanged(); }
     inline void setStreamQuality(Channel::StreamQuality streamQuality) { m_streamQuality = streamQuality; }
     inline void setStreamFormat(Channel::StreamFormat streamFormat) { m_streamFormat = streamFormat; }
 
@@ -40,9 +45,12 @@ protected:
 
 protected slots:
     void chosePls();
+    void fetchPls();
+    void fillPlaylist(QNetworkReply* plsReply);
 
 signals:
     void channelChanged();
+    void plsChanged();
     void playStarted();
     void pauseStarted();
 
@@ -52,6 +60,7 @@ private:
     QUrl m_pls;
     Channel::StreamQuality m_streamQuality;
     Channel::StreamFormat m_streamFormat;
+    QMediaPlaylist* m_playlist;
 };
 
 #endif // PLAYER_H

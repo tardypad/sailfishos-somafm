@@ -33,4 +33,5 @@ RESOURCES += $${TARGET}.qrc
 
 QT += \
     network\
-    sql
+    sql\
+    multimedia
