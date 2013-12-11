@@ -28,13 +28,13 @@ Player::~Player()
 void Player::play(Channel *channel)
 {
     setChannel(channel);
-    setIsPlaying(true);
-    emit playStarted();
+    connect(this, SIGNAL(playlistFilled()), this, SLOT(play()));
 }
 
 void Player::play()
 {
     if (!hasCurrentChannel()) return;
+    disconnect(this, SIGNAL(playlistFilled()), this, SLOT(play()));
     setIsPlaying(true);
     emit playStarted();
 }
@@ -178,4 +178,6 @@ void Player::fillPlaylist(QNetworkReply *plsReply)
         m_playlist->addMedia(QUrl(streamUrls.at(i)));
 
     m_playlist->setCurrentIndex(0);
+
+    emit playlistFilled();
 }

@@ -16,7 +16,6 @@ public:
     explicit Player(QObject *parent = 0);
     ~Player();
     Q_INVOKABLE void play(Channel* channel);
-    Q_INVOKABLE void play();
     Q_INVOKABLE void pause();
     Q_INVOKABLE bool isPlaying(QString id);
     Q_INVOKABLE QString channelId();
@@ -40,6 +39,9 @@ public:
     inline void setStreamQuality(Channel::StreamQuality streamQuality) { m_streamQuality = streamQuality; }
     inline void setStreamFormat(Channel::StreamFormat streamFormat) { m_streamFormat = streamFormat; }
 
+public slots:
+    Q_INVOKABLE void play();
+
 protected:
     bool hasCurrentChannel();
 
@@ -51,6 +53,7 @@ protected slots:
 signals:
     void channelChanged();
     void plsChanged();
+    void playlistFilled();
     void playStarted();
     void pauseStarted();
 
