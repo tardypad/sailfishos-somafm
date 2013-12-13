@@ -1,11 +1,9 @@
+# personal files
 TODO
-*.pro.user*
-.directory
+
+# system files
 *~
-Makefile
-obj
-moc
-rcc
-SomaFM
-*.list
-RPMS
+.directory
+
+# IDE files
+*.pro.user*

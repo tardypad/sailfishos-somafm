@@ -3,28 +3,28 @@ TARGET = SomaFM
 CONFIG += sailfishapp
 
 SOURCES += \
-    src/*.cpp \
-    src/XmlItem/*.cpp \
-    src/Channel/*.cpp \
-    src/Song/*.cpp \
-    src/News/*.cpp \
-    src/Support/*.cpp
+    $$files(src/*.cpp) \
+    $$files(src/XmlItem/*.cpp) \
+    $$files(src/Channel/*.cpp) \
+    $$files(src/Song/*.cpp) \
+    $$files(src/News/*.cpp) \
+    $$files(src/Support/*.cpp)
 
 HEADERS += \
-    src/*.h \
-    src/XmlItem/*.h \
-    src/Channel/*.h \
-    src/Song/*.h \
-    src/News/*.h \
-    src/Support/*.h
+    $$files(src/*.h) \
+    $$files(src/XmlItem/*.h) \
+    $$files(src/Channel/*.h) \
+    $$files(src/Song/*.h) \
+    $$files(src/News/*.h) \
+    $$files(src/Support/*.h)
 
 OTHER_FILES = \
-    qml/*.qml \
-    qml/cover/*.qml \
-    qml/pages/*.qml \
-    qml/pages/delegates/*.qml \
-    qml/pages/components/*.qml \
-    qml/pages/utils/*.qml \
+    $$files(qml/*.qml) \
+    $$files(qml/cover/*.qml) \
+    $$files(qml/pages/*.qml) \
+    $$files(qml/pages/delegates/*.qml) \
+    $$files(qml/pages/components/*.qml) \
+    $$files(qml/pages/utils/*.qml) \
     rpm/$${TARGET}.yaml \
     rpm/$${TARGET}.spec \
     $${TARGET}.desktop
