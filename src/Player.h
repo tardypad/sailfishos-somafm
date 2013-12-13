@@ -54,6 +54,8 @@ signals:
     void channelChanged();
     void plsChanged();
     void playlistFilled();
+    void networkError();
+    void playCalled();
     void playStarted();
     void pauseStarted();
 

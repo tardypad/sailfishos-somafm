@@ -14,6 +14,8 @@ DockedPanel {
 
     signal close
 
+    state: "pause"
+
     width: parent.width
     height: menuOpen ? backgroundItem.height + _contextMenu.height : backgroundItem.height
     dock: Dock.Bottom
@@ -127,6 +129,7 @@ DockedPanel {
             channelImageUrl = _player.channelImageUrl()
             channelId = _player.channelId()
         }
+        onPlayCalled: open = true
         onPlayStarted: {
             reinitProgressIndicator()
             state = "playing"
@@ -135,6 +138,7 @@ DockedPanel {
             reinitProgressIndicator()
             state = "pause"
         }
+        onNetworkError: showMessage("A network error occured")
     }
 
     function reinitProgressIndicator() {

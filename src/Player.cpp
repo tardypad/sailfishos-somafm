@@ -27,6 +27,7 @@ Player::~Player()
 
 void Player::play(Channel *channel)
 {
+    emit playCalled();
     setChannel(channel);
     connect(this, SIGNAL(playlistFilled()), this, SLOT(play()));
 }
@@ -34,6 +35,7 @@ void Player::play(Channel *channel)
 void Player::play()
 {
     if (!hasCurrentChannel()) return;
+    emit playCalled();
     disconnect(this, SIGNAL(playlistFilled()), this, SLOT(play()));
     setIsPlaying(true);
     emit playStarted();
@@ -159,9 +161,16 @@ void Player::fetchPls()
 
 void Player::fillPlaylist(QNetworkReply *plsReply)
 {
+    if (plsReply->error() != QNetworkReply::NoError) {
+        emit networkError();
+        plsReply->deleteLater();
+        return;
+    }
+
     m_playlist->clear();
 
     QString data(plsReply->readAll());
+    plsReply->deleteLater();
 
     // QMediaPlaylist only support loading of M3U file format
     QStringList streamUrls;
