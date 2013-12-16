@@ -34,7 +34,7 @@ void Player::play(Channel *channel)
 
 void Player::play()
 {
-    if (!hasCurrentChannel()) return;
+    if (!isChannelReady()) return;
     emit playCalled();
     disconnect(this, SIGNAL(playlistFilled()), this, SLOT(play()));
     setIsPlaying(true);
@@ -43,7 +43,6 @@ void Player::play()
 
 void Player::pause()
 {
-    if (!hasCurrentChannel()) return;
     setIsPlaying(false);
     emit pauseStarted();
 }
@@ -114,6 +113,13 @@ bool Player::hasCurrentChannel()
     return m_channel != NULL;
 }
 
+bool Player::isChannelReady()
+{
+    if (!hasCurrentChannel()) return false;
+
+    return !m_playlist->isEmpty();
+}
+
 void Player::chosePls()
 {
     Settings settings;
@@ -152,6 +158,8 @@ void Player::chosePls()
 
 void Player::fetchPls()
 {
+    m_playlist->clear();
+
     QNetworkRequest request(pls());
     QNetworkAccessManager* networkManager = new QNetworkAccessManager(this);
     networkManager->get(request);
@@ -164,10 +172,9 @@ void Player::fillPlaylist(QNetworkReply *plsReply)
     if (plsReply->error() != QNetworkReply::NoError) {
         emit networkError();
         plsReply->deleteLater();
+        disconnect(this, SIGNAL(playlistFilled()), this, SLOT(play()));
         return;
     }
-
-    m_playlist->clear();
 
     QString data(plsReply->readAll());
     plsReply->deleteLater();
