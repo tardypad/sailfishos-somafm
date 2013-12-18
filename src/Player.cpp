@@ -28,15 +28,29 @@ Player::~Player()
 void Player::play(Channel *channel)
 {
     emit playCalled();
-    setChannel(channel);
     connect(this, SIGNAL(playlistFilled()), this, SLOT(play()));
+    setChannel(channel);
 }
 
 void Player::play()
 {
-    if (!isChannelReady()) return;
     emit playCalled();
     disconnect(this, SIGNAL(playlistFilled()), this, SLOT(play()));
+
+    if (!hasCurrentChannel()) return;
+
+    if (!pls().isValid()) {
+        connect(this, SIGNAL(playlistFilled()), this, SLOT(play()));
+        chosePls();
+        return;
+    }
+
+    if (m_playlist->isEmpty()) {
+        connect(this, SIGNAL(playlistFilled()), this, SLOT(play()));
+        fetchPls();
+        return;
+    }
+
     setIsPlaying(true);
     emit playStarted();
 }
@@ -111,13 +125,6 @@ void Player::changeStream(QString qualityText, QString formatText)
 bool Player::hasCurrentChannel()
 {
     return m_channel != NULL;
-}
-
-bool Player::isChannelReady()
-{
-    if (!hasCurrentChannel()) return false;
-
-    return !m_playlist->isEmpty();
 }
 
 void Player::chosePls()

@@ -44,7 +44,6 @@ public slots:
 
 protected:
     bool hasCurrentChannel();
-    bool isChannelReady();
 
 protected slots:
     void chosePls();
