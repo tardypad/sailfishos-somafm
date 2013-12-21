@@ -11,7 +11,8 @@
 Player::Player(QObject *parent) :
     QObject(parent),
     m_channel(NULL),
-    m_pls("")
+    m_pls(""),
+    m_hasStreamManualChoice(false)
 {
     m_playlist = new QMediaPlaylist(this);
     m_playlist->setPlaybackMode(QMediaPlaylist::Sequential);
@@ -120,6 +121,10 @@ void Player::changeStream(QString qualityText, QString formatText)
     setStreamQuality(quality);
     setStreamFormat(format);
     setPls(pls);
+
+    setHasStreamManualChoice(true);
+    setStreamQualityManualChoice(quality);
+    setStreamFormatManualChoice(format);
 }
 
 bool Player::hasCurrentChannel()
@@ -132,11 +137,14 @@ void Player::chosePls()
     Settings settings;
     QMap<Channel::StreamQuality, QMap<Channel::StreamFormat, QUrl> > allPls = channel()->getAllPlsQuality();
 
+    Channel::StreamQuality manualQuality = streamQualityManualChoice();
     Channel::StreamQuality preferedQuality = Channel::streamQuality(settings.streamQuality());
     Channel::StreamQuality defaultQuality = Channel::defaultStreamQuality();
     Channel::StreamQuality quality;
     QMap<Channel::StreamFormat, QUrl> qualityPls;
-    if (allPls.contains(preferedQuality)) {
+    if (hasStreamManualChoice() && allPls.contains(manualQuality)) {
+        quality = manualQuality;
+    } else if (allPls.contains(preferedQuality)) {
         quality = preferedQuality;
     } else if (allPls.contains(defaultQuality)) {
         quality = defaultQuality;
@@ -145,11 +153,14 @@ void Player::chosePls()
     }
     qualityPls = allPls.value(quality);
 
+    Channel::StreamFormat manualFormat = streamFormatManualChoice();
     Channel::StreamFormat preferedFormat = Channel::streamFormat(settings.streamFormat());
     Channel::StreamFormat defaultFormat = Channel::defaultStreamFormat();
     Channel::StreamFormat format;
     QUrl pls;
-    if (qualityPls.contains(preferedFormat)) {
+    if (hasStreamManualChoice() && qualityPls.contains(manualFormat)) {
+        format = manualFormat;
+    } else if (qualityPls.contains(preferedFormat)) {
         format = preferedFormat;
     } else if (qualityPls.contains(defaultFormat)) {
         format = defaultFormat;
@@ -160,7 +171,7 @@ void Player::chosePls()
 
     setStreamQuality(quality);
     setStreamFormat(format);
-    setPls(pls);
+    setPls(pls);    
 }
 
 void Player::fetchPls()

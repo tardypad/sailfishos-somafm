@@ -29,6 +29,9 @@ public:
     Q_INVOKABLE inline Channel* channel() const { return m_channel; }
     Q_INVOKABLE inline bool isPlaying() const { return m_isPlaying; }
     inline QUrl pls() const { return m_pls; }
+    inline bool hasStreamManualChoice() const { return m_hasStreamManualChoice; }
+    inline Channel::StreamQuality streamQualityManualChoice() const { return m_streamQualityManualChoice; }
+    inline Channel::StreamFormat streamFormatManualChoice() const { return m_streamFormatManualChoice; }
     inline Channel::StreamQuality streamQuality() const { return m_streamQuality; }
     inline Channel::StreamFormat streamFormat() const { return m_streamFormat; }
     inline QMediaPlaylist* playlist() const { return m_playlist; }
@@ -36,6 +39,9 @@ public:
     inline void setChannel(Channel* channel) { m_channel = channel; emit channelChanged(); }
     inline void setIsPlaying(bool isPlaying) { m_isPlaying = isPlaying; }
     inline void setPls(QUrl pls) { m_pls = pls; emit plsChanged(); }
+    inline void setHasStreamManualChoice(bool hasStreamManualChoice) { m_hasStreamManualChoice = hasStreamManualChoice; }
+    inline void setStreamQualityManualChoice(Channel::StreamQuality streamQualityManualChoice) { m_streamQualityManualChoice = streamQualityManualChoice; }
+    inline void setStreamFormatManualChoice(Channel::StreamFormat streamFormatManualChoice) { m_streamFormatManualChoice = streamFormatManualChoice; }
     inline void setStreamQuality(Channel::StreamQuality streamQuality) { m_streamQuality = streamQuality; }
     inline void setStreamFormat(Channel::StreamFormat streamFormat) { m_streamFormat = streamFormat; }
 
@@ -63,6 +69,9 @@ private:
     Channel* m_channel;
     bool m_isPlaying;
     QUrl m_pls;
+    bool m_hasStreamManualChoice;
+    Channel::StreamQuality m_streamQualityManualChoice;
+    Channel::StreamFormat m_streamFormatManualChoice;
     Channel::StreamQuality m_streamQuality;
     Channel::StreamFormat m_streamFormat;
     QMediaPlaylist* m_playlist;
