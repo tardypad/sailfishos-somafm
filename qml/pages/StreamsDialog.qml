@@ -65,11 +65,27 @@ Dialog {
 
     function fillStreamsList() {
         var streams = _channelsModel.channelStreams(channelId)
+        var qualities = _channelsModel.streamsQualities();
+        var formats = _channelsModel.streamsFormats();
+
+        var newStreams = new Array()
         var quality, format
         for (var key in streams) {
             quality = key.replace(/\d+/g, '')
             format = streams[key]
-            listModel.append({"quality": quality, "format": format})
+            if (quality in newStreams)
+                newStreams[quality].push(format)
+            else
+                newStreams[quality] = new Array(format)
+        }
+
+        for (var q = 0; q < qualities.length; ++q) {
+            for (var f = 0; f < formats.length; ++f) {
+                quality = qualities[q]
+                format = formats[f]
+                if ((quality in newStreams) && (newStreams[quality].indexOf(format) !== -1))
+                    listModel.append({"quality": quality, "format": format})
+            }
         }
     }
 
