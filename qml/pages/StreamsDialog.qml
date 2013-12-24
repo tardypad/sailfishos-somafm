@@ -15,13 +15,39 @@ Dialog {
     property color selectedColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
     property color currentColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity / 3)
 
+    DialogHeader {
+        id: header
+        acceptText: selectedQuality + ", " + selectedFormat
+        dialog: dialog
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+    }
+
+    Label {
+        id: infoLabel
+        anchors {
+            top: header.bottom
+            horizontalCenter: parent.horizontalCenter
+        }
+        width: parent.width - 2 * Theme.paddingLarge
+        height: implicitHeight
+        text: "Select quality/format for current channel"
+        horizontalAlignment: Text.AlignLeft
+        font.pixelSize: Theme.fontSizeSmall
+    }
+
     SilicaListView {
         id: listView
-        anchors.fill: parent
-        header: DialogHeader {
-            acceptText: selectedQuality + ", " + selectedFormat
-            dialog: dialog
+        anchors {
+            top: infoLabel.bottom
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
         }
+
         footer: Label {
             text: "Better quality requires better connection"
             anchors {
