@@ -32,7 +32,6 @@ Page {
         Component.onCompleted: {
             retrieveChannelsData();
             _bookmarksManager.clearFilter()
-            _bookmarksManager.sortByDate()
             _bookmarksManager.sortByChannel()
         }
 

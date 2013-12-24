@@ -11,6 +11,7 @@ class SongsBookmarksProxyModel : public XmlItemProxyBookmarkManager
     Q_OBJECT
 public:
     explicit SongsBookmarksProxyModel(QObject *parent = 0);
+    virtual bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
     Q_INVOKABLE void filterByChannel(QString channelId);
     Q_INVOKABLE void sortByChannel();
     Q_INVOKABLE QList<QVariant> channelIds();

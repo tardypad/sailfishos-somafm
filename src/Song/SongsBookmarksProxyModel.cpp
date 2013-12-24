@@ -16,6 +16,26 @@ SongsBookmarksManager *SongsBookmarksProxyModel::songBookmarksManagerSourceModel
     return (SongsBookmarksManager*) sourceModel();
 }
 
+bool SongsBookmarksProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
+{
+    if (sortRole() != Song::ChannelIdRole)
+        return XmlItemProxyBookmarkManager::lessThan(left, right);
+
+    QString leftChannelName = sourceModel()->data(left, Song::ChannelNameRole).toString();
+    QString rightChannelName = sourceModel()->data(right, Song::ChannelNameRole).toString();
+
+    if (leftChannelName < rightChannelName) return true;
+
+    if (leftChannelName > rightChannelName) return false;
+
+    QDateTime leftDate= sourceModel()->data(left, Song::BookmarkDateRole).toDateTime();
+    QDateTime rightDate = sourceModel()->data(right, Song::BookmarkDateRole).toDateTime();
+
+    if (leftDate > rightDate) return true;
+
+    return false;
+}
+
 void SongsBookmarksProxyModel::filterByChannel(QString channelId)
 {
     setFilterRole(Song::ChannelIdRole);
