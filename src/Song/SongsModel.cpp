@@ -2,8 +2,6 @@
 
 #include <QDebug>
 #include <QXmlStreamReader>
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
 
 #include "Song.h"
@@ -36,13 +34,7 @@ void SongsModel::setChannel(XmlItem *channel)
 
 void SongsModel::fetchAdditional()
 {
-    abortFetching();
-    delete m_currentReply;
-    m_currentReply = NULL;
-
-    QNetworkRequest request(resourceUrl());
-    m_currentReply = m_networkManager->get(request);
-
+    launchDownload();
     connect(m_currentReply, SIGNAL(finished()), this, SLOT(parseAdditional()));
 }
 

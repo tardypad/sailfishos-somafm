@@ -33,16 +33,20 @@ QHash<int,QByteArray> XmlItemModel::roleNames() const
     return m_xmlItemPrototype->roleNames();
 }
 
-void XmlItemModel::fetch()
+void XmlItemModel::launchDownload()
 {
-    clear();
     abortFetching();
     delete m_currentReply;
     m_currentReply = NULL;
 
     QNetworkRequest request(resourceUrl());
     m_currentReply = m_networkManager->get(request);
+}
 
+void XmlItemModel::fetch()
+{
+    clear();
+    launchDownload();
     emit fetchStarted();
 
     connect(m_currentReply, SIGNAL(finished()), this, SLOT(parse()));
