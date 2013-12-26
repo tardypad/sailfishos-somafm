@@ -132,6 +132,7 @@ Page {
         initData()
         _channelSongsModel.setChannel(getChannelItem())
         _channelSongsModel.fetch()
+        _channelSongsModel.sortByDate()
         isPlaying = _player.isPlaying(id)
     }
 

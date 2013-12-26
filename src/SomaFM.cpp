@@ -16,6 +16,7 @@
 #include "src/Channel/ChannelsProxyModel.h"
 #include "src/Channel/ChannelsFavoritesManager.h"
 #include "src/Song/SongsModel.h"
+#include "src/Song/SongsProxyModel.h"
 #include "src/Song/SongsBookmarksManager.h"
 #include "src/Song/SongsBookmarksProxyModel.h"
 #include "src/News/NewsModel.h"
@@ -48,7 +49,9 @@ int main(int argc, char *argv[])
     context->setContextProperty("_favoritesManager", favoritesManager.data());
 
     QScopedPointer<SongsModel> channelSongsModel(new SongsModel());
-    context->setContextProperty("_channelSongsModel", channelSongsModel.data());
+    QScopedPointer<SongsProxyModel> channelSongsProxyModel(new SongsProxyModel());
+    channelSongsProxyModel->setSourceModel(channelSongsModel.data());
+    context->setContextProperty("_channelSongsModel", channelSongsProxyModel.data());
 
     QScopedPointer<SongsBookmarksManager> bookmarksManager(SongsBookmarksManager::instance());
     QScopedPointer<SongsBookmarksProxyModel> songsBookmarkProxyModel(new SongsBookmarksProxyModel());
