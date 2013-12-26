@@ -94,6 +94,7 @@ Page {
                 _newsModel.fetch()
             else
                 timer.start()
+            _newsModel.sortByDate();
         }
     }
 
