@@ -74,6 +74,13 @@ void XmlItemAbstractListModel::appendXmlItem(XmlItem *xmlItem)
     endInsertRows();
 }
 
+void XmlItemAbstractListModel::preprendXmlItem(XmlItem *xmlItem)
+{
+    beginInsertRows(QModelIndex(), 0, 0);
+    m_list.prepend(xmlItem);
+    endInsertRows();
+}
+
 void XmlItemAbstractListModel::appendXmlItems(QList<XmlItem *> xmlItemsList)
 {
     beginInsertRows(QModelIndex(), m_list.size(), m_list.size() + xmlItemsList.size() - 1);

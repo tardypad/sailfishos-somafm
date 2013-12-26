@@ -2,6 +2,9 @@
 
 #include <QDebug>
 #include <QXmlStreamReader>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkRequest>
+#include <QtNetwork/QNetworkReply>
 
 #include "Song.h"
 #include "../Channel/Channel.h"
@@ -29,6 +32,47 @@ void SongsModel::setChannel(XmlItem *channel)
     QString url = _channelSongsUrl.url();
     url.replace(":channelId:", channelId);
     setResourceUrl(url);
+}
+
+void SongsModel::fetchAdditional()
+{
+    abortFetching();
+    delete m_currentReply;
+    m_currentReply = NULL;
+
+    QNetworkRequest request(resourceUrl());
+    m_currentReply = m_networkManager->get(request);
+
+    connect(m_currentReply, SIGNAL(finished()), this, SLOT(parseAdditional()));
+}
+
+void SongsModel::parseAdditional()
+{
+    if (m_currentReply->error() != QNetworkReply::NoError)
+        return;
+
+    m_xmlReader->clear();
+
+    QByteArray data = m_currentReply->readAll();
+    m_xmlReader->addData(data);
+
+    while (!m_xmlReader->atEnd()) {
+        m_xmlReader->readNext();
+        if (m_xmlReader->isStartElement()) {
+            if (m_xmlReader->name() == m_xmlItemPrototype->xmlTag()) {
+                XmlItem* xmlItem = parseXmlItem();
+
+                if (!xmlItem)
+                    return;
+
+                if (stopParsing(xmlItem))
+                    break;
+
+                if (!contains(xmlItem))
+                    preprendXmlItem(xmlItem);
+            }
+        }
+    }
 }
 
 bool SongsModel::stopParsing(XmlItem *xmlItem)

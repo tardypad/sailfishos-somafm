@@ -70,6 +70,14 @@ Page {
         VerticalScrollDecorator { flickable: listView }
     }
 
+    Timer {
+        id: reloadTimer
+        running: true
+        interval: 60000
+        repeat: true
+        onTriggered: fetchNewSongs()
+    }
+
     function getChannelItem() {
         return _channelsModel.channelItem(id)
     }
@@ -114,6 +122,10 @@ Page {
     function stopUpdates() {
         indicator.stopped = true
         listView.model = null
+    }
+
+    function fetchNewSongs() {
+        _channelSongsModel.fetchAdditional()
     }
 
     Component.onCompleted: {

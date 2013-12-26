@@ -15,6 +15,10 @@ public:
     explicit SongsModel(QObject *parent = 0);
     ~SongsModel();
     Q_INVOKABLE void setChannel(XmlItem* channel);
+    Q_INVOKABLE void fetchAdditional();
+
+private slots:
+    void parseAdditional();
 
 private:
     virtual bool stopParsing(XmlItem *xmlItem);
