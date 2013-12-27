@@ -11,8 +11,8 @@ class XmlItemBookmarkManager : public XmlItemAbstractListModel
 public:
     ~XmlItemBookmarkManager();
     virtual QHash<int,QByteArray> roleNames() const;
-    Q_INVOKABLE bool addBookmark(XmlItem* xmlItem);
-    Q_INVOKABLE bool removeBookmark(XmlItem* xmlItem);
+    bool addBookmark(XmlItem* xmlItem);
+    bool removeBookmark(XmlItem* xmlItem);
     bool isBookmark(XmlItem* xmlItem) const;
     QDateTime getBookmarkDate(XmlItem* xmlItem);
 

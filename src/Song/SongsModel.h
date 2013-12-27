@@ -14,8 +14,8 @@ class SongsModel : public XmlItemModel
 public:
     explicit SongsModel(QObject *parent = 0);
     ~SongsModel();
-    Q_INVOKABLE void setChannel(XmlItem* channel);
-    Q_INVOKABLE void fetchAdditional();
+    void setChannel(XmlItem* channel);
+    void fetchAdditional();
 
 private slots:
     void parseAdditional();
