@@ -10,17 +10,10 @@ class News;
 class NewsModel : public XmlItemModel
 {
     static const QUrl _newsUrl;
-    static const QUrl _supportUrl;
-    static const QUrl _twitterUrl;
-    static const QUrl _facebookUrl;
 
     Q_OBJECT
 public:
     explicit NewsModel(QObject *parent = 0);
-    QUrl supportUrl();
-    QUrl twitterUrl();
-    QUrl facebookUrl();
-
     inline QString banner() { return m_banner; }
     inline void setBanner(QString banner) { m_banner = banner; }
 

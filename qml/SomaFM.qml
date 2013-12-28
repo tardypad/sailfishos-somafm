@@ -42,4 +42,8 @@ ApplicationWindow
 
         messageLoader.item.show(text)
     }
+
+    SomaTheme {
+        id: somaTheme
+    }
 }

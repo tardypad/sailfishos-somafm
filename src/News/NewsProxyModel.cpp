@@ -23,18 +23,3 @@ QString NewsProxyModel::banner()
 {
     return newsSourceModel()->banner();
 }
-
-QUrl NewsProxyModel::supportUrl()
-{
-    return newsSourceModel()->supportUrl();
-}
-
-QUrl NewsProxyModel::twitterUrl()
-{
-    return newsSourceModel()->twitterUrl();
-}
-
-QUrl NewsProxyModel::facebookUrl()
-{
-    return newsSourceModel()->facebookUrl();
-}

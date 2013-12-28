@@ -6,30 +6,12 @@
 #include "News.h"
 
 const QUrl NewsModel::_newsUrl = QUrl("http://somafm.com/news.xml");
-const QUrl NewsModel::_supportUrl = QUrl("http://somafm.com/support");
-const QUrl NewsModel::_twitterUrl = QUrl("https://twitter.com/somafm");
-const QUrl NewsModel::_facebookUrl = QUrl("https://www.facebook.com/SomaFM");
 
 NewsModel::NewsModel(QObject *parent) :
     XmlItemModel(new News(), parent),
     m_banner("")
 {
     setResourceUrl(_newsUrl);
-}
-
-QUrl NewsModel::supportUrl()
-{
-    return _supportUrl;
-}
-
-QUrl NewsModel::twitterUrl()
-{
-    return _twitterUrl;
-}
-
-QUrl NewsModel::facebookUrl()
-{
-    return _facebookUrl;
 }
 
 bool NewsModel::stopParsing(XmlItem *xmlItem)

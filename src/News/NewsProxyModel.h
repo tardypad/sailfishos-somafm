@@ -14,9 +14,6 @@ public:
     explicit NewsProxyModel(QObject *parent = 0);
     Q_INVOKABLE void sortByDate();
     Q_INVOKABLE QString banner();
-    Q_INVOKABLE QUrl supportUrl();
-    Q_INVOKABLE QUrl twitterUrl();
-    Q_INVOKABLE QUrl facebookUrl();
 
 protected:
     NewsModel* newsSourceModel();

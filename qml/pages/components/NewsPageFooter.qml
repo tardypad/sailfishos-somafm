@@ -39,7 +39,7 @@ Item {
         }
         onClicked: {
             console.log("open facebook page in browser")
-            Qt.openUrlExternally(_newsModel.facebookUrl())
+            Qt.openUrlExternally(somaTheme.facebookUrl)
         }
     }
     IconButton {
@@ -59,7 +59,7 @@ Item {
         }
         onClicked: {
             console.log("open twitter page in browser")
-            Qt.openUrlExternally(_newsModel.twitterUrl())
+            Qt.openUrlExternally(somaTheme.twitterUrl)
         }
     }
 }
