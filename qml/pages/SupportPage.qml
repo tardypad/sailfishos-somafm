@@ -29,6 +29,14 @@ Page {
         VerticalScrollDecorator { flickable: gridView }
     }
 
+    Connections {
+        target: indicator
+        onStateChanged: {
+            if (indicator.state === "complete")
+                gridView.footer = Qt.createComponent("components/SupportPageFooter.qml")
+        }
+    }
+
     Component.onCompleted: {
         if (!_supportModel.hasDataBeenFetchedOnce())
             _supportModel.fetch()
