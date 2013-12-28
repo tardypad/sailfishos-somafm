@@ -21,7 +21,7 @@ private slots:
     void parseAdditional();
 
 private:
-    virtual bool stopParsing(XmlItem *xmlItem);
+    virtual bool includeXmlItem(XmlItem *xmlItem);
     virtual XmlItem* parseXmlItem();
 
 private:

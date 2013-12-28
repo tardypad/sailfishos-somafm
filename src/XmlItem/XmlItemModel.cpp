@@ -88,8 +88,8 @@ void XmlItemModel::parse()
                     return;
                 }
 
-                if (stopParsing(xmlItem))
-                    break;
+                if (!includeXmlItem(xmlItem))
+                    continue;
 
                 tmp_list.append(xmlItem);
             }
@@ -117,10 +117,10 @@ void XmlItemModel::parseAfter()
 {
 }
 
-bool XmlItemModel::stopParsing(XmlItem *xmlItem)
+bool XmlItemModel::includeXmlItem(XmlItem *xmlItem)
 {
     Q_UNUSED(xmlItem);
-    return false;
+    return true;
 }
 
 void XmlItemModel::addToBookmarks(XmlItem *xmlItem)

@@ -14,11 +14,11 @@ NewsModel::NewsModel(QObject *parent) :
     setResourceUrl(_newsUrl);
 }
 
-bool NewsModel::stopParsing(XmlItem *xmlItem)
+bool NewsModel::includeXmlItem(XmlItem *xmlItem)
 {
     QDateTime date = xmlItem->data(News::DateRole).toDateTime();
 
-    return date.addMonths(2) < QDateTime::currentDateTime();
+    return date > QDateTime::currentDateTime().addMonths(-2);
 }
 
 void NewsModel::parseFirst()

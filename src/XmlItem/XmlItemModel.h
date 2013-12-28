@@ -45,7 +45,7 @@ private slots:
     virtual void parseAfter();
 
 private:
-    virtual bool stopParsing(XmlItem* xmlItem);
+    virtual bool includeXmlItem(XmlItem* xmlItem);
     virtual XmlItem* parseXmlItem() = 0;
     void setHasDataBeenFetchedOnce(bool hasDataBeenFetchedOnce) { m_hasDataBeenFetchedOnce = hasDataBeenFetchedOnce; }
 

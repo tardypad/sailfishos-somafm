@@ -18,7 +18,7 @@ public:
     inline void setBanner(QString banner) { m_banner = banner; }
 
 private:
-    virtual bool stopParsing(XmlItem *xmlItem);
+    virtual bool includeXmlItem(XmlItem *xmlItem);
     virtual XmlItem* parseXmlItem();
     virtual void parseFirst();
     QString defineGroup(QDateTime dateTime);

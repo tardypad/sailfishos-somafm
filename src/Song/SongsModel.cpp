@@ -57,8 +57,8 @@ void SongsModel::parseAdditional()
                 if (!xmlItem)
                     return;
 
-                if (stopParsing(xmlItem))
-                    break;
+                if (!includeXmlItem(xmlItem))
+                    continue;
 
                 if (!contains(xmlItem))
                     preprendXmlItem(xmlItem);
@@ -67,11 +67,11 @@ void SongsModel::parseAdditional()
     }
 }
 
-bool SongsModel::stopParsing(XmlItem *xmlItem)
+bool SongsModel::includeXmlItem(XmlItem *xmlItem)
 {
     QDateTime date = xmlItem->data(Song::DateRole).toDateTime();
 
-    return date.addSecs(3600) < QDateTime::currentDateTime();
+    return date > QDateTime::currentDateTime().addSecs(-3600);
 }
 
 XmlItem* SongsModel::parseXmlItem()
