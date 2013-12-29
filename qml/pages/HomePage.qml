@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import "utils"
+import "components"
 
 Page {
 
@@ -107,6 +108,10 @@ Page {
             }
         }
 
+        InternetLinksPanel {
+            id: linksPanel
+        }
+
         PullDownMenu {
             IconMenuItem {
                 text: "Settings"
@@ -131,6 +136,17 @@ Page {
                 iconSource: "image://theme/icon-m-about"
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
+        }
+    }
+
+    onStatusChanged: {
+        switch (status) {
+        case PageStatus.Active:
+            linksPanel.show()
+            break
+        case PageStatus.Inactive:
+            linksPanel.hide()
+            break
         }
     }
 }
