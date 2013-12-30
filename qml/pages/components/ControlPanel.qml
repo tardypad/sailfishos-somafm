@@ -199,11 +199,9 @@ DockedPanel {
 
     onOpenChanged: {
         if (!open) {
-            if (state === "playing") {
-                show()
-            } else {
-                close()
-            }
+            if (state === "playing")
+                pause()
+            close()
         }
     }
 }
