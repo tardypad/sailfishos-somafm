@@ -1,11 +1,11 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-CoverBackground {
+MainCover {
     property bool isPlaying
     property alias channelImageUrl: channelImage.source
 
-    Image {
+    content: Image {
         id: channelImage
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
