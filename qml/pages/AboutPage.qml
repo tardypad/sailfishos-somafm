@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import "utils"
+import "components"
 
 Page {
     property color itemBackgroundColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity / 3)
@@ -25,34 +26,11 @@ Page {
                     width: parent.width
                     height: childrenRect.height
 
-                    Rectangle {
+                    Banner {
                         id: banner
                         width: parent.width
                         height: Theme.itemSizeExtraLarge
-                        color: "black"
-
-                        Row {
-                            spacing: Theme.paddingLarge
-                            anchors.centerIn: parent
-
-                            Image {
-                                anchors.verticalCenter: parent.verticalCenter
-                                source: "qrc:/image/logo"
-                                smooth: true
-                                fillMode: Image.PreserveAspectFit
-                                height: banner.height * 0.8
-                                width: banner.width * 0.2
-                            }
-
-                            Image {
-                                anchors.verticalCenter: parent.verticalCenter
-                                source: "qrc:/image/name"
-                                smooth: true
-                                fillMode: Image.PreserveAspectFit
-                                height: banner.height * 0.8
-                                width: banner.width * 0.6
-                            }
-                        }
+                        spacing: Theme.paddingLarge
                     }
 
                     Label {
