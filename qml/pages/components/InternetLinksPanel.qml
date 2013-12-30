@@ -47,6 +47,21 @@ DockedPanel {
         }
 
         IconButton {
+            id: flickrButton
+            height: iconSize
+            width: iconSize
+            icon {
+                source: "qrc:/icon/flickr"
+                height: iconSize
+                fillMode: Image.PreserveAspectFit
+            }
+            onClicked: {
+                console.log("open flickr page in browser")
+                Qt.openUrlExternally(somaTheme.flickrUrl)
+            }
+        }
+
+        IconButton {
             id: websiteButton
             height: iconSize
             width: iconSize
@@ -66,7 +81,7 @@ DockedPanel {
             height: iconSize
             width: iconSize
             icon {
-                source: "image://theme/icon-m-region"
+                source: "qrc:/icon/support"
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
