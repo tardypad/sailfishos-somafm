@@ -33,5 +33,9 @@ Item {
             right: parent.right
         }
         linkColor: Theme.highlightColor
+        onLinkActivated: {
+            var url = /^https?:\/\//i.test(link) ? link : somaTheme.websiteUrl + link
+            Qt.openUrlExternally(url)
+        }
     }
 }
