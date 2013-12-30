@@ -3,15 +3,8 @@ import Sailfish.Silica 1.0
 
 Item {
     width: listView.width
-    height: supportButton.height + facebookButton.height + 2*Theme.paddingLarge
+    height: facebookButton.height + 2*Theme.paddingLarge
     anchors.bottomMargin: Theme.paddingLarge
-
-    Button {
-        id: supportButton
-        text: "Support us"
-        anchors.horizontalCenter: parent.horizontalCenter
-        onClicked: pageStack.push(Qt.resolvedUrl("../SupportPage.qml"))
-    }
 
     Label {
         text: "More news →"
@@ -32,7 +25,7 @@ Item {
             fillMode: Image.PreserveAspectFit
         }
         anchors {
-            top: supportButton.bottom
+            top: parent.top
             topMargin: Theme.paddingLarge
             right: twitterButton.left
             rightMargin: Theme.paddingLarge
@@ -52,7 +45,7 @@ Item {
             fillMode: Image.PreserveAspectFit
         }
         anchors {
-            top: supportButton.bottom
+            top: parent.top
             topMargin: Theme.paddingLarge
             right: parent.right
             rightMargin: Theme.paddingLarge

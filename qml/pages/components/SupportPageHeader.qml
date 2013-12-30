@@ -22,6 +22,7 @@ Item {
         color: Theme.highlightColor
         width: parent.width - 2 * Theme.paddingLarge
         font.pixelSize: Theme.fontSizeSmall
+        horizontalAlignment: Text.AlignJustify
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
     }
 

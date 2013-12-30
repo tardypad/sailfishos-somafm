@@ -3,39 +3,49 @@ import Sailfish.Silica 1.0
 
 import "../utils"
 
-Rectangle {
+Item {
     property alias text: bannerLabel.text
 
-    height: childrenRect.height + Theme.paddingLarge
-    width: parent.width
-    color: Theme.rgba(Theme.secondaryHighlightColor, 0.5)
+    height: childrenRect.height
+    width: listView.width
 
     IconPageHeader {
-        id: header
-        title: "Support"
-        iconSource: "qrc:/icon/support"
+        id: pageHeader
+        title: "News"
+        iconSource: "qrc:/icon/news"
     }
 
     Label {
         id: bannerLabel
         anchors {
-            left: parent.left
-            leftMargin: Theme.paddingLarge
-            right: parent.right
-            rightMargin: Theme.paddingLarge
-            top: header.bottom
+            top: pageHeader.bottom
+            horizontalCenter: parent.horizontalCenter
         }
+        color: Theme.highlightColor
+        width: parent.width - 2 * Theme.paddingLarge
         font.pixelSize: Theme.fontSizeExtraSmall
         horizontalAlignment: Text.AlignJustify
-        wrapMode: Text.WordWrap
+        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
     }
 
     Button {
+        id: supportButton
         text: "Support us"
         anchors {
             top: bannerLabel.bottom
             horizontalCenter: parent.horizontalCenter
         }
         onClicked: pageStack.push(Qt.resolvedUrl("../SupportPage.qml"))
+    }
+
+    Connections {
+        target: _newsModel
+        onDataParsed: getBannerText()
+    }
+
+    Component.onCompleted: getBannerText()
+
+    function getBannerText() {
+        bannerLabel.text = _newsModel.banner()
     }
 }
