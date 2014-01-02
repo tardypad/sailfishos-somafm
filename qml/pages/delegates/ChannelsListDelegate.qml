@@ -37,6 +37,7 @@ ListItem {
             leftMargin: Theme.paddingSmall
             top: parent.top
         }
+        color: highlighted ? Theme.highlightColor : Theme.primaryColor
     }
 
     Label {
@@ -49,7 +50,7 @@ ListItem {
             topMargin: -Theme.paddingSmall
             leftMargin: Theme.paddingSmall
         }
-        color: Theme.secondaryColor
+        color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
         font.pixelSize: Theme.fontSizeExtraSmall
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         truncationMode: TruncationMode.Fade

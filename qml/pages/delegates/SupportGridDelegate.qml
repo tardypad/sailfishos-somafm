@@ -18,6 +18,7 @@ BackgroundItem {
         anchors.centerIn: parent
         width: parent.width - 2 * Theme.paddingMedium
         font.pixelSize: Theme.fontSizeExtraSmall
+        color: highlighted ? Theme.highlightColor : Theme.primaryColor
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         maximumLineCount: 3

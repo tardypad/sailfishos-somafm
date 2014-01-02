@@ -17,7 +17,7 @@ ListItem {
             leftMargin: Theme.paddingMedium
             verticalCenter: parent.verticalCenter
         }
-        color: Theme.secondaryColor
+        color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
         font.pixelSize: Theme.fontSizeSmall
     }
 
@@ -32,6 +32,7 @@ ListItem {
         Label {
             id: artistLabel
             text: artist
+            color: highlighted ? Theme.highlightColor : Theme.primaryColor
             font.pixelSize: Theme.fontSizeSmall
             width: parent.width - dateLabel.width
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -42,7 +43,7 @@ ListItem {
         Label {
             id: titleLabel
             text: title
-            color: Theme.secondaryColor
+            color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
             font.pixelSize: Theme.fontSizeExtraSmall
             width: parent.width - dateLabel.width
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere

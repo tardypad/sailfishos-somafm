@@ -84,6 +84,7 @@ DockedPanel {
             }
             icon.asynchronous: true
             icon.source: "image://theme/icon-l-pause"
+            highlighted: true
             onClicked: pause()
         }
 
@@ -207,6 +208,7 @@ DockedPanel {
             PropertyChanges { target: mediaButtonPlay;   visible: true }
             PropertyChanges { target: mediaButtonPause;  visible: false }
             PropertyChanges { target: progressTimer;     running: false }
+            PropertyChanges { target: channelLabel;      color: Theme.primaryColor}
         },
         State {
             name: "playing"
@@ -214,6 +216,7 @@ DockedPanel {
             PropertyChanges { target: mediaButtonPause;  visible: true }
             PropertyChanges { target: controlPanel;      open: true; restoreEntryValues: false }
             PropertyChanges { target: progressTimer;     running: true }
+            PropertyChanges { target: channelLabel;      color: Theme.highlightColor }
         }]
 
     onOpenChanged: {
