@@ -28,6 +28,8 @@ Page {
         delegate: ChannelSongsListDelegate { }
 
         PullDownMenu {
+            id: pulleyMenu
+
             IconMenuItem {
                 text: "Song bookmarks"
                 iconSource: "qrc:/icon/bookmark"
@@ -122,6 +124,12 @@ Page {
     function stopUpdates() {
         indicator.stopped = true
         listView.model = null
+    }
+
+    Connections {
+        target: _channelSongsModel
+        onFetchUpdateStarted: pulleyMenu.busy = true
+        onFetchUpdateFinished: pulleyMenu.busy = false
     }
 
     function fetchNewSongs() {

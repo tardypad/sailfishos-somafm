@@ -34,8 +34,8 @@ signals:
     void parsingError();
     void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
 
-private slots:
-    void init();
+protected slots:
+    virtual void init();
 
 protected:
     bool m_isClonesShown;

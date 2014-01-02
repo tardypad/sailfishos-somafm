@@ -13,6 +13,13 @@ SongsModel *SongsProxyModel::songsSourceModel()
     return (SongsModel*) sourceModel();
 }
 
+void SongsProxyModel::init()
+{
+    XmlItemProxyModel::init();
+    connect(songsSourceModel(), SIGNAL(fetchUpdateStarted()), this, SIGNAL(fetchUpdateStarted()));
+    connect(songsSourceModel(), SIGNAL(fetchUpdateFinished()), this, SIGNAL(fetchUpdateFinished()));
+}
+
 void SongsProxyModel::setChannel(XmlItem *channel)
 {
     return songsSourceModel()->setChannel(channel);

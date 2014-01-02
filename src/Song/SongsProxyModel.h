@@ -14,6 +14,13 @@ public:
     Q_INVOKABLE void fetchAdditional();
     Q_INVOKABLE void sortByDate();
 
+signals:
+    void fetchUpdateStarted();
+    void fetchUpdateFinished();
+
+protected slots:
+    virtual void init();
+
 protected:
     SongsModel* songsSourceModel();
 };

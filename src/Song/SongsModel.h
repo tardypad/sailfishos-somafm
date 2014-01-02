@@ -17,6 +17,10 @@ public:
     void setChannel(XmlItem* channel);
     void fetchAdditional();
 
+signals:
+    void fetchUpdateStarted();
+    void fetchUpdateFinished();
+
 private slots:
     void parseAdditional();
 

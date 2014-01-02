@@ -35,7 +35,9 @@ void SongsModel::setChannel(XmlItem *channel)
 void SongsModel::fetchAdditional()
 {
     launchDownload();
+    emit fetchUpdateStarted();
     connect(m_currentReply, SIGNAL(finished()), this, SLOT(parseAdditional()));
+    connect(m_currentReply, SIGNAL(finished()), this, SIGNAL(fetchUpdateFinished()));
 }
 
 void SongsModel::parseAdditional()
