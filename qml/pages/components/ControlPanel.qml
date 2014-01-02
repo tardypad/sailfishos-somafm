@@ -147,22 +147,41 @@ DockedPanel {
     }
 
     function goToChannelPage() {
-        var currentPage = pageStack.currentPage
-        if (currentPage.objectName == "StreamDialog") return
+        if (isDialogPage(pageStack.currentPage))
+            return
 
         var url = Qt.resolvedUrl("../ChannelPage.qml")
         var properties = {"id": channelId}
-        if (currentPage.objectName != "ChannelPage") {
-            pageStack.push(url, properties)
-        } else if (currentPage.id !== channelId) {
-            currentPage.stopUpdates()
-            pageStack.replace(url, properties)
+
+        var currentPage = pageStack.currentPage
+        if (isChannelPage(currentPage)) {
+            if (currentPage.id !== channelId) {
+                currentPage.stopUpdates()
+                pageStack.replace(url, properties)
+            }
+            return
         }
+
+        var previousChannelPage = pageStack.find(isChannelPage)
+        if (previousChannelPage) {
+            pageStack.replaceAbove(pageStack.previousPage(previousChannelPage), url, properties)
+            return
+        }
+
+        pageStack.push(url, properties)
+    }
+
+    function isChannelPage(page) {
+        return page.objectName === "ChannelPage"
+    }
+
+    function isDialogPage(page) {
+        return page.objectName === "StreamDialog"
     }
 
     function openContextMenu() {
-        var currentPage = pageStack.currentPage
-        if (currentPage.objectName == "StreamDialog") return
+        if (isDialogPage(pageStack.currentPage))
+            return
 
         if (!_contextMenu)
             _contextMenu = menuComponent.createObject(controlPanel)
