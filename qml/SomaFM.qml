@@ -8,6 +8,8 @@ import "pages/utils"
 
 ApplicationWindow
 {
+    id: window
+
     initialPage: Component { HomePage { } }
     cover: DefaultCover { }
     bottomMargin: controlPanel.visibleSize

@@ -67,6 +67,8 @@ DockedPanel {
             anchors.centerIn: mediaButtonPause
             Timer {
                 id: progressTimer
+                property bool isRunning
+                running: window.applicationActive && isRunning
                 interval: 250
                 repeat: true
                 onTriggered: progressIndicator.value = (progressIndicator.value + 1/240) % 1.0
@@ -207,7 +209,7 @@ DockedPanel {
             name: "pause"
             PropertyChanges { target: mediaButtonPlay;   visible: true }
             PropertyChanges { target: mediaButtonPause;  visible: false }
-            PropertyChanges { target: progressTimer;     running: false }
+            PropertyChanges { target: progressTimer;     isRunning: false }
             PropertyChanges { target: channelLabel;      color: Theme.primaryColor}
         },
         State {
@@ -215,7 +217,7 @@ DockedPanel {
             PropertyChanges { target: mediaButtonPlay;   visible: false }
             PropertyChanges { target: mediaButtonPause;  visible: true }
             PropertyChanges { target: controlPanel;      open: true; restoreEntryValues: false }
-            PropertyChanges { target: progressTimer;     running: true }
+            PropertyChanges { target: progressTimer;     isRunning: true }
             PropertyChanges { target: channelLabel;      color: Theme.highlightColor }
         }]
 

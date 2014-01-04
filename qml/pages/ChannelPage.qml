@@ -74,7 +74,7 @@ Page {
 
     Timer {
         id: reloadTimer
-        running: true
+        running: window.applicationActive
         interval: 60000
         repeat: true
         onTriggered: fetchNewSongs()
