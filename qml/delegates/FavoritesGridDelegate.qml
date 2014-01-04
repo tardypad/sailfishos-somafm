@@ -4,83 +4,41 @@ import Sailfish.Silica 1.0
 import "../utils"
 import "../components"
 
-BackgroundItem {
-    id: channelItem
+Item {
+    id: itemcontainer
 
-    property Item _contextMenu
+    property int idx: index
+    property string channelId: id
+    property bool hasContextMenu: gridView.contextMenu && gridView.contextMenu.parent === itemcontainer
 
     width: gridView.cellWidth
-    height: gridView.cellHeight
+    height: hasContextMenu
+            ? gridView.cellHeight + gridView.contextMenu.height
+            : gridView.cellHeight
 
-    ChannelImage {
-        id: channelImage
-        size: BusyIndicatorSize.Medium
-        width: gridView.cellWidth - Theme.paddingSmall*2
-        height: gridView.cellHeight - Theme.paddingSmall*2
-        source: imageMediumUrl
-        anchors {
-            verticalCenter: parent.verticalCenter
-            horizontalCenter: parent.horizontalCenter
+    BackgroundItem {
+        id: channelItem
+
+        width: gridView.cellWidth
+        height: gridView.cellHeight
+        y: gridView.contextMenu && index >= gridView.minOffsetIndex
+           ? gridView.contextMenu.height
+           : 0
+
+        highlighted: down || hasContextMenu
+
+        ChannelImage {
+            id: channelImage
+            size: BusyIndicatorSize.Medium
+            width: gridView.cellWidth - Theme.paddingSmall*2
+            height: gridView.cellHeight - Theme.paddingSmall*2
+            source: imageMediumUrl
+            anchors.centerIn: parent
         }
-    }
 
-    onPressAndHold: {
-        if (rectLoader.status === Loader.Null)
-            rectLoader.sourceComponent = rectComponent
-        if (!_contextMenu)
-            _contextMenu = actionsComponent.createObject(gridView)
-        _contextMenu.isPlaying = _player.isPlaying(id)
-        _contextMenu.show(channelItem)
-    }
+        onPressAndHold: gridView.showContextMenu(itemcontainer)
 
-    onClicked: goToChannelPage()
-
-    Loader {
-        id: rectLoader
-        anchors.fill: channelImage
-        visible: _contextMenu ? _contextMenu.visible : false
-    }
-
-    Component {
-        id: rectComponent
-        Rectangle {
-            color: "black"
-            opacity: 0.8
-        }
-    }
-
-    Component {
-        id: actionsComponent
-        ContextMenu {
-            id: gridContextMenu
-
-            property bool isPlaying
-            visible: active
-
-            width: gridView.cellWidth
-            height: gridView.cellHeight
-            x: channelImage.x - Theme.paddingSmall
-
-            IconMenuItem {
-                iconSource: !isPlaying ? "image://theme/icon-l-play" : "image://theme/icon-l-pause"
-                text: !isPlaying ? "Play" : "Pause"
-                height: gridView.cellHeight / 2
-                onClicked: {
-                    if (!isPlaying) {
-                        play()
-                    } else {
-                        pause()
-                    }
-                }
-            }
-
-            IconMenuItem {
-                iconSource: "qrc:/icon/un-favorite"
-                height: gridView.cellHeight / 2
-                text: "Remove"
-                onClicked: removeFavorite()
-            }
-        }
+        onClicked: goToChannelPage()
     }
 
     function goToChannelPage() {
@@ -96,7 +54,6 @@ BackgroundItem {
     }
 
     function removeFavorite() {
-        _contextMenu.hide();
         _favoritesManager.removeFavorite(gridView.model.itemAt(index))
     }
 }

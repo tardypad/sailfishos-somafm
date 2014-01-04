@@ -7,14 +7,21 @@ import "../delegates"
 Page {
     SilicaGridView {
         id: gridView
+
+        // inspired from jolla-notes
+        property Item contextMenu
+        property int minOffsetIndex: contextMenu && contextMenu.parent
+                                     ? contextMenu.parent.idx - (contextMenu.parent.idx % 2) + 2
+                                     : 0
+
         anchors.fill: parent
+        cellWidth: parent.width / 2
+        cellHeight: parent.width / 2
         header: IconPageHeader {
             title: "Favorites"
             iconSource: "qrc:/icon/favorite"
         }
         delegate: FavoritesGridDelegate { }
-        cellWidth: parent.width / 2
-        cellHeight: parent.width / 2
 
         PullDownMenu {
             IconMenuItem {
@@ -26,6 +33,42 @@ Page {
                 text: "Populars"
                 iconSource: "qrc:/icon/popular"
                 onClicked: pageStack.replace(Qt.resolvedUrl("PopularsPage.qml"))
+            }
+        }
+
+        function showContextMenu(item) {
+            if (!contextMenu)
+                contextMenu = actionsComponent.createObject(gridView)
+            contextMenu.isPlaying = _player.isPlaying(item.channelId)
+            contextMenu.show(item)
+        }
+
+        Component {
+            id: actionsComponent
+            ContextMenu {
+                id: gridContextMenu
+
+                property bool isPlaying
+
+                width: gridView.width
+
+                IconMenuItem {
+                    iconSource: !isPlaying ? "image://theme/icon-l-play" : "image://theme/icon-l-pause"
+                    text: !isPlaying ? "Play" : "Pause"
+                    onClicked: {
+                        if (!isPlaying) {
+                            gridContextMenu.parent.play()
+                        } else {
+                            gridContextMenu.parent.pause()
+                        }
+                    }
+                }
+
+                IconMenuItem {
+                    iconSource: "qrc:/icon/un-favorite"
+                    text: "Remove"
+                    onClicked: gridContextMenu.parent.removeFavorite()
+                }
             }
         }
 
