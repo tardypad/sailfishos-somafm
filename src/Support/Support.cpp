@@ -45,8 +45,8 @@ bool Support::setData(const QVariant &value, int role)
     return XmlItem::setData(value, role);
 }
 
-XmlItem* Support::create()
+XmlItem* Support::create(QObject *parent)
 {
-    return new Support();
+    return new Support(parent);
 }
 

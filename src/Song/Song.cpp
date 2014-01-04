@@ -104,8 +104,8 @@ bool Song::setData(const QVariant &value, int role)
     return XmlItem::setData(value, role);
 }
 
-XmlItem* Song::create()
+XmlItem* Song::create(QObject *parent)
 {
-    return new Song();
+    return new Song(parent);
 }
 

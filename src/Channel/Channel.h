@@ -54,7 +54,7 @@ public:
     virtual QHash<int, QByteArray> roleNames();
     virtual QHash<int, QByteArray> bookmarkRoleNames();
     virtual QHash<int, QByteArray> idRoleNames();
-    virtual XmlItem* create();
+    virtual XmlItem* create(QObject* parent);
     void addPls(QUrl pls, StreamFormat format, StreamQuality quality);
     QMap<StreamQuality, QMap<StreamFormat, QUrl> > getAllPlsQuality();
 

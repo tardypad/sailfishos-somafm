@@ -21,7 +21,7 @@ ChannelsFavoritesDatabaseManager::ChannelsFavoritesDatabaseManager(QObject *pare
 ChannelsFavoritesDatabaseManager* ChannelsFavoritesDatabaseManager::instance()
 {
     if (!m_instance) {
-        m_instance = new ChannelsFavoritesDatabaseManager;
+        m_instance = new ChannelsFavoritesDatabaseManager();
     }
 
     return m_instance;
@@ -65,7 +65,7 @@ QList<XmlItem *> ChannelsFavoritesDatabaseManager::retrieveBookmarks()
         name = query.value(1);
         date = query.value(2);
 
-        Channel* channel = new Channel();
+        Channel* channel = new Channel(this);
         channel->setData(channelId, Channel::IdRole);
         channel->setData(name, Channel::NameRole);
         channel->setData(date, Channel::BookmarkDateRole);

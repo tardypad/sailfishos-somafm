@@ -33,7 +33,7 @@ void SupportModel::parseFirst()
 
 XmlItem* SupportModel::parseXmlItem()
 {
-    Support* support = new Support();
+    Support* support = new Support(this);
     QString content = "";
     QString location = "";
 

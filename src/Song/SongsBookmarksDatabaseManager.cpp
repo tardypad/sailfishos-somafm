@@ -79,7 +79,7 @@ QList<XmlItem *> SongsBookmarksDatabaseManager::retrieveBookmarks()
         channelImageUrl = query.value(5);
         date = query.value(6);
 
-        Song* song = new Song();
+        Song* song = new Song(this);
         song->setData(title,           Song::TitleRole);
         song->setData(artist,          Song::ArtistRole);
         song->setData(album,           Song::AlbumRole);

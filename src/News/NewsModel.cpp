@@ -40,7 +40,7 @@ void NewsModel::parseFirst()
 
 XmlItem* NewsModel::parseXmlItem()
 {
-    News* news = new News();
+    News* news = new News(this);
     QString content = "";
     QDateTime datetime = QDateTime();
     QString dateGroup = "";

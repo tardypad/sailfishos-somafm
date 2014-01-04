@@ -34,6 +34,7 @@ bool XmlItemBookmarkManager::addBookmark(XmlItem *xmlItem)
     QDateTime currentTime = QDateTime::currentDateTime();
 
     XmlItem* newBookmark = xmlItem->cloneAsBookmark();
+    newBookmark->setParent(this);
     newBookmark->setData(currentTime, XmlItem::BookmarkDateRole);
 
     bool result = m_databaseManager->insertBookmark(newBookmark);

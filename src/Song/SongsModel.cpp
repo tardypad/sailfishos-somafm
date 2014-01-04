@@ -78,7 +78,7 @@ bool SongsModel::includeXmlItem(XmlItem *xmlItem)
 
 XmlItem* SongsModel::parseXmlItem()
 {
-    Song* song = new Song();
+    Song* song = new Song(this);
     QString title = "";
     QString artist = "";
     QString album = "";

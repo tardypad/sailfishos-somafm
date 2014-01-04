@@ -77,7 +77,7 @@ XmlItem* XmlItem::cloneAsBookmark()
 XmlItem* XmlItem::cloneRoles(QHash<int, QByteArray> roles)
 {
     QHashIterator<int, QByteArray> iterator(roles);
-    XmlItem* newXmlItem = create();
+    XmlItem* newXmlItem = create(parent());
     int role;
     QVariant value;
 

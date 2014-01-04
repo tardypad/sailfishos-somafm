@@ -137,9 +137,9 @@ bool Channel::setData(const QVariant &value, int role)
     return XmlItem::setData(value, role);
 }
 
-XmlItem *Channel::create()
+XmlItem *Channel::create(QObject *parent)
 {
-    return new Channel();
+    return new Channel(parent);
 }
 
 void Channel::addPls(QUrl pls, StreamFormat format, StreamQuality quality)

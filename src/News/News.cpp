@@ -52,7 +52,7 @@ bool News::setData(const QVariant &value, int role)
     return XmlItem::setData(value, role);
 }
 
-XmlItem* News::create()
+XmlItem* News::create(QObject *parent)
 {
-    return new News();
+    return new News(parent);
 }

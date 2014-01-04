@@ -25,7 +25,7 @@ ChannelsModel::~ChannelsModel()
 
 XmlItem* ChannelsModel::parseXmlItem()
 {
-    Channel* channel = new Channel();
+    Channel* channel = new Channel(this);
     QString id = "";
     QString name = "";
     QString description = "";

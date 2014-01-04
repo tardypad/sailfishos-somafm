@@ -26,7 +26,7 @@ public:
     virtual QVariant data(int role) const;
     virtual bool setData (const QVariant &value, int role);
     virtual QHash<int, QByteArray> roleNames();
-    virtual XmlItem* create();
+    virtual XmlItem* create(QObject *parent);
 
     virtual QString xmlTag() { return "item"; }
 
