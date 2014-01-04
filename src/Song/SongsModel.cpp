@@ -17,6 +17,7 @@ SongsModel::SongsModel(QObject *parent) :
     m_bookmarksManager = SongsBookmarksManager::instance();
     connect(m_bookmarksManager, SIGNAL(bookmarkAdded(XmlItem*)), this, SLOT(addToBookmarks(XmlItem*)));
     connect(m_bookmarksManager, SIGNAL(bookmarkRemoved(XmlItem*)), this, SLOT(removeFromBookmarks(XmlItem*)));
+    connect(m_bookmarksManager, SIGNAL(allBookmarksRemoved()), this, SLOT(removeAllFromBookmarks()));
 }
 
 SongsModel::~SongsModel()

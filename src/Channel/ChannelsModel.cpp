@@ -17,6 +17,7 @@ ChannelsModel::ChannelsModel(QObject *parent) :
     m_bookmarksManager = ChannelsFavoritesManager::instance();
     connect(m_bookmarksManager, SIGNAL(bookmarkAdded(XmlItem*)), this, SLOT(addToFavorites(XmlItem*)));
     connect(m_bookmarksManager, SIGNAL(bookmarkRemoved(XmlItem*)), this, SLOT(removeFromFavorites(XmlItem*)));
+    connect(m_bookmarksManager, SIGNAL(allBookmarksRemoved()), this, SLOT(removeAllFromFavorites()));
 }
 
 ChannelsModel::~ChannelsModel()
@@ -248,6 +249,11 @@ void ChannelsModel::addToFavorites(XmlItem *xmlItem)
 void ChannelsModel::removeFromFavorites(XmlItem *xmlItem)
 {
     removeFromBookmarks(xmlItem);
+}
+
+void ChannelsModel::removeAllFromFavorites()
+{
+    removeAllFromBookmarks();
 }
 
 void ChannelsModel::calculMaximumListeners()

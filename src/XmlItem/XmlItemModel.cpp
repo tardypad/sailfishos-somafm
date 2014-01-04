@@ -128,8 +128,12 @@ void XmlItemModel::addToBookmarks(XmlItem *xmlItem)
     setDataItem(xmlItem, true, XmlItem::IsBookmarkRole);
 }
 
-
 void XmlItemModel::removeFromBookmarks(XmlItem *xmlItem)
 {
     setDataItem(xmlItem, false, XmlItem::IsBookmarkRole);
+}
+
+void XmlItemModel::removeAllFromBookmarks()
+{
+    setDataAll(false, XmlItem::IsBookmarkRole);
 }

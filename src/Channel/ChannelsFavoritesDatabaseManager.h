@@ -13,6 +13,7 @@ public:
     static ChannelsFavoritesDatabaseManager* instance();
     virtual bool insertBookmark(XmlItem *xmlItem);
     virtual bool deleteBookmark(XmlItem *xmlItem);
+    virtual bool removeAllBookmarks();
     virtual QList<XmlItem*> retrieveBookmarks();
     
 protected:

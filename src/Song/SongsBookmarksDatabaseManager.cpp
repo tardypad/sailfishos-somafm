@@ -64,6 +64,12 @@ bool SongsBookmarksDatabaseManager::deleteBookmark(XmlItem *xmlItem)
     return result && (numRowsAffected >= 1);
 }
 
+bool SongsBookmarksDatabaseManager::removeAllBookmarks()
+{
+    QSqlQuery query("DELETE FROM " + _songsBookmarkTableName);
+    return query.exec();
+}
+
 QList<XmlItem *> SongsBookmarksDatabaseManager::retrieveBookmarks()
 {
     QList<XmlItem *> xmlItemsBookmarks;

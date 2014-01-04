@@ -13,6 +13,7 @@ public:
     static SongsBookmarksDatabaseManager* instance();
     virtual bool insertBookmark(XmlItem *xmlItem);
     virtual bool deleteBookmark(XmlItem *xmlItem);
+    virtual bool removeAllBookmarks();
     virtual QList<XmlItem*> retrieveBookmarks();
     QList<QVariant> channelIds();
     QMap<QString, QVariant> channelData(QString channelId);

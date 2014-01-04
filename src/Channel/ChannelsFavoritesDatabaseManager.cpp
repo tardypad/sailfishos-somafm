@@ -54,6 +54,12 @@ bool ChannelsFavoritesDatabaseManager::deleteBookmark(XmlItem *xmlItem)
     return result && (numRowsAffected >= 1);
 }
 
+bool ChannelsFavoritesDatabaseManager::removeAllBookmarks()
+{
+    QSqlQuery query("DELETE FROM " + _channelsFavoriteTableName);
+    return query.exec();
+}
+
 QList<XmlItem *> ChannelsFavoritesDatabaseManager::retrieveBookmarks()
 {
     QList<XmlItem *> xmlItemsBookmarks;

@@ -70,6 +70,18 @@ bool XmlItemBookmarkManager::removeBookmark(XmlItem *xmlItem)
     return true;
 }
 
+bool XmlItemBookmarkManager::removeAllBookmarks()
+{
+    bool result = m_databaseManager->removeAllBookmarks();
+
+    if (!result) return false;
+
+    clear();
+    emit allBookmarksRemoved();
+
+    return true;
+}
+
 bool XmlItemBookmarkManager::isBookmark(XmlItem *xmlItem) const
 {
     return contains(xmlItem);

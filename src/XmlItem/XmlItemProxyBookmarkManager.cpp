@@ -25,6 +25,11 @@ bool XmlItemProxyBookmarkManager::removeBookmark(XmlItem *xmlItem)
     return xmlItemBookmarkSourceModel()->removeBookmark(xmlItem);
 }
 
+bool XmlItemProxyBookmarkManager::removeAllBookmarks()
+{
+    return xmlItemBookmarkSourceModel()->removeAllBookmarks();
+}
+
 void XmlItemProxyBookmarkManager::sortByDate()
 {
     setSortRole(XmlItem::BookmarkDateRole);

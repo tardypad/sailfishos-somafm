@@ -23,6 +23,14 @@ Page {
             delegate: BookmarksSectionDelegate { }
         }
 
+        PullDownMenu {
+            IconMenuItem {
+                text: "Remove all"
+                iconSource: "qrc:/icon/un-bookmark"
+                onClicked: removeAllBookmarks()
+            }
+        }
+
         ViewPlaceholder {
             enabled: listView.count === 0
             text: "No Bookmarks"
@@ -45,6 +53,10 @@ Page {
         }
 
         VerticalScrollDecorator { flickable: listView }
+    }
+
+    function removeAllBookmarks() {
+        _bookmarksManager.removeAllBookmarks()
     }
 
     SongPanel{

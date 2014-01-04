@@ -33,6 +33,7 @@ signals:
 protected slots:
     void addToBookmarks(XmlItem* xmlItem);
     void removeFromBookmarks(XmlItem* xmlItem);
+    void removeAllFromBookmarks();
 
 protected:
     inline void setResourceUrl(QUrl resourceUrl) { m_resourceUrl = resourceUrl; }

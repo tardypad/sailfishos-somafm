@@ -13,6 +13,7 @@ public:
     virtual QHash<int,QByteArray> roleNames() const;
     bool addBookmark(XmlItem* xmlItem);
     bool removeBookmark(XmlItem* xmlItem);
+    bool removeAllBookmarks();
     bool isBookmark(XmlItem* xmlItem) const;
     QDateTime getBookmarkDate(XmlItem* xmlItem);
 
@@ -23,6 +24,7 @@ protected:
 signals:
     void bookmarkAdded(XmlItem* xmlItem);
     void bookmarkRemoved(XmlItem* xmlItem);
+    void allBookmarksRemoved();
 
 protected:
     XmlItemBookmarksDatabaseManager* m_databaseManager;

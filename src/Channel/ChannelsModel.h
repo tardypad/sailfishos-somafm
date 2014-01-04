@@ -20,6 +20,7 @@ public:
 private slots:
     void addToFavorites(XmlItem* xmlItem);
     void removeFromFavorites(XmlItem* xmlItem);
+    void removeAllFromFavorites();
 
 private:
     virtual XmlItem* parseXmlItem();
