@@ -19,7 +19,7 @@ Item {
     height: progressIndicator.height
     anchors.horizontalCenter: parent.horizontalCenter
 
-    state: "complete"
+    state: "init"
 
     ProgressBar {
         id: progressIndicator
@@ -86,6 +86,13 @@ Item {
     }
 
     states: [
+        State {
+            name: "init"
+            PropertyChanges {
+                target: loadingIndicator
+                visible: false
+            }
+        },
         State {
             name: "fetching"
             PropertyChanges {

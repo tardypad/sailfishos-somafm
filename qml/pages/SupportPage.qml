@@ -27,19 +27,26 @@ Page {
         }
 
         VerticalScrollDecorator { flickable: gridView }
+
+        function displayAdditionalElements() {
+            headerItem.displayBanner()
+            footer = Qt.createComponent("../components/SupportPageFooter.qml")
+        }
     }
 
     Connections {
         target: indicator
         onStateChanged: {
             if (indicator.state === "complete")
-                gridView.footer = Qt.createComponent("../components/SupportPageFooter.qml")
+                gridView.displayAdditionalElements()
         }
     }
 
     Component.onCompleted: {
         if (!_supportModel.hasDataBeenFetchedOnce())
             _supportModel.fetch()
+        else
+            gridView.displayAdditionalElements()
     }
 
     onStatusChanged: {

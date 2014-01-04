@@ -26,14 +26,7 @@ Item {
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
     }
 
-    Connections {
-        target: _supportModel
-        onDataParsed: getBannerText()
-    }
-
-    Component.onCompleted: getBannerText()
-
-    function getBannerText() {
+    function displayBanner() {
         bannerLabel.text = _supportModel.banner()
     }
 }

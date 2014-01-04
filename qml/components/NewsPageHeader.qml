@@ -31,6 +31,7 @@ Item {
     Button {
         id: supportButton
         text: "Support us"
+        visible: false
         anchors {
             top: bannerLabel.bottom
             horizontalCenter: parent.horizontalCenter
@@ -38,14 +39,8 @@ Item {
         onClicked: pageStack.push(Qt.resolvedUrl("../pages/SupportPage.qml"))
     }
 
-    Connections {
-        target: _newsModel
-        onDataParsed: getBannerText()
-    }
-
-    Component.onCompleted: getBannerText()
-
-    function getBannerText() {
+    function displayBanner() {
         bannerLabel.text = _newsModel.banner()
+        supportButton.visible = true
     }
 }

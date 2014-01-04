@@ -31,19 +31,26 @@ Page {
         }
 
         VerticalScrollDecorator { flickable: listView }
+
+        function displayAdditionalElements() {
+            headerItem.displayBanner()
+            footer = Qt.createComponent("../components/NewsPageFooter.qml")
+        }
     }
 
     Connections {
         target: indicator
         onStateChanged: {
             if (indicator.state === "complete")
-                listView.footer = Qt.createComponent("../components/NewsPageFooter.qml")
+                listView.displayAdditionalElements()
         }
     }
 
     Component.onCompleted: {
         if (!_newsModel.hasDataBeenFetchedOnce())
             _newsModel.fetch()
+        else
+            listView.displayAdditionalElements()
         _newsModel.sortByDate();
     }
 
