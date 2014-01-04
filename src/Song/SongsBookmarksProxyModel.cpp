@@ -59,3 +59,8 @@ QMap<QString, QVariant> SongsBookmarksProxyModel::channelData(QString channelId)
     return songBookmarksManagerSourceModel()->channelData(channelId);
 }
 
+bool SongsBookmarksProxyModel::removeAllChannelBookmarks(QString channelId)
+{
+    return songBookmarksManagerSourceModel()->removeAllChannelBookmarks(channelId);
+}
+

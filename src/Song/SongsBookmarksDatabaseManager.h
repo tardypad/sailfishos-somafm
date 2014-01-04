@@ -14,6 +14,7 @@ public:
     virtual bool insertBookmark(XmlItem *xmlItem);
     virtual bool deleteBookmark(XmlItem *xmlItem);
     virtual bool removeAllBookmarks();
+    bool removeAllChannelBookmarks(QString channelId);
     virtual QList<XmlItem*> retrieveBookmarks();
     QList<QVariant> channelIds();
     QMap<QString, QVariant> channelData(QString channelId);

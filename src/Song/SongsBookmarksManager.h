@@ -12,6 +12,10 @@ public:
     static SongsBookmarksManager* instance();
     QList<QVariant> channelIds();
     QMap<QString, QVariant> channelData(QString channelId);
+    bool removeAllChannelBookmarks(QString channelId);
+
+signals:
+    void allChannelBookmarksRemoved(QString channelId);
 
 protected:
     SongsBookmarksDatabaseManager* songsBookmarksDatabaseManager();

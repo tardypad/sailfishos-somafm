@@ -37,3 +37,15 @@ QMap<QString, QVariant> SongsBookmarksManager::channelData(QString channelId)
 {
     return songsBookmarksDatabaseManager()->channelData(channelId);
 }
+
+bool SongsBookmarksManager::removeAllChannelBookmarks(QString channelId)
+{
+    bool result = songsBookmarksDatabaseManager()->removeAllChannelBookmarks(channelId);
+
+    if (!result) return false;
+
+    deleteXmlItems(channelId, Song::ChannelIdRole);
+    emit allChannelBookmarksRemoved(channelId);
+
+    return true;
+}

@@ -18,6 +18,7 @@ SongsModel::SongsModel(QObject *parent) :
     connect(m_bookmarksManager, SIGNAL(bookmarkAdded(XmlItem*)), this, SLOT(addToBookmarks(XmlItem*)));
     connect(m_bookmarksManager, SIGNAL(bookmarkRemoved(XmlItem*)), this, SLOT(removeFromBookmarks(XmlItem*)));
     connect(m_bookmarksManager, SIGNAL(allBookmarksRemoved()), this, SLOT(removeAllFromBookmarks()));
+    connect(m_bookmarksManager, SIGNAL(allChannelBookmarksRemoved(QString)), this, SLOT(removeAllFromChannelBookmarks(QString)));
 }
 
 SongsModel::~SongsModel()
@@ -68,6 +69,11 @@ void SongsModel::parseAdditional()
             }
         }
     }
+}
+
+void SongsModel::removeAllFromChannelBookmarks(QString channelId)
+{
+    setDataItems(channelId, Song::ChannelIdRole, false, Song::IsBookmarkRole);
 }
 
 bool SongsModel::includeXmlItem(XmlItem *xmlItem)

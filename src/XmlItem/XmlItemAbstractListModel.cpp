@@ -95,6 +95,21 @@ void XmlItemAbstractListModel::removeXmlItemAt(int row)
     endRemoveRows();
 }
 
+void XmlItemAbstractListModel::deleteXmlItems(const QVariant &value, int role)
+{
+    QMutableListIterator<XmlItem*> iterator(m_list);
+    XmlItem* xmlItem;
+    beginResetModel();
+    while (iterator.hasNext()) {
+        xmlItem = iterator.next();
+        if (xmlItem->data(role) == value) {
+            iterator.remove();
+            delete xmlItem;
+        }
+    }
+    endResetModel();
+}
+
 XmlItem* XmlItemAbstractListModel::itemAt(int row)
 {
     if (row < 0 || row >= m_list.size())
@@ -138,6 +153,15 @@ void XmlItemAbstractListModel::setDataItem(XmlItem *xmlItem, const QVariant &val
 {
     for (int row = 0; row < m_list.size(); ++row) {
         if (m_list.at(row)->isEqual(xmlItem)) {
+            setData(index(row) ,value, role);
+        }
+    }
+}
+
+void XmlItemAbstractListModel::setDataItems(const QVariant &checkValue, int checkRole, const QVariant &value, int role)
+{
+    for (int row = 0; row < m_list.size(); ++row) {
+        if (m_list.at(row)->data(checkRole) == checkValue) {
             setData(index(row) ,value, role);
         }
     }

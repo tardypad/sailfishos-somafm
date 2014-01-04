@@ -16,6 +16,7 @@ public:
     Q_INVOKABLE void sortByChannel();
     Q_INVOKABLE QList<QVariant> channelIds();
     Q_INVOKABLE QMap<QString, QVariant> channelData(QString channelId);
+    Q_INVOKABLE bool removeAllChannelBookmarks(QString channelId);
 
 protected:
     SongsBookmarksManager* songBookmarksManagerSourceModel();

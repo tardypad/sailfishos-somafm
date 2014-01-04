@@ -27,7 +27,9 @@ protected:
     void preprendXmlItem(XmlItem* xmlItem);
     void appendXmlItems(QList<XmlItem*> xmlItemsList);
     void removeXmlItemAt(int row);
+    void deleteXmlItems(const QVariant &value, int role);
     void setDataItem(XmlItem* xmlItem, const QVariant &value, int role);
+    void setDataItems(const QVariant &checkValue, int checkRole, const QVariant &value, int role);
     void setDataAll(const QVariant &value, int role);
 
 protected:

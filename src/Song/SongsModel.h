@@ -23,6 +23,7 @@ signals:
 
 private slots:
     void parseAdditional();
+    void removeAllFromChannelBookmarks(QString channelId);
 
 private:
     virtual bool includeXmlItem(XmlItem *xmlItem);

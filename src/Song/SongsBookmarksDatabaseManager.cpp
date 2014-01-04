@@ -70,6 +70,12 @@ bool SongsBookmarksDatabaseManager::removeAllBookmarks()
     return query.exec();
 }
 
+bool SongsBookmarksDatabaseManager::removeAllChannelBookmarks(QString channelId)
+{
+    QSqlQuery query("DELETE FROM " + _songsBookmarkTableName +  " WHERE channel_id='" + channelId + "'");
+    return query.exec();
+}
+
 QList<XmlItem *> SongsBookmarksDatabaseManager::retrieveBookmarks()
 {
     QList<XmlItem *> xmlItemsBookmarks;
