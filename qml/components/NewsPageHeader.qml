@@ -35,7 +35,7 @@ Item {
             top: bannerLabel.bottom
             horizontalCenter: parent.horizontalCenter
         }
-        onClicked: pageStack.push(Qt.resolvedUrl("../SupportPage.qml"))
+        onClicked: pageStack.push(Qt.resolvedUrl("../pages/SupportPage.qml"))
     }
 
     Connections {

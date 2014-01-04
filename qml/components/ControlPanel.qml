@@ -153,7 +153,7 @@ DockedPanel {
         if (isDialogPage(pageStack.currentPage))
             return
 
-        var url = Qt.resolvedUrl("../ChannelPage.qml")
+        var url = Qt.resolvedUrl("../pages/ChannelPage.qml")
         var properties = {"id": channelId}
 
         var currentPage = pageStack.currentPage
@@ -192,7 +192,7 @@ DockedPanel {
     }
 
     function openStreamsDialog() {
-        pageStack.push(Qt.resolvedUrl("../StreamsDialog.qml"),
+        pageStack.push(Qt.resolvedUrl("../pages/StreamsDialog.qml"),
             {"channelId": channelId})
     }
 

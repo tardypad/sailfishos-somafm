@@ -22,9 +22,9 @@ OTHER_FILES = \
     $$files(qml/*.qml) \
     $$files(qml/cover/*.qml) \
     $$files(qml/pages/*.qml) \
-    $$files(qml/pages/delegates/*.qml) \
-    $$files(qml/pages/components/*.qml) \
-    $$files(qml/pages/utils/*.qml) \
+    $$files(qml/delegates/*.qml) \
+    $$files(qml/components/*.qml) \
+    $$files(qml/utils/*.qml) \
     rpm/$${TARGET}.yaml \
     rpm/$${TARGET}.spec \
     $${TARGET}.desktop

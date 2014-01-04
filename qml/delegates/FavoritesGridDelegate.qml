@@ -84,7 +84,7 @@ BackgroundItem {
     }
 
     function goToChannelPage() {
-        pageStack.push(Qt.resolvedUrl("../ChannelPage.qml"), {"id": id})
+        pageStack.push(Qt.resolvedUrl("../pages/ChannelPage.qml"), {"id": id})
     }
 
     function play() {

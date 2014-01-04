@@ -1,9 +1,9 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import "utils"
-import "delegates"
-import "components"
+import "../utils"
+import "../delegates"
+import "../components"
 
 Page {
     property string channelId

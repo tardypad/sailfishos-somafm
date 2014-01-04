@@ -3,8 +3,8 @@ import Sailfish.Silica 1.0
 
 import "pages"
 import "cover"
-import "pages/components"
-import "pages/utils"
+import "components"
+import "utils"
 
 ApplicationWindow
 {

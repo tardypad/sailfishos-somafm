@@ -1,9 +1,9 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import "utils"
-import "delegates"
-import "components"
+import "../utils"
+import "../delegates"
+import "../components"
 
 Page {
 
@@ -37,7 +37,7 @@ Page {
         target: indicator
         onStateChanged: {
             if (indicator.state === "complete")
-                listView.footer = Qt.createComponent("components/NewsPageFooter.qml")
+                listView.footer = Qt.createComponent("../components/NewsPageFooter.qml")
         }
     }
 
