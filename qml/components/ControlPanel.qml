@@ -9,23 +9,19 @@ DockedPanel {
     property string channelId
     property alias channelName: channelLabel.text
     property alias channelImageUrl: channelImage.source
-    property bool menuOpen: _contextMenu ? _contextMenu._open : false
-    property Item _contextMenu
 
     signal close
 
     state: "pause"
 
     width: parent.width
-    height: menuOpen ? backgroundItem.height + _contextMenu.height : backgroundItem.height
+    height: backgroundItem.height
+    contentHeight: height
+    flickableDirection: Flickable.VerticalFlick
     dock: Dock.Bottom
 
     BackgroundItem {
         id: backgroundItem
-        anchors {
-            top: parent.top
-            left: parent.left
-        }
         width: parent.width
         height: Theme.itemSizeExtraLarge
 
@@ -105,23 +101,18 @@ DockedPanel {
         }
 
         onClicked: goToChannelPage()
-
-        onPressAndHold: openContextMenu()
     }
 
-    Component {
-        id: menuComponent
-        ContextMenu {
-            IconMenuItem {
-                iconSource: "image://theme/icon-m-music"
-                text: "Change quality/format"
-                onClicked: openStreamsDialog()
-            }
-            IconMenuItem {
-                iconSource: "qrc:/icon/un-bookmark"
-                text: "Bookmark current song"
-                onClicked: console.log("Bookmark current song")
-            }
+    PushUpMenu {
+        IconMenuItem {
+            iconSource: "image://theme/icon-m-music"
+            text: "Change quality/format"
+            onClicked: openStreamsDialog()
+        }
+        IconMenuItem {
+            iconSource: "qrc:/icon/un-bookmark"
+            text: "Bookmark current song"
+            onClicked: console.log("Bookmark current song")
         }
     }
 
@@ -182,16 +173,10 @@ DockedPanel {
         return page.objectName === "StreamDialog"
     }
 
-    function openContextMenu() {
+    function openStreamsDialog() {
         if (isDialogPage(pageStack.currentPage))
             return
 
-        if (!_contextMenu)
-            _contextMenu = menuComponent.createObject(controlPanel)
-        _contextMenu.show(controlPanel)
-    }
-
-    function openStreamsDialog() {
         pageStack.push(Qt.resolvedUrl("../pages/StreamsDialog.qml"),
             {"channelId": channelId})
     }
