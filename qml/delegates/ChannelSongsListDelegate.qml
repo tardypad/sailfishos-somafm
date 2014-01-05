@@ -22,10 +22,11 @@ ListItem {
     }
 
     Column {
-        width: parent.width
         anchors {
             left: dateLabel.right
             leftMargin: Theme.paddingMedium
+            right: bookmarkImage.left
+            rightMargin: Theme.paddingMedium
             verticalCenter: parent.verticalCenter
         }
 
@@ -34,9 +35,7 @@ ListItem {
             text: artist
             color: highlighted ? Theme.highlightColor : Theme.primaryColor
             font.pixelSize: Theme.fontSizeSmall
-            width: parent.width - dateLabel.width
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            maximumLineCount: 1
+            width: parent.width
             truncationMode: TruncationMode.Fade
         }
 
@@ -45,9 +44,7 @@ ListItem {
             text: title
             color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
             font.pixelSize: Theme.fontSizeExtraSmall
-            width: parent.width - dateLabel.width
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            maximumLineCount: 1
+            width: parent.width
             truncationMode: TruncationMode.Fade
         }
     }
@@ -56,7 +53,7 @@ ListItem {
         id: bookmarkImage
         source: "qrc:/icon/bookmark"
         height: Theme.iconSizeSmall
-        width: Theme.iconSizeSmall
+        width: visible ? Theme.iconSizeSmall : 0
         anchors {
             right: parent.right
             rightMargin: Theme.paddingMedium
