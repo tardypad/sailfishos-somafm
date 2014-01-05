@@ -6,6 +6,8 @@ import "../delegates"
 import "../components"
 
 Page {
+    property Item remorseItem
+
     SilicaListView {
         id: listView
 
@@ -56,10 +58,33 @@ Page {
     }
 
     function removeAllBookmarks() {
-        _bookmarksManager.removeAllBookmarks()
+        if (remorseItem || !listView.count)
+            return
+
+        remorseItem = remorsecomponent.createObject(listView)
+        listView.interactive = false
+        backNavigation = false
+
+        remorseItem.onCanceled.connect(endRemorseAction)
+        remorseItem.onTriggered.connect(endRemorseAction)
+
+        remorseItem.execute(listView.headerItem, "Removing all bookmarks", function() {
+            _bookmarksManager.removeAllBookmarks()
+        })
+    }
+
+    function endRemorseAction() {
+        backNavigation = true
+        listView.interactive = true
+        remorseItem.destroy()
     }
 
     SongPanel{
         id: songPanel
+    }
+
+    Component {
+        id: remorsecomponent
+        RemorseItem { }
     }
 }
