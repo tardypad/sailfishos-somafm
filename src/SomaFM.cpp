@@ -22,6 +22,7 @@
 #include "src/News/NewsModel.h"
 #include "src/News/NewsProxyModel.h"
 #include "src/Support/SupportModel.h"
+#include "src/Refresh/RefreshModel.h"
 #include "src/Player.h"
 #include "src/Settings.h"
 
@@ -65,6 +66,9 @@ int main(int argc, char *argv[])
 
     QScopedPointer<SupportModel> supportModel(new SupportModel());
     context->setContextProperty("_supportModel", supportModel.data());
+
+    QScopedPointer<RefreshModel> refreshModel(new RefreshModel());
+    context->setContextProperty("_refreshModel", refreshModel.data());
 
     QScopedPointer<Player> player(new Player());
     context->setContextProperty("_player", player.data());

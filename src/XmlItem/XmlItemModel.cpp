@@ -101,8 +101,8 @@ void XmlItemModel::parse()
         return;
     }
 
-    emit dataParsed();
     appendXmlItems(tmp_list);
+    emit dataParsed();
 
     this->setHasDataBeenFetchedOnce(true);
 

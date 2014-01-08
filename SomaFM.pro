@@ -8,7 +8,8 @@ SOURCES += \
     $$files(src/Channel/*.cpp) \
     $$files(src/Song/*.cpp) \
     $$files(src/News/*.cpp) \
-    $$files(src/Support/*.cpp)
+    $$files(src/Support/*.cpp) \
+    $$files(src/Refresh/*.cpp)
 
 HEADERS += \
     $$files(src/*.h) \
@@ -16,7 +17,8 @@ HEADERS += \
     $$files(src/Channel/*.h) \
     $$files(src/Song/*.h) \
     $$files(src/News/*.h) \
-    $$files(src/Support/*.h)
+    $$files(src/Support/*.h) \
+    $$files(src/Refresh/*.h)
 
 OTHER_FILES = \
     $$files(qml/*.qml) \

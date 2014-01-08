@@ -48,4 +48,22 @@ ApplicationWindow
     SomaTheme {
         id: somaTheme
     }
+
+    Timer {
+        id: refreshTimer
+        running: true
+        repeat: true
+        interval: 60000
+        onTriggered: _refreshModel.fetch()
+    }
+    
+    Connections {
+        target: _refreshModel
+        onDataParsed: {
+            var channel = _player.channel()
+            if (!channel) return;
+            var playing = _refreshModel.playing(channel)
+            console.log(playing.artist + " - " + playing.song)
+        }
+    }
 }
