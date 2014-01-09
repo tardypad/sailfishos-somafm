@@ -6,6 +6,7 @@
 #include "../XmlItem/XmlItemModel.h"
 
 class Channel;
+class Refresh;
 
 class RefreshModel : public XmlItemModel
 {
@@ -18,6 +19,7 @@ public:
 
 private:
     virtual XmlItem* parseXmlItem();
+    Refresh* getUpdateItem(QString channelId);
 };
 
 #endif // REFRESHMODEL_H

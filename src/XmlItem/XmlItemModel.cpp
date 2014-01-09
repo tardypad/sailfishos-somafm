@@ -15,7 +15,8 @@ XmlItemModel::XmlItemModel(XmlItem* xmlItemPrototype, QObject *parent) :
     m_resourceUrl(""),
     m_currentReply(NULL),
     m_bookmarksManager(NULL),
-    m_hasDataBeenFetchedOnce(false)
+    m_hasDataBeenFetchedOnce(false),
+    m_clearBeforeFetching(true)
 {
     m_networkManager = new QNetworkAccessManager(this);
     m_xmlReader = new QXmlStreamReader();
@@ -45,7 +46,7 @@ void XmlItemModel::launchDownload()
 
 void XmlItemModel::fetch()
 {
-    clear();
+    if (m_clearBeforeFetching) clear();
     launchDownload();
     emit fetchStarted();
 

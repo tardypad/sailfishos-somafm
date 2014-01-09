@@ -39,6 +39,8 @@ protected:
     inline void setResourceUrl(QUrl resourceUrl) { m_resourceUrl = resourceUrl; }
     inline QUrl resourceUrl() const { return m_resourceUrl; }
     void launchDownload();
+    void setHasDataBeenFetchedOnce(bool hasDataBeenFetchedOnce) { m_hasDataBeenFetchedOnce = hasDataBeenFetchedOnce; }
+    void setClearBeforeFetching(bool clearBeforeFetching) { m_clearBeforeFetching = clearBeforeFetching; }
 
 private slots:
     virtual void parseFirst();
@@ -48,7 +50,6 @@ private slots:
 private:
     virtual bool includeXmlItem(XmlItem* xmlItem);
     virtual XmlItem* parseXmlItem() = 0;
-    void setHasDataBeenFetchedOnce(bool hasDataBeenFetchedOnce) { m_hasDataBeenFetchedOnce = hasDataBeenFetchedOnce; }
 
 protected:
     QUrl m_resourceUrl;
@@ -57,6 +58,7 @@ protected:
     QNetworkReply* m_currentReply;
     XmlItemBookmarkManager* m_bookmarksManager;
     bool m_hasDataBeenFetchedOnce;
+    bool m_clearBeforeFetching;
 };
 
 #endif // XMLITEMMODEL_H

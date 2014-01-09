@@ -14,6 +14,7 @@ const QUrl RefreshModel::_refreshUrl = QUrl("http://somafm.com/refresh.xml");
 RefreshModel::RefreshModel(QObject *parent) :
     XmlItemModel(new Refresh(), parent)
 {
+    setClearBeforeFetching(false);
     setResourceUrl(_refreshUrl);
 }
 
@@ -67,7 +68,7 @@ XmlItem* RefreshModel::parseXmlItem()
     if (m_xmlReader->hasError())
         return NULL;
 
-    Refresh* refresh = new Refresh(this);
+    Refresh* refresh = getUpdateItem(channelId);
 
     refresh->setData(channelId, Refresh::ChannelIdRole);
     refresh->setData(listeners, Refresh::ListenersRole);
@@ -75,4 +76,14 @@ XmlItem* RefreshModel::parseXmlItem()
     refresh->setData(song, Refresh::SongRole);
 
     return refresh;
+}
+
+Refresh *RefreshModel::getUpdateItem(QString channelId)
+{
+    for(int row = 0; row < m_list.size(); ++row) {
+      if (m_list.at(row)->data(Refresh::ChannelIdRole) == channelId) {
+          return (Refresh*) m_list.at(row);
+      }
+    }
+    return (Refresh*) m_xmlItemPrototype->create(this);
 }
