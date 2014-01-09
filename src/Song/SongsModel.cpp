@@ -61,8 +61,10 @@ void SongsModel::parseAdditional()
                 if (!xmlItem)
                     return;
 
-                if (!includeXmlItem(xmlItem))
+                if (!includeXmlItem(xmlItem)) {
+                    delete xmlItem;
                     continue;
+                }
 
                 if (!contains(xmlItem))
                     preprendXmlItem(xmlItem);
@@ -85,7 +87,6 @@ bool SongsModel::includeXmlItem(XmlItem *xmlItem)
 
 XmlItem* SongsModel::parseXmlItem()
 {
-    Song* song = new Song(this);
     QString title = "";
     QString artist = "";
     QString album = "";
@@ -117,6 +118,8 @@ XmlItem* SongsModel::parseXmlItem()
 
     if (m_xmlReader->hasError())
         return NULL;
+
+    Song* song = new Song(this);
 
     song->setData(title, Song::TitleRole);
     song->setData(artist, Song::ArtistRole);

@@ -33,7 +33,6 @@ void SupportModel::parseFirst()
 
 XmlItem* SupportModel::parseXmlItem()
 {
-    Support* support = new Support(this);
     QString content = "";
     QString location = "";
 
@@ -53,6 +52,8 @@ XmlItem* SupportModel::parseXmlItem()
 
     if (m_xmlReader->hasError())
         return NULL;
+
+    Support* support = new Support(this);
 
     support->setData(content, Support::ContentRole);
     support->setData(location, Support::LocationRole);

@@ -42,7 +42,6 @@ XmlItem* ChannelsModel::parseXmlItem()
     QXmlStreamAttributes attributes = m_xmlReader->attributes();
     id = attributes.value("id").toString();
 
-
     while (!m_xmlReader->atEnd() &&
            !(m_xmlReader->isEndElement() && m_xmlReader->name() == m_xmlItemPrototype->xmlTag())) {
         m_xmlReader->readNext();
@@ -85,8 +84,10 @@ XmlItem* ChannelsModel::parseXmlItem()
         }
     }
 
-    if (m_xmlReader->hasError())
+    if (m_xmlReader->hasError()) {
+        delete channel;
         return NULL;
+    }
 
     channel->setData(id, Channel::IdRole);
     channel->setData(name, Channel::NameRole);

@@ -39,7 +39,6 @@ QMap<QString, QVariant> RefreshModel::playing(Channel* channel)
 
 XmlItem* RefreshModel::parseXmlItem()
 {
-    Refresh* refresh = new Refresh(this);
     QString channelId = "";
     QString listeners = "";
     QString artist = "";
@@ -67,6 +66,8 @@ XmlItem* RefreshModel::parseXmlItem()
 
     if (m_xmlReader->hasError())
         return NULL;
+
+    Refresh* refresh = new Refresh(this);
 
     refresh->setData(channelId, Refresh::ChannelIdRole);
     refresh->setData(listeners, Refresh::ListenersRole);

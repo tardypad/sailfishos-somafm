@@ -88,8 +88,10 @@ void XmlItemModel::parse()
                     return;
                 }
 
-                if (!includeXmlItem(xmlItem))
+                if (!includeXmlItem(xmlItem)) {
+                    delete xmlItem;
                     continue;
+                }
 
                 tmp_list.append(xmlItem);
             }

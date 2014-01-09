@@ -40,7 +40,6 @@ void NewsModel::parseFirst()
 
 XmlItem* NewsModel::parseXmlItem()
 {
-    News* news = new News(this);
     QString content = "";
     QDateTime datetime = QDateTime();
     QString dateGroup = "";
@@ -62,6 +61,8 @@ XmlItem* NewsModel::parseXmlItem()
 
     if (m_xmlReader->hasError())
         return NULL;
+
+    News* news = new News(this);
 
     dateGroup = defineGroup(datetime);
 
