@@ -6,6 +6,7 @@ import "../delegates"
 import "../components"
 
 Page {
+    id: channelPage
     objectName: "ChannelPage"
 
     property string id

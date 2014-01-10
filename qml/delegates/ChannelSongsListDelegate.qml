@@ -4,10 +4,17 @@ import Sailfish.Silica 1.0
 import "../utils"
 
 ListItem {
+    property bool isCurrent: index === 0
+
     menu: contextMenu
     showMenuOnPressAndHold: false // don't use the default showMenu() without properties
-    contentHeight: Theme.itemSizeSmall
     width: listView.width
+
+    Rectangle {
+        anchors.fill: parent
+        opacity: isCurrent ? 0.1 : 0
+        color: Theme.highlightBackgroundColor
+    }
 
     Label {
         id: dateLabel
@@ -25,7 +32,7 @@ ListItem {
         anchors {
             left: dateLabel.right
             leftMargin: Theme.paddingMedium
-            right: bookmarkImage.left
+            right: playImage.left
             rightMargin: Theme.paddingMedium
             verticalCenter: parent.verticalCenter
         }
@@ -50,6 +57,20 @@ ListItem {
     }
 
     Image {
+        id: playImage
+        source: "image://theme/icon-l-play"
+        height: Theme.iconSizeSmall
+        width: visible ? Theme.iconSizeSmall : 0
+        anchors {
+            right: bookmarkImage.left
+            rightMargin: Theme.paddingMedium
+            verticalCenter: parent.verticalCenter
+        }
+        fillMode: Image.PreserveAspectFit
+        visible: isCurrent
+    }
+
+    Image {
         id: bookmarkImage
         source: "qrc:/icon/bookmark"
         height: Theme.iconSizeSmall
@@ -64,6 +85,11 @@ ListItem {
     }
 
     onPressAndHold: showMenu({"isBookmark": isBookmark})
+
+    onClicked: {
+        if (isCurrent)
+            channelPage.play()
+    }
 
     function addBookmark() {
         _bookmarksManager.addBookmark(listView.model.itemAt(index))
