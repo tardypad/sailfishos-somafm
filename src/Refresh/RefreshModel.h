@@ -14,12 +14,16 @@ class RefreshModel : public XmlItemModel
 
     Q_OBJECT
 public:
-    explicit RefreshModel(QObject *parent = 0);
+    static RefreshModel* instance();
     Q_INVOKABLE QMap<QString, QVariant> playing(Channel* channel);
 
 private:
+    explicit RefreshModel(QObject *parent = 0);
     virtual XmlItem* parseXmlItem();
     Refresh* getUpdateItem(QString channelId);
+
+private:
+    static RefreshModel* m_instance;
 };
 
 #endif // REFRESHMODEL_H

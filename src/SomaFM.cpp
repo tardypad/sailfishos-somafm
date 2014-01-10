@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
     QScopedPointer<SupportModel> supportModel(new SupportModel());
     context->setContextProperty("_supportModel", supportModel.data());
 
-    QScopedPointer<RefreshModel> refreshModel(new RefreshModel());
+    QScopedPointer<RefreshModel> refreshModel(RefreshModel::instance());
     context->setContextProperty("_refreshModel", refreshModel.data());
 
     QScopedPointer<Player> player(new Player());

@@ -11,11 +11,22 @@
 
 const QUrl RefreshModel::_refreshUrl = QUrl("http://somafm.com/refresh.xml");
 
+RefreshModel* RefreshModel::m_instance = NULL;
+
 RefreshModel::RefreshModel(QObject *parent) :
     XmlItemModel(new Refresh(), parent)
 {
     setClearBeforeFetching(false);
     setResourceUrl(_refreshUrl);
+}
+
+RefreshModel* RefreshModel::instance()
+{
+    if (!m_instance) {
+        m_instance = new RefreshModel();
+    }
+
+    return m_instance;
 }
 
 QMap<QString, QVariant> RefreshModel::playing(Channel* channel)
