@@ -9,6 +9,8 @@ DockedPanel {
     property string channelId
     property alias channelName: channelLabel.text
     property alias channelImageUrl: channelImage.source
+    property alias artist: artistLabel.text
+    property alias song: songLabel.text
 
     signal close
 
@@ -33,11 +35,11 @@ DockedPanel {
         ChannelImage {
             id: channelImage
             size: BusyIndicatorSize.Small
-            height: Theme.iconSizeLarge
-            width: Theme.iconSizeLarge
+            height: parent.height - Theme.paddingSmall*2
+            width: height
             anchors {
                 left: parent.left
-                leftMargin: Theme.paddingLarge
+                leftMargin: Theme.paddingSmall
                 verticalCenter: parent.verticalCenter
             }
         }
@@ -49,11 +51,44 @@ DockedPanel {
                 leftMargin: Theme.paddingMedium
                 right: mediaButtonPause.left
                 rightMargin: Theme.paddingMedium
-                verticalCenter: parent.verticalCenter
+                top: parent.top
+                topMargin: Theme.paddingSmall
             }
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             truncationMode: TruncationMode.Fade
-            maximumLineCount: 2
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        Label {
+            id: artistLabel
+            anchors {
+                left: channelImage.right
+                leftMargin: Theme.paddingMedium
+                right: mediaButtonPause.left
+                rightMargin: Theme.paddingMedium
+                bottom: songLabel.top
+                bottomMargin: -Theme.paddingSmall
+            }
+            truncationMode: TruncationMode.Fade
+            font.pixelSize: Theme.fontSizeExtraSmall
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        Label {
+            id: songLabel
+            anchors {
+                left: channelImage.right
+                leftMargin: Theme.paddingMedium
+                right: mediaButtonPause.left
+                rightMargin: Theme.paddingMedium
+                bottom: parent.bottom
+                bottomMargin: Theme.paddingMedium
+            }
+            truncationMode: TruncationMode.Fade
+            font{
+                pixelSize: Theme.fontSizeExtraSmall
+                italic: true
+            }
+            horizontalAlignment: Text.AlignHCenter
         }
 
         ProgressCircle {

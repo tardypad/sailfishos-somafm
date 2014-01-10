@@ -63,7 +63,8 @@ ApplicationWindow
             var channel = _player.channel()
             if (!channel) return;
             var playing = _refreshModel.playing(channel)
-            console.log(playing.artist + " - " + playing.song)
+            controlPanel.artist = playing.artist
+            controlPanel.song = playing.song
         }
     }
 }
