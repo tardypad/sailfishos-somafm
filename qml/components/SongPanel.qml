@@ -9,9 +9,12 @@ DockedPanel {
     property alias artist: artistLabel.text
     property alias album: albumLabel.text
     property alias date: dateLabel.text
+    property int minHeight: titleLabel.height + artistLabel.height + dateLabel.height
+                            + 2*Theme.paddingLarge + 2*Theme.paddingMedium
+    property bool hasAlbum: album !== ""
 
     width: parent.width
-    height: 2*Theme.itemSizeMedium + 2*Theme.paddingLarge
+    height: hasAlbum ? minHeight + albumLabel.height + Theme.paddingMedium : minHeight
     dock: Dock.Bottom
 
     MouseArea {
@@ -70,6 +73,7 @@ DockedPanel {
             }
             Row {
                 spacing: Theme.paddingLarge
+                visible: hasAlbum
                 Label {
                     id: albumHeaderLabel
                     text: "Album"
