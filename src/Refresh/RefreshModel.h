@@ -17,6 +17,9 @@ public:
     static RefreshModel* instance();
     Q_INVOKABLE QMap<QString, QVariant> playing(Channel* channel);
 
+signals:
+    void refreshed();
+
 private:
     explicit RefreshModel(QObject *parent = 0);
     virtual XmlItem* parseXmlItem();

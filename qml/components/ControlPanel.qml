@@ -170,6 +170,17 @@ DockedPanel {
         onNetworkError: showMessage("A network error occured")
     }
 
+    Connections {
+        target: _refreshModel
+        onRefreshed: {
+            var channel = _player.channel()
+            if (!channel) return;
+            var playing = _refreshModel.playing(channel)
+            artist = playing.artist
+            song = playing.song
+        }
+    }
+
     function reinitProgressIndicator() {
         progressIndicator.value = 0
         progressIndicator.inAlternateCycle = true

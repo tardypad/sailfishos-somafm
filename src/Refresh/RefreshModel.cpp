@@ -18,6 +18,7 @@ RefreshModel::RefreshModel(QObject *parent) :
 {
     setClearBeforeFetching(false);
     setResourceUrl(_refreshUrl);
+    connect(this, SIGNAL(dataParsed()), this, SIGNAL(refreshed()));
 }
 
 RefreshModel* RefreshModel::instance()

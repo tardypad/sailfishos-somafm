@@ -51,20 +51,9 @@ ApplicationWindow
 
     Timer {
         id: refreshTimer
-        running: true
+        running: window.applicationActive
         repeat: true
-        interval: 60000
+        interval: 20000
         onTriggered: _refreshModel.fetch()
-    }
-    
-    Connections {
-        target: _refreshModel
-        onDataParsed: {
-            var channel = _player.channel()
-            if (!channel) return;
-            var playing = _refreshModel.playing(channel)
-            controlPanel.artist = playing.artist
-            controlPanel.song = playing.song
-        }
     }
 }
