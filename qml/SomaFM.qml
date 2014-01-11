@@ -55,5 +55,6 @@ ApplicationWindow
         repeat: true
         interval: 20000
         onTriggered: _refreshModel.fetch()
+        triggeredOnStart: true
     }
 }

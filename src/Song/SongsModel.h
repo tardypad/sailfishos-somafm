@@ -5,6 +5,7 @@
 
 class Song;
 class Channel;
+class RefreshModel;
 
 class SongsModel : public XmlItemModel
 {
@@ -24,6 +25,7 @@ signals:
 private slots:
     void parseAdditional();
     void removeAllFromChannelBookmarks(QString channelId);
+    void updateCurrentSong();
 
 private:
     virtual bool includeXmlItem(XmlItem *xmlItem);
@@ -31,6 +33,8 @@ private:
 
 private:
     Channel* m_channel;
+    RefreshModel* m_refreshModel;
+    Song* m_currentSong;
 };
 
 #endif // SONGSMODEL_H

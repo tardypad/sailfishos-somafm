@@ -4,8 +4,6 @@ import Sailfish.Silica 1.0
 import "../utils"
 
 ListItem {
-    property bool isCurrent: index === 0
-
     menu: contextMenu
     showMenuOnPressAndHold: false // don't use the default showMenu() without properties
     width: listView.width

@@ -34,6 +34,8 @@ QMap<QString, QVariant> RefreshModel::playing(Channel* channel)
 {
     QMap<QString, QVariant> result;
 
+    if (!channel) return result;
+
     QString channelId = channel->data(Channel::IdRole).toString();
     QVariant artist, song;
 

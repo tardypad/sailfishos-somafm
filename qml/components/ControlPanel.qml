@@ -157,6 +157,7 @@ DockedPanel {
             channelName = _player.channelName()
             channelImageUrl = _player.channelImageUrl()
             channelId = _player.channelId()
+            getCurrentSong()
         }
         onPlayCalled: open = true
         onPlayStarted: {
@@ -172,13 +173,15 @@ DockedPanel {
 
     Connections {
         target: _refreshModel
-        onRefreshed: {
-            var channel = _player.channel()
-            if (!channel) return;
-            var playing = _refreshModel.playing(channel)
-            artist = playing.artist
-            song = playing.song
-        }
+        onRefreshed: getCurrentSong()
+    }
+
+    function getCurrentSong() {
+        var channel = _player.channel()
+        if (!channel) return;
+        var playing = _refreshModel.playing(channel)
+        artist = playing.artist
+        song = playing.song
     }
 
     function reinitProgressIndicator() {

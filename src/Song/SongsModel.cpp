@@ -7,22 +7,28 @@
 #include "Song.h"
 #include "../Channel/Channel.h"
 #include "SongsBookmarksManager.h"
+#include "../Refresh/RefreshModel.h"
 
 const QUrl SongsModel::_channelSongsUrl = QUrl("http://somafm.com/songs/:channelId:.xml");
 
 SongsModel::SongsModel(QObject *parent) :
     XmlItemModel(new Song(), parent),
-    m_channel(NULL)
+    m_channel(NULL),
+    m_currentSong(new Song(this))
 {
-    m_bookmarksManager = SongsBookmarksManager::instance();
+    m_bookmarksManager = SongsBookmarksManager::instance();    
     connect(m_bookmarksManager, SIGNAL(bookmarkAdded(XmlItem*)), this, SLOT(addToBookmarks(XmlItem*)));
     connect(m_bookmarksManager, SIGNAL(bookmarkRemoved(XmlItem*)), this, SLOT(removeFromBookmarks(XmlItem*)));
     connect(m_bookmarksManager, SIGNAL(allBookmarksRemoved()), this, SLOT(removeAllFromBookmarks()));
     connect(m_bookmarksManager, SIGNAL(allChannelBookmarksRemoved(QString)), this, SLOT(removeAllFromChannelBookmarks(QString)));
+
+    m_refreshModel = RefreshModel::instance();
+    connect(m_refreshModel, SIGNAL(refreshed()), this, SLOT(updateCurrentSong()));
 }
 
 SongsModel::~SongsModel()
 {
+    delete m_currentSong;
 }
 
 void SongsModel::setChannel(XmlItem *channel)
@@ -32,6 +38,7 @@ void SongsModel::setChannel(XmlItem *channel)
     QString url = _channelSongsUrl.url();
     url.replace(":channelId:", channelId);
     setResourceUrl(url);
+    updateCurrentSong();
 }
 
 void SongsModel::fetchAdditional()
@@ -76,6 +83,21 @@ void SongsModel::parseAdditional()
 void SongsModel::removeAllFromChannelBookmarks(QString channelId)
 {
     setDataItems(channelId, Song::ChannelIdRole, false, Song::IsBookmarkRole);
+}
+
+void SongsModel::updateCurrentSong()
+{
+    QMap<QString, QVariant> current = m_refreshModel->playing(m_channel);
+
+    if (current.isEmpty()) return;
+
+    QVariant artist = current.value("artist");
+    QVariant song = current.value("song");
+
+    m_currentSong->setData(artist, Song::ArtistRole);
+    m_currentSong->setData(song, Song::TitleRole);
+
+    setDataItem(m_currentSong, true, Song::IsCurrentRole, false, false);
 }
 
 bool SongsModel::includeXmlItem(XmlItem *xmlItem)
@@ -131,6 +153,10 @@ XmlItem* SongsModel::parseXmlItem()
 
     if (m_bookmarksManager->isBookmark(song)) {
         song->setData(true, Song::IsBookmarkRole);
+    }
+
+    if (m_currentSong->isEqual(song)) {
+        song->setData(true, Song::IsCurrentRole);
     }
 
     return song;

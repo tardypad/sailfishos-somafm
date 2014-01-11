@@ -149,11 +149,13 @@ QModelIndex XmlItemAbstractListModel::indexOf(XmlItem *xmlItem) const
     return QModelIndex();
 }
 
-void XmlItemAbstractListModel::setDataItem(XmlItem *xmlItem, const QVariant &value, int role)
+void XmlItemAbstractListModel::setDataItem(XmlItem *xmlItem, const QVariant &value, int role, bool exclusive, const QVariant &value2)
 {
     for (int row = 0; row < m_list.size(); ++row) {
         if (m_list.at(row)->isEqual(xmlItem)) {
             setData(index(row) ,value, role);
+        } else if (!exclusive) {
+            setData(index(row) ,value2, role);
         }
     }
 }

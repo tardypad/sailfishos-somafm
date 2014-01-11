@@ -10,7 +10,8 @@ Song::Song(QObject *parent) :
     m_date(QDateTime()),
     m_channelId(""),
     m_channelName(""),
-    m_channelImageUrl("")
+    m_channelImageUrl(""),
+    m_isCurrent(false)
 {
 }
 
@@ -25,6 +26,7 @@ QHash<int, QByteArray> Song::roleNames()
     roleNames[ChannelIdRole] = "channelId";
     roleNames[ChannelNameRole] = "channelName";
     roleNames[ChannelImageUrlRole] = "channelImageUrl";
+    roleNames[IsCurrentRole] = "isCurrent";
 
     return roleNames;
 }
@@ -70,6 +72,8 @@ QVariant Song::data(int role) const
         return channelName();
     case ChannelImageUrlRole:
         return channelImageUrl();
+    case IsCurrentRole:
+        return isCurrent();
     }
 
     return XmlItem::data(role);
@@ -98,6 +102,9 @@ bool Song::setData(const QVariant &value, int role)
         return true;
     case ChannelImageUrlRole:
         setChannelImageUrl(value.toUrl());
+        return true;
+    case IsCurrentRole:
+        setIsCurrent(value.toBool());
         return true;
     }
 

@@ -23,7 +23,8 @@ public:
         DateRole,
         ChannelIdRole,
         ChannelNameRole,
-        ChannelImageUrlRole
+        ChannelImageUrlRole,
+        IsCurrentRole
     };
 
 public:
@@ -44,6 +45,7 @@ public:
     inline QString channelId() const { return m_channelId; }
     inline QString channelName() const { return m_channelName; }
     inline QUrl channelImageUrl() const { return m_channelImageUrl; }
+    inline bool isCurrent() const { return m_isCurrent; }
 
     inline void setTitle(QString title) { m_title = title; }
     inline void setArtist(QString artist) { m_artist = artist; }
@@ -52,6 +54,7 @@ public:
     inline void setChannelId(QString channelId) { m_channelId = channelId; }
     inline void setChannelName(QString channelName) { m_channelName = channelName; }
     inline void setChannelImageUrl(QUrl channelImageUrl) { m_channelImageUrl = channelImageUrl; }
+    inline void setIsCurrent(bool isCurrent) { m_isCurrent = isCurrent; }
 
 private:
     QString m_title;
@@ -61,6 +64,7 @@ private:
     QString m_channelId;
     QString m_channelName;
     QUrl m_channelImageUrl;
+    bool m_isCurrent;
 };
 
 #endif // SONG_H
