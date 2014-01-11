@@ -2,6 +2,7 @@
 
 #include <QDebug>
 #include <QtMultimedia/QMediaPlaylist>
+#include <QtMultimedia/QMediaPlayer>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
@@ -16,6 +17,8 @@ Player::Player(QObject *parent) :
 {
     m_playlist = new QMediaPlaylist(this);
     m_playlist->setPlaybackMode(QMediaPlaylist::Sequential);
+    m_player = new QMediaPlayer(this);
+    m_player->setPlaylist(m_playlist);
 
     connect(this, SIGNAL(channelChanged()), this, SLOT(chosePls()));
     connect(this, SIGNAL(plsChanged()), this, SLOT(fetchPls()));
@@ -52,12 +55,14 @@ void Player::play()
         return;
     }
 
+    m_player->play();
     setIsPlaying(true);
     emit playStarted();
 }
 
 void Player::pause()
 {
+    m_player->pause();
     setIsPlaying(false);
     emit pauseStarted();
 }

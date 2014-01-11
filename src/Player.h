@@ -6,6 +6,7 @@
 #include "Channel/Channel.h"
 
 class QMediaPlaylist;
+class QMediaPlayer;
 class QNetworkReply;
 
 class Player : public QObject
@@ -75,6 +76,7 @@ private:
     Channel::StreamQuality m_streamQuality;
     Channel::StreamFormat m_streamFormat;
     QMediaPlaylist* m_playlist;
+    QMediaPlayer* m_player;
 };
 
 #endif // PLAYER_H
