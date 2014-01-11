@@ -55,7 +55,7 @@ DockedPanel {
                 topMargin: Theme.paddingSmall
             }
             truncationMode: TruncationMode.Fade
-            horizontalAlignment: Text.AlignHCenter
+            horizontalAlignment: implicitWidth < width ? Text.AlignHCenter : Text.AlignLeft
         }
 
         Label {
@@ -70,7 +70,7 @@ DockedPanel {
             }
             truncationMode: TruncationMode.Fade
             font.pixelSize: Theme.fontSizeExtraSmall
-            horizontalAlignment: Text.AlignHCenter
+            horizontalAlignment: implicitWidth < width ? Text.AlignHCenter : Text.AlignLeft
         }
 
         Label {
@@ -88,7 +88,7 @@ DockedPanel {
                 pixelSize: Theme.fontSizeExtraSmall
                 italic: true
             }
-            horizontalAlignment: Text.AlignHCenter
+            horizontalAlignment: implicitWidth < width ? Text.AlignHCenter : Text.AlignLeft
         }
 
         ProgressCircle {
