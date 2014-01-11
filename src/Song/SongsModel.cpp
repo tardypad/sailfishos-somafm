@@ -92,10 +92,10 @@ void SongsModel::updateCurrentSong()
     if (current.isEmpty()) return;
 
     QVariant artist = current.value("artist");
-    QVariant song = current.value("song");
+    QVariant title = current.value("title");
 
     m_currentSong->setData(artist, Song::ArtistRole);
-    m_currentSong->setData(song, Song::TitleRole);
+    m_currentSong->setData(title, Song::TitleRole);
 
     setDataItem(m_currentSong, true, Song::IsCurrentRole, false, false);
 }

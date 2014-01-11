@@ -7,7 +7,7 @@ Refresh::Refresh(QObject *parent) :
     m_channelId(""),
     m_listeners(0),
     m_artist(""),
-    m_song("")
+    m_title("")
 {
 }
 
@@ -18,7 +18,7 @@ QHash<int, QByteArray> Refresh::roleNames()
     roleNames[ChannelIdRole] = "channelId";
     roleNames[ListenersRole] = "listeners";
     roleNames[ArtistRole] = "artist";
-    roleNames[SongRole] = "song";
+    roleNames[TitleRole] = "title";
 
     return roleNames;
 }
@@ -41,8 +41,8 @@ QVariant Refresh::data(int role) const
         return listeners();
     case ArtistRole:
         return artist();
-    case SongRole:
-        return song();
+    case TitleRole:
+        return title();
     }
 
     return XmlItem::data(role);
@@ -60,8 +60,8 @@ bool Refresh::setData(const QVariant &value, int role)
     case ArtistRole:
         setArtist(value.toString());
         return true;
-    case SongRole:
-        setSong(value.toString());
+    case TitleRole:
+        setTitle(value.toString());
         return true;
     }
 

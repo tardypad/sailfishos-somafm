@@ -37,14 +37,14 @@ QMap<QString, QVariant> RefreshModel::playing(Channel* channel)
     if (!channel) return result;
 
     QString channelId = channel->data(Channel::IdRole).toString();
-    QVariant artist, song;
+    QVariant artist, title;
 
     for (int row = 0; row < m_list.size(); ++row) {
         if (m_list.at(row)->data(Refresh::ChannelIdRole).toString() == channelId) {
             artist = m_list.at(row)->data(Refresh::ArtistRole);
-            song = m_list.at(row)->data(Refresh::SongRole);
+            title = m_list.at(row)->data(Refresh::TitleRole);
             result.insert("artist", artist);
-            result.insert("song", song);
+            result.insert("title", title);
             return result;
         }
     }
@@ -57,7 +57,7 @@ XmlItem* RefreshModel::parseXmlItem()
     QString channelId = "";
     QString listeners = "";
     QString artist = "";
-    QString song = "";
+    QString title = "";
 
     QXmlStreamAttributes attributes = m_xmlReader->attributes();
     channelId = attributes.value("id").toString();
@@ -74,7 +74,7 @@ XmlItem* RefreshModel::parseXmlItem()
                 QString delimiter(" - ");
                 QStringList lastPlaying = m_xmlReader->text().toString().split(delimiter);
                 artist = lastPlaying.at(0);
-                song = lastPlaying.at(1);
+                title = lastPlaying.at(1);
             }
         }
     }
@@ -87,7 +87,7 @@ XmlItem* RefreshModel::parseXmlItem()
     refresh->setData(channelId, Refresh::ChannelIdRole);
     refresh->setData(listeners, Refresh::ListenersRole);
     refresh->setData(artist, Refresh::ArtistRole);
-    refresh->setData(song, Refresh::SongRole);
+    refresh->setData(title, Refresh::TitleRole);
 
     return refresh;
 }

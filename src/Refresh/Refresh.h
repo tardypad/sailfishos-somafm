@@ -12,7 +12,7 @@ public:
         ChannelIdRole = XmlItem::LastRole + 1,
         ListenersRole,
         ArtistRole,
-        SongRole
+        TitleRole
     };
 
 public:
@@ -28,18 +28,18 @@ public:
     inline QString channelId() const { return m_channelId; }
     inline int listeners() const { return m_listeners; }
     inline QString artist() const { return m_artist; }
-    inline QString song() const { return m_song; }
+    inline QString title() const { return m_title; }
 
     inline void setChannelId(QString channelId) { m_channelId = channelId; }
     inline void setListeners(int listeners) { m_listeners = listeners; }
     inline void setArtist(QString artist) { m_artist = artist; }
-    inline void setSong(QString song) { m_song = song; }
+    inline void setTitle(QString title) { m_title = title; }
 
 private:
     QString m_channelId;
     int m_listeners;
     QString m_artist;
-    QString m_song;
+    QString m_title;
 };
 
 #endif // REFRESH_H

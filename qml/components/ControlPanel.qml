@@ -10,7 +10,7 @@ DockedPanel {
     property alias channelName: channelLabel.text
     property alias channelImageUrl: channelImage.source
     property alias artist: artistLabel.text
-    property alias song: songLabel.text
+    property alias title: titleLabel.text
 
     signal close
 
@@ -65,7 +65,7 @@ DockedPanel {
                 leftMargin: Theme.paddingMedium
                 right: mediaButtonPause.left
                 rightMargin: Theme.paddingMedium
-                bottom: songLabel.top
+                bottom: titleLabel.top
                 bottomMargin: -Theme.paddingSmall
             }
             truncationMode: TruncationMode.Fade
@@ -74,7 +74,7 @@ DockedPanel {
         }
 
         Label {
-            id: songLabel
+            id: titleLabel
             anchors {
                 left: channelImage.right
                 leftMargin: Theme.paddingMedium
@@ -181,7 +181,7 @@ DockedPanel {
         if (!channel) return;
         var playing = _refreshModel.playing(channel)
         artist = playing.artist
-        song = playing.song
+        title = playing.title
     }
 
     function reinitProgressIndicator() {
