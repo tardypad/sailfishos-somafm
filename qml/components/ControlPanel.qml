@@ -182,6 +182,18 @@ DockedPanel {
         onNetworkError: showMessage("A network error occured")
     }
 
+    Connections {
+        target: _bookmarksManager
+        onBookmarkAdded: {
+            if (isCurrentSong(xmlItem))
+                isSongBookmark = true
+        }
+        onBookmarkRemoved: {
+            if (isCurrentSong(xmlItem))
+                isSongBookmark = false
+        }
+    }
+
     function reinitProgressIndicator() {
         progressIndicator.value = 0
         progressIndicator.inAlternateCycle = true
@@ -234,6 +246,10 @@ DockedPanel {
 
     function play() {
         _player.play()
+    }
+
+    function isCurrentSong(song) {
+        return _bookmarksManager.areEquals(song, getCurrentSong())
     }
 
     function getCurrentSong() {

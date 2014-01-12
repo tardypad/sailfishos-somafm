@@ -18,6 +18,7 @@ public:
     bool contains(XmlItem* xmlItem) const;
     Q_INVOKABLE bool isEmpty() const;
     Q_INVOKABLE XmlItem* itemAt(int row);
+    bool areEquals(XmlItem* xmlItem1, XmlItem* xmlItem2);
     QMap<QString, QVariant> itemNameData(int row);
     QModelIndex indexOf(XmlItem* xmlItem) const;
     

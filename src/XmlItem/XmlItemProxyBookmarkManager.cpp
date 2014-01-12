@@ -8,11 +8,18 @@
 XmlItemProxyBookmarkManager::XmlItemProxyBookmarkManager(QObject *parent) :
     XmlItemAbstractSortFilterProxyModel(parent)
 {
+    connect(this, SIGNAL(sourceModelChanged()), this, SLOT(init()));
 }
 
 XmlItemBookmarkManager *XmlItemProxyBookmarkManager::xmlItemBookmarkSourceModel()
 {
     return (XmlItemBookmarkManager*) sourceModel();
+}
+
+void XmlItemProxyBookmarkManager::init()
+{
+    connect(xmlItemBookmarkSourceModel(), SIGNAL(bookmarkAdded(XmlItem*)), this, SIGNAL(bookmarkAdded(XmlItem*)));
+    connect(xmlItemBookmarkSourceModel(), SIGNAL(bookmarkRemoved(XmlItem*)), this, SIGNAL(bookmarkRemoved(XmlItem*)));
 }
 
 bool XmlItemProxyBookmarkManager::isBookmark(XmlItem *xmlItem)

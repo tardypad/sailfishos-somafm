@@ -17,6 +17,13 @@ public:
     Q_INVOKABLE bool removeAllBookmarks();
     Q_INVOKABLE void sortByDate();
 
+signals:
+    void bookmarkAdded(XmlItem* xmlItem);
+    void bookmarkRemoved(XmlItem* xmlItem);
+
+protected slots:
+    virtual void init();
+
 protected:
     XmlItemBookmarkManager* xmlItemBookmarkSourceModel();
 };

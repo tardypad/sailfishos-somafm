@@ -118,6 +118,11 @@ XmlItem* XmlItemAbstractListModel::itemAt(int row)
     return m_list.at(row);
 }
 
+bool XmlItemAbstractListModel::areEquals(XmlItem *xmlItem1, XmlItem *xmlItem2)
+{
+    return xmlItem1->isEqual(xmlItem2);
+}
+
 QMap<QString, QVariant> XmlItemAbstractListModel::itemNameData(int row)
 {
     QMap<QString, QVariant> result;

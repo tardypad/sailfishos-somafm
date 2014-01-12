@@ -17,6 +17,7 @@ public:
     Q_INVOKABLE QMap<QString, QVariant> itemNameData(int row);
     Q_INVOKABLE int rowOf(XmlItem* xmlItem);
     Q_INVOKABLE bool isEmpty();
+    Q_INVOKABLE bool areEquals(XmlItem* xmlItem1, XmlItem* xmlItem2);
     Q_INVOKABLE void clearFilter();
 
 protected:

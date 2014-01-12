@@ -38,6 +38,11 @@ bool XmlItemAbstractSortFilterProxyModel::isEmpty()
     return xmlItemAbstractSourceModel()->isEmpty();
 }
 
+bool XmlItemAbstractSortFilterProxyModel::areEquals(XmlItem *xmlItem1, XmlItem *xmlItem2)
+{
+    return xmlItemAbstractSourceModel()->areEquals(xmlItem1, xmlItem2);
+}
+
 void XmlItemAbstractSortFilterProxyModel::clearFilter()
 {
     setFilterRole(0);
