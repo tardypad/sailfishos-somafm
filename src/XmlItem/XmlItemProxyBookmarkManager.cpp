@@ -15,6 +15,11 @@ XmlItemBookmarkManager *XmlItemProxyBookmarkManager::xmlItemBookmarkSourceModel(
     return (XmlItemBookmarkManager*) sourceModel();
 }
 
+bool XmlItemProxyBookmarkManager::isBookmark(XmlItem *xmlItem)
+{
+    return xmlItemBookmarkSourceModel()->isBookmark(xmlItem);
+}
+
 bool XmlItemProxyBookmarkManager::addBookmark(XmlItem *xmlItem)
 {
     return xmlItemBookmarkSourceModel()->addBookmark(xmlItem);

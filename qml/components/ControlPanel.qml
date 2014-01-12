@@ -11,6 +11,7 @@ DockedPanel {
     property alias channelImageUrl: channelImage.source
     property alias artist: artistLabel.text
     property alias title: titleLabel.text
+    property bool isSongBookmark
 
     signal close
 
@@ -145,9 +146,15 @@ DockedPanel {
             onClicked: openStreamsDialog()
         }
         IconMenuItem {
-            iconSource: "qrc:/icon/un-bookmark"
-            text: "Bookmark current song"
-            onClicked: bookmarkSong()
+            iconSource: !isSongBookmark ? "qrc:/icon/bookmark" : "qrc:/icon/un-bookmark"
+            text: !isSongBookmark ? "Bookmark current song" : "Remove song from bookmarks"
+            onClicked: {
+                if (!isSongBookmark) {
+                    bookmarkSong()
+                } else {
+                    removeSongBookmark()
+                }
+            }
         }
     }
 
@@ -161,6 +168,7 @@ DockedPanel {
         onSongChanged: {
             artist = _player.artist()
             title = _player.title()
+            isSongBookmark = _bookmarksManager.isBookmark(getCurrentSong())
         }
         onPlayCalled: open = true
         onPlayStarted: {
@@ -228,8 +236,18 @@ DockedPanel {
         _player.play()
     }
 
+    function getCurrentSong() {
+        return _player.currentSong()
+    }
+
     function bookmarkSong() {
-        _bookmarksManager.addBookmark(_player.currentSong())
+        var result = _bookmarksManager.addBookmark(getCurrentSong())
+        if (result) isSongBookmark = true
+    }
+
+    function removeSongBookmark() {
+        var result = _bookmarksManager.removeBookmark(getCurrentSong())
+        if (result) isSongBookmark = false
     }
 
     states: [
