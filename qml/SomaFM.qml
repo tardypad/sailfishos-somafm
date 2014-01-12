@@ -45,6 +45,10 @@ ApplicationWindow
         messageLoader.item.show(text)
     }
 
+    function refresh() {
+        _refreshModel.fetch()
+    }
+
     SomaTheme {
         id: somaTheme
     }
@@ -54,7 +58,12 @@ ApplicationWindow
         running: window.applicationActive
         repeat: true
         interval: 20000
-        onTriggered: _refreshModel.fetch()
-        triggeredOnStart: true
+        onTriggered: refresh()
+    }
+
+    onApplicationActiveChanged: {
+        if (applicationActive) {
+            refresh()
+        }
     }
 }

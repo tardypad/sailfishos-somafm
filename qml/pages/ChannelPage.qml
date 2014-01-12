@@ -81,6 +81,15 @@ Page {
         onTriggered: fetchNewSongs()
     }
 
+    Connections {
+        target: window
+        onApplicationActiveChanged: {
+            if (window.applicationActive) {
+                fetchNewSongs()
+            }
+        }
+    }
+
     function getChannelItem() {
         return _channelsModel.channelItem(id)
     }
