@@ -30,6 +30,7 @@ Page {
 
         function displayAdditionalElements() {
             headerItem.displayBanner()
+            scrollToTop()
             footer = Qt.createComponent("../components/SupportPageFooter.qml")
         }
     }

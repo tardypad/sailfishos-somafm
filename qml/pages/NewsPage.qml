@@ -34,6 +34,7 @@ Page {
 
         function displayAdditionalElements() {
             headerItem.displayBanner()
+            scrollToTop()
             footer = Qt.createComponent("../components/NewsPageFooter.qml")
         }
     }
