@@ -8,12 +8,15 @@
 #include <QtNetwork/QNetworkReply>
 
 #include "Settings.h"
+#include "Refresh/RefreshModel.h"
+#include "Song/Song.h"
 
 Player::Player(QObject *parent) :
     QObject(parent),
     m_channel(NULL),
     m_pls(""),
-    m_hasStreamManualChoice(false)
+    m_hasStreamManualChoice(false),
+    m_currentSong(new Song(this))
 {
     m_playlist = new QMediaPlaylist(this);
     m_playlist->setPlaybackMode(QMediaPlaylist::Sequential);
@@ -22,6 +25,10 @@ Player::Player(QObject *parent) :
 
     connect(this, SIGNAL(channelChanged()), this, SLOT(chosePls()));
     connect(this, SIGNAL(plsChanged()), this, SLOT(fetchPls()));
+
+    m_refreshModel = RefreshModel::instance();
+    connect(m_refreshModel, SIGNAL(refreshed()), this, SLOT(updateCurrentSong()));
+    connect(this, SIGNAL(channelChanged()), this, SLOT(updateCurrentSong()));
 }
 
 Player::~Player()
@@ -98,6 +105,16 @@ QString Player::channelImageMediumUrl()
     if (!hasCurrentChannel()) return "";
 
     return channel()->data(Channel::ImageMediumUrlRole).toString();
+}
+
+QString Player::artist()
+{
+    return currentSong()->data(Song::ArtistRole).toString();
+}
+
+QString Player::title()
+{
+    return currentSong()->data(Song::TitleRole).toString();
 }
 
 QString Player::streamQualityText()
@@ -219,4 +236,21 @@ void Player::fillPlaylist(QNetworkReply *plsReply)
     m_playlist->setCurrentIndex(0);
 
     emit playlistFilled();
+}
+
+void Player::updateCurrentSong()
+{
+    QMap<QString, QVariant> current = m_refreshModel->playing(m_channel);
+
+    if (current.isEmpty()) return;
+
+    QVariant artist = current.value("artist");
+    QVariant title = current.value("title");
+
+    if (artist != m_currentSong->data(Song::ArtistRole)
+        || title != m_currentSong->data(Song::TitleRole)) {
+        m_currentSong->setData(artist, Song::ArtistRole);
+        m_currentSong->setData(title, Song::TitleRole);
+        emit songChanged();
+    }
 }

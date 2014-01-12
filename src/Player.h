@@ -8,6 +8,8 @@
 class QMediaPlaylist;
 class QMediaPlayer;
 class QNetworkReply;
+class RefreshModel;
+class Song;
 
 class Player : public QObject
 {
@@ -23,6 +25,8 @@ public:
     Q_INVOKABLE QString channelName();
     Q_INVOKABLE QString channelImageUrl();
     Q_INVOKABLE QString channelImageMediumUrl();
+    Q_INVOKABLE QString artist();
+    Q_INVOKABLE QString title();
     Q_INVOKABLE QString streamQualityText();
     Q_INVOKABLE QString streamFormatText();
     Q_INVOKABLE void changeStream(QString qualityText, QString formatText);
@@ -36,6 +40,7 @@ public:
     inline Channel::StreamQuality streamQuality() const { return m_streamQuality; }
     inline Channel::StreamFormat streamFormat() const { return m_streamFormat; }
     inline QMediaPlaylist* playlist() const { return m_playlist; }
+    inline Song* currentSong() const { return m_currentSong; }
 
     inline void setChannel(Channel* channel) { m_channel = channel; emit channelChanged(); }
     inline void setIsPlaying(bool isPlaying) { m_isPlaying = isPlaying; }
@@ -56,6 +61,7 @@ protected slots:
     void chosePls();
     void fetchPls();
     void fillPlaylist(QNetworkReply* plsReply);
+    void updateCurrentSong();
 
 signals:
     void channelChanged();
@@ -65,6 +71,7 @@ signals:
     void playCalled();
     void playStarted();
     void pauseStarted();
+    void songChanged();
 
 private:
     Channel* m_channel;
@@ -77,6 +84,8 @@ private:
     Channel::StreamFormat m_streamFormat;
     QMediaPlaylist* m_playlist;
     QMediaPlayer* m_player;
+    RefreshModel* m_refreshModel;
+    Song* m_currentSong;
 };
 
 #endif // PLAYER_H

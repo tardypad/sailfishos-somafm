@@ -157,7 +157,10 @@ DockedPanel {
             channelName = _player.channelName()
             channelImageUrl = _player.channelImageUrl()
             channelId = _player.channelId()
-            getCurrentSong()
+        }
+        onSongChanged: {
+            artist = _player.artist()
+            title = _player.title()
         }
         onPlayCalled: open = true
         onPlayStarted: {
@@ -169,19 +172,6 @@ DockedPanel {
             state = "pause"
         }
         onNetworkError: showMessage("A network error occured")
-    }
-
-    Connections {
-        target: _refreshModel
-        onRefreshed: getCurrentSong()
-    }
-
-    function getCurrentSong() {
-        var channel = _player.channel()
-        if (!channel) return;
-        var playing = _refreshModel.playing(channel)
-        artist = playing.artist
-        title = playing.title
     }
 
     function reinitProgressIndicator() {

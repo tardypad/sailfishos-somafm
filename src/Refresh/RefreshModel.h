@@ -15,7 +15,7 @@ class RefreshModel : public XmlItemModel
     Q_OBJECT
 public:
     static RefreshModel* instance();
-    Q_INVOKABLE QMap<QString, QVariant> playing(Channel* channel);
+    QMap<QString, QVariant> playing(Channel* channel);
 
 signals:
     void refreshed();
