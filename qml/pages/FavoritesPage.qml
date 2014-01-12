@@ -66,7 +66,7 @@ Page {
 
                 IconMenuItem {
                     iconSource: "qrc:/icon/un-favorite"
-                    text: "Remove"
+                    text: "Remove from favorites"
                     onClicked: gridContextMenu.parent.removeFavorite()
                 }
             }

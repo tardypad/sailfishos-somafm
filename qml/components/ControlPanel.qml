@@ -142,17 +142,17 @@ DockedPanel {
     PushUpMenu {
         IconMenuItem {
             iconSource: "image://theme/icon-m-music"
-            text: "Change quality/format"
+            text: "Change channel quality/format"
             onClicked: openStreamsDialog()
         }
         IconMenuItem {
             iconSource: !isSongBookmark ? "qrc:/icon/bookmark" : "qrc:/icon/un-bookmark"
-            text: !isSongBookmark ? "Bookmark current song" : "Remove song from bookmarks"
+            text: !isSongBookmark ? "Add song to bookmarks" : "Remove song from bookmarks"
             onClicked: {
                 if (!isSongBookmark) {
-                    bookmarkSong()
+                    addSongToBookmarks()
                 } else {
-                    removeSongBookmark()
+                    removeSongFromBookmarks()
                 }
             }
         }
@@ -256,12 +256,12 @@ DockedPanel {
         return _player.currentSong()
     }
 
-    function bookmarkSong() {
+    function addSongToBookmarks() {
         var result = _bookmarksManager.addBookmark(getCurrentSong())
         if (result) isSongBookmark = true
     }
 
-    function removeSongBookmark() {
+    function removeSongFromBookmarks() {
         var result = _bookmarksManager.removeBookmark(getCurrentSong())
         if (result) isSongBookmark = false
     }
