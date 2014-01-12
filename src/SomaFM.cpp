@@ -15,6 +15,7 @@
 #include "src/Channel/ChannelsModel.h"
 #include "src/Channel/ChannelsProxyModel.h"
 #include "src/Channel/ChannelsFavoritesManager.h"
+#include "src/Song/Song.h"
 #include "src/Song/SongsModel.h"
 #include "src/Song/SongsProxyModel.h"
 #include "src/Song/SongsBookmarksManager.h"
@@ -35,6 +36,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterUncreatableType<XmlItem>("my.library", 1, 0, "XmlItem", "");
     qmlRegisterUncreatableType<Channel>("my.library", 1, 0, "Channel", "");
+    qmlRegisterUncreatableType<Song>("my.library", 1, 0, "Song", "");
 
     QCoreApplication::setOrganizationName("SomaFM.com");
     QCoreApplication::setOrganizationDomain("somafm.com");

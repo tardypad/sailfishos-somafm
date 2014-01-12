@@ -33,6 +33,7 @@ public:
 
     Q_INVOKABLE inline Channel* channel() const { return m_channel; }
     Q_INVOKABLE inline bool isPlaying() const { return m_isPlaying; }
+    Q_INVOKABLE inline Song* currentSong() const { return m_currentSong; }
     inline QUrl pls() const { return m_pls; }
     inline bool hasStreamManualChoice() const { return m_hasStreamManualChoice; }
     inline Channel::StreamQuality streamQualityManualChoice() const { return m_streamQualityManualChoice; }
@@ -40,7 +41,6 @@ public:
     inline Channel::StreamQuality streamQuality() const { return m_streamQuality; }
     inline Channel::StreamFormat streamFormat() const { return m_streamFormat; }
     inline QMediaPlaylist* playlist() const { return m_playlist; }
-    inline Song* currentSong() const { return m_currentSong; }
 
     inline void setChannel(Channel* channel) { m_channel = channel; emit channelChanged(); }
     inline void setIsPlaying(bool isPlaying) { m_isPlaying = isPlaying; }

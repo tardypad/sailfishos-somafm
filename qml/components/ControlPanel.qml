@@ -147,7 +147,7 @@ DockedPanel {
         IconMenuItem {
             iconSource: "qrc:/icon/un-bookmark"
             text: "Bookmark current song"
-            onClicked: console.log("Bookmark current song")
+            onClicked: bookmarkSong()
         }
     }
 
@@ -226,6 +226,10 @@ DockedPanel {
 
     function play() {
         _player.play()
+    }
+
+    function bookmarkSong() {
+        _bookmarksManager.addBookmark(_player.currentSong())
     }
 
     states: [

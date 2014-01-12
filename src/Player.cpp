@@ -244,6 +244,12 @@ void Player::updateCurrentSong()
 
     if (current.isEmpty()) return;
 
+    if (m_currentSong->data(Song::ChannelIdRole) != channelId()) {
+        m_currentSong->setData(channelId(), Song::ChannelIdRole);
+        m_currentSong->setData(channelName(), Song::ChannelNameRole);
+        m_currentSong->setData(channelImageUrl(), Song::ChannelImageUrlRole);
+    }
+
     QVariant artist = current.value("artist");
     QVariant title = current.value("title");
 
