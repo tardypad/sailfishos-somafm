@@ -52,6 +52,20 @@ QMap<QString, QVariant> RefreshModel::playing(Channel* channel)
     return result;
 }
 
+int RefreshModel::listeners(Channel *channel)
+{
+    if (!channel) return 0;
+
+    QString channelId = channel->data(Channel::IdRole).toString();
+
+    for (int row = 0; row < m_list.size(); ++row) {
+        if (m_list.at(row)->data(Refresh::ChannelIdRole).toString() == channelId)
+            return m_list.at(row)->data(Refresh::ListenersRole).toInt();
+    }
+
+    return 0;
+}
+
 XmlItem* RefreshModel::parseXmlItem()
 {
     QString channelId = "";

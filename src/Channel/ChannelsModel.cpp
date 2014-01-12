@@ -6,6 +6,7 @@
 
 #include "Channel.h"
 #include "ChannelsFavoritesManager.h"
+#include "../Refresh/RefreshModel.h"
 
 const QUrl ChannelsModel::_channelsUrl = QUrl("http://somafm.com/channels.xml");
 
@@ -18,6 +19,9 @@ ChannelsModel::ChannelsModel(QObject *parent) :
     connect(m_bookmarksManager, SIGNAL(bookmarkAdded(XmlItem*)), this, SLOT(addToFavorites(XmlItem*)));
     connect(m_bookmarksManager, SIGNAL(bookmarkRemoved(XmlItem*)), this, SLOT(removeFromFavorites(XmlItem*)));
     connect(m_bookmarksManager, SIGNAL(allBookmarksRemoved()), this, SLOT(removeAllFromFavorites()));
+
+    m_refreshModel = RefreshModel::instance();
+    connect(m_refreshModel, SIGNAL(refreshed()), this, SLOT(updateListeners()));
 }
 
 ChannelsModel::~ChannelsModel()
@@ -255,6 +259,20 @@ void ChannelsModel::removeFromFavorites(XmlItem *xmlItem)
 void ChannelsModel::removeAllFromFavorites()
 {
     removeAllFromBookmarks();
+}
+
+void ChannelsModel::updateListeners()
+{
+    int listeners;
+    Channel* channel;
+
+    for(int row = 0; row < m_list.size(); ++row) {
+        channel = (Channel*) m_list.at(row);
+        listeners = m_refreshModel->listeners(channel);
+        channel->setData(listeners, Channel::ListenersRole);
+    }
+
+    calculMaximumListeners();
 }
 
 void ChannelsModel::calculMaximumListeners()

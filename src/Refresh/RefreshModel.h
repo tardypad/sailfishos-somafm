@@ -16,6 +16,7 @@ class RefreshModel : public XmlItemModel
 public:
     static RefreshModel* instance();
     QMap<QString, QVariant> playing(Channel* channel);
+    int listeners(Channel* channel);
 
 signals:
     void refreshed();

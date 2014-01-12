@@ -4,6 +4,7 @@
 #include "../XmlItem/XmlItemModel.h"
 
 class Channel;
+class RefreshModel;
 
 class ChannelsModel : public XmlItemModel
 {
@@ -21,6 +22,7 @@ private slots:
     void addToFavorites(XmlItem* xmlItem);
     void removeFromFavorites(XmlItem* xmlItem);
     void removeAllFromFavorites();
+    void updateListeners();
 
 private:
     virtual XmlItem* parseXmlItem();
@@ -29,6 +31,10 @@ private:
     void duplicateGenre();
     void duplicateGenre(const QModelIndex &index);
     void calculMaximumListeners();
+
+private:
+    RefreshModel* m_refreshModel;
+
 };
 
 #endif // CHANNELSMODEL_H
