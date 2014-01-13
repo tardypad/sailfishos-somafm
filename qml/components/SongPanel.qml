@@ -16,6 +16,7 @@ DockedPanel {
     width: parent.width
     height: hasAlbum ? minHeight + albumLabel.height + Theme.paddingMedium : minHeight
     dock: Dock.Bottom
+    opacity: controlPanel.moving && !open ? 0 : 1
 
     MouseArea {
         anchors.fill: parent
