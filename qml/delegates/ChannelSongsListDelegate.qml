@@ -98,7 +98,7 @@ ListItem {
     }
 
     function searchGoogle() {
-        var url = "http://www.google.com/search?q="+artist+"+"+title
+        var url = "http://www.google.com/search?q="+encodeURIComponent(artist)+"+"+encodeURIComponent(title)
         console.log("open search Google page in browser")
         console.log(url)
         Qt.openUrlExternally(url)
