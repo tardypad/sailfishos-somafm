@@ -6,6 +6,8 @@ import "../delegates"
 import "../components"
 
 Page {
+    id: page
+
     property string channelId
     property Item remorseItem
 
@@ -53,6 +55,14 @@ Page {
         }
 
         VerticalScrollDecorator { flickable: listView }
+    }
+
+    Connections {
+        target: _bookmarksManager
+        onFirstChannelBookmark: {
+            if (channelId === page.channelId)
+                listView.retrieveChannelData()
+        }
     }
 
     function removeAllBookmarks() {

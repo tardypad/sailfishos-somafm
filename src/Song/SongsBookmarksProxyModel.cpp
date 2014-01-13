@@ -16,6 +16,12 @@ SongsBookmarksManager *SongsBookmarksProxyModel::songBookmarksManagerSourceModel
     return (SongsBookmarksManager*) sourceModel();
 }
 
+void SongsBookmarksProxyModel::init()
+{
+    XmlItemProxyBookmarkManager::init();
+    connect(songBookmarksManagerSourceModel(), SIGNAL(firstChannelBookmark(QString)), this, SIGNAL(firstChannelBookmark(QString)));
+}
+
 bool SongsBookmarksProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
     if (sortRole() != Song::ChannelIdRole)

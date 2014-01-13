@@ -16,9 +16,13 @@ public:
 
 signals:
     void allChannelBookmarksRemoved(QString channelId);
+    void firstChannelBookmark(QString channelId);
 
 protected:
     SongsBookmarksDatabaseManager* songsBookmarksDatabaseManager();
+
+private slots:
+    void checkFirstChannelBookmark(XmlItem* xmlItem);
 
 private:
     explicit SongsBookmarksManager(QObject *parent = 0);

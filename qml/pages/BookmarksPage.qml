@@ -54,7 +54,16 @@ Page {
             channelsData = tmpData;
         }
 
+        function addChannelData(channelId) {
+            channelsData[channelId] = _bookmarksManager.channelData(channelId)
+        }
+
         VerticalScrollDecorator { flickable: listView }
+    }
+
+    Connections {
+        target: _bookmarksManager
+        onFirstChannelBookmark: listView.addChannelData(channelId)
     }
 
     function removeAllBookmarks() {

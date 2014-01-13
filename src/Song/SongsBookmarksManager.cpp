@@ -12,6 +12,8 @@ SongsBookmarksManager::SongsBookmarksManager(QObject *parent) :
 {
     m_databaseManager = SongsBookmarksDatabaseManager::instance();
     load();
+
+    connect(this, SIGNAL(bookmarkAdded(XmlItem*)), this, SLOT(checkFirstChannelBookmark(XmlItem*)));
 }
 
 SongsBookmarksManager* SongsBookmarksManager::instance()
@@ -26,6 +28,16 @@ SongsBookmarksManager* SongsBookmarksManager::instance()
 SongsBookmarksDatabaseManager *SongsBookmarksManager::songsBookmarksDatabaseManager()
 {
     return (SongsBookmarksDatabaseManager*) m_databaseManager;
+}
+
+void SongsBookmarksManager::checkFirstChannelBookmark(XmlItem *xmlItem)
+{
+    QString channelId = xmlItem->data(Song::ChannelIdRole).toString();
+    int count = songsBookmarksDatabaseManager()->channelCount(channelId);
+
+    if (count == 1) {
+        emit firstChannelBookmark(channelId);
+    }
 }
 
 QList<QVariant> SongsBookmarksManager::channelIds()

@@ -18,6 +18,7 @@ public:
     virtual QList<XmlItem*> retrieveBookmarks();
     QList<QVariant> channelIds();
     QMap<QString, QVariant> channelData(QString channelId);
+    int channelCount(QString channelId);
     
 protected:
     virtual void checkStructure();

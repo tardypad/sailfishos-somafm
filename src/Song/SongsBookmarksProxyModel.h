@@ -18,6 +18,12 @@ public:
     Q_INVOKABLE QMap<QString, QVariant> channelData(QString channelId);
     Q_INVOKABLE bool removeAllChannelBookmarks(QString channelId);
 
+signals:
+    void firstChannelBookmark(QString channelId);
+
+protected slots:
+    virtual void init();
+
 protected:
     SongsBookmarksManager* songBookmarksManagerSourceModel();
 };

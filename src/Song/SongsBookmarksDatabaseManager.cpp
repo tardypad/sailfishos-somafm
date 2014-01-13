@@ -137,6 +137,13 @@ QMap<QString, QVariant> SongsBookmarksDatabaseManager::channelData(QString chann
     return data;
 }
 
+int SongsBookmarksDatabaseManager::channelCount(QString channelId)
+{
+    QSqlQuery query("SELECT COUNT(*) FROM " + _songsBookmarkTableName + " WHERE channel_id='" + channelId + "'");
+    query.first();
+    return query.value(0).toInt();
+}
+
 void SongsBookmarksDatabaseManager::checkStructure()
 {
     if (!db.isOpen())
