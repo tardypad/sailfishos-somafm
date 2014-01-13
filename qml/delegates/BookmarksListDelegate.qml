@@ -5,9 +5,11 @@ import "../utils"
 
 ListItem {
     id: listItem
+
     menu: contextMenu
     contentHeight: Theme.itemSizeSmall
     width: listView.width
+    enabled: listView.interactive
 
     Label {
         id: dateLabel
