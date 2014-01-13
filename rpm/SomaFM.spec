@@ -20,7 +20,7 @@ Summary:    SomaFM Application
 Version:    0.2
 Release:    1
 Group:      Applications/Multimedia
-License:    LICENSE
+License:    GPLv3
 URL:        http://somafm.com
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  SomaFM.yaml

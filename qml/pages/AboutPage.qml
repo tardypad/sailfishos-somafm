@@ -40,7 +40,7 @@ Page {
                         }
                         width: parent.width
                         text: "Fully enjoy SomaFM on your Jolla"
-                        font.pixelSize: Theme.fontSizeExtraSmall
+                        font.pixelSize: Theme.fontSizeSmall
                         horizontalAlignment: Text.AlignHCenter
                     }
                 }
@@ -86,6 +86,17 @@ Page {
                     }
                 }
 
+                Label {
+                    id: codeLabel
+                    width: parent.width
+                    text: "The source code is available under GPLv3<br/><a href='https://github.com/tardypad/somafm'>https://github.com/tardypad/somafm</a>"
+                    font.pixelSize: Theme.fontSizeExtraSmall
+                    horizontalAlignment: Text.AlignHCenter
+                    textFormat: Text.StyledText
+                    linkColor: Theme.highlightColor
+                    onLinkActivated: Qt.openUrlExternally(link)
+                }
+
                 Rectangle {
                     color: itemBackgroundColor
                     width: parent.width
@@ -98,7 +109,7 @@ Page {
                             leftMargin: Theme.paddingMedium
                             verticalCenter: parent.verticalCenter
                         }
-                        text: "If you like the app,\nplease consider helping us"
+                        text: "If you like the app,\nplease consider helping SomaFM"
                         font.pixelSize: Theme.fontSizeSmall
                         horizontalAlignment: Text.AlignLeft
                     }
@@ -119,52 +130,26 @@ Page {
                     }
                 }
 
-                Row {
-                    spacing: Theme.paddingMedium
-                    anchors.horizontalCenter: parent.horizontalCenter
+                Label {
+                    id: contactLabel
+                    width: parent.width
+                    text: "You can contact me for any remarks, bugs, feature requests, ideas, etc... you might have"
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    font.pixelSize: Theme.fontSizeExtraSmall
+                    horizontalAlignment: Text.Align
 
-                    Label {
-                        text: "Support Email"
-                        font.pixelSize: Theme.fontSizeSmall
-                    }
-
-                    Label {
-                        text: "dj@somafm.com"
-                        color: Theme.highlightColor
-                        font {
-                            italic: true
-                            pixelSize: Theme.fontSizeSmall
-                        }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: mailSupport()
-                        }
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: mailDev()
                     }
                 }
 
-                Rectangle {
+                Label {
+                    id: enjoyLabel
                     width: parent.width
-                    height: childrenRect.height
-                    color: "transparent"
-
-                    Label {
-                        id: copyrightLabel
-                        font.pixelSize: Theme.fontSizeExtraSmall
-                        horizontalAlignment: Text.AlignHCenter
-                        width: parent.width
-                        text: "©2000-2013 SomaFM.com, LLC"
-                    }
-                    Label {
-                        anchors {
-                            top:  copyrightLabel.bottom
-                            topMargin: Theme.paddingSmall
-                        }
-                        font.pixelSize: Theme.fontSizeExtraSmall
-                        horizontalAlignment: Text.AlignHCenter
-                        width: parent.width
-                        text: "All Rights Reserved"
-                    }
+                    text: "Enjoy!"
+                    font.pixelSize: Theme.fontSizeLarge
+                    horizontalAlignment: Text.AlignHCenter
                 }
             }
         }
