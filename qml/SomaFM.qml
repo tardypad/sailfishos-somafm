@@ -10,6 +10,8 @@ ApplicationWindow
 {
     id: window
 
+    property bool playerActive: controlPanel.open
+
     initialPage: Component { HomePage { } }
     cover: DefaultCover { }
     bottomMargin: controlPanel.visibleSize
@@ -31,7 +33,7 @@ ApplicationWindow
     Connections {
         target: controlPanel
         onOpenChanged: {
-            if (controlPanel.open)
+            if (playerActive)
                 cover = Qt.resolvedUrl("cover/PlayerCover.qml")
             else
                 cover = Qt.resolvedUrl("cover/DefaultCover.qml")
@@ -55,7 +57,7 @@ ApplicationWindow
 
     Timer {
         id: refreshTimer
-        running: window.applicationActive
+        running: applicationActive || playerActive
         repeat: true
         interval: 20000
         onTriggered: refresh()

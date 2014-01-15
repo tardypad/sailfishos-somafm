@@ -2,7 +2,8 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 MainCover {
-    property bool isPlaying
+    property bool isPlaying: controlPanel.isPlaying
+    property bool isSongBookmark: controlPanel.isSongBookmark
     property alias channelImageUrl: channelImage.source
 
     content: Image {
@@ -23,9 +24,18 @@ MainCover {
             iconSource: isPlaying ? "image://theme/icon-cover-pause" : "image://theme/icon-cover-play"
             onTriggered: {
                 if (isPlaying)
-                    _player.pause()
+                    controlPanel.pause()
                 else
-                    _player.play()
+                    controlPanel.play()
+            }
+        }
+        CoverAction {
+            iconSource: isSongBookmark ? somaTheme.getIconUrl("cover-un-bookmark") : somaTheme.getIconUrl("cover-bookmark")
+            onTriggered: {
+                if (isSongBookmark)
+                    controlPanel.removeSongFromBookmarks()
+                else
+                    controlPanel.addSongToBookmarks()
             }
         }
     }
