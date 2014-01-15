@@ -37,3 +37,11 @@ QT += \
     network\
     sql\
     multimedia
+
+images.files = \
+    $$files(images/*.jpg) \
+    $$files(images/*.png) \
+    images/icons
+images.path = /usr/share/$${TARGET}/images
+
+INSTALLS += images

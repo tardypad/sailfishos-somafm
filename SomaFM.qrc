@@ -18,5 +18,7 @@
         <file alias="twitter">images/icons/twitter.png</file>
         <file alias="google">images/icons/google.png</file>
         <file alias="flickr">images/icons/flickr.png</file>
+        <file alias="cover-bookmark">images/icons/cover-bookmark.png</file>
+        <file alias="cover-un-bookmark">images/icons/cover-un-bookmark.png</file>
     </qresource>
 </RCC>
