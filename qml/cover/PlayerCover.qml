@@ -18,17 +18,13 @@ MainCover {
     }
 
     CoverActionList {
-        id: coverAction
+        id: coverActionPlaying
         iconBackground: true
+        enabled: isPlaying
 
         CoverAction {
-            iconSource: isPlaying ? "image://theme/icon-cover-pause" : "image://theme/icon-cover-play"
-            onTriggered: {
-                if (isPlaying)
-                    controlPanel.pause()
-                else
-                    controlPanel.play()
-            }
+            iconSource: "image://theme/icon-cover-pause"
+            onTriggered: controlPanel.pause()
         }
         CoverAction {
             iconSource: isSongBookmark ? somaTheme.getIconUrl("cover-un-bookmark") : somaTheme.getIconUrl("cover-bookmark")
@@ -38,6 +34,17 @@ MainCover {
                 else
                     controlPanel.addSongToBookmarks()
             }
+        }
+    }
+
+    CoverActionList {
+        id: coverActionPause
+        iconBackground: true
+        enabled: !isPlaying
+
+        CoverAction {
+            iconSource: "image://theme/icon-cover-play"
+            onTriggered: controlPanel.play()
         }
     }
 }
