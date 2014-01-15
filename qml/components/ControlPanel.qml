@@ -9,6 +9,7 @@ DockedPanel {
     property string channelId
     property alias channelName: channelLabel.text
     property alias channelImageUrl: channelImage.source
+    property url channelImageMediumUrl
     property alias artist: artistLabel.text
     property alias title: titleLabel.text
     property bool isSongBookmark
@@ -163,6 +164,7 @@ DockedPanel {
         onChannelChanged: {
             channelName = _player.channelName()
             channelImageUrl = _player.channelImageUrl()
+            channelImageMediumUrl = _player.channelImageMediumUrl()
             channelId = _player.channelId()
         }
         onSongChanged: {

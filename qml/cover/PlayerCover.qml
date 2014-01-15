@@ -2,13 +2,14 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 MainCover {
-    property bool isPlaying: controlPanel.isPlaying
+    property bool isPlaying: controlPanel.state === "playing"
     property bool isSongBookmark: controlPanel.isSongBookmark
-    property alias channelImageUrl: channelImage.source
+    property url channelImageMediumUrl: controlPanel.channelImageMediumUrl
 
     content: Image {
         id: channelImage
         anchors.fill: parent
+        source: channelImageMediumUrl
         fillMode: Image.PreserveAspectCrop
         verticalAlignment:Image.AlignTop
         horizontalAlignment: Image.AlignLeft
@@ -38,18 +39,6 @@ MainCover {
                     controlPanel.addSongToBookmarks()
             }
         }
-    }
-
-    Component.onCompleted: {
-        channelImageUrl = _player.channelImageMediumUrl()
-        isPlaying = _player.isPlaying()
-    }
-
-    Connections {
-        target: _player
-        onChannelChanged: channelImageUrl = _player.channelImageMediumUrl()
-        onPlayStarted: isPlaying = true
-        onPauseStarted: isPlaying = false
     }
 }
 
