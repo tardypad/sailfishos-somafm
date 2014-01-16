@@ -1,4 +1,4 @@
-TARGET = SomaFM
+TARGET = harbour-somafm
 
 CONFIG += sailfishapp
 

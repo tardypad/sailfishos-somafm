@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
     QScopedPointer<Settings> settings(new Settings());
     context->setContextProperty("_settings", settings.data());
 
-    view->setSource(SailfishApp::pathTo("qml/SomaFM.qml"));
+    view->setSource(SailfishApp::pathTo("qml/harbour-somafm.qml"));
     view->show();
 
     return app->exec();
