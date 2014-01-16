@@ -30,6 +30,7 @@ Page {
                 text: "Remove all"
                 iconSource: "qrc:/icon/un-bookmark"
                 onClicked: removeAllBookmarks()
+                inPullDown: true
             }
         }
 

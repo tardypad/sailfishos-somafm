@@ -35,6 +35,7 @@ Page {
                 text: "Song bookmarks"
                 iconSource: "qrc:/icon/bookmark"
                 onClicked: pageStack.push("ChannelBookmarksPage.qml", {"channelId": id})
+                inPullDown: true
             }
             IconMenuItem {
                 iconSource: !isFavorite ? "qrc:/icon/favorite" : "qrc:/icon/un-favorite"
@@ -46,6 +47,7 @@ Page {
                         removeFromFavorites()
                     }
                 }
+                inPullDown: true
             }
             IconMenuItem {
                 iconSource: !isPlaying ? "image://theme/icon-l-play" : "image://theme/icon-l-pause"
@@ -57,6 +59,7 @@ Page {
                         pause()
                     }
                 }
+                inPullDown: true
             }
         }
 

@@ -28,11 +28,13 @@ Page {
                 text: "Genres"
                 iconSource: "qrc:/icon/genre"
                 onClicked: pageStack.replace(Qt.resolvedUrl("GenresPage.qml"))
+                inPullDown: true
             }
             IconMenuItem {
                 text: "Populars"
                 iconSource: "qrc:/icon/popular"
                 onClicked: pageStack.replace(Qt.resolvedUrl("PopularsPage.qml"))
+                inPullDown: true
             }
         }
 
