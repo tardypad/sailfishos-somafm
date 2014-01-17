@@ -11,7 +11,6 @@ Page {
         id: gridView
         anchors.fill: parent
         header: SupportPageHeader { }
-        model: _supportModel
         delegate: SupportGridDelegate { }
         cellWidth: parent.width / 2
         cellHeight: parent.width / 3
@@ -30,7 +29,7 @@ Page {
 
         function displayAdditionalElements() {
             headerItem.displayBanner()
-            scrollToTop()
+            model = _supportModel
             footer = Qt.createComponent("../components/SupportPageFooter.qml")
         }
     }

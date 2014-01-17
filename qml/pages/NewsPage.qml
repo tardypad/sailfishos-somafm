@@ -11,7 +11,6 @@ Page {
         id: listView
         anchors.fill: parent
         header: NewsPageHeader { }
-        model: _newsModel
         delegate: NewsListDelegate {  }
         section {
             property: 'dateGroup'
@@ -34,7 +33,7 @@ Page {
 
         function displayAdditionalElements() {
             headerItem.displayBanner()
-            scrollToTop()
+            model = _newsModel
             footer = Qt.createComponent("../components/NewsPageFooter.qml")
         }
     }
