@@ -29,7 +29,7 @@ public:
     virtual QHash<int, QByteArray> idRoleNames();
     virtual QString xmlTag() = 0;
     virtual XmlItem* create(QObject* parent) = 0;
-    XmlItem* clone();
+    virtual XmlItem* clone();
     XmlItem* cloneAsBookmark();
     bool isEqual(XmlItem* xmlItem);
 

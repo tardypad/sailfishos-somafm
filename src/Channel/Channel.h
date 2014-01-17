@@ -55,6 +55,7 @@ public:
     virtual QHash<int, QByteArray> bookmarkRoleNames();
     virtual QHash<int, QByteArray> idRoleNames();
     virtual XmlItem* create(QObject* parent);
+    virtual XmlItem* clone();
     void addPls(QUrl pls, StreamFormat format, StreamQuality quality);
     QMap<StreamQuality, QMap<StreamFormat, QUrl> > getAllPlsQuality();
 
@@ -96,6 +97,9 @@ public:
     inline void setListeners(int listeners) { m_listeners = listeners; }
     inline void setSortGenre(QString sortGenre) { m_sortGenre = sortGenre; }
     inline void setMaximumListeners(int maximumListeners) { m_maximumListeners = maximumListeners; }
+
+private:
+    QMap<StreamQuality, QUrl> plsContainer(StreamFormat format);
 
 private:
     QString m_id;

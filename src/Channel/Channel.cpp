@@ -142,6 +142,28 @@ XmlItem *Channel::create(QObject *parent)
     return new Channel(parent);
 }
 
+XmlItem *Channel::clone()
+{
+    Channel* newChannel = (Channel*) XmlItem::clone();
+
+    StreamQuality quality;
+    StreamFormat format;
+    QUrl pls;
+
+    for (int f = FirstFormat; f <= LastFormat; ++f) {
+        format = (StreamFormat) f;
+        QMapIterator<StreamQuality, QUrl> iterator(plsContainer(format));
+        while (iterator.hasNext()) {
+            iterator.next();
+            quality = iterator.key();
+            pls = iterator.value();
+            newChannel->addPls(pls, format, quality);
+        }
+    }
+
+    return newChannel;
+}
+
 void Channel::addPls(QUrl pls, StreamFormat format, StreamQuality quality)
 {
     switch (format) {
@@ -271,4 +293,18 @@ QList<QString> Channel::streamFormatTextList()
         formats.append(streamFormatText( (Channel::StreamFormat) f ));
     }
     return formats;
+}
+
+QMap<Channel::StreamQuality, QUrl> Channel::plsContainer(Channel::StreamFormat format)
+{
+    switch (format) {
+    case AacPlusFormat:
+        return m_aacpPls;
+    case AacFormat:
+        return m_aacPls;
+    case Mp3Format:
+        return m_mp3Pls;
+    }
+
+    return QMap<StreamQuality, QUrl>();
 }
