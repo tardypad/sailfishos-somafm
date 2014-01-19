@@ -58,6 +58,15 @@ Page {
                     }
                 }
             }
+
+            SectionHeader {
+                text: "Accessibility"
+            }
+
+            TextSwitch {
+                id: leftHandedTextSwitch
+                text: "Left-handed"
+            }
         }
 
         VerticalScrollDecorator { flickable: listView }
@@ -85,14 +94,20 @@ Page {
         }
     }
 
+    function defineLeftHanded() {
+        leftHandedTextSwitch.checked = _settings.leftHanded()
+    }
+
     function saveOptions() {
         _settings.saveStreamQuality(qualityComboBox.value);
         _settings.saveStreamFormat(formatComboBox.value);
+        _settings.saveLeftHanded(leftHandedTextSwitch.checked);
     }
 
     Component.onCompleted: {
         defineQualityOptions()
         defineFormatOptions()
+        defineLeftHanded()
     }
 
     onStatusChanged: {

@@ -33,6 +33,15 @@ QString Settings::streamFormat()
     return value("stream/format").toString();
 }
 
+bool Settings::leftHanded()
+{
+    if (!m_settings->contains("accessibility/lefthanded")) {
+        return false;
+    }
+
+    return value("accessibility/lefthanded").toBool();
+}
+
 QVariant Settings::value(const QString &key)
 {
    return m_settings->value(key);
@@ -51,4 +60,9 @@ void Settings::saveStreamQuality(QString quality)
 void Settings::saveStreamFormat(QString format)
 {
     setValue("stream/format", format);
+}
+
+void Settings::saveLeftHanded(bool leftHanded)
+{
+    setValue("accessibility/lefthanded", leftHanded);
 }
