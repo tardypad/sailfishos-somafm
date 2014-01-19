@@ -4,6 +4,10 @@
 
 #include "Channel/Channel.h"
 
+const QString Settings::_qualityField = QString("stream/quality");
+const QString Settings::_formatField = QString("stream/format");
+const QString Settings::_leftHandedField = QString("accessibility/lefthanded");
+
 Settings::Settings(QObject *parent) :
     QObject(parent)
 {
@@ -17,29 +21,29 @@ Settings::~Settings()
 
 QString Settings::streamQuality()
 {
-    if (!m_settings->contains("stream/quality")) {
+    if (!m_settings->contains(_qualityField)) {
         return Channel::defaultStreamQualityText();
     }
 
-    return value("stream/quality").toString();
+    return value(_qualityField).toString();
 }
 
 QString Settings::streamFormat()
 {
-    if (!m_settings->contains("stream/format")) {
+    if (!m_settings->contains(_formatField)) {
         return Channel::defaultStreamFormatText();
     }
 
-    return value("stream/format").toString();
+    return value(_formatField).toString();
 }
 
 bool Settings::leftHanded()
 {
-    if (!m_settings->contains("accessibility/lefthanded")) {
+    if (!m_settings->contains(_leftHandedField)) {
         return false;
     }
 
-    return value("accessibility/lefthanded").toBool();
+    return value(_leftHandedField).toBool();
 }
 
 QVariant Settings::value(const QString &key)
@@ -54,15 +58,15 @@ void Settings::setValue(const QString &key, const QVariant &value)
 
 void Settings::saveStreamQuality(QString quality)
 {
-    setValue("stream/quality", quality);
+    setValue(_qualityField, quality);
 }
 
 void Settings::saveStreamFormat(QString format)
 {
-    setValue("stream/format", format);
+    setValue(_formatField, format);
 }
 
 void Settings::saveLeftHanded(bool leftHanded)
 {
-    setValue("accessibility/lefthanded", leftHanded);
+    setValue(_leftHandedField, leftHanded);
 }

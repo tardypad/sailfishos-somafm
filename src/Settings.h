@@ -7,6 +7,11 @@
 class Settings : public QObject
 {
     Q_OBJECT
+
+    static const QString _qualityField;
+    static const QString _formatField;
+    static const QString _leftHandedField;
+
 public:
     explicit Settings(QObject *parent = 0);
     ~Settings();
