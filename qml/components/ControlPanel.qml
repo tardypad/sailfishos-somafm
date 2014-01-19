@@ -181,18 +181,22 @@ DockedPanel {
             reinitProgressIndicator()
             state = "pause"
         }
-        onNetworkError: showMessage("A network error occured")
+        onNetworkError: showMessage("a network error occured")
     }
 
     Connections {
         target: _bookmarksManager
         onBookmarkAdded: {
-            if (isCurrentSong(xmlItem))
+            if (isCurrentSong(xmlItem)) {
                 isSongBookmark = true
+                showMessage("song added to bookmarks")
+            }
         }
         onBookmarkRemoved: {
-            if (isCurrentSong(xmlItem))
+            if (isCurrentSong(xmlItem)) {
                 isSongBookmark = false
+                showMessage("song removed from bookmarks")
+            }
         }
     }
 
@@ -275,6 +279,8 @@ DockedPanel {
             PropertyChanges { target: mediaButtonPause;  visible: false }
             PropertyChanges { target: progressTimer;     isRunning: false }
             PropertyChanges { target: channelLabel;      color: Theme.primaryColor}
+            PropertyChanges { target: artistLabel;       color: Theme.primaryColor}
+            PropertyChanges { target: titleLabel;        color: Theme.primaryColor}
         },
         State {
             name: "playing"
@@ -283,6 +289,8 @@ DockedPanel {
             PropertyChanges { target: controlPanel;      open: true; restoreEntryValues: false }
             PropertyChanges { target: progressTimer;     isRunning: true }
             PropertyChanges { target: channelLabel;      color: Theme.highlightColor }
+            PropertyChanges { target: artistLabel;       color: Theme.highlightColor }
+            PropertyChanges { target: titleLabel;        color: Theme.highlightColor }
         }]
 
     onOpenChanged: {

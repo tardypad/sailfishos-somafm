@@ -62,7 +62,7 @@ MainCover {
         if (bookmarkLoader.status === Loader.Null)
             bookmarkLoader.source = Qt.resolvedUrl("../components/BookmarkCoverInfo.qml")
 
-        bookmarkLoader.item.show(artist, title)
+        bookmarkLoader.item.show(artist, title, isSongBookmark)
     }
 
     Connections {

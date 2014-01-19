@@ -10,12 +10,6 @@ ListItem {
     contentHeight: Theme.itemSizeLarge
     width: listView.width
 
-    Rectangle {
-        anchors.fill: parent
-        opacity: isBookmark ? 0.1 : 0
-        color: Theme.highlightBackgroundColor
-    }
-
     ChannelImage {
         id: channelImage
         size: BusyIndicatorSize.Small
@@ -29,11 +23,25 @@ ListItem {
         }
     }
 
+    Image {
+        id: favoriteImage
+        source: "qrc:/icon/favorite"
+        height: Theme.iconSizeSmall * 0.75
+        width: visible ? Theme.iconSizeSmall * 0.75 : 0
+        anchors {
+            left: channelImage.right
+            leftMargin: Theme.paddingSmall
+            verticalCenter: channelNameLabel.verticalCenter
+        }
+        fillMode: Image.PreserveAspectFit
+        visible: isBookmark
+    }
+
     Label {
         id: channelNameLabel
         text: name
         anchors {
-            left: channelImage.right
+            left: favoriteImage.right
             leftMargin: Theme.paddingSmall
             top: parent.top
         }

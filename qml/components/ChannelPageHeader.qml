@@ -8,6 +8,20 @@ Item {
     PageHeader {
         id: header
         title: name
+
+        Image {
+            id: favoriteImage
+            source: "qrc:/icon/favorite"
+            height: Theme.iconSizeSmall
+            width: Theme.iconSizeSmall
+            anchors {
+                right: header._titleItem.left
+                rightMargin: Theme.paddingSmall
+                verticalCenter: header._titleItem.verticalCenter
+            }
+            fillMode: Image.PreserveAspectFit
+            visible: isFavorite
+        }
     }
 
     ChannelImage {
@@ -21,21 +35,6 @@ Item {
             top: header.bottom
             leftMargin: Theme.paddingSmall
         }
-    }
-
-    Image {
-        id: favoriteImage
-        source: "qrc:/icon/favorite"
-        height: Theme.iconSizeSmall * 0.75
-        width: Theme.iconSizeSmall * 0.75
-        anchors {
-            top: header.top
-            right: header.right
-            topMargin: Theme.paddingSmall
-            rightMargin: Theme.paddingSmall
-        }
-        fillMode: Image.PreserveAspectFit
-        visible: isFavorite
     }
 
     Label {

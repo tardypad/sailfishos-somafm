@@ -6,6 +6,7 @@ Rectangle {
 
     property alias artist: artistLabel.text
     property alias title: titleLabel.text
+    property bool isBookmark
 
     anchors.fill: parent
     color: Theme.rgba(Theme.highlightBackgroundColor, 0.9)
@@ -37,11 +38,20 @@ Rectangle {
             }
             horizontalAlignment: implicitWidth < width ? Text.AlignHCenter : Text.AlignLeft
         }
+
+        Label {
+            id: infoLabel
+            width: parent.width
+            font.pixelSize: Theme.fontSizeSmall
+            horizontalAlignment: Text.AlignHCenter
+            text: isBookmark ? "added" : "removed"
+        }
     }
 
-    function show(artist, title) {
+    function show(artist, title, isBookmark) {
         info.artist = artist
         info.title = title
+        info.isBookmark = isBookmark
         opacity = 1
         displayTimer.start()
     }

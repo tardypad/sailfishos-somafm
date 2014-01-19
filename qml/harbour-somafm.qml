@@ -19,11 +19,6 @@ ApplicationWindow
         anchors.bottom: controlPanel.top
     }
 
-    Component {
-        id: messageComponent
-        Message { }
-    }
-
     ControlPanel {
         id: controlPanel
     }
@@ -40,7 +35,7 @@ ApplicationWindow
 
     function showMessage(text) {
         if (messageLoader.status === Loader.Null)
-            messageLoader.sourceComponent = messageComponent
+            messageLoader.source = Qt.resolvedUrl("utils/Message.qml")
 
         messageLoader.item.show(text)
     }
