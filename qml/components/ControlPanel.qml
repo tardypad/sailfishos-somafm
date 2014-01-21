@@ -13,6 +13,7 @@ DockedPanel {
     property alias artist: artistLabel.text
     property alias title: titleLabel.text
     property bool isSongBookmark
+    property alias isPushMenuActive: pushUpMenu.active
 
     signal close
 
@@ -141,6 +142,7 @@ DockedPanel {
     }
 
     PushUpMenu {
+        id: pushUpMenu
         IconMenuItem {
             iconSource: somaTheme.getIconSource("stream", "small")
             text: "Change channel quality/format"

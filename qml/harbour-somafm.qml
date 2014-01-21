@@ -17,6 +17,11 @@ ApplicationWindow
     Loader {
         id: messageLoader
         anchors.bottom: controlPanel.top
+        visible: !controlPanel.isPushMenuActive
+        onVisibleChanged: {
+            if (!visible)
+                hideMessage()
+        }
     }
 
     ControlPanel {
@@ -41,6 +46,13 @@ ApplicationWindow
             messageLoader.source = Qt.resolvedUrl("utils/Message.qml")
 
         messageLoader.item.show(text)
+    }
+
+    function hideMessage() {
+        if (messageLoader.status === Loader.Null)
+            return
+
+        messageLoader.item.hide()
     }
 
     function refresh() {
