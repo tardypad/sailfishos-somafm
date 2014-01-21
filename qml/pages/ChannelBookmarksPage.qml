@@ -73,6 +73,7 @@ Page {
         remorseItem = remorsecomponent.createObject(listView)
         listView.interactive = false
         backNavigation = false
+        songPanel.hide()
 
         remorseItem.onCanceled.connect(endRemorseAction)
         remorseItem.onTriggered.connect(endRemorseAction)
