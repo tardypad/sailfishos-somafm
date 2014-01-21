@@ -31,11 +31,11 @@ MainCover {
         enabled: isPlaying
 
         CoverAction {
-            iconSource: somaTheme.getIconUrl("pause", "cover")
+            iconSource: somaTheme.getIconSource("pause", "cover")
             onTriggered: controlPanel.pause()
         }
         CoverAction {
-            iconSource: isSongBookmark ? somaTheme.getIconUrl("unbookmark", "cover") : somaTheme.getIconUrl("bookmark", "cover")
+            iconSource: isSongBookmark ? somaTheme.getIconSource("unbookmark", "cover") : somaTheme.getIconSource("bookmark", "cover")
             onTriggered: {
                 if (isSongBookmark)
                     controlPanel.removeSongFromBookmarks()
@@ -51,7 +51,7 @@ MainCover {
         enabled: !isPlaying
 
         CoverAction {
-            iconSource: somaTheme.getIconUrl("play", "cover")
+            iconSource: somaTheme.getIconSource("play", "cover")
             onTriggered: controlPanel.play()
         }
     }

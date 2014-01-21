@@ -16,7 +16,7 @@ Page {
         anchors.fill: parent
         header: IconPageHeader {
             title: "Song bookmarks"
-            iconSource: somaTheme.getIconQrc("bookmark", "medium")
+            iconSource: somaTheme.getIconSource("bookmark", "medium")
         }
         model: _bookmarksManager
         delegate: BookmarksListDelegate { }
@@ -28,7 +28,7 @@ Page {
         PullDownMenu {
             IconMenuItem {
                 text: "Remove all"
-                iconSource: somaTheme.getIconQrc("unbookmark", "small")
+                iconSource: somaTheme.getIconSource("unbookmark", "small")
                 onClicked: removeAllBookmarks()
                 inPullDown: true
             }

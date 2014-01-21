@@ -13,7 +13,7 @@ Page {
         header: IconPageHeader {
             id: pageHeader
             title: "About"
-            iconSource: somaTheme.getIconQrc("about", "medium")
+            iconSource: somaTheme.getIconSource("about", "medium")
         }
         model: VisualItemModel {
             Column {
@@ -123,7 +123,7 @@ Page {
                         icon {
                             height: Theme.iconSizeMedium
                             width: Theme.iconSizeMedium
-                            source: somaTheme.getIconQrc("support", "medium")
+                            source: somaTheme.getIconSource("support", "medium")
                             fillMode: Image.PreserveAspectFit
                         }
                         onClicked: pageStack.push(Qt.resolvedUrl("SupportPage.qml"))

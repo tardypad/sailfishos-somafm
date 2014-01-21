@@ -20,7 +20,7 @@ Item {
         height: Theme.iconSizeSmall
         width: Theme.iconSizeSmall
         icon {
-            source: somaTheme.getIconQrc("facebook", "small")
+            source: somaTheme.getIconSource("facebook", "small")
             height: Theme.iconSizeSmall
             fillMode: Image.PreserveAspectFit
         }
@@ -40,7 +40,7 @@ Item {
         height: Theme.iconSizeSmall
         width: Theme.iconSizeSmall
         icon {
-            source: somaTheme.getIconQrc("twitter", "small")
+            source: somaTheme.getIconSource("twitter", "small")
             height: Theme.iconSizeSmall
             fillMode: Image.PreserveAspectFit
         }

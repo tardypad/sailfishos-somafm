@@ -118,7 +118,7 @@ DockedPanel {
                 verticalCenter: parent.verticalCenter
             }
             icon.asynchronous: true
-            icon.source: somaTheme.getIconQrc("pause", "medium")
+            icon.source: somaTheme.getIconSource("pause", "medium")
             highlighted: true
             onClicked: pause()
         }
@@ -133,7 +133,7 @@ DockedPanel {
                 verticalCenter: parent.verticalCenter
             }
             icon.asynchronous: true
-            icon.source: somaTheme.getIconQrc("play", "medium")
+            icon.source: somaTheme.getIconSource("play", "medium")
             onClicked: play()
         }
 
@@ -142,12 +142,12 @@ DockedPanel {
 
     PushUpMenu {
         IconMenuItem {
-            iconSource: somaTheme.getIconQrc("stream", "small")
+            iconSource: somaTheme.getIconSource("stream", "small")
             text: "Change channel quality/format"
             onClicked: openStreamsDialog()
         }
         IconMenuItem {
-            iconSource: !isSongBookmark ? somaTheme.getIconQrc("bookmark", "small") : somaTheme.getIconQrc("unbookmark", "small")
+            iconSource: !isSongBookmark ? somaTheme.getIconSource("bookmark", "small") : somaTheme.getIconSource("unbookmark", "small")
             text: !isSongBookmark ? "Add song to bookmarks" : "Remove song from bookmarks"
             onClicked: {
                 if (!isSongBookmark) {

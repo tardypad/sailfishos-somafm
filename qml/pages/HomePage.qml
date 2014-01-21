@@ -19,7 +19,7 @@ Page {
 
             Image {
                 id: homeName
-                source: somaTheme.getImageQrc("name")
+                source: somaTheme.getImageSource("name")
                 smooth: true
                 width: parent.width * 0.8
                 height: parent.height * 0.2
@@ -34,7 +34,7 @@ Page {
 
             Image {
                 id: homeBackground
-                source: somaTheme.getImageQrc("background")
+                source: somaTheme.getImageSource("background")
                 smooth: true
                 width: parent.width
                 height: parent.height * 0.6
@@ -115,19 +115,19 @@ Page {
         PullDownMenu {
             IconMenuItem {
                 text: "Settings"
-                iconSource: somaTheme.getIconQrc("settings", "small")
+                iconSource: somaTheme.getIconSource("settings", "small")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
                 inPullDown: true
             }
             IconMenuItem {
                 text: "Song bookmarks"
-                iconSource: somaTheme.getIconQrc("bookmark", "small")
+                iconSource: somaTheme.getIconSource("bookmark", "small")
                 onClicked: pageStack.push(Qt.resolvedUrl("BookmarksPage.qml"))
                 inPullDown: true
             }
             IconMenuItem {
                 text: "News"
-                iconSource: somaTheme.getIconQrc("news", "small")
+                iconSource: somaTheme.getIconSource("news", "small")
                 onClicked: pageStack.push(Qt.resolvedUrl("NewsPage.qml"))
                 inPullDown: true
             }
@@ -136,7 +136,7 @@ Page {
         PushUpMenu {
             IconMenuItem {
                 text: "About"
-                iconSource: somaTheme.getIconQrc("about", "small")
+                iconSource: somaTheme.getIconSource("about", "small")
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
         }

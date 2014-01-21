@@ -8,29 +8,14 @@ QtObject {
     property url flickrUrl: "https://www.flickr.com/photos/somafm"
     property url supportUrl: "http://somafm.com/support"
 
-    function getIconUrl(name, size) {
-        var prefix = size
+    function getIconSource(name, size) {
+        if (size === "cover")
+            return Qt.resolvedUrl("../../images/icons/icon-cover-"+name+".png")
 
-        switch (size) {
-        case "small":
-            prefix = 's'
-            break;
-        case "medium":
-            prefix = 'm'
-            break
-        case "large":
-            prefix = 'l'
-            break
-        }
-
-        return Qt.resolvedUrl("../../images/icons/icon-"+prefix+"-"+name+".png")
-    }
-
-    function getIconQrc(name, size) {
         return "qrc:/icon/"+size+"/"+name
     }
 
-    function getImageQrc(name) {
+    function getImageSource(name) {
         return "qrc:/image/"+name
     }
 }
