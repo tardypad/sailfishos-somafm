@@ -110,30 +110,30 @@ DockedPanel {
 
         IconButton {
             id: mediaButtonPause
-            icon.width: Theme.iconSizeLarge
-            icon.height: Theme.iconSizeLarge
+            icon.width: Theme.iconSizeMedium
+            icon.height: Theme.iconSizeMedium
             anchors {
                 right: parent.right
                 rightMargin: Theme.paddingLarge
                 verticalCenter: parent.verticalCenter
             }
             icon.asynchronous: true
-            icon.source: "image://theme/icon-l-pause"
+            icon.source: somaTheme.getIconQrc("pause", "medium")
             highlighted: true
             onClicked: pause()
         }
 
         IconButton {
             id: mediaButtonPlay
-            icon.width: Theme.iconSizeLarge
-            icon.height: Theme.iconSizeLarge
+            icon.width: Theme.iconSizeMedium
+            icon.height: Theme.iconSizeMedium
             anchors {
                 right: parent.right
                 rightMargin: Theme.paddingLarge
                 verticalCenter: parent.verticalCenter
             }
             icon.asynchronous: true
-            icon.source: "image://theme/icon-l-play"
+            icon.source: somaTheme.getIconQrc("play", "medium")
             onClicked: play()
         }
 
@@ -142,12 +142,12 @@ DockedPanel {
 
     PushUpMenu {
         IconMenuItem {
-            iconSource: "image://theme/icon-m-music"
+            iconSource: somaTheme.getIconQrc("stream", "small")
             text: "Change channel quality/format"
             onClicked: openStreamsDialog()
         }
         IconMenuItem {
-            iconSource: !isSongBookmark ? "qrc:/icon/bookmark" : "qrc:/icon/un-bookmark"
+            iconSource: !isSongBookmark ? somaTheme.getIconQrc("bookmark", "small") : somaTheme.getIconQrc("unbookmark", "small")
             text: !isSongBookmark ? "Add song to bookmarks" : "Remove song from bookmarks"
             onClicked: {
                 if (!isSongBookmark) {

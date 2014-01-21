@@ -20,7 +20,7 @@ Item {
         height: Theme.iconSizeSmall
         width: Theme.iconSizeSmall
         icon {
-            source: "image://theme/icon-m-region"
+            source: somaTheme.getIconQrc("web", "small")
             height: Theme.iconSizeSmall
             fillMode: Image.PreserveAspectFit
         }

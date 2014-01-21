@@ -13,7 +13,7 @@ Rectangle {
 
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: "qrc:/image/logo"
+            source: somaTheme.getImageQrc("logo")
             smooth: true
             fillMode: Image.PreserveAspectFit
             height: banner.height * 0.8
@@ -22,7 +22,7 @@ Rectangle {
 
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: "qrc:/image/name"
+            source: somaTheme.getImageQrc("name")
             smooth: true
             fillMode: Image.PreserveAspectFit
             height: banner.height * 0.8

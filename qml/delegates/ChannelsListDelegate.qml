@@ -25,7 +25,7 @@ ListItem {
 
     Image {
         id: favoriteImage
-        source: "qrc:/icon/favorite"
+        source: somaTheme.getIconQrc("favorite", "small")
         height: Theme.iconSizeSmall * 0.75
         width: visible ? Theme.iconSizeSmall * 0.75 : 0
         anchors {
@@ -101,7 +101,7 @@ ListItem {
             property bool isPlaying
 
             IconMenuItem {
-                iconSource: !isPlaying ? "image://theme/icon-l-play" : "image://theme/icon-l-pause"
+                iconSource: !isPlaying ? somaTheme.getIconQrc("play", "small") : somaTheme.getIconQrc("pause", "small")
                 text: !isPlaying ? "Play" : "Pause"
                 onClicked: {
                     if (!isPlaying) {
@@ -113,7 +113,7 @@ ListItem {
             }
 
             IconMenuItem {
-                iconSource: !isFavorite ? "qrc:/icon/favorite" : "qrc:/icon/un-favorite"
+                iconSource: !isFavorite ? somaTheme.getIconQrc("favorite", "small") : somaTheme.getIconQrc("unfavorite", "small")
                 text: !isFavorite ? "Add to favorites" : "Remove from favorites"
                 onClicked: {
                     if (!isFavorite) {

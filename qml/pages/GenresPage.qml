@@ -10,7 +10,7 @@ Page {
         anchors.fill: parent
         header: IconPageHeader {
             title: "Genres"
-            iconSource: "qrc:/icon/genre"
+            iconSource: somaTheme.getIconQrc("genre", "medium")
         }
         delegate: ChannelsListDelegate { }
         section {
@@ -23,13 +23,13 @@ Page {
         PullDownMenu {
             IconMenuItem {
                 text: "Populars"
-                iconSource: "qrc:/icon/popular"
+                iconSource: somaTheme.getIconQrc("listener", "small")
                 onClicked: pageStack.replace(Qt.resolvedUrl("PopularsPage.qml"))
                 inPullDown: true
             }
             IconMenuItem {
                 text: "Favorites"
-                iconSource: "qrc:/icon/favorite"
+                iconSource: somaTheme.getIconQrc("favorite", "small")
                 onClicked: pageStack.replace(Qt.resolvedUrl("FavoritesPage.qml"))
                 inPullDown: true
             }

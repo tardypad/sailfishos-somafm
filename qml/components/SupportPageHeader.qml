@@ -10,7 +10,7 @@ Item {
     IconPageHeader {
         id: pageHeader
         title: "Support"
-        iconSource: "qrc:/icon/support"
+        iconSource: somaTheme.getIconQrc("support", "medium")
     }
 
     Label {

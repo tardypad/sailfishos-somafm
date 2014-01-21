@@ -19,20 +19,20 @@ Page {
         cellHeight: parent.width / 2
         header: IconPageHeader {
             title: "Favorites"
-            iconSource: "qrc:/icon/favorite"
+            iconSource: somaTheme.getIconQrc("favorite", "medium")
         }
         delegate: FavoritesGridDelegate { }
 
         PullDownMenu {
             IconMenuItem {
                 text: "Genres"
-                iconSource: "qrc:/icon/genre"
+                iconSource: somaTheme.getIconQrc("genre", "small")
                 onClicked: pageStack.replace(Qt.resolvedUrl("GenresPage.qml"))
                 inPullDown: true
             }
             IconMenuItem {
                 text: "Populars"
-                iconSource: "qrc:/icon/popular"
+                iconSource: somaTheme.getIconQrc("listener", "small")
                 onClicked: pageStack.replace(Qt.resolvedUrl("PopularsPage.qml"))
                 inPullDown: true
             }
@@ -55,7 +55,7 @@ Page {
                 width: gridView.width
 
                 IconMenuItem {
-                    iconSource: !isPlaying ? "image://theme/icon-l-play" : "image://theme/icon-l-pause"
+                    iconSource: !isPlaying ? somaTheme.getIconQrc("play", "small") : somaTheme.getIconQrc("pause", "small")
                     text: !isPlaying ? "Play" : "Pause"
                     onClicked: {
                         if (!isPlaying) {
@@ -67,7 +67,7 @@ Page {
                 }
 
                 IconMenuItem {
-                    iconSource: "qrc:/icon/un-favorite"
+                    iconSource: somaTheme.getIconQrc("unfavorite", "small")
                     text: "Remove from favorites"
                     onClicked: gridContextMenu.parent.removeFavorite()
                 }

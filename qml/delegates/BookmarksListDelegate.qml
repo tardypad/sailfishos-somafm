@@ -92,12 +92,12 @@ ListItem {
         id: contextMenu
         ContextMenu {
             IconMenuItem {
-                iconSource: "qrc:/icon/un-bookmark"
+                iconSource: somaTheme.getIconQrc("unbookmark", "small")
                 text: "Remove from bookmarks"
                 onClicked: remove()
             }
             IconMenuItem {
-                iconSource: "qrc:/icon/google"
+                iconSource: somaTheme.getIconQrc("google", "small")
                 text: "Search on Google"
                 onClicked: searchGoogle()
             }

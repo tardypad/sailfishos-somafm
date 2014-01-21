@@ -10,8 +10,8 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="53.159405"
-   height="53.014702"
+   width="100"
+   height="100"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
@@ -127,6 +127,16 @@
        y1="439.37006"
        x2="361.41733"
        y2="425.19684" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3811"
+       id="linearGradient3009"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(4.630262,0,0,4.6302592,-1243.854,-1569.2909)"
+       x1="347.24408"
+       y1="439.37006"
+       x2="361.41733"
+       y2="425.19684" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -136,22 +146,22 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.9999998"
-     inkscape:cx="44.110318"
-     inkscape:cy="10.646557"
+     inkscape:cx="46.093045"
+     inkscape:cy="38.894346"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1028"
-     inkscape:window-height="710"
-     inkscape:window-x="334"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="717"
+     inkscape:window-x="-2"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1"
      inkscape:snap-global="true"
-     units="mm"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-bottom="0"
-     fit-margin-right="0"
+     units="px"
+     fit-margin-top="5"
+     fit-margin-left="5"
+     fit-margin-bottom="5"
+     fit-margin-right="5"
      inkscape:snap-bbox="true">
     <inkscape:grid
        type="xygrid"
@@ -168,8 +178,8 @@
        dotted="false"
        color="#0000ff"
        opacity="0.11764706"
-       originx="-96.997231mm"
-       originy="-160.03807mm" />
+       originx="-95.608613mm"
+       originy="-158.62903mm" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -186,9 +196,10 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-343.69099,-432.28343)">
+     transform="translate(-338.77069,-390.29078)">
     <g
-       id="g3318">
+       id="g3318"
+       transform="matrix(1.5049079,0,0,1.5090154,-168.4526,-252.03157)">
       <path
          inkscape:connector-curvature="0"
          id="path3892"
@@ -218,7 +229,7 @@
          inkscape:connector-curvature="0"
          id="rect3018"
          d="m 372.25217,432.28343 c -13.63374,0 -24.74299,10.96447 -24.74299,24.59823 0,13.63373 11.10925,24.59828 24.74299,24.59828 13.63376,0 24.59822,-10.96455 24.59822,-24.59828 l 0,-24.59823 -24.59822,0 z"
-         style="fill:url(#linearGradient3315);fill-opacity:1" />
+         style="fill:url(#linearGradient3009);fill-opacity:1" />
       <path
          id="path3086"
          style="fill:#ed1c24;fill-opacity:1;fill-rule:nonzero;stroke:none"

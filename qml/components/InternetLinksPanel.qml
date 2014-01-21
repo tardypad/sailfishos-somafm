@@ -21,7 +21,7 @@ DockedPanel {
             height: iconSize
             width: iconSize
             icon {
-                source: "qrc:/icon/twitter"
+                source: somaTheme.getIconQrc("twitter", "small")
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
@@ -36,7 +36,7 @@ DockedPanel {
             height: iconSize
             width: iconSize
             icon {
-                source: "qrc:/icon/facebook"
+                source: somaTheme.getIconQrc("facebook", "small")
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
@@ -51,7 +51,7 @@ DockedPanel {
             height: iconSize
             width: iconSize
             icon {
-                source: "qrc:/icon/flickr"
+                source: somaTheme.getIconQrc("flickr", "small")
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
@@ -66,7 +66,7 @@ DockedPanel {
             height: iconSize
             width: iconSize
             icon {
-                source: "image://theme/icon-m-region"
+                source: somaTheme.getIconQrc("web", "small")
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
@@ -81,7 +81,7 @@ DockedPanel {
             height: iconSize
             width: iconSize
             icon {
-                source: "qrc:/icon/support"
+                source: somaTheme.getIconQrc("support", "small")
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }

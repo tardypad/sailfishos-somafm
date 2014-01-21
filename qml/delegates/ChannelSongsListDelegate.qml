@@ -56,7 +56,7 @@ ListItem {
 
     Image {
         id: playImage
-        source: "image://theme/icon-l-play"
+        source: somaTheme.getIconQrc("play", "small")
         height: Theme.iconSizeSmall
         width: visible ? Theme.iconSizeSmall : 0
         anchors {
@@ -70,7 +70,7 @@ ListItem {
 
     Image {
         id: bookmarkImage
-        source: "qrc:/icon/bookmark"
+        source: somaTheme.getIconQrc("bookmark", "small")
         height: Theme.iconSizeSmall
         width: visible ? Theme.iconSizeSmall : 0
         anchors {
@@ -110,7 +110,7 @@ ListItem {
             property bool isBookmark
 
             IconMenuItem {
-                iconSource: !isBookmark ? "qrc:/icon/bookmark" : "qrc:/icon/un-bookmark"
+                iconSource: !isBookmark ? somaTheme.getIconQrc("bookmark", "small") : somaTheme.getIconQrc("unbookmark", "small")
                 text: !isBookmark ? "Add to bookmarks" : "Remove from bookmarks"
                 onClicked: {
                     if (!isBookmark) {
@@ -121,7 +121,7 @@ ListItem {
                 }
             }
             IconMenuItem {
-                iconSource: "qrc:/icon/google"
+                iconSource: somaTheme.getIconQrc("google", "small")
                 text: "Search on Google"
                 onClicked: searchGoogle()
             }

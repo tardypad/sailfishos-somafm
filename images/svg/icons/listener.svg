@@ -10,12 +10,15 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="35.433071"
-   height="35.433071"
+   width="100"
+   height="100"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="listener.svg">
+   sodipodi:docname="listener.svg"
+   inkscape:export-filename="/home/damien/Projects/damien.git/SailfishOS/SomaFM/images/icons/icon-s-listener.png"
+   inkscape:export-xdpi="28.799999"
+   inkscape:export-ydpi="28.799999">
   <defs
      id="defs4">
     <linearGradient
@@ -127,9 +130,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="7.9999995"
-     inkscape:cx="22.803639"
-     inkscape:cy="20.165703"
+     inkscape:zoom="2.828427"
+     inkscape:cx="13.053578"
+     inkscape:cy="43.394038"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -139,7 +142,7 @@
      inkscape:window-y="-3"
      inkscape:window-maximized="1"
      inkscape:snap-global="true"
-     units="mm"
+     units="px"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-bottom="0"
@@ -171,6 +174,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -178,7 +182,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-352.55415,-438.14007)">
+     transform="translate(-352.55415,-373.57314)">
     <path
        style="fill:#000000"
        d=""
@@ -201,8 +205,8 @@
        inkscape:connector-curvature="0" />
     <g
        id="g3158"
-       transform="matrix(0.90926767,0,0,0.90926767,36.80937,45.714048)"
-       style="fill:#cccccc">
+       transform="matrix(2.0529244,0,0,2.3527031,-350.32742,-637.65855)"
+       style="fill:#ffffff">
       <path
          transform="matrix(0.40000023,0,0,0.48000028,344.75986,430.65349)"
          d="m 81.505878,51.377945 c 0,14.676858 -11.897944,26.574802 -26.574802,26.574802 -14.676858,0 -26.574802,-11.897944 -26.574802,-26.574802 0,-14.676858 11.897944,-26.574802 26.574802,-26.574802 14.676858,0 26.574802,11.897944 26.574802,26.574802 z"
@@ -211,13 +215,13 @@
          sodipodi:cy="51.377945"
          sodipodi:cx="54.931076"
          id="path3116"
-         style="color:#000000;fill:#cccccc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.77165353000000003;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.77165353000000003;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
          sodipodi:type="arc" />
       <path
          inkscape:connector-curvature="0"
          id="path3118"
          d="m 366.72049,434.06739 c -8.80611,0 -15.9375,7.13139 -15.9375,15.9375 l -1.78125,0 c -0.9815,0 -1.75,0.79975 -1.75,1.78125 l 0,7.09375 c 0,0.98149 0.7685,1.75 1.75,1.75 l 2.125,0 1.4375,0 1.78125,0 0,-1.75 0,-7.09375 0,-1.78125 -0.0312,0 c 0,-6.8492 5.55705,-12.375 12.40625,-12.375 6.8492,0 12.40625,5.5258 12.40625,12.375 l 0,1.78125 0,7.09375 0,1.75 1.78125,0 1.4375,0 2.125,0 c 0.9815,0 1.75,-0.7685 1.75,-1.75 l 0,-7.09375 c 0,-0.9815 -0.7685,-1.78125 -1.75,-1.78125 l -1.8125,0 c 0,-8.80611 -7.13139,-15.9375 -15.9375,-15.9375 z"
-         style="color:#000000;fill:#cccccc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.77165353000000003;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+         style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.77165353000000003;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     </g>
   </g>
 </svg>

@@ -10,20 +10,20 @@ Page {
         anchors.fill: parent
         header: IconPageHeader {
             title: "Populars"
-            iconSource: "qrc:/icon/popular"
+            iconSource: somaTheme.getIconQrc("listener", "medium")
         }
         delegate: PopularsListDelegate { }
 
         PullDownMenu {
             IconMenuItem {
                 text: "Genres"
-                iconSource: "qrc:/icon/genre"
+                iconSource: somaTheme.getIconQrc("genre", "small")
                 onClicked: pageStack.replace(Qt.resolvedUrl("GenresPage.qml"))
                 inPullDown: true
             }
             IconMenuItem {
                 text: "Favorites"
-                iconSource: "qrc:/icon/favorite"
+                iconSource: somaTheme.getIconQrc("favorite", "small")
                 onClicked: pageStack.replace(Qt.resolvedUrl("FavoritesPage.qml"))
                 inPullDown: true
             }

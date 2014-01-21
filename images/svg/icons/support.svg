@@ -10,12 +10,15 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="33.034061"
-   height="27.784227"
+   width="100"
+   height="100"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="bookmark.svg">
+   sodipodi:docname="support.svg"
+   inkscape:export-filename="/home/damien/Projects/damien.git/SailfishOS/SomaFM/images/icons/icon-s-support.png"
+   inkscape:export-xdpi="28.799999"
+   inkscape:export-ydpi="28.799999">
   <defs
      id="defs4">
     <linearGradient
@@ -127,19 +130,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.656854"
-     inkscape:cx="3.8549292"
-     inkscape:cy="5.808879"
+     inkscape:zoom="2.828427"
+     inkscape:cx="-21.626299"
+     inkscape:cy="2.6086126"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="713"
-     inkscape:window-height="520"
-     inkscape:window-x="287"
-     inkscape:window-y="118"
-     inkscape:window-maximized="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="717"
+     inkscape:window-x="-2"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1"
      inkscape:snap-global="false"
-     units="mm"
+     units="px"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-bottom="0"
@@ -171,6 +174,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -178,7 +182,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-353.74942,-444.31833)">
+     transform="translate(-353.74942,-372.10256)">
     <path
        style="fill:#000000"
        d=""
@@ -201,8 +205,8 @@
        inkscape:connector-curvature="0" />
     <path
        id="path3226"
-       d="m 381.14639,444.96809 c -4.05205,-1.62773 -8.5888,-0.0927 -10.87994,3.43735 -2.2909,-3.53001 -6.82788,-5.06508 -10.88003,-3.43735 -4.60402,1.84971 -6.83672,7.08189 -4.98691,11.68568 1.77363,4.41527 15.82719,15.41779 15.82719,15.41779 l 0.0397,0.031 0.0397,-0.031 c 0,0 14.05324,-11.00252 15.82719,-15.41779 1.85004,-4.60379 -0.38278,-9.83597 -4.9869,-11.68568 z"
+       d="m 430.09776,390.03308 c -9.81299,-3.94192 -20.79979,-0.22449 -26.34832,8.32435 -5.54795,-8.54874 -16.5353,-12.26627 -26.34853,-8.32435 -11.14971,4.47951 -16.55672,17.15046 -12.07697,28.29961 4.29526,10.69261 38.32924,37.33778 38.32924,37.33778 l 0.0961,0.0751 0.0961,-0.0751 c 0,0 34.03321,-26.64517 38.32925,-37.33778 4.4803,-11.14915 -0.927,-23.8201 -12.07695,-28.29961 z"
        inkscape:connector-curvature="0"
-       style="fill:#cccccc;fill-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1" />
   </g>
 </svg>

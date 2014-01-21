@@ -11,7 +11,7 @@ Item {
 
         Image {
             id: favoriteImage
-            source: "qrc:/icon/favorite"
+            source: somaTheme.getIconQrc("favorite", "small")
             height: Theme.iconSizeSmall
             width: Theme.iconSizeSmall
             anchors {

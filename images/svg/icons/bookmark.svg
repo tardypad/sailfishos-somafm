@@ -10,15 +10,15 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="10.625"
-   height="21.28125"
+   width="100"
+   height="100"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
    sodipodi:docname="bookmark.svg"
-   inkscape:export-filename="/home/damien/Projects/damien.git/SailfishOS/SomaFM/images/icons/bookmark.png"
-   inkscape:export-xdpi="180"
-   inkscape:export-ydpi="180">
+   inkscape:export-filename="/home/damien/Projects/damien.git/SailfishOS/SomaFM/images/icons/icon-s-bookmark.png"
+   inkscape:export-xdpi="28.799999"
+   inkscape:export-ydpi="28.799999">
   <defs
      id="defs4">
     <linearGradient
@@ -128,11 +128,11 @@
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="7.9999996"
-     inkscape:cx="5.0925004"
-     inkscape:cy="3.6200387"
+     inkscape:zoom="2.2511123"
+     inkscape:cx="58.002451"
+     inkscape:cy="62.73423"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -141,13 +141,14 @@
      inkscape:window-x="-2"
      inkscape:window-y="-3"
      inkscape:window-maximized="1"
-     inkscape:snap-global="false"
-     units="mm"
+     inkscape:snap-global="true"
+     units="px"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-bottom="0"
      fit-margin-right="0"
-     inkscape:snap-bbox="true">
+     inkscape:snap-bbox="true"
+     showguides="false">
     <inkscape:grid
        type="xygrid"
        id="grid2991"
@@ -157,14 +158,14 @@
        snapvisiblegridlinesonly="true"
        empcolor="#ff1111"
        empopacity="0.29411765"
-       spacingx="0.1mm"
-       spacingy="0.1mm"
-       units="mm"
+       spacingx="1px"
+       spacingy="1px"
+       units="px"
        dotted="false"
        color="#0000ff"
        opacity="0.11764706"
-       originx="-102.99812mm"
-       originy="-164.67979mm" />
+       originx="0px"
+       originy="0px" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -182,7 +183,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-364.95395,-447.56982)">
+     transform="translate(-364.95395,-368.85107)">
     <path
        style="fill:#000000"
        d=""
@@ -204,9 +205,10 @@
        id="path3882"
        inkscape:connector-curvature="0" />
     <path
-       style="color:#000000;fill:#cccccc;fill-opacity:1;fill-rule:nonzero;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       d="m 364.95395,447.56982 0,14.1875 0,3.53125 0,3.5625 5.3125,-3.5625 5.3125,3.5625 0,-3.5625 0,-3.53125 0,-14.1875 -10.625,0 z m 3.6875,7.75 c 0.64439,-0.0186 1.26703,0.32341 1.625,0.875 0.47735,-0.73545 1.43702,-1.05788 2.28125,-0.71875 0.95919,0.38538 1.41671,1.47833 1.03125,2.4375 -0.36958,0.91989 -3.3125,3.1875 -3.3125,3.1875 0,0 -2.94297,-2.26761 -3.3125,-3.1875 -0.3854,-0.95917 0.072,-2.05212 1.03125,-2.4375 0.21106,-0.0848 0.44145,-0.15004 0.65625,-0.15625 z"
+       style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 394.95395,378.85107 0,80 20,-20 20,20 0,-80 z"
        id="rect3006"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc" />
   </g>
 </svg>

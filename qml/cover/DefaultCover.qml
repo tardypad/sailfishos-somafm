@@ -5,7 +5,7 @@ MainCover {
 
     content: Image {
         id: channelImage
-        source: "qrc:/image/background"
+        source: somaTheme.getImageQrc("background")
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
         verticalAlignment:Image.AlignTop

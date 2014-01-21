@@ -12,7 +12,7 @@ Item {
     IconPageHeader {
         id: pageHeader
         title: "News"
-        iconSource: "qrc:/icon/news"
+        iconSource: somaTheme.getIconQrc("news", "medium")
     }
 
     Label {

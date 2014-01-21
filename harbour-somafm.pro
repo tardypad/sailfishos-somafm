@@ -29,7 +29,8 @@ OTHER_FILES = \
     $$files(qml/utils/*.qml) \
     rpm/$${TARGET}.yaml \
     rpm/$${TARGET}.spec \
-    $${TARGET}.desktop
+    $${TARGET}.desktop \
+    $${TARGET}.png
 
 RESOURCES += $${TARGET}.qrc
 

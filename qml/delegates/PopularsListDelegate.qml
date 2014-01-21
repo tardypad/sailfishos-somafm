@@ -20,7 +20,7 @@ ChannelsListDelegate {
 
     Image {
         id: listenerIcon
-        source: "qrc:/icon/listener"
+        source: somaTheme.getIconQrc("listener", "small")
         smooth: true
         height: Theme.iconSizeSmall * 0.75
         width: Theme.iconSizeSmall * 0.75
