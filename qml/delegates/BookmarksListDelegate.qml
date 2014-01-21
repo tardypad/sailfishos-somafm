@@ -9,7 +9,7 @@ ListItem {
     menu: contextMenu
     contentHeight: Theme.itemSizeSmall
     width: listView.width
-    enabled: listView.interactive
+    enabled: listView.interactive || menuOpen
 
     Label {
         id: dateLabel
