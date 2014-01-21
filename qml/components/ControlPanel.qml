@@ -189,15 +189,13 @@ DockedPanel {
         onBookmarkAdded: {
             if (isCurrentSong(xmlItem)) {
                 isSongBookmark = true
-                if (window.applicationActive)
-                    showMessage("song added to bookmarks")
+                showMessage("song added to bookmarks")
             }
         }
         onBookmarkRemoved: {
             if (isCurrentSong(xmlItem)) {
                 isSongBookmark = false
-                if (window.applicationActive)
-                    showMessage("song removed from bookmarks")
+                showMessage("song removed from bookmarks")
             }
         }
     }

@@ -34,6 +34,9 @@ ApplicationWindow
     }
 
     function showMessage(text) {
+        if (!applicationActive)
+            return
+
         if (messageLoader.status === Loader.Null)
             messageLoader.source = Qt.resolvedUrl("utils/Message.qml")
 
