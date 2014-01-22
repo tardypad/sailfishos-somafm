@@ -17,11 +17,11 @@ Item {
     }
     IconButton {
         id: facebookButton
-        height: Theme.iconSizeSmall
-        width: Theme.iconSizeSmall
+        height: Theme.iconSizeMedium
+        width: Theme.iconSizeMedium
         icon {
-            source: somaTheme.getIconSource("facebook", "small")
-            height: Theme.iconSizeSmall
+            source: somaTheme.getIconSource("facebook", "medium")
+            height: Theme.iconSizeMedium
             fillMode: Image.PreserveAspectFit
         }
         anchors {
@@ -37,11 +37,11 @@ Item {
     }
     IconButton {
         id: twitterButton
-        height: Theme.iconSizeSmall
-        width: Theme.iconSizeSmall
+        height: Theme.iconSizeMedium
+        width: Theme.iconSizeMedium
         icon {
-            source: somaTheme.getIconSource("twitter", "small")
-            height: Theme.iconSizeSmall
+            source: somaTheme.getIconSource("twitter", "medium")
+            height: Theme.iconSizeMedium
             fillMode: Image.PreserveAspectFit
         }
         anchors {

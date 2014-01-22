@@ -4,8 +4,8 @@ import Sailfish.Silica 1.0
 DockedPanel {
     id: linksPanel
 
-    property int iconSize: Theme.iconSizeSmall
-    property string iconSizeName: "small"
+    property int iconSize: Theme.iconSizeMedium
+    property string iconSizeName: "medium"
 
     height: column.height + 2*Theme.paddingLarge
     width: column.width + 2*Theme.paddingLarge

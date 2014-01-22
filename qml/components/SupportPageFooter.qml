@@ -17,11 +17,11 @@ Item {
     }
     IconButton {
         id: supportButton
-        height: Theme.iconSizeSmall
-        width: Theme.iconSizeSmall
+        height: Theme.iconSizeMedium
+        width: Theme.iconSizeMedium
         icon {
-            source: somaTheme.getIconSource("web", "small")
-            height: Theme.iconSizeSmall
+            source: somaTheme.getIconSource("web", "medium")
+            height: Theme.iconSizeMedium
             fillMode: Image.PreserveAspectFit
         }
         anchors {
