@@ -14,6 +14,7 @@
         <file alias="github">images/icons/icon-l-github.png</file>
         <file alias="google">images/icons/icon-l-google.png</file>
         <file alias="listener">images/icons/icon-l-listener.png</file>
+        <file alias="mail">images/icons/icon-l-mail.png</file>
         <file alias="news">images/icons/icon-l-news.png</file>
         <file alias="pause">images/icons/icon-l-pause.png</file>
         <file alias="play">images/icons/icon-l-play.png</file>
@@ -36,6 +37,7 @@
         <file alias="github">images/icons/icon-m-github.png</file>
         <file alias="google">images/icons/icon-m-google.png</file>
         <file alias="listener">images/icons/icon-m-listener.png</file>
+        <file alias="mail">images/icons/icon-m-mail.png</file>
         <file alias="news">images/icons/icon-m-news.png</file>
         <file alias="pause">images/icons/icon-m-pause.png</file>
         <file alias="play">images/icons/icon-m-play.png</file>
@@ -58,6 +60,7 @@
         <file alias="github">images/icons/icon-s-github.png</file>
         <file alias="google">images/icons/icon-s-google.png</file>
         <file alias="listener">images/icons/icon-s-listener.png</file>
+        <file alias="mail">images/icons/icon-s-mail.png</file>
         <file alias="news">images/icons/icon-s-news.png</file>
         <file alias="pause">images/icons/icon-s-pause.png</file>
         <file alias="play">images/icons/icon-s-play.png</file>

@@ -55,23 +55,42 @@ Item {
 
     Label {
         id: channelDjLabel
-        text: dj ? "by " + dj : ""
+        text: "by " + dj
         anchors {
             top: channelDescriptionLabel.bottom
-            right: parent.right
-            rightMargin: Theme.paddingSmall
+            right: mailButton.left
+            rightMargin: Theme.paddingMedium
         }
         color: Theme.highlightColor
         font {
             pixelSize: Theme.fontSizeExtraSmall
             italic: true
         }
+        visible: dj
         horizontalAlignment: Text.AlignRight
 
         MouseArea {
             anchors.fill: parent
             onClicked: mailDj()
         }
+    }
+
+    IconButton {
+        id: mailButton
+        anchors {
+            right: parent.right
+            rightMargin: Theme.paddingSmall
+            verticalCenter: channelDjLabel.verticalCenter
+        }
+        height: Theme.iconSizeSmall / 2
+        width: Theme.iconSizeSmall / 2
+        icon {
+            source: somaTheme.getIconSource("mail", "small")
+            height: Theme.iconSizeSmall / 2
+            fillMode: Image.PreserveAspectFit
+        }
+        visible: dj
+        onClicked: mailDj()
     }
 
     function mailDj() {
