@@ -2,15 +2,18 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 PageHeader {
-    property alias iconSource: icon.source
+    property string iconSource
+    property int iconSize: Theme.iconSizeMedium
+    property string iconSizeName: "medium"
 
     state: "reanchored"
 
     Image {
         id: icon
         smooth: true
-        height: Theme.iconSizeMedium
-        width: Theme.iconSizeMedium
+        height: iconSize
+        width: iconSize
+        source: somaTheme.getIconSource(iconSource, iconSizeName)
         anchors {
             verticalCenter: parent.verticalCenter
             verticalCenterOffset: 4

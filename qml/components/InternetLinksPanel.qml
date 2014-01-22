@@ -5,6 +5,7 @@ DockedPanel {
     id: linksPanel
 
     property int iconSize: Theme.iconSizeSmall
+    property string iconSizeName: "small"
 
     height: column.height + 2*Theme.paddingLarge
     width: column.width + 2*Theme.paddingLarge
@@ -21,7 +22,7 @@ DockedPanel {
             height: iconSize
             width: iconSize
             icon {
-                source: somaTheme.getIconSource("twitter", "small")
+                source: somaTheme.getIconSource("twitter", iconSizeName)
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
@@ -36,7 +37,7 @@ DockedPanel {
             height: iconSize
             width: iconSize
             icon {
-                source: somaTheme.getIconSource("facebook", "small")
+                source: somaTheme.getIconSource("facebook", iconSizeName)
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
@@ -51,7 +52,7 @@ DockedPanel {
             height: iconSize
             width: iconSize
             icon {
-                source: somaTheme.getIconSource("flickr", "small")
+                source: somaTheme.getIconSource("flickr", iconSizeName)
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
@@ -66,7 +67,7 @@ DockedPanel {
             height: iconSize
             width: iconSize
             icon {
-                source: somaTheme.getIconSource("web", "small")
+                source: somaTheme.getIconSource("web", iconSizeName)
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
@@ -81,7 +82,7 @@ DockedPanel {
             height: iconSize
             width: iconSize
             icon {
-                source: somaTheme.getIconSource("support", "small")
+                source: somaTheme.getIconSource("support", iconSizeName)
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }

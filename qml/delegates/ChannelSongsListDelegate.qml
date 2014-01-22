@@ -110,7 +110,7 @@ ListItem {
             property bool isBookmark
 
             IconMenuItem {
-                iconSource: !isBookmark ? somaTheme.getIconSource("bookmark", "small") : somaTheme.getIconSource("unbookmark", "small")
+                iconSource: !isBookmark ? "bookmark" : "unbookmark"
                 text: !isBookmark ? "Add to bookmarks" : "Remove from bookmarks"
                 onClicked: {
                     if (!isBookmark) {
@@ -121,7 +121,7 @@ ListItem {
                 }
             }
             IconMenuItem {
-                iconSource: somaTheme.getIconSource("google", "small")
+                iconSource: "google"
                 text: "Search on Google"
                 onClicked: searchGoogle()
             }

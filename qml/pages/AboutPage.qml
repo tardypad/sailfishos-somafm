@@ -13,7 +13,7 @@ Page {
         header: IconPageHeader {
             id: pageHeader
             title: "About"
-            iconSource: somaTheme.getIconSource("about", "medium")
+            iconSource: "about"
         }
         model: VisualItemModel {
             Column {

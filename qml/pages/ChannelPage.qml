@@ -33,12 +33,12 @@ Page {
 
             IconMenuItem {
                 text: "Song bookmarks"
-                iconSource: somaTheme.getIconSource("bookmark", "small")
+                iconSource: "bookmark"
                 onClicked: pageStack.push("ChannelBookmarksPage.qml", {"channelId": id})
                 inPullDown: true
             }
             IconMenuItem {
-                iconSource: !isFavorite ? somaTheme.getIconSource("favorite", "small") : somaTheme.getIconSource("unfavorite", "small")
+                iconSource: !isFavorite ? "favorite" : "unfavorite"
                 text: !isFavorite ? "Add to Favorites" : "Remove from Favorites"
                 onClicked: {
                     if (!isFavorite) {
@@ -50,7 +50,7 @@ Page {
                 inPullDown: true
             }
             IconMenuItem {
-                iconSource: !isPlaying ? somaTheme.getIconSource("play", "small") : somaTheme.getIconSource("pause", "small")
+                iconSource: !isPlaying ? "play" : "pause"
                 text: !isPlaying ? "Play" : "Pause"
                 onClicked: {
                     if (!isPlaying) {

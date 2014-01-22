@@ -144,12 +144,12 @@ DockedPanel {
     PushUpMenu {
         id: pushUpMenu
         IconMenuItem {
-            iconSource: somaTheme.getIconSource("stream", "small")
+            iconSource: "stream"
             text: "Change channel quality/format"
             onClicked: openStreamsDialog()
         }
         IconMenuItem {
-            iconSource: !isSongBookmark ? somaTheme.getIconSource("bookmark", "small") : somaTheme.getIconSource("unbookmark", "small")
+            iconSource: !isSongBookmark ? "bookmark" : "unbookmark"
             text: !isSongBookmark ? "Add song to bookmarks" : "Remove song from bookmarks"
             onClicked: {
                 if (!isSongBookmark) {

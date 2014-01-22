@@ -10,7 +10,7 @@ Page {
         anchors.fill: parent
         header: IconPageHeader {
             title: "Settings"
-            iconSource: somaTheme.getIconSource("settings", "medium")
+            iconSource: "settings"
         }
         model: VisualItemModel {
 

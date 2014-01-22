@@ -101,7 +101,7 @@ ListItem {
             property bool isPlaying
 
             IconMenuItem {
-                iconSource: !isPlaying ? somaTheme.getIconSource("play", "small") : somaTheme.getIconSource("pause", "small")
+                iconSource: !isPlaying ? "play" : "pause"
                 text: !isPlaying ? "Play" : "Pause"
                 onClicked: {
                     if (!isPlaying) {
@@ -113,7 +113,7 @@ ListItem {
             }
 
             IconMenuItem {
-                iconSource: !isFavorite ? somaTheme.getIconSource("favorite", "small") : somaTheme.getIconSource("unfavorite", "small")
+                iconSource: !isFavorite ? "favorite" : "unfavorite"
                 text: !isFavorite ? "Add to favorites" : "Remove from favorites"
                 onClicked: {
                     if (!isFavorite) {

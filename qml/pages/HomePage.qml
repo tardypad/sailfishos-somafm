@@ -115,19 +115,19 @@ Page {
         PullDownMenu {
             IconMenuItem {
                 text: "Settings"
-                iconSource: somaTheme.getIconSource("settings", "small")
+                iconSource: "settings"
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
                 inPullDown: true
             }
             IconMenuItem {
                 text: "Song bookmarks"
-                iconSource: somaTheme.getIconSource("bookmark", "small")
+                iconSource: "bookmark"
                 onClicked: pageStack.push(Qt.resolvedUrl("BookmarksPage.qml"))
                 inPullDown: true
             }
             IconMenuItem {
                 text: "News"
-                iconSource: somaTheme.getIconSource("news", "small")
+                iconSource: "news"
                 onClicked: pageStack.push(Qt.resolvedUrl("NewsPage.qml"))
                 inPullDown: true
             }
@@ -136,7 +136,7 @@ Page {
         PushUpMenu {
             IconMenuItem {
                 text: "About"
-                iconSource: somaTheme.getIconSource("about", "small")
+                iconSource: "about"
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
         }
