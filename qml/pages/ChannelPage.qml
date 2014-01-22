@@ -76,14 +76,6 @@ Page {
         VerticalScrollDecorator { flickable: listView }
     }
 
-    Timer {
-        id: reloadTimer
-        running: window.applicationActive
-        interval: 60000
-        repeat: true
-        onTriggered: fetchNewSongs()
-    }
-
     Connections {
         target: window
         onApplicationActiveChanged: {
@@ -122,6 +114,10 @@ Page {
         target: _player
         onPlayStarted: isPlaying = _player.isPlaying(id)
         onPauseStarted: isPlaying = false
+        onSongChanged: {
+            if (window.applicationActive)
+                fetchNewSongs()
+        }
     }
 
     function addToFavorites() {
