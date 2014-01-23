@@ -26,10 +26,7 @@ DockedPanel {
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
-            onClicked: {
-                console.log("open twitter page in browser")
-                Qt.openUrlExternally(somaTheme.twitterUrl)
-            }
+            onClicked: Qt.openUrlExternally(somaTheme.twitterUrl)
         }
 
         IconButton {
@@ -41,10 +38,7 @@ DockedPanel {
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
-            onClicked: {
-                console.log("open facebook page in browser")
-                Qt.openUrlExternally(somaTheme.facebookUrl)
-            }
+            onClicked: Qt.openUrlExternally(somaTheme.facebookUrl)
         }
 
         IconButton {
@@ -56,10 +50,7 @@ DockedPanel {
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
-            onClicked: {
-                console.log("open flickr page in browser")
-                Qt.openUrlExternally(somaTheme.flickrUrl)
-            }
+            onClicked: Qt.openUrlExternally(somaTheme.flickrUrl)
         }
 
         IconButton {
@@ -71,10 +62,7 @@ DockedPanel {
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
-            onClicked: {
-                console.log("open home page in browser")
-                Qt.openUrlExternally(somaTheme.websiteUrl)
-            }
+            onClicked: Qt.openUrlExternally(somaTheme.websiteUrl)
         }
 
         IconButton {
@@ -86,10 +74,7 @@ DockedPanel {
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
-            onClicked: {
-                console.log("open support page in browser")
-                Qt.openUrlExternally(somaTheme.supportUrl)
-            }
+            onClicked: Qt.openUrlExternally(somaTheme.supportUrl)
         }
     }
 }

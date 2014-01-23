@@ -30,10 +30,7 @@ Item {
             right: twitterButton.left
             rightMargin: Theme.paddingLarge
         }
-        onClicked: {
-            console.log("open facebook page in browser")
-            Qt.openUrlExternally(somaTheme.facebookUrl)
-        }
+        onClicked: Qt.openUrlExternally(somaTheme.facebookUrl)
     }
     IconButton {
         id: twitterButton
@@ -50,9 +47,6 @@ Item {
             right: parent.right
             rightMargin: Theme.paddingLarge
         }
-        onClicked: {
-            console.log("open twitter page in browser")
-            Qt.openUrlExternally(somaTheme.twitterUrl)
-        }
+        onClicked: Qt.openUrlExternally(somaTheme.twitterUrl)
     }
 }

@@ -24,10 +24,5 @@ BackgroundItem {
         maximumLineCount: 3
     }
 
-    onClicked: openItem()
-
-    function openItem() {
-        console.log("open "+location+" page in browser")
-        Qt.openUrlExternally(location)
-    }
+    onClicked: Qt.openUrlExternally(location)
 }

@@ -30,9 +30,6 @@ Item {
             right: parent.right
             rightMargin: Theme.paddingLarge
         }
-        onClicked: {
-            console.log("open support page in browser")
-            Qt.openUrlExternally(somaTheme.supportUrl)
-        }
+        onClicked: Qt.openUrlExternally(somaTheme.supportUrl)
     }
 }
