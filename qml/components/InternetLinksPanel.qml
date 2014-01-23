@@ -72,7 +72,7 @@ DockedPanel {
             height: iconSize
             width: iconSize
             icon {
-                source: somaTheme.getIconSource("support", iconSizeName)
+                source: somaTheme.getIconSource("websupport", iconSizeName)
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }

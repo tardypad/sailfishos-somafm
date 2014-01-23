@@ -22,7 +22,7 @@ Item {
         height: Theme.iconSizeMedium
         width: Theme.iconSizeMedium
         icon {
-            source: somaTheme.getIconSource("web", "medium")
+            source: somaTheme.getIconSource("websupport", "medium")
             height: Theme.iconSizeMedium
             fillMode: Image.PreserveAspectFit
         }
