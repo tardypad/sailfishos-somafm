@@ -45,51 +45,20 @@ Page {
                     }
                 }
 
-                Rectangle {
+                AuthorRectangle {
+                    id: authorRect
                     color: itemBackgroundColor
-                    width: parent.width
-                    height: childrenRect.height + 2 * Theme.paddingMedium
-
-                    Label {
-                        id: devLabel
-                        anchors {
-                            top: parent.top
-                            topMargin: Theme.paddingMedium
-                            horizontalCenter: parent.horizontalCenter
-                        }
-                        width: parent.width - 2 * Theme.paddingMedium
-                        font.pixelSize: Theme.fontSizeSmall
-                        horizontalAlignment: Text.AlignLeft
-                        text: "Application Design\nApplication Development\nApplication Graphics\nApplication Testing"
-                    }
-
-                    Label {
-                        id: authorLabel
-                        anchors {
-                            top: devLabel.bottom
-                            topMargin: Theme.paddingSmall
-                            horizontalCenter: parent.horizontalCenter
-                        }
-                        width: parent.width - 2 * Theme.paddingMedium
-                        font {
-                            italic: true
-                            pixelSize: Theme.fontSizeExtraSmall
-                        }
-                        color: Theme.highlightColor
-                        horizontalAlignment: Text.AlignRight
-                        text: "by Damien Tardy-Panis"
-
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: mailDev()
-                        }
-                    }
                 }
 
                 Label {
                     id: codeLabel
                     width: parent.width
-                    text: "The source code is available under GPLv3<br/><a href='https://github.com/tardypad/somafm'>https://github.com/tardypad/somafm</a>"
+                    text: "The source code is available under GPLv3
+                          <br/><a href='https://github.com/tardypad/somafm'>https://github.com/tardypad/somafm</a>
+                          <br/>
+                          <br/>You can contact me for any remarks,
+                          <br/>bugs, feature requests, ideas,... "
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     font.pixelSize: Theme.fontSizeExtraSmall
                     horizontalAlignment: Text.AlignHCenter
                     textFormat: Text.StyledText
@@ -131,20 +100,6 @@ Page {
                 }
 
                 Label {
-                    id: contactLabel
-                    width: parent.width
-                    text: "You can contact me for any remarks, bugs, feature requests, ideas, etc... you might have"
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                    font.pixelSize: Theme.fontSizeExtraSmall
-                    horizontalAlignment: Text.Align
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: mailDev()
-                    }
-                }
-
-                Label {
                     id: enjoyLabel
                     width: parent.width
                     text: "Enjoy!"
@@ -155,13 +110,5 @@ Page {
         }
 
         VerticalScrollDecorator { flickable: listView }
-    }
-
-    function mailSupport() {
-        Qt.openUrlExternally("mailto:dj@somafm.com?subject=[Sailfish app] ")
-    }
-
-    function mailDev() {
-        Qt.openUrlExternally("mailto:damien@tardypad.me?subject=[SomaFM Sailfish app] ")
     }
 }
