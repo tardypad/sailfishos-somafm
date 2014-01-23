@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../scripts/ExternalLinks.js" as ExternalLinks
+
 Rectangle {
     id: authorRect
 
@@ -68,7 +70,7 @@ Rectangle {
                 height: Theme.iconSizeMedium
                 fillMode: Image.PreserveAspectFit
             }
-            onClicked: Qt.openUrlExternally("https://twitter.com/tardypad")
+            onClicked: ExternalLinks.browse("https://twitter.com/tardypad")
         }
 
         IconButton {
@@ -80,7 +82,7 @@ Rectangle {
                 height: Theme.iconSizeMedium
                 fillMode: Image.PreserveAspectFit
             }
-            onClicked: Qt.openUrlExternally("https://github.com/tardypad")
+            onClicked: ExternalLinks.browse("https://github.com/tardypad")
         }
 
         IconButton {
@@ -92,7 +94,7 @@ Rectangle {
                 height: Theme.iconSizeMedium
                 fillMode: Image.PreserveAspectFit
             }
-            onClicked: Qt.openUrlExternally("mailto:damien@tardypad.me?subject=[SomaFM Sailfish app] ")
+            onClicked: ExternalLinks.mail("damien@tardypad.me", "[SomaFM Sailfish app] ")
         }
     }
 

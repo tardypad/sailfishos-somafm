@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../scripts/ExternalLinks.js" as ExternalLinks
+
 Item {
     id: newsDelegate
     x: Theme.paddingLarge
@@ -35,7 +37,7 @@ Item {
         linkColor: Theme.highlightColor
         onLinkActivated: {
             var url = /^https?:\/\//i.test(link) ? link : somaTheme.websiteUrl + link
-            Qt.openUrlExternally(url)
+            ExternalLinks.browse(url)
         }
     }
 }

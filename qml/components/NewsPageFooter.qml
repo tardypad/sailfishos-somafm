@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../scripts/ExternalLinks.js" as ExternalLinks
+
 Item {
     width: listView.width
     height: facebookButton.height + 2*Theme.paddingLarge
@@ -30,7 +32,7 @@ Item {
             right: twitterButton.left
             rightMargin: Theme.paddingLarge
         }
-        onClicked: Qt.openUrlExternally(somaTheme.facebookUrl)
+        onClicked: ExternalLinks.browse(somaTheme.facebookUrl)
     }
     IconButton {
         id: twitterButton
@@ -47,6 +49,6 @@ Item {
             right: parent.right
             rightMargin: Theme.paddingLarge
         }
-        onClicked: Qt.openUrlExternally(somaTheme.twitterUrl)
+        onClicked: ExternalLinks.browse(somaTheme.twitterUrl)
     }
 }

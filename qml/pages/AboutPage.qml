@@ -4,6 +4,8 @@ import Sailfish.Silica 1.0
 import "../utils"
 import "../components"
 
+import "../scripts/ExternalLinks.js" as ExternalLinks
+
 Page {
     property color itemBackgroundColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity / 3)
 
@@ -63,7 +65,7 @@ Page {
                     horizontalAlignment: Text.AlignHCenter
                     textFormat: Text.StyledText
                     linkColor: Theme.highlightColor
-                    onLinkActivated: Qt.openUrlExternally(link)
+                    onLinkActivated: ExternalLinks.browse(link)
                 }
 
                 Rectangle {

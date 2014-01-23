@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../scripts/ExternalLinks.js" as ExternalLinks
+
 DockedPanel {
     id: linksPanel
 
@@ -26,7 +28,7 @@ DockedPanel {
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
-            onClicked: Qt.openUrlExternally(somaTheme.twitterUrl)
+            onClicked: ExternalLinks.browse(somaTheme.twitterUrl)
         }
 
         IconButton {
@@ -38,7 +40,7 @@ DockedPanel {
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
-            onClicked: Qt.openUrlExternally(somaTheme.facebookUrl)
+            onClicked: ExternalLinks.browse(somaTheme.facebookUrl)
         }
 
         IconButton {
@@ -50,7 +52,7 @@ DockedPanel {
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
-            onClicked: Qt.openUrlExternally(somaTheme.flickrUrl)
+            onClicked: ExternalLinks.browse(somaTheme.flickrUrl)
         }
 
         IconButton {
@@ -62,7 +64,7 @@ DockedPanel {
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
-            onClicked: Qt.openUrlExternally(somaTheme.websiteUrl)
+            onClicked: ExternalLinks.browse(somaTheme.websiteUrl)
         }
 
         IconButton {
@@ -74,7 +76,7 @@ DockedPanel {
                 height: iconSize
                 fillMode: Image.PreserveAspectFit
             }
-            onClicked: Qt.openUrlExternally(somaTheme.supportUrl)
+            onClicked: ExternalLinks.browse(somaTheme.supportUrl)
         }
     }
 }

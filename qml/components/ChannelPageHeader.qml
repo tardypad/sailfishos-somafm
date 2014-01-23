@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../scripts/ExternalLinks.js" as ExternalLinks
+
 Item {
     height: childrenRect.height
     width: listView.width
@@ -95,6 +97,6 @@ Item {
 
     function mailDj() {
         if (djMail)
-            Qt.openUrlExternally("mailto:"+djMail+"?subject=["+name+"] ")
+            ExternalLinks.mail(djMail, "["+name+"] ")
     }
 }

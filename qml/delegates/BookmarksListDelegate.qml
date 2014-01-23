@@ -3,6 +3,8 @@ import Sailfish.Silica 1.0
 
 import "../utils"
 
+import "../scripts/ExternalLinks.js" as ExternalLinks
+
 ListItem {
     id: listItem
 
@@ -82,8 +84,7 @@ ListItem {
     }
 
     function searchGoogle() {
-        var url = "http://www.google.com/search?q="+encodeURIComponent(artist)+"+"+encodeURIComponent(title)
-        Qt.openUrlExternally(url)
+        ExternalLinks.searchGoogle([artist, title])
     }
 
     Component {
