@@ -4,8 +4,6 @@ import Sailfish.Silica 1.0
 import "../utils"
 
 Item {
-    property alias text: bannerLabel.text
-
     height: childrenRect.height
     width: listView.width
 

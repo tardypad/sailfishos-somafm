@@ -27,7 +27,7 @@ Page {
 
         VerticalScrollDecorator { flickable: gridView }
 
-        function displayAdditionalElements() {
+        function _displayAdditionalElements() {
             headerItem.displayBanner()
             model = _supportModel
             footer = Qt.createComponent("../components/SupportPageFooter.qml")
@@ -38,7 +38,7 @@ Page {
         target: indicator
         onStateChanged: {
             if (indicator.state === "complete")
-                gridView.displayAdditionalElements()
+                gridView._displayAdditionalElements()
         }
     }
 
@@ -46,7 +46,7 @@ Page {
         if (!_supportModel.hasDataBeenFetchedOnce())
             _supportModel.fetch()
         else
-            gridView.displayAdditionalElements()
+            gridView._displayAdditionalElements()
     }
 
     onStatusChanged: {

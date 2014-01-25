@@ -4,13 +4,13 @@ import Sailfish.Silica 1.0
 Rectangle {
     id: messageRect
 
-    property bool open: false
+    property bool _open: false
 
     color: Theme.highlightColor
     width: Screen.width
     height: messageLabel.implicitHeight + 2 * Theme.paddingMedium
-    opacity: open ? 1 : 0
-    enabled: open
+    opacity: _open ? 1 : 0
+    enabled: _open
 
     Label {
         id: messageLabel
@@ -33,12 +33,12 @@ Rectangle {
 
     function show(text) {
         messageLabel.text = text
-        open = true
+        _open = true
         messageTimer.start()
     }
 
     function hide() {
-        open = false
+        _open = false
     }
 
     Behavior on opacity {

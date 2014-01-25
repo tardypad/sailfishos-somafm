@@ -55,7 +55,7 @@ ApplicationWindow
         messageLoader.item.hide()
     }
 
-    function refresh() {
+    function _refresh() {
         _refreshModel.fetch()
     }
 
@@ -68,12 +68,12 @@ ApplicationWindow
         running: applicationActive || controlPanel.state === "playing"
         repeat: true
         interval: 20000
-        onTriggered: refresh()
+        onTriggered: _refresh()
     }
 
     onApplicationActiveChanged: {
         if (applicationActive) {
-            refresh()
+            _refresh()
         }
     }
 }

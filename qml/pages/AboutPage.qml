@@ -7,7 +7,7 @@ import "../components"
 import "../scripts/ExternalLinks.js" as ExternalLinks
 
 Page {
-    property color itemBackgroundColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity / 3)
+    property color _itemBackgroundColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity / 3)
 
     SilicaListView {
         id: listView
@@ -49,7 +49,7 @@ Page {
 
                 AuthorRectangle {
                     id: authorRect
-                    color: itemBackgroundColor
+                    color: _itemBackgroundColor
                 }
 
                 Label {
@@ -69,7 +69,7 @@ Page {
                 }
 
                 Rectangle {
-                    color: itemBackgroundColor
+                    color: _itemBackgroundColor
                     width: parent.width
                     height: helpLabel.height + 2 * Theme.paddingMedium
 

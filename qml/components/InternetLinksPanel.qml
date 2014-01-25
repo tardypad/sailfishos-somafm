@@ -6,8 +6,8 @@ import "../scripts/ExternalLinks.js" as ExternalLinks
 DockedPanel {
     id: linksPanel
 
-    property int iconSize: Theme.iconSizeMedium
-    property string iconSizeName: "medium"
+    property int _iconSize: Theme.iconSizeMedium
+    property string _iconSizeName: "medium"
 
     height: column.height + 2*Theme.paddingLarge
     width: column.width + 2*Theme.paddingLarge
@@ -21,11 +21,11 @@ DockedPanel {
 
         IconButton {
             id: twitterButton
-            height: iconSize
-            width: iconSize
+            height: _iconSize
+            width: _iconSize
             icon {
-                source: somaTheme.getIconSource("twitter", iconSizeName)
-                height: iconSize
+                source: somaTheme.getIconSource("twitter", _iconSizeName)
+                height: _iconSize
                 fillMode: Image.PreserveAspectFit
             }
             onClicked: ExternalLinks.browse(somaTheme.twitterUrl)
@@ -33,11 +33,11 @@ DockedPanel {
 
         IconButton {
             id: facebookButton
-            height: iconSize
-            width: iconSize
+            height: _iconSize
+            width: _iconSize
             icon {
-                source: somaTheme.getIconSource("facebook", iconSizeName)
-                height: iconSize
+                source: somaTheme.getIconSource("facebook", _iconSizeName)
+                height: _iconSize
                 fillMode: Image.PreserveAspectFit
             }
             onClicked: ExternalLinks.browse(somaTheme.facebookUrl)
@@ -45,11 +45,11 @@ DockedPanel {
 
         IconButton {
             id: flickrButton
-            height: iconSize
-            width: iconSize
+            height: _iconSize
+            width: _iconSize
             icon {
-                source: somaTheme.getIconSource("flickr", iconSizeName)
-                height: iconSize
+                source: somaTheme.getIconSource("flickr", _iconSizeName)
+                height: _iconSize
                 fillMode: Image.PreserveAspectFit
             }
             onClicked: ExternalLinks.browse(somaTheme.flickrUrl)
@@ -57,11 +57,11 @@ DockedPanel {
 
         IconButton {
             id: websiteButton
-            height: iconSize
-            width: iconSize
+            height: _iconSize
+            width: _iconSize
             icon {
-                source: somaTheme.getIconSource("web", iconSizeName)
-                height: iconSize
+                source: somaTheme.getIconSource("web", _iconSizeName)
+                height: _iconSize
                 fillMode: Image.PreserveAspectFit
             }
             onClicked: ExternalLinks.browse(somaTheme.websiteUrl)
@@ -69,11 +69,11 @@ DockedPanel {
 
         IconButton {
             id: supportButton
-            height: iconSize
-            width: iconSize
+            height: _iconSize
+            width: _iconSize
             icon {
-                source: somaTheme.getIconSource("websupport", iconSizeName)
-                height: iconSize
+                source: somaTheme.getIconSource("websupport", _iconSizeName)
+                height: _iconSize
                 fillMode: Image.PreserveAspectFit
             }
             onClicked: ExternalLinks.browse(somaTheme.supportUrl)

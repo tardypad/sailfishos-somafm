@@ -8,19 +8,20 @@ Dialog {
     objectName: "StreamDialog"
 
     property string channelId
-    property string selectedQuality
-    property string selectedFormat
-    property string currentQuality
-    property string currentFormat
-    property color selectedColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
-    property color currentColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity / 3)
+
+    property string _selectedQuality
+    property string _selectedFormat
+    property string _currentQuality
+    property string _currentFormat
+    property color _selectedColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
+    property color _currentColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity / 3)
 
     SilicaListView {
         id: listView
         anchors.fill: parent
 
         header: DialogHeader {
-            acceptText: selectedQuality + ", " + selectedFormat
+            acceptText: _selectedQuality + ", " + _selectedFormat
             dialog: dialog
         }
 
@@ -49,23 +50,23 @@ Dialog {
             }
         }
         delegate: BackgroundItem {
-            property bool selected: quality === selectedQuality && format === selectedFormat
-            property bool current: quality === currentQuality && format === currentFormat
+            property bool selected: quality === _selectedQuality && format === _selectedFormat
+            property bool current: quality === _currentQuality && format === _currentFormat
             height: Theme.itemSizeSmall
             highlighted: down || selected || current
-            highlightedColor: selected || down ? selectedColor : currentColor
+            highlightedColor: selected || down ? _selectedColor : _currentColor
             Label {
                 text: format + " format"
                 anchors.centerIn: parent
             }
             onClicked: {
-                selectedQuality = quality
-                selectedFormat = format
+                _selectedQuality = quality
+                _selectedFormat = format
             }
         }
     }
 
-    function fillStreamsList() {
+    function _fillStreamsList() {
         var streams = _channelsModel.channelStreams(channelId)
         var qualities = _channelsModel.streamsQualities();
         var formats = _channelsModel.streamsFormats();
@@ -91,19 +92,19 @@ Dialog {
         }
     }
 
-    function defineSelected() {
-        currentQuality = _player.streamQualityText();
-        currentFormat = _player.streamFormatText();
-        selectedQuality = currentQuality
-        selectedFormat = currentFormat
+    function _defineSelected() {
+        _currentQuality = _player.streamQualityText();
+        _currentFormat = _player.streamFormatText();
+        _selectedQuality = _currentQuality
+        _selectedFormat = _currentFormat
     }
 
-    function changeStreams() {
-        if (selectedQuality != currentQuality || selectedFormat != currentFormat)
-            _player.changeStream(selectedQuality, selectedFormat)
+    function _changeStreams() {
+        if (_selectedQuality != _currentQuality || _selectedFormat != _currentFormat)
+            _player.changeStream(_selectedQuality, _selectedFormat)
     }
 
-    onAccepted: changeStreams()
+    onAccepted: _changeStreams()
 
     Connections {
         target: controlPanel
@@ -111,7 +112,7 @@ Dialog {
     }
 
     Component.onCompleted: {
-        defineSelected()
-        fillStreamsList()
+        _defineSelected()
+        _fillStreamsList()
     }
 }

@@ -6,6 +6,8 @@ import "../utils"
 DockedPanel {
     id: controlPanel
 
+    property alias isPushMenuActive: pushUpMenu.active
+
     property string channelId
     property alias channelName: channelLabel.text
     property alias channelImageUrl: channelImage.source
@@ -13,7 +15,6 @@ DockedPanel {
     property alias artist: artistLabel.text
     property alias title: titleLabel.text
     property bool isSongBookmark
-    property alias isPushMenuActive: pushUpMenu.active
 
     signal close
 
@@ -138,7 +139,7 @@ DockedPanel {
             onClicked: play()
         }
 
-        onClicked: goToChannelPage()
+        onClicked: _goToChannelPage()
     }
 
     PushUpMenu {
@@ -146,7 +147,7 @@ DockedPanel {
         IconMenuItem {
             iconSource: "stream"
             text: "Change channel quality/format"
-            onClicked: openStreamsDialog()
+            onClicked: _openStreamsDialog()
         }
         IconMenuItem {
             iconSource: !isSongBookmark ? "bookmark" : "unbookmark"
@@ -172,15 +173,15 @@ DockedPanel {
         onSongChanged: {
             artist = _player.artist()
             title = _player.title()
-            isSongBookmark = _bookmarksManager.isBookmark(getCurrentSong())
+            isSongBookmark = _bookmarksManager.isBookmark(_getCurrentSong())
         }
         onPlayCalled: open = true
         onPlayStarted: {
-            reinitProgressIndicator()
+            _reinitProgressIndicator()
             state = "playing"
         }
         onPauseStarted: {
-            reinitProgressIndicator()
+            _reinitProgressIndicator()
             state = "pause"
         }
         onNetworkError: showMessage("a network error occured")
@@ -189,33 +190,33 @@ DockedPanel {
     Connections {
         target: _bookmarksManager
         onBookmarkAdded: {
-            if (isCurrentSong(xmlItem)) {
+            if (_isCurrentSong(xmlItem)) {
                 isSongBookmark = true
                 showMessage("song added to bookmarks")
             }
         }
         onBookmarkRemoved: {
-            if (isCurrentSong(xmlItem)) {
+            if (_isCurrentSong(xmlItem)) {
                 isSongBookmark = false
                 showMessage("song removed from bookmarks")
             }
         }
     }
 
-    function reinitProgressIndicator() {
+    function _reinitProgressIndicator() {
         progressIndicator.value = 0
         progressIndicator.inAlternateCycle = true
     }
 
-    function goToChannelPage() {
-        if (isDialogPage(pageStack.currentPage))
+    function _goToChannelPage() {
+        if (_isDialogPage(pageStack.currentPage))
             return
 
         var url = Qt.resolvedUrl("../pages/ChannelPage.qml")
         var properties = {"id": channelId}
 
         var currentPage = pageStack.currentPage
-        if (isChannelPage(currentPage)) {
+        if (_isChannelPage(currentPage)) {
             if (currentPage.id !== channelId) {
                 currentPage.stopUpdates()
                 pageStack.replace(url, properties)
@@ -223,7 +224,7 @@ DockedPanel {
             return
         }
 
-        var previousChannelPage = pageStack.find(isChannelPage)
+        var previousChannelPage = pageStack.find(_isChannelPage)
         if (previousChannelPage) {
             pageStack.replaceAbove(pageStack.previousPage(previousChannelPage), url, properties)
             return
@@ -232,16 +233,16 @@ DockedPanel {
         pageStack.push(url, properties)
     }
 
-    function isChannelPage(page) {
+    function _isChannelPage(page) {
         return page.objectName === "ChannelPage"
     }
 
-    function isDialogPage(page) {
+    function _isDialogPage(page) {
         return page.objectName === "StreamDialog"
     }
 
-    function openStreamsDialog() {
-        if (isDialogPage(pageStack.currentPage))
+    function _openStreamsDialog() {
+        if (_isDialogPage(pageStack.currentPage))
             return
 
         pageStack.push(Qt.resolvedUrl("../pages/StreamsDialog.qml"),
@@ -256,21 +257,21 @@ DockedPanel {
         _player.play()
     }
 
-    function isCurrentSong(song) {
-        return _bookmarksManager.areEquals(song, getCurrentSong())
+    function _isCurrentSong(song) {
+        return _bookmarksManager.areEquals(song, _getCurrentSong())
     }
 
-    function getCurrentSong() {
+    function _getCurrentSong() {
         return _player.currentSong()
     }
 
     function addSongToBookmarks() {
-        var result = _bookmarksManager.addBookmark(getCurrentSong())
+        var result = _bookmarksManager.addBookmark(_getCurrentSong())
         if (result) isSongBookmark = true
     }
 
     function removeSongFromBookmarks() {
-        var result = _bookmarksManager.removeBookmark(getCurrentSong())
+        var result = _bookmarksManager.removeBookmark(_getCurrentSong())
         if (result) isSongBookmark = false
     }
 

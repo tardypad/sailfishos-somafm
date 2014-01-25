@@ -31,7 +31,7 @@ Page {
 
         VerticalScrollDecorator { flickable: listView }
 
-        function displayAdditionalElements() {
+        function _displayAdditionalElements() {
             headerItem.displayBanner()
             model = _newsModel
             footer = Qt.createComponent("../components/NewsPageFooter.qml")
@@ -42,7 +42,7 @@ Page {
         target: indicator
         onStateChanged: {
             if (indicator.state === "complete")
-                listView.displayAdditionalElements()
+                listView._displayAdditionalElements()
         }
     }
 
@@ -50,7 +50,7 @@ Page {
         if (!_newsModel.hasDataBeenFetchedOnce())
             _newsModel.fetch()
         else
-            listView.displayAdditionalElements()
+            listView._displayAdditionalElements()
         _newsModel.sortByDate();
     }
 

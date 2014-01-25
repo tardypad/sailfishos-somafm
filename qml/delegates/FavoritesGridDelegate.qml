@@ -9,10 +9,11 @@ Item {
 
     property int idx: index
     property string channelId: id
-    property bool hasContextMenu: gridView.contextMenu && gridView.contextMenu.parent === itemcontainer
+
+    property bool _hasContextMenu: gridView.contextMenu && gridView.contextMenu.parent === itemcontainer
 
     width: gridView.cellWidth
-    height: hasContextMenu
+    height: _hasContextMenu
             ? gridView.cellHeight + gridView.contextMenu.height
             : gridView.cellHeight
 
@@ -25,7 +26,7 @@ Item {
            ? gridView.contextMenu.height
            : 0
 
-        highlighted: down || hasContextMenu
+        highlighted: down || _hasContextMenu
 
         ChannelImage {
             id: channelImage
@@ -38,10 +39,10 @@ Item {
 
         onPressAndHold: gridView.showContextMenu(itemcontainer)
 
-        onClicked: goToChannelPage()
+        onClicked: _goToChannelPage()
     }
 
-    function goToChannelPage() {
+    function _goToChannelPage() {
         pageStack.push(Qt.resolvedUrl("../pages/ChannelPage.qml"), {"id": id})
     }
 

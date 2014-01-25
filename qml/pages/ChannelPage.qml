@@ -10,16 +10,17 @@ Page {
     objectName: "ChannelPage"
 
     property string id
-    property string name
-    property string description
-    property string dj
-    property string djMail
-    property url imageUrl
-    property url mediumImageUrl
-    property url bigImageUrl
-    property int listeners
-    property bool isFavorite
-    property bool isPlaying
+
+    property string _name
+    property string _description
+    property string _dj
+    property string _djMail
+    property url _imageUrl
+    property url _mediumImageUrl
+    property url _bigImageUrl
+    property int _listeners
+    property bool _isFavorite
+    property bool _isPlaying
 
     SilicaListView {
         id: listView
@@ -38,25 +39,25 @@ Page {
                 inPullDown: true
             }
             IconMenuItem {
-                iconSource: !isFavorite ? "favorite" : "unfavorite"
-                text: !isFavorite ? "Add to Favorites" : "Remove from Favorites"
+                iconSource: !_isFavorite ? "favorite" : "unfavorite"
+                text: !_isFavorite ? "Add to Favorites" : "Remove from Favorites"
                 onClicked: {
-                    if (!isFavorite) {
-                        addToFavorites()
+                    if (!_isFavorite) {
+                        _addToFavorites()
                     } else {
-                        removeFromFavorites()
+                        _removeFromFavorites()
                     }
                 }
                 inPullDown: true
             }
             IconMenuItem {
-                iconSource: !isPlaying ? "play" : "pause"
-                text: !isPlaying ? "Play" : "Pause"
+                iconSource: !_isPlaying ? "play" : "pause"
+                text: !_isPlaying ? "Play" : "Pause"
                 onClicked: {
-                    if (!isPlaying) {
+                    if (!_isPlaying) {
                         play()
                     } else {
-                        pause()
+                        _pause()
                     }
                 }
                 inPullDown: true
@@ -80,54 +81,54 @@ Page {
         target: window
         onApplicationActiveChanged: {
             if (window.applicationActive) {
-                fetchNewSongs()
+                _fetchNewSongs()
             }
         }
     }
 
-    function getChannelItem() {
+    function _getChannelItem() {
         return _channelsModel.channelItem(id)
     }
 
-    function initData() {
+    function _initData() {
         var channelData = _channelsModel.channelItemNameData(id)
-        name = channelData.name
-        description = channelData.description
-        dj = channelData.dj
-        djMail = channelData.djMail
-        imageUrl = channelData.imageUrl
-        mediumImageUrl = channelData.imageMediumUrl
-        bigImageUrl = channelData.imageBigUrl
-        listeners = channelData.listeners
-        isFavorite = channelData.isBookmark
+        _name = channelData.name
+        _description = channelData.description
+        _dj = channelData.dj
+        _djMail = channelData.djMail
+        _imageUrl = channelData.imageUrl
+        _mediumImageUrl = channelData.imageMediumUrl
+        _bigImageUrl = channelData.imageBigUrl
+        _listeners = channelData.listeners
+        _isFavorite = channelData.isBookmark
     }
 
     function play() {
-        _player.play(getChannelItem())
+        _player.play(_getChannelItem())
     }
 
-    function pause() {
+    function _pause() {
         _player.pause()
     }
 
     Connections {
         target: _player
-        onPlayStarted: isPlaying = _player.isPlaying(id)
-        onPauseStarted: isPlaying = false
+        onPlayStarted: _isPlaying = _player.isPlaying(id)
+        onPauseStarted: _isPlaying = false
         onSongChanged: {
             if (window.applicationActive)
-                fetchNewSongs()
+                _fetchNewSongs()
         }
     }
 
-    function addToFavorites() {
-        var result = _favoritesManager.addFavorite(getChannelItem())
-        if (result) isFavorite = true
+    function _addToFavorites() {
+        var result = _favoritesManager.addFavorite(_getChannelItem())
+        if (result) _isFavorite = true
     }
 
-    function removeFromFavorites() {
-        var result = _favoritesManager.removeFavorite(getChannelItem())
-        if (result) isFavorite = false
+    function _removeFromFavorites() {
+        var result = _favoritesManager.removeFavorite(_getChannelItem())
+        if (result) _isFavorite = false
     }
 
     function stopUpdates() {
@@ -141,16 +142,16 @@ Page {
         onFetchUpdateFinished: pulleyMenu.busy = false
     }
 
-    function fetchNewSongs() {
+    function _fetchNewSongs() {
         _channelSongsModel.fetchAdditional()
     }
 
     Component.onCompleted: {
-        initData()
-        _channelSongsModel.setChannel(getChannelItem())
+        _initData()
+        _channelSongsModel.setChannel(_getChannelItem())
         _channelSongsModel.fetch()
         _channelSongsModel.sortByDate()
-        isPlaying = _player.isPlaying(id)
+        _isPlaying = _player.isPlaying(id)
     }
 
     onStatusChanged: {

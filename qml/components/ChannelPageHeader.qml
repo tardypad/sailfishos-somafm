@@ -9,7 +9,7 @@ Item {
 
     PageHeader {
         id: header
-        title: name
+        title: _name
 
         Image {
             id: favoriteImage
@@ -22,14 +22,14 @@ Item {
                 verticalCenter: header._titleItem.verticalCenter
             }
             fillMode: Image.PreserveAspectFit
-            visible: isFavorite
+            visible: _isFavorite
         }
     }
 
     ChannelImage {
         id: channelImage
         size: BusyIndicatorSize.Medium
-        source: imageUrl
+        source: _imageUrl
         height: Theme.itemSizeLarge * 2
         width: Theme.itemSizeLarge * 2
         anchors {
@@ -41,7 +41,7 @@ Item {
 
     Label {
         id: channelDescriptionLabel
-        text: description
+        text: _description
         anchors {
             left: channelImage.right
             right: parent.right
@@ -57,7 +57,7 @@ Item {
 
     Label {
         id: channelDjLabel
-        text: "by " + dj
+        text: "by " + _dj
         anchors {
             top: channelDescriptionLabel.bottom
             right: mailButton.left
@@ -68,12 +68,12 @@ Item {
             pixelSize: Theme.fontSizeExtraSmall
             italic: true
         }
-        visible: dj
+        visible: _dj
         horizontalAlignment: Text.AlignRight
 
         MouseArea {
             anchors.fill: parent
-            onClicked: mailDj()
+            onClicked: _mailDj()
         }
     }
 
@@ -91,12 +91,12 @@ Item {
             height: Theme.iconSizeSmall / 2
             fillMode: Image.PreserveAspectFit
         }
-        visible: dj
-        onClicked: mailDj()
+        visible: _dj
+        onClicked: _mailDj()
     }
 
-    function mailDj() {
-        if (djMail)
-            ExternalLinks.mail(djMail, "["+name+"] ")
+    function _mailDj() {
+        if (_djMail)
+            ExternalLinks.mail(_djMail, "["+_name+"] ")
     }
 }

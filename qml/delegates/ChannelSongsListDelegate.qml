@@ -91,15 +91,15 @@ ListItem {
             channelPage.play()
     }
 
-    function addBookmark() {
+    function _addBookmark() {
         _bookmarksManager.addBookmark(listView.model.itemAt(index))
     }
 
-    function removeBookmark() {
+    function _removeBookmark() {
         _bookmarksManager.removeBookmark(listView.model.itemAt(index))
     }
 
-    function searchGoogle() {
+    function _searchGoogle() {
         ExternalLinks.searchGoogle([artist, title])
     }
 
@@ -113,16 +113,16 @@ ListItem {
                 text: !isBookmark ? "Add to bookmarks" : "Remove from bookmarks"
                 onClicked: {
                     if (!isBookmark) {
-                        addBookmark()
+                        _addBookmark()
                     } else {
-                        removeBookmark()
+                        _removeBookmark()
                     }
                 }
             }
             IconMenuItem {
                 iconSource: "google"
                 text: "Search on Google"
-                onClicked: searchGoogle()
+                onClicked: _searchGoogle()
             }
         }
     }

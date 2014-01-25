@@ -9,7 +9,7 @@ Page {
     id: page
 
     property string channelId
-    property Item remorseItem
+    property Item _remorseItem
 
     SilicaListView {
         id: listView
@@ -32,7 +32,7 @@ Page {
             IconMenuItem {
                 text: "Remove all"
                 iconSource: "unbookmark"
-                onClicked: removeAllBookmarks()
+                onClicked: _removeAllBookmarks()
                 inPullDown: true
             }
         }
@@ -44,12 +44,12 @@ Page {
         }
 
         Component.onCompleted: {
-            retrieveChannelData()
+            _retrieveChannelData()
             _bookmarksManager.filterByChannel(channelId)
             _bookmarksManager.sortByDate()
         }
 
-        function retrieveChannelData() {
+        function _retrieveChannelData() {
             var tmpData = new Object();
             tmpData[channelId] = _bookmarksManager.channelData(channelId)
             channelsData = tmpData;
@@ -62,31 +62,31 @@ Page {
         target: _bookmarksManager
         onFirstChannelBookmark: {
             if (channelId === page.channelId)
-                listView.retrieveChannelData()
+                listView._retrieveChannelData()
         }
     }
 
-    function removeAllBookmarks() {
-        if (remorseItem || !listView.count)
+    function _removeAllBookmarks() {
+        if (_remorseItem || !listView.count)
             return
 
-        remorseItem = remorsecomponent.createObject(listView)
+        _remorseItem = remorsecomponent.createObject(listView)
         listView.interactive = false
         backNavigation = false
         songPanel.hide()
 
-        remorseItem.onCanceled.connect(endRemorseAction)
-        remorseItem.onTriggered.connect(endRemorseAction)
+        _remorseItem.onCanceled.connect(_endRemorseAction)
+        _remorseItem.onTriggered.connect(_endRemorseAction)
 
-        remorseItem.execute(listView.headerItem, "Removing all bookmarks", function() {
+        _remorseItem.execute(listView.headerItem, "Removing all bookmarks", function() {
             _bookmarksManager.removeAllChannelBookmarks(channelId)
         })
     }
 
-    function endRemorseAction() {
+    function _endRemorseAction() {
         backNavigation = true
         listView.interactive = true
-        remorseItem.destroy()
+        _remorseItem.destroy()
     }
 
     SongPanel{

@@ -4,9 +4,9 @@ import Sailfish.Silica 1.0
 Rectangle {
     id: info
 
-    property alias artist: artistLabel.text
-    property alias title: titleLabel.text
-    property bool isBookmark
+    property alias _artist: artistLabel.text
+    property alias _title: titleLabel.text
+    property bool _isBookmark
 
     anchors.fill: parent
     color: Theme.rgba(Theme.highlightBackgroundColor, 0.9)
@@ -44,14 +44,14 @@ Rectangle {
             width: parent.width
             font.pixelSize: Theme.fontSizeSmall
             horizontalAlignment: Text.AlignHCenter
-            text: isBookmark ? "added" : "removed"
+            text: _isBookmark ? "added" : "removed"
         }
     }
 
     function show(artist, title, isBookmark) {
-        info.artist = artist
-        info.title = title
-        info.isBookmark = isBookmark
+        _artist = artist
+        _title = title
+        _isBookmark = isBookmark
         opacity = 1
         displayTimer.start()
     }

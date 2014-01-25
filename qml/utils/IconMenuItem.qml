@@ -3,18 +3,19 @@ import Sailfish.Silica 1.0
 
 MenuItem {
     property string iconSource
-    property int iconSize: Theme.iconSizeSmall
-    property string iconSizeName: "small"
-
     property bool inPullDown: false
-    property bool isLeftHanded: false
-    property bool _onRightSide: inPullDown || isLeftHanded
+
+    property int _iconSize: Theme.iconSizeSmall
+    property string _iconSizeName: "small"
+
+    property bool _isLeftHanded: false
+    property bool _onRightSide: inPullDown || _isLeftHanded
 
     Image {
         id: icon
-        height: iconSize
-        width: iconSize
-        source: somaTheme.getIconSource(iconSource, iconSizeName)
+        height: _iconSize
+        width: _iconSize
+        source: somaTheme.getIconSource(iconSource, _iconSizeName)
         anchors {
             left: !_onRightSide ? parent.left : undefined
             leftMargin: !_onRightSide ? Theme.paddingLarge : undefined
@@ -25,5 +26,5 @@ MenuItem {
         fillMode: Image.PreserveAspectFit
     }
 
-    Component.onCompleted: isLeftHanded = _settings.leftHanded()
+    Component.onCompleted: _isLeftHanded = _settings.leftHanded()
 }

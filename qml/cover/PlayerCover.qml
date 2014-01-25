@@ -2,17 +2,17 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 MainCover {
-    property bool isPlaying: controlPanel.state === "playing"
-    property bool isSongBookmark: controlPanel.isSongBookmark
-    property url channelImageMediumUrl: controlPanel.channelImageMediumUrl
-    property string artist: controlPanel.artist
-    property string title: controlPanel.title
+    property bool _isPlaying: controlPanel.state === "playing"
+    property bool _isSongBookmark: controlPanel.isSongBookmark
+    property url _channelImageMediumUrl: controlPanel.channelImageMediumUrl
+    property string _artist: controlPanel.artist
+    property string _title: controlPanel.title
 
     content: [
         Image {
             id: channelImage
             anchors.fill: parent
-            source: channelImageMediumUrl
+            source: _channelImageMediumUrl
             fillMode: Image.PreserveAspectCrop
             verticalAlignment:Image.AlignTop
             horizontalAlignment: Image.AlignLeft
@@ -28,16 +28,16 @@ MainCover {
     CoverActionList {
         id: coverActionPlaying
         iconBackground: true
-        enabled: isPlaying
+        enabled: _isPlaying
 
         CoverAction {
             iconSource: somaTheme.getIconSource("pause", "cover")
             onTriggered: controlPanel.pause()
         }
         CoverAction {
-            iconSource: isSongBookmark ? somaTheme.getIconSource("unbookmark", "cover") : somaTheme.getIconSource("bookmark", "cover")
+            iconSource: _isSongBookmark ? somaTheme.getIconSource("unbookmark", "cover") : somaTheme.getIconSource("bookmark", "cover")
             onTriggered: {
-                if (isSongBookmark)
+                if (_isSongBookmark)
                     controlPanel.removeSongFromBookmarks()
                 else
                     controlPanel.addSongToBookmarks()
@@ -48,7 +48,7 @@ MainCover {
     CoverActionList {
         id: coverActionPause
         iconBackground: true
-        enabled: !isPlaying
+        enabled: !_isPlaying
 
         CoverAction {
             iconSource: somaTheme.getIconSource("play", "cover")
@@ -62,7 +62,7 @@ MainCover {
         if (bookmarkLoader.status === Loader.Null)
             bookmarkLoader.source = Qt.resolvedUrl("../components/BookmarkCoverInfo.qml")
 
-        bookmarkLoader.item.show(artist, title, isSongBookmark)
+        bookmarkLoader.item.show(_artist, _title, _isSongBookmark)
     }
 
     Connections {

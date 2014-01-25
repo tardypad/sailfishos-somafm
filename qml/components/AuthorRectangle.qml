@@ -6,14 +6,14 @@ import "../scripts/ExternalLinks.js" as ExternalLinks
 Rectangle {
     id: authorRect
 
-    property bool expanded: false
+    property bool _expanded: false
 
     width: parent.width
     height: workLabel.height + authorLabel.height + linksRow.height + 3 * Theme.paddingMedium + workLabel.topMargin
 
     MouseArea {
         anchors.fill: parent
-        onClicked: expanded = !expanded
+        onClicked: _expanded = !_expanded
     }
 
     Label {
@@ -99,7 +99,7 @@ Rectangle {
     }
 
     states: State {
-        name: "shown"; when: expanded
+        name: "shown"; when: _expanded
         PropertyChanges { target: workLabel; height: workLabel.implicitHeight }
         PropertyChanges { target: workLabel; opacity: 1 }
     }

@@ -5,16 +5,17 @@ DockedPanel {
     id: songPanel
 
     property int index
-    property alias title: titleLabel.text
-    property alias artist: artistLabel.text
-    property alias album: albumLabel.text
-    property alias date: dateLabel.text
-    property int minHeight: titleLabel.height + artistLabel.height + dateLabel.height
+
+    property alias _title: titleLabel.text
+    property alias _artist: artistLabel.text
+    property alias _album: albumLabel.text
+    property alias _date: dateLabel.text
+    property int _minHeight: titleLabel.height + artistLabel.height + dateLabel.height
                             + 2*Theme.paddingLarge + 2*Theme.paddingMedium
-    property bool hasAlbum: album !== ""
+    property bool _hasAlbum: _album !== ""
 
     width: parent.width
-    height: hasAlbum ? minHeight + albumLabel.height + Theme.paddingMedium : minHeight
+    height: _hasAlbum ? _minHeight + albumLabel.height + Theme.paddingMedium : _minHeight
     dock: Dock.Bottom
     opacity: controlPanel.moving && !open ? 0 : 1
 
@@ -74,7 +75,7 @@ DockedPanel {
             }
             Row {
                 spacing: Theme.paddingLarge
-                visible: hasAlbum
+                visible: _hasAlbum
                 Label {
                     id: albumHeaderLabel
                     text: "Album"
@@ -112,5 +113,14 @@ DockedPanel {
                 }
             }
         }
+    }
+
+    function showBookmark(index, artist, title, album, date) {
+        songPanel.index = index
+        _title = title
+        _artist = artist
+        _album = album
+        _date = Qt.formatDateTime(date, 'ddd dd MMM, hh:mm')
+        show()
     }
 }

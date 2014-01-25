@@ -6,7 +6,7 @@ import "../delegates"
 import "../components"
 
 Page {
-    property Item remorseItem
+    property Item _remorseItem
 
     SilicaListView {
         id: listView
@@ -29,7 +29,7 @@ Page {
             IconMenuItem {
                 text: "Remove all"
                 iconSource: "unbookmark"
-                onClicked: removeAllBookmarks()
+                onClicked: _removeAllBookmarks()
                 inPullDown: true
             }
         }
@@ -41,12 +41,12 @@ Page {
         }
 
         Component.onCompleted: {
-            retrieveChannelsData();
+            _retrieveChannelsData();
             _bookmarksManager.clearFilter()
             _bookmarksManager.sortByChannel()
         }
 
-        function retrieveChannelsData() {
+        function _retrieveChannelsData() {
             var tmpData = new Object();
             var channelIds = _bookmarksManager.channelIds()
             for (var i=0; i<channelIds.length; i++) {
@@ -55,7 +55,7 @@ Page {
             channelsData = tmpData;
         }
 
-        function addChannelData(channelId) {
+        function _addChannelData(channelId) {
             channelsData[channelId] = _bookmarksManager.channelData(channelId)
         }
 
@@ -64,30 +64,30 @@ Page {
 
     Connections {
         target: _bookmarksManager
-        onFirstChannelBookmark: listView.addChannelData(channelId)
+        onFirstChannelBookmark: listView._addChannelData(channelId)
     }
 
-    function removeAllBookmarks() {
-        if (remorseItem || !listView.count)
+    function _removeAllBookmarks() {
+        if (_remorseItem || !listView.count)
             return
 
-        remorseItem = remorsecomponent.createObject(listView)
+        _remorseItem = remorsecomponent.createObject(listView)
         listView.interactive = false
         backNavigation = false
         songPanel.hide()
 
-        remorseItem.onCanceled.connect(endRemorseAction)
-        remorseItem.onTriggered.connect(endRemorseAction)
+        _remorseItem.onCanceled.connect(_endRemorseAction)
+        _remorseItem.onTriggered.connect(_endRemorseAction)
 
-        remorseItem.execute(listView.headerItem, "Removing all bookmarks", function() {
+        _remorseItem.execute(listView.headerItem, "Removing all bookmarks", function() {
             _bookmarksManager.removeAllBookmarks()
         })
     }
 
-    function endRemorseAction() {
+    function _endRemorseAction() {
         backNavigation = true
         listView.interactive = true
-        remorseItem.destroy()
+        _remorseItem.destroy()
     }
 
     SongPanel{

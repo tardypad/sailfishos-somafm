@@ -72,25 +72,25 @@ ListItem {
                  })
     }
 
-    onClicked: goToChannelPage()
+    onClicked: _goToChannelPage()
 
-    function goToChannelPage() {
+    function _goToChannelPage() {
         pageStack.push(Qt.resolvedUrl("../pages/ChannelPage.qml"), {"id": id})
     }
 
-    function play() {
+    function _play() {
         _player.play(listView.model.itemAt(index))
     }
 
-    function pause() {
+    function _pause() {
         _player.pause()
     }
 
-    function addFavorite() {
+    function _addFavorite() {
         _favoritesManager.addFavorite(listView.model.itemAt(index))
     }
 
-    function removeFavorite() {
+    function _removeFavorite() {
         _favoritesManager.removeFavorite(listView.model.itemAt(index))
     }
 
@@ -105,9 +105,9 @@ ListItem {
                 text: !isPlaying ? "Play" : "Pause"
                 onClicked: {
                     if (!isPlaying) {
-                        play()
+                        _play()
                     } else {
-                        pause()
+                        _pause()
                     }
                 }
             }
@@ -117,9 +117,9 @@ ListItem {
                 text: !isFavorite ? "Add to favorites" : "Remove from favorites"
                 onClicked: {
                     if (!isFavorite) {
-                        addFavorite()
+                        _addFavorite()
                     } else {
-                        removeFavorite()
+                        _removeFavorite()
                     }
                 }
             }

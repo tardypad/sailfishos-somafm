@@ -3,17 +3,18 @@ import Sailfish.Silica 1.0
 
 PageHeader {
     property string iconSource
-    property int iconSize: Theme.iconSizeMedium
-    property string iconSizeName: "medium"
+
+    property int _iconSize: Theme.iconSizeMedium
+    property string _iconSizeName: "medium"
 
     state: "reanchored"
 
     Image {
         id: icon
         smooth: true
-        height: iconSize
-        width: iconSize
-        source: somaTheme.getIconSource(iconSource, iconSizeName)
+        height: _iconSize
+        width: _iconSize
+        source: somaTheme.getIconSource(iconSource, _iconSizeName)
         anchors {
             verticalCenter: parent.verticalCenter
             verticalCenterOffset: 4

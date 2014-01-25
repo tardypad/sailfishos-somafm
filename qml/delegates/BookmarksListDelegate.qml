@@ -62,28 +62,19 @@ ListItem {
         if (songPanel.open && songPanel.index === index) {
             songPanel.hide()
         } else {
-            showSongPanel()
+            songPanel.showBookmark(index, artist, title, album, bookmarkDate)
         }
-    }
-
-    function showSongPanel() {
-        songPanel.index = index
-        songPanel.title = title
-        songPanel.artist = artist
-        songPanel.album = album
-        songPanel.date = Qt.formatDateTime(bookmarkDate, 'ddd dd MMM, hh:mm')
-        songPanel.show()
     }
 
     ListView.onRemove: animateRemoval(listItem)
 
-    function remove() {
+    function _removeBookmark() {
         remorseAction("Removing bookmark", function() {
             listView.model.removeBookmark(listView.model.itemAt(index))
         })
     }
 
-    function searchGoogle() {
+    function _searchGoogle() {
         ExternalLinks.searchGoogle([artist, title])
     }
 
@@ -93,12 +84,12 @@ ListItem {
             IconMenuItem {
                 iconSource: "unbookmark"
                 text: "Remove from bookmarks"
-                onClicked: remove()
+                onClicked: _removeBookmark()
             }
             IconMenuItem {
                 iconSource: "google"
                 text: "Search on Google"
-                onClicked: searchGoogle()
+                onClicked: _searchGoogle()
             }
         }
     }

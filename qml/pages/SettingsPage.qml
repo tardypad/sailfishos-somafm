@@ -72,7 +72,7 @@ Page {
         VerticalScrollDecorator { flickable: listView }
     }
 
-    function defineQualityOptions() {
+    function _defineQualityOptions() {
         var qualityOptions = _channelsModel.streamsQualities();
         var selectedQuality = _settings.streamQuality();
         for (var i = 0; i < qualityOptions.length; ++i) {
@@ -83,7 +83,7 @@ Page {
         }
     }
 
-    function defineFormatOptions() {
+    function _defineFormatOptions() {
         var formatOptions = _channelsModel.streamsFormats();
         var selectedFormat = _settings.streamFormat();
         for (var i = 0; i < formatOptions.length; ++i) {
@@ -94,25 +94,25 @@ Page {
         }
     }
 
-    function defineLeftHanded() {
+    function _defineLeftHanded() {
         leftHandedTextSwitch.checked = _settings.leftHanded()
     }
 
-    function saveOptions() {
+    function _saveOptions() {
         _settings.saveStreamQuality(qualityComboBox.value);
         _settings.saveStreamFormat(formatComboBox.value);
         _settings.saveLeftHanded(leftHandedTextSwitch.checked);
     }
 
     Component.onCompleted: {
-        defineQualityOptions()
-        defineFormatOptions()
-        defineLeftHanded()
+        _defineQualityOptions()
+        _defineFormatOptions()
+        _defineLeftHanded()
     }
 
     onStatusChanged: {
         if (status === PageStatus.Deactivating) {
-            saveOptions()
+            _saveOptions()
         }
     }
 }

@@ -46,26 +46,26 @@ Item {
                 icon.height: Theme.iconSizeLarge
                 icon.asynchronous: true
                 icon.source: somaTheme.getIconSource("refresh", "large")
-                onClicked: fetch()
+                onClicked: _fetch()
             }
         }
     }
 
     Connections {
         id: connections
-        onDataParsed: changeState("complete")
-        onFetchStarted: changeState("fetching")
-        onNetworkError: displayError("Network error", networkErrorText)
-        onParsingError: displayError("Parsing error", parsingErrorText)
-        onDownloadProgress: updateProgress(bytesReceived, bytesTotal)
+        onDataParsed: _changeState("complete")
+        onFetchStarted: _changeState("fetching")
+        onNetworkError: _displayError("Network error", networkErrorText)
+        onParsingError: _displayError("Parsing error", parsingErrorText)
+        onDownloadProgress: _updateProgress(bytesReceived, bytesTotal)
     }
 
-    function fetch() {
+    function _fetch() {
         progressIndicator.indeterminate = true
         model.fetch()
     }
 
-    function updateProgress(bytesReceived, bytesTotal) {
+    function _updateProgress(bytesReceived, bytesTotal) {
         if (bytesTotal === -1) {
             progressIndicator.indeterminate = true
         } else {
@@ -74,13 +74,13 @@ Item {
         }
     }
 
-    function displayError(text, hintText) {
-        changeState("error")
+    function _displayError(text, hintText) {
+        _changeState("error")
         errorLoader.item.text = text
         errorLoader.item.hintText = hintText
     }
 
-    function changeState(newState) {
+    function _changeState(newState) {
         if (stopped) return
         state = newState
     }
