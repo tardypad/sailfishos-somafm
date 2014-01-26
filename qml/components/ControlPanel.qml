@@ -184,7 +184,7 @@ DockedPanel {
             _reinitProgressIndicator()
             state = "pause"
         }
-        onNetworkError: showMessage("a network error occured")
+        onNetworkError: showInfo("a network error occured")
     }
 
     Connections {
@@ -192,27 +192,32 @@ DockedPanel {
         onBookmarkAdded: {
             if (_isCurrentSong(xmlItem)) {
                 isSongBookmark = true
-                showMessage("song added to bookmarks")
+                showInfo("song added to bookmarks")
             }
         }
         onBookmarkRemoved: {
             if (_isCurrentSong(xmlItem)) {
                 isSongBookmark = false
-                showMessage("song removed from bookmarks")
+                showInfo("song removed from bookmarks")
             }
         }
         onAllBookmarksRemoved: {
             if (isSongBookmark) {
                 isSongBookmark = false
-                showMessage("song removed from bookmarks")
+                showInfo("song removed from bookmarks")
             }
         }
         onAllChannelBookmarksRemoved: {
             if (isSongBookmark && channelId === controlPanel.channelId) {
                 isSongBookmark = false
-                showMessage("song removed from bookmarks")
+                showInfo("song removed from bookmarks")
             }
         }
+    }
+
+    function showInfo(text) {
+        if (open)
+            showMessage(text)
     }
 
     function _reinitProgressIndicator() {
