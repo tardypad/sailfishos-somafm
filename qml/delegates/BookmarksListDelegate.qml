@@ -59,10 +59,10 @@ ListItem {
     onPressAndHold: songPanel.hide()
 
     onClicked: {
-        if (songPanel.open && songPanel.index === index) {
+        if (songPanel.open && songPanel.isBookmarkDisplayed(artist, title)) {
             songPanel.hide()
         } else {
-            songPanel.showBookmark(index, artist, title, album, bookmarkDate)
+            songPanel.showBookmark(artist, title, album, bookmarkDate)
         }
     }
 

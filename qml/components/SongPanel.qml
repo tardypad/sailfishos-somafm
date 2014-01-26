@@ -4,8 +4,6 @@ import Sailfish.Silica 1.0
 DockedPanel {
     id: songPanel
 
-    property int index
-
     property alias _title: titleLabel.text
     property alias _artist: artistLabel.text
     property alias _album: albumLabel.text
@@ -124,13 +122,16 @@ DockedPanel {
         }
     }
 
-    function showBookmark(index, artist, title, album, date) {
+    function showBookmark(artist, title, album, date) {
         opacity = 1
-        songPanel.index = index
         _title = title
         _artist = artist
         _album = album
         _date = Qt.formatDateTime(date, 'ddd dd MMM, hh:mm')
         show()
+    }
+
+    function isBookmarkDisplayed(artist, title) {
+        return _artist === artist && _title === title
     }
 }
