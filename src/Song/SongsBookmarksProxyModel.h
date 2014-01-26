@@ -19,6 +19,7 @@ public:
     Q_INVOKABLE bool removeAllChannelBookmarks(QString channelId);
 
 signals:
+    void allChannelBookmarksRemoved(QString channelId);
     void firstChannelBookmark(QString channelId);
 
 protected slots:

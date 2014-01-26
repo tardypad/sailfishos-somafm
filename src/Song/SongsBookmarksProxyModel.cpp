@@ -20,6 +20,7 @@ void SongsBookmarksProxyModel::init()
 {
     XmlItemProxyBookmarkManager::init();
     connect(songBookmarksManagerSourceModel(), SIGNAL(firstChannelBookmark(QString)), this, SIGNAL(firstChannelBookmark(QString)));
+    connect(songBookmarksManagerSourceModel(), SIGNAL(allChannelBookmarksRemoved(QString)), this, SIGNAL(allChannelBookmarksRemoved(QString)));
 }
 
 bool SongsBookmarksProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const

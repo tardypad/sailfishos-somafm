@@ -20,6 +20,7 @@ public:
 signals:
     void bookmarkAdded(XmlItem* xmlItem);
     void bookmarkRemoved(XmlItem* xmlItem);
+    void allBookmarksRemoved();
 
 protected slots:
     virtual void init();

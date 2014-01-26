@@ -201,6 +201,18 @@ DockedPanel {
                 showMessage("song removed from bookmarks")
             }
         }
+        onAllBookmarksRemoved: {
+            if (isSongBookmark) {
+                isSongBookmark = false
+                showMessage("song removed from bookmarks")
+            }
+        }
+        onAllChannelBookmarksRemoved: {
+            if (isSongBookmark && channelId === controlPanel.channelId) {
+                isSongBookmark = false
+                showMessage("song removed from bookmarks")
+            }
+        }
     }
 
     function _reinitProgressIndicator() {

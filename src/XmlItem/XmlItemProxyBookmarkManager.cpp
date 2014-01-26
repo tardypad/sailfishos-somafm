@@ -20,6 +20,7 @@ void XmlItemProxyBookmarkManager::init()
 {
     connect(xmlItemBookmarkSourceModel(), SIGNAL(bookmarkAdded(XmlItem*)), this, SIGNAL(bookmarkAdded(XmlItem*)));
     connect(xmlItemBookmarkSourceModel(), SIGNAL(bookmarkRemoved(XmlItem*)), this, SIGNAL(bookmarkRemoved(XmlItem*)));
+    connect(xmlItemBookmarkSourceModel(), SIGNAL(allBookmarksRemoved()), this, SIGNAL(allBookmarksRemoved()));
 }
 
 bool XmlItemProxyBookmarkManager::isBookmark(XmlItem *xmlItem)
