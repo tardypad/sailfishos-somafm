@@ -17,11 +17,11 @@ DockedPanel {
     width: parent.width
     height: _hasAlbum ? _minHeight + albumLabel.height + Theme.paddingMedium : _minHeight
     dock: Dock.Bottom
-    opacity: controlPanel.moving && !open ? 0 : 1
+    opacity: 0
 
     MouseArea {
         anchors.fill: parent
-        onClicked: songPanel.hide()
+        onClicked: hide()
     }
 
     Rectangle {
@@ -115,7 +115,17 @@ DockedPanel {
         }
     }
 
+    Connections {
+        target: songPanel
+        onMovingChanged: {
+            if (!moving && !open) {
+                opacity = 0
+            }
+        }
+    }
+
     function showBookmark(index, artist, title, album, date) {
+        opacity = 1
         songPanel.index = index
         _title = title
         _artist = artist
