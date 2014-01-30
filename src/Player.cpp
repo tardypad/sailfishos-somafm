@@ -2,7 +2,6 @@
 
 #include <QDebug>
 #include <QtMultimedia/QMediaPlaylist>
-#include <QtMultimedia/QMediaPlayer>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
@@ -20,8 +19,12 @@ Player::Player(QObject *parent) :
 {
     m_playlist = new QMediaPlaylist(this);
     m_playlist->setPlaybackMode(QMediaPlaylist::Sequential);
-    m_player = new QMediaPlayer(this);
+    m_player = new QMediaPlayer(this, QMediaPlayer::StreamPlayback);
     m_player->setPlaylist(m_playlist);
+
+    connect(m_player, SIGNAL(error(QMediaPlayer::Error)), this, SLOT(manageError(QMediaPlayer::Error)));
+    connect(m_player, SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)), this, SLOT(changeMediaStatus(QMediaPlayer::MediaStatus)));
+    connect(m_player, SIGNAL(stateChanged(QMediaPlayer::State)), this, SLOT(changeState(QMediaPlayer::State)));
 
     connect(this, SIGNAL(channelChanged()), this, SLOT(chosePls()));
     connect(this, SIGNAL(plsChanged()), this, SLOT(fetchPls()));
@@ -63,15 +66,11 @@ void Player::play()
     }
 
     m_player->play();
-    setIsPlaying(true);
-    emit playStarted();
 }
 
 void Player::pause()
 {
     m_player->pause();
-    setIsPlaying(false);
-    emit pauseStarted();
 }
 
 bool Player::isPlaying(QString id)
@@ -210,7 +209,7 @@ void Player::fetchPls()
 void Player::fillPlaylist(QNetworkReply *plsReply)
 {
     if (plsReply->error() != QNetworkReply::NoError) {
-        emit networkError();
+        emit playlistError("network");
         plsReply->deleteLater();
         disconnect(this, SIGNAL(playlistFilled()), this, SLOT(play()));
         return;
@@ -258,5 +257,69 @@ void Player::updateCurrentSong()
         m_currentSong->setData(artist, Song::ArtistRole);
         m_currentSong->setData(title, Song::TitleRole);
         emit songChanged();
+    }
+}
+
+void Player::manageError(QMediaPlayer::Error error)
+{
+    QString errorText;
+
+    switch (error) {
+    case QMediaPlayer::NoError:
+        return;
+    case QMediaPlayer::ResourceError:
+        errorText = "resource";
+        break;
+    case QMediaPlayer::FormatError:
+        errorText = "format";
+        break;
+    case QMediaPlayer::NetworkError:
+        errorText = "network";
+        break;
+    case QMediaPlayer::AccessDeniedError:
+        errorText = "access denied";
+        break;
+    case QMediaPlayer::ServiceMissingError:
+        errorText = "service missing";
+        break;
+    default:
+        errorText = "unknown";
+    }
+
+    emit mediaError(errorText);
+}
+
+void Player::changeMediaStatus(QMediaPlayer::MediaStatus status)
+{
+    switch (status) {
+    case QMediaPlayer::UnknownMediaStatus:
+    case QMediaPlayer::InvalidMedia:
+    case QMediaPlayer::EndOfMedia:
+    case QMediaPlayer::NoMedia:
+        return;
+    case QMediaPlayer::LoadingMedia:
+    case QMediaPlayer::StalledMedia:
+    case QMediaPlayer::BufferingMedia:
+        emit mediaLoading();
+        break;
+    case QMediaPlayer::LoadedMedia:
+    case QMediaPlayer::BufferedMedia:
+        emit mediaLoaded();
+        break;
+    }
+}
+
+void Player::changeState(QMediaPlayer::State state)
+{
+    switch (state) {
+    case QMediaPlayer::PlayingState:
+        setIsPlaying(true);
+        emit playStarted();
+        break;
+    case QMediaPlayer::PausedState:
+    case QMediaPlayer::StoppedState:
+        setIsPlaying(false);
+        emit pauseStarted();
+        break;
     }
 }

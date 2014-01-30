@@ -3,10 +3,11 @@
 
 #include <QObject>
 #include <QUrl>
+#include <QtMultimedia/QMediaPlayer>
+
 #include "Channel/Channel.h"
 
 class QMediaPlaylist;
-class QMediaPlayer;
 class QNetworkReply;
 class RefreshModel;
 class Song;
@@ -62,16 +63,22 @@ protected slots:
     void fetchPls();
     void fillPlaylist(QNetworkReply* plsReply);
     void updateCurrentSong();
+    void manageError(QMediaPlayer::Error error);
+    void changeMediaStatus(QMediaPlayer::MediaStatus status);
+    void changeState(QMediaPlayer::State state);
 
 signals:
     void channelChanged();
     void plsChanged();
     void playlistFilled();
-    void networkError();
     void playCalled();
     void playStarted();
     void pauseStarted();
     void songChanged();
+    void playlistError(QString error);
+    void mediaError(QString error);
+    void mediaLoaded();
+    void mediaLoading();
 
 private:
     Channel* m_channel;

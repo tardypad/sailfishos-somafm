@@ -184,7 +184,16 @@ DockedPanel {
             _reinitProgressIndicator()
             state = "pause"
         }
-        onNetworkError: showInfo("a network error occured")
+        onMediaLoading: {
+            if (state === "playing")
+                progressTimer.stop()
+        }
+        onMediaLoaded: {
+            if (state === "playing")
+                progressTimer.start()
+        }
+        onPlaylistError: showErrorInfo("playlist", error)
+        onMediaError: showErrorInfo("media", error)
     }
 
     Connections {
@@ -213,6 +222,10 @@ DockedPanel {
                 showInfo("song removed from bookmarks")
             }
         }
+    }
+
+    function showErrorInfo(type, error) {
+        showInfo("a "+type+" error occured: "+error+" error")
     }
 
     function showInfo(text) {
