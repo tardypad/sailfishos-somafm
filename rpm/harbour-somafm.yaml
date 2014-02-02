@@ -3,7 +3,7 @@ Summary: SomaFM Application
 Version: 0.2
 Release: 1
 Group: Applications/Multimedia
-License: GPLv3
+License: MIT
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: "An application to fully enjoy SomaFM"
