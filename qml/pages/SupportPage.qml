@@ -30,6 +30,8 @@ import "../utils"
 import "../delegates"
 import "../components"
 
+import "../scripts/ExternalLinks.js" as ExternalLinks
+
 Page {
 
     SilicaGridView {
@@ -56,6 +58,10 @@ Page {
             headerItem.displayBanner()
             model = _supportModel
             footer = Qt.createComponent("../components/SupportPageFooter.qml")
+        }
+
+        function _browse(link) {
+            ExternalLinks.browse(link)
         }
     }
 

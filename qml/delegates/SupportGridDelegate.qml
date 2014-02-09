@@ -26,8 +26,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import "../scripts/ExternalLinks.js" as ExternalLinks
-
 BackgroundItem {
     width: gridView.cellWidth
     height: gridView.cellHeight
@@ -51,5 +49,5 @@ BackgroundItem {
         maximumLineCount: 3
     }
 
-    onClicked: ExternalLinks.browse(location)
+    onClicked: gridView._browse(location)
 }

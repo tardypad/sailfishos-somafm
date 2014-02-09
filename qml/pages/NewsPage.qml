@@ -30,6 +30,8 @@ import "../utils"
 import "../delegates"
 import "../components"
 
+import "../scripts/ExternalLinks.js" as ExternalLinks
+
 Page {
 
     SilicaListView {
@@ -60,6 +62,11 @@ Page {
             headerItem.displayBanner()
             model = _newsModel
             footer = Qt.createComponent("../components/NewsPageFooter.qml")
+        }
+
+        function _browse(link) {
+            var url = /^https?:\/\//i.test(link) ? link : somaTheme.websiteUrl + link
+            ExternalLinks.browse(url)
         }
     }
 
