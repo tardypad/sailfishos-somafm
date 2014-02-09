@@ -62,24 +62,8 @@ Item {
             anchors.centerIn: parent
         }
 
-        onPressAndHold: gridView.showContextMenu(itemcontainer)
+        onPressAndHold: gridView._showContextMenu(itemcontainer)
 
-        onClicked: _goToChannelPage()
-    }
-
-    function _goToChannelPage() {
-        pageStack.push(Qt.resolvedUrl("../pages/ChannelPage.qml"), {"id": id})
-    }
-
-    function play() {
-        _player.play(gridView.model.itemAt(index))
-    }
-
-    function pause() {
-        _player.pause()
-    }
-
-    function removeFavorite() {
-        _favoritesManager.removeFavorite(gridView.model.itemAt(index))
+        onClicked: gridView._goToChannelPage(id)
     }
 }

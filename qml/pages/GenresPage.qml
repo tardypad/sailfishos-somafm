@@ -32,6 +32,9 @@ import "../delegates"
 Page {
     SilicaListView {
         id: listView
+
+        property alias contextMenu: contextMenu
+
         anchors.fill: parent
         header: IconPageHeader {
             title: "Genres"
@@ -68,6 +71,59 @@ Page {
             defaultErrorText: "Can't display channels list"
             networkErrorText: "Can't download channels list"
             parsingErrorText: "Can't extract channels from list"
+        }
+
+        Component {
+            id: contextMenu
+            ContextMenu {
+                property int index: parent ? parent.idx : -1
+                property bool isFavorite
+                property bool isPlaying
+
+                IconMenuItem {
+                    iconSource: !isPlaying ? "play" : "pause"
+                    text: !isPlaying ? "Play" : "Pause"
+                    onClicked: {
+                        if (!isPlaying) {
+                            listView._play(index)
+                        } else {
+                            listView._pause()
+                        }
+                    }
+                }
+
+                IconMenuItem {
+                    iconSource: !isFavorite ? "favorite" : "unfavorite"
+                    text: !isFavorite ? "Add to favorites" : "Remove from favorites"
+                    onClicked: {
+                        if (!isFavorite) {
+                            listView._addFavorite(index)
+                        } else {
+                            listView._removeFavorite(index)
+                        }
+                    }
+                }
+            }
+        }
+
+        function _goToChannelPage(id) {
+            pageStack.push(Qt.resolvedUrl("../pages/ChannelPage.qml"), {"id": id})
+        }
+
+        function _play(index) {
+            _player.play(listView.model.itemAt(index))
+        }
+
+        function _pause() {
+            _player.pause()
+        }
+
+        function _addFavorite(index) {
+            _favoritesManager.addFavorite(listView.model.itemAt(index))
+        }
+
+        function _removeFavorite(index) {
+            _favoritesManager.removeFavorite(listView.model.itemAt(index))
         }
 
         VerticalScrollDecorator { flickable: listView }

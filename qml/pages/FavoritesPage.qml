@@ -63,7 +63,7 @@ Page {
             }
         }
 
-        function showContextMenu(item) {
+        function _showContextMenu(item) {
             if (!contextMenu)
                 contextMenu = actionsComponent.createObject(gridView)
             contextMenu.isPlaying = _player.isPlaying(item.channelId)
@@ -76,6 +76,7 @@ Page {
                 id: gridContextMenu
 
                 property bool isPlaying
+                property int index: parent ? parent.idx : -1
 
                 width: gridView.width
 
@@ -84,9 +85,9 @@ Page {
                     text: !isPlaying ? "Play" : "Pause"
                     onClicked: {
                         if (!isPlaying) {
-                            gridContextMenu.parent.play()
+                            gridView._play(index)
                         } else {
-                            gridContextMenu.parent.pause()
+                            gridView._pause()
                         }
                     }
                 }
@@ -94,7 +95,7 @@ Page {
                 IconMenuItem {
                     iconSource: "unfavorite"
                     text: "Remove from favorites"
-                    onClicked: gridContextMenu.parent.removeFavorite()
+                    onClicked: gridView._removeFavorite(index)
                 }
             }
         }
@@ -116,6 +117,22 @@ Page {
         }
 
         VerticalScrollDecorator { flickable: gridView }
+
+        function _goToChannelPage(id) {
+            pageStack.push(Qt.resolvedUrl("../pages/ChannelPage.qml"), {"id": id})
+        }
+
+        function _play(index) {
+            _player.play(gridView.model.itemAt(index))
+        }
+
+        function _pause() {
+            _player.pause()
+        }
+
+        function _removeFavorite(index) {
+            _favoritesManager.removeFavorite(gridView.model.itemAt(index))
+        }
     }
 
     Component.onCompleted: {

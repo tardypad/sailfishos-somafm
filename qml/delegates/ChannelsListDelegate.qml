@@ -30,7 +30,9 @@ import "../utils"
 import "../components"
 
 ListItem {
-    menu: contextMenu
+    property int idx: index
+
+    menu: listView.contextMenu
     showMenuOnPressAndHold: false // don't use the default showMenu() without properties
     contentHeight: Theme.itemSizeLarge
     width: listView.width
@@ -97,57 +99,5 @@ ListItem {
                  })
     }
 
-    onClicked: _goToChannelPage()
-
-    function _goToChannelPage() {
-        pageStack.push(Qt.resolvedUrl("../pages/ChannelPage.qml"), {"id": id})
-    }
-
-    function _play() {
-        _player.play(listView.model.itemAt(index))
-    }
-
-    function _pause() {
-        _player.pause()
-    }
-
-    function _addFavorite() {
-        _favoritesManager.addFavorite(listView.model.itemAt(index))
-    }
-
-    function _removeFavorite() {
-        _favoritesManager.removeFavorite(listView.model.itemAt(index))
-    }
-
-    Component {
-        id: contextMenu
-        ContextMenu {
-            property bool isFavorite
-            property bool isPlaying
-
-            IconMenuItem {
-                iconSource: !isPlaying ? "play" : "pause"
-                text: !isPlaying ? "Play" : "Pause"
-                onClicked: {
-                    if (!isPlaying) {
-                        _play()
-                    } else {
-                        _pause()
-                    }
-                }
-            }
-
-            IconMenuItem {
-                iconSource: !isFavorite ? "favorite" : "unfavorite"
-                text: !isFavorite ? "Add to favorites" : "Remove from favorites"
-                onClicked: {
-                    if (!isFavorite) {
-                        _addFavorite()
-                    } else {
-                        _removeFavorite()
-                    }
-                }
-            }
-        }
-    }
+    onClicked: listView._goToChannelPage(id)
 }
