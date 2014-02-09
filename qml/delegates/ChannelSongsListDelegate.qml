@@ -32,9 +32,9 @@ ListItem {
     property int idx: index
     property string artist_d: artist
     property string title_d: title
+    property bool isBookmark_d: isBookmark
 
     menu: listView.contextMenu
-    showMenuOnPressAndHold: false // don't use the default showMenu() without properties
     width: listView.width
 
     Rectangle {
@@ -110,8 +110,6 @@ ListItem {
         fillMode: Image.PreserveAspectFit
         visible: isBookmark
     }
-
-    onPressAndHold: showMenu({"isBookmark": isBookmark})
 
     onClicked: {
         if (isCurrent)

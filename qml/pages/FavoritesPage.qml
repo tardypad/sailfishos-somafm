@@ -66,17 +66,15 @@ Page {
         function _showContextMenu(item) {
             if (!contextMenu)
                 contextMenu = actionsComponent.createObject(gridView)
-            contextMenu.isPlaying = _player.isPlaying(item.channelId)
             contextMenu.show(item)
         }
 
         Component {
             id: actionsComponent
             ContextMenu {
-                id: gridContextMenu
-
-                property bool isPlaying
-                property int index: parent ? parent.idx : -1
+                property Item delegate: parent
+                property int index: delegate ? delegate.idx : -1
+                property bool isPlaying: delegate ? _player.isPlaying(delegate.channelId) : false
 
                 width: gridView.width
 

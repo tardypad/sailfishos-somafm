@@ -31,9 +31,10 @@ import "../components"
 
 ListItem {
     property int idx: index
+    property bool isFavorite: isBookmark
+    property string channelId: id
 
     menu: listView.contextMenu
-    showMenuOnPressAndHold: false // don't use the default showMenu() without properties
     contentHeight: Theme.itemSizeLarge
     width: listView.width
 
@@ -90,13 +91,6 @@ ListItem {
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         truncationMode: TruncationMode.Fade
         maximumLineCount: 2
-    }
-
-    onPressAndHold: {
-        showMenu({
-                     "isFavorite": isBookmark,
-                     "isPlaying" : _player.isPlaying(id)
-                 })
     }
 
     onClicked: listView._goToChannelPage(id)

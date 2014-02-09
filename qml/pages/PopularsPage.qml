@@ -70,9 +70,10 @@ Page {
         Component {
             id: contextMenu
             ContextMenu {
-                property int index: parent ? parent.idx : -1
-                property bool isFavorite
-                property bool isPlaying
+                property Item delegate: parent
+                property int index: delegate ? delegate.idx : -1
+                property bool isFavorite: delegate ? delegate.isFavorite : false
+                property bool isPlaying: delegate ? _player.isPlaying(delegate.channelId) : false
 
                 IconMenuItem {
                     iconSource: !isPlaying ? "play" : "pause"

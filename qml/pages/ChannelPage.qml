@@ -109,7 +109,7 @@ Page {
             ContextMenu {
                 property Item delegate: parent
                 property int index: delegate ? delegate.idx : -1
-                property bool isBookmark
+                property bool isBookmark: delegate ? delegate.isBookmark_d : false
                 property string artist: delegate ? delegate.artist_d : ""
                 property string title: delegate ? delegate.title_d : ""
 
