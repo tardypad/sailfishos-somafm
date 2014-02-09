@@ -28,10 +28,12 @@ import Sailfish.Silica 1.0
 
 import "../utils"
 
-import "../scripts/ExternalLinks.js" as ExternalLinks
-
 ListItem {
-    menu: contextMenu
+    property int idx: index
+    property string artist_d: artist
+    property string title_d: title
+
+    menu: listView.contextMenu
     showMenuOnPressAndHold: false // don't use the default showMenu() without properties
     width: listView.width
 
@@ -114,41 +116,5 @@ ListItem {
     onClicked: {
         if (isCurrent)
             channelPage.play()
-    }
-
-    function _addBookmark() {
-        _bookmarksManager.addBookmark(listView.model.itemAt(index))
-    }
-
-    function _removeBookmark() {
-        _bookmarksManager.removeBookmark(listView.model.itemAt(index))
-    }
-
-    function _searchGoogle() {
-        ExternalLinks.searchGoogle([artist, title])
-    }
-
-    Component {
-        id: contextMenu
-        ContextMenu {
-            property bool isBookmark
-
-            IconMenuItem {
-                iconSource: !isBookmark ? "bookmark" : "unbookmark"
-                text: !isBookmark ? "Add to bookmarks" : "Remove from bookmarks"
-                onClicked: {
-                    if (!isBookmark) {
-                        _addBookmark()
-                    } else {
-                        _removeBookmark()
-                    }
-                }
-            }
-            IconMenuItem {
-                iconSource: "google"
-                text: "Search on Google"
-                onClicked: _searchGoogle()
-            }
-        }
     }
 }

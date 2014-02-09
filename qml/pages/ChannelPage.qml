@@ -30,6 +30,8 @@ import "../utils"
 import "../delegates"
 import "../components"
 
+import "../scripts/ExternalLinks.js" as ExternalLinks
+
 Page {
     id: channelPage
     objectName: "ChannelPage"
@@ -49,6 +51,9 @@ Page {
 
     SilicaListView {
         id: listView
+
+        property alias contextMenu: contextMenu
+
         anchors.fill: parent
         header: ChannelPageHeader { }
         model: _channelSongsModel
@@ -97,6 +102,42 @@ Page {
             defaultErrorText: "Can't display songs list"
             networkErrorText: "Can't download songs list"
             parsingErrorText: "Can't extract songs from list"
+        }
+
+        Component {
+            id: contextMenu
+            ContextMenu {
+                property Item delegate: parent
+                property int index: delegate ? delegate.idx : -1
+                property bool isBookmark
+                property string artist: delegate ? delegate.artist_d : ""
+                property string title: delegate ? delegate.title_d : ""
+
+                IconMenuItem {
+                    iconSource: !isBookmark ? "bookmark" : "unbookmark"
+                    text: !isBookmark ? "Add to bookmarks" : "Remove from bookmarks"
+                    onClicked: {
+                        if (!isBookmark) {
+                            listView._addBookmark(index)
+                        } else {
+                            listView._removeBookmark(index)
+                        }
+                    }
+                }
+                IconMenuItem {
+                    iconSource: "google"
+                    text: "Search on Google"
+                    onClicked: ExternalLinks.searchGoogle([artist, title])
+                }
+            }
+        }
+
+        function _addBookmark(index) {
+            _bookmarksManager.addBookmark(listView.model.itemAt(index))
+        }
+
+        function _removeBookmark(index) {
+            _bookmarksManager.removeBookmark(listView.model.itemAt(index))
         }
 
         VerticalScrollDecorator { flickable: listView }
