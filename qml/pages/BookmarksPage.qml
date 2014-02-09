@@ -30,12 +30,15 @@ import "../utils"
 import "../delegates"
 import "../components"
 
+import "../scripts/ExternalLinks.js" as ExternalLinks
+
 Page {
     property Item _remorseItem
 
     SilicaListView {
         id: listView
 
+        property alias contextMenu: contextMenu
         property var channelsData
 
         anchors.fill: parent
@@ -65,6 +68,27 @@ Page {
             hintText: "You can bookmark a song you loved or want to check later"
         }
 
+        Component {
+            id: contextMenu
+            ContextMenu {
+                property Item delegate: parent
+                property int index: delegate ? delegate.idx : -1
+                property string artist: delegate ? delegate.artist_d : ""
+                property string title: delegate ? delegate.title_d : ""
+
+                IconMenuItem {
+                    iconSource: "unbookmark"
+                    text: "Remove from bookmarks"
+                    onClicked: delegate.remove()
+                }
+                IconMenuItem {
+                    iconSource: "google"
+                    text: "Search on Google"
+                    onClicked: ExternalLinks.searchGoogle([artist, title])
+                }
+            }
+        }
+
         Component.onCompleted: {
             _retrieveChannelsData();
             _bookmarksManager.clearFilter()
@@ -82,6 +106,10 @@ Page {
 
         function _addChannelData(channelId) {
             channelsData[channelId] = _bookmarksManager.channelData(channelId)
+        }
+
+        function _removeBookmark(index) {
+             _bookmarksManager.removeBookmark(listView.model.itemAt(index))
         }
 
         VerticalScrollDecorator { flickable: listView }

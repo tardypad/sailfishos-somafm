@@ -28,12 +28,14 @@ import Sailfish.Silica 1.0
 
 import "../utils"
 
-import "../scripts/ExternalLinks.js" as ExternalLinks
-
 ListItem {
     id: listItem
 
-    menu: contextMenu
+    property int idx: index
+    property string artist_d: artist
+    property string title_d: title
+
+    menu: listView.contextMenu
     contentHeight: Theme.itemSizeSmall
     width: listView.width
     enabled: listView.interactive || menuOpen
@@ -93,29 +95,9 @@ ListItem {
 
     ListView.onRemove: animateRemoval(listItem)
 
-    function _removeBookmark() {
+    function remove() {
         remorseAction("Removing bookmark", function() {
-            listView.model.removeBookmark(listView.model.itemAt(index))
-        })
-    }
-
-    function _searchGoogle() {
-        ExternalLinks.searchGoogle([artist, title])
-    }
-
-    Component {
-        id: contextMenu
-        ContextMenu {
-            IconMenuItem {
-                iconSource: "unbookmark"
-                text: "Remove from bookmarks"
-                onClicked: _removeBookmark()
-            }
-            IconMenuItem {
-                iconSource: "google"
-                text: "Search on Google"
-                onClicked: _searchGoogle()
-            }
-        }
+            listView._removeBookmark(index)
+        });
     }
 }
