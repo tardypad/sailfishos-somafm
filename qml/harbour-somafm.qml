@@ -23,7 +23,7 @@ ApplicationWindow
 
     Loader {
         id: messageLoader
-        anchors.bottom: controlPanel.top
+        anchors.bottom: parent.bottom
         visible: !controlPanel.isPushMenuActive
         onVisibleChanged: {
             if (!visible)
