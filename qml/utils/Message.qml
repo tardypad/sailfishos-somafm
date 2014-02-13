@@ -13,7 +13,7 @@ Rectangle {
 
     property bool _open: false
 
-    color: Theme.highlightColor
+    color: Theme.highlightBackgroundColor
     width: Screen.width
     height: messageLabel.implicitHeight + 2 * Theme.paddingMedium
     opacity: _open ? 1 : 0

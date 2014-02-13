@@ -18,7 +18,7 @@ ChannelsListDelegate {
             rightMargin: Theme.paddingSmall
             verticalCenter: listenerIcon.verticalCenter
         }
-        color: Theme.secondaryColor
+        color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
         font {
             pixelSize: Theme.fontSizeExtraSmall * 0.8;
             italic: true
@@ -29,13 +29,13 @@ ChannelsListDelegate {
         id: listenerIcon
         source: somaTheme.getIconSource("listener", "small")
         smooth: true
-        height: Theme.iconSizeSmall * 0.75
-        width: Theme.iconSizeSmall * 0.75
+        height: Theme.iconSizeSmall * 0.8
+        width: height
         anchors {
-            top: parent.top
+            top: column.top
             topMargin: Theme.paddingSmall
             right: parent.right
-            rightMargin: Theme.paddingSmall
+            rightMargin: Theme.paddingMedium
         }
         opacity: 0.1 + (listeners / maximumListeners) * 0.9
         fillMode: Image.PreserveAspectFit

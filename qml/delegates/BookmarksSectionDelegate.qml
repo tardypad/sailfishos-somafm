@@ -29,9 +29,6 @@ Item {
         source: listView.channelsData[section] ? listView.channelsData[section]["image_url"] : ""
         height: sectionHeader.height
         width: sectionHeader.height
-        anchors {
-            right: parent.right
-            rightMargin: Theme.paddingMedium
-        }
+        anchors.right: parent.right
     }
 }

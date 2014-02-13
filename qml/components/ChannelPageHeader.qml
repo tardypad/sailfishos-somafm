@@ -42,7 +42,6 @@ Item {
         anchors {
             left: parent.left
             top: header.bottom
-            leftMargin: Theme.paddingSmall
         }
     }
 
@@ -53,8 +52,8 @@ Item {
             left: channelImage.right
             right: parent.right
             top: header.bottom
-            rightMargin: Theme.paddingSmall
-            leftMargin: Theme.paddingSmall
+            rightMargin: Theme.paddingLarge
+            leftMargin: Theme.paddingMedium
         }
         font.pixelSize: Theme.fontSizeExtraSmall
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -68,7 +67,7 @@ Item {
         anchors {
             top: channelDescriptionLabel.bottom
             right: mailButton.left
-            rightMargin: Theme.paddingMedium
+            rightMargin: Theme.paddingSmall
         }
         color: Theme.highlightColor
         font {
@@ -88,7 +87,7 @@ Item {
         id: mailButton
         anchors {
             right: parent.right
-            rightMargin: Theme.paddingSmall
+            rightMargin: Theme.paddingLarge
             verticalCenter: channelDjLabel.verticalCenter
         }
         height: Theme.iconSizeSmall / 2

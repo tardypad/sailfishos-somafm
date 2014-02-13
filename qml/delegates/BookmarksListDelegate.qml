@@ -27,7 +27,7 @@ ListItem {
         text: Qt.formatDateTime(bookmarkDate, 'MMM dd')
         anchors {
             left: parent.left
-            leftMargin: Theme.paddingMedium
+            leftMargin: Theme.paddingLarge
             verticalCenter: parent.verticalCenter
         }
         color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
@@ -35,10 +35,13 @@ ListItem {
     }
 
     Column {
+        spacing: Theme.paddingSmall
         width: parent.width
         anchors {
             left: dateLabel.right
             leftMargin: Theme.paddingMedium
+            right: parent.right
+            rightMargin: Theme.paddingLarge
             verticalCenter: parent.verticalCenter
         }
 
@@ -47,7 +50,7 @@ ListItem {
             text: artist
             color: highlighted ? Theme.highlightColor : Theme.primaryColor
             font.pixelSize: Theme.fontSizeSmall
-            width: parent.width - dateLabel.width
+            width: parent.width
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             maximumLineCount: 1
             truncationMode: TruncationMode.Fade
@@ -58,7 +61,7 @@ ListItem {
             text: title
             color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
             font.pixelSize: Theme.fontSizeExtraSmall
-            width: parent.width - dateLabel.width
+            width: parent.width
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             maximumLineCount: 1
             truncationMode: TruncationMode.Fade

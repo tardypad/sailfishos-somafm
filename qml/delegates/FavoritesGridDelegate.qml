@@ -38,10 +38,10 @@ Item {
         ChannelImage {
             id: channelImage
             size: BusyIndicatorSize.Medium
-            width: gridView.cellWidth - Theme.paddingSmall*2
-            height: gridView.cellHeight - Theme.paddingSmall*2
+            width: gridView.cellWidth
+            height: gridView.cellHeight
             source: imageMediumUrl
-            anchors.centerIn: parent
+            anchors.fill: parent
         }
 
         onPressAndHold: gridView._showContextMenu(itemcontainer)

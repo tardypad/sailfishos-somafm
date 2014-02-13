@@ -62,9 +62,8 @@ Page {
                 Label {
                     id: codeLabel
                     width: parent.width
-                    text: "The source code is available under MIT license
+                    text: "The source code is available at
                           <br/><a href='https://github.com/tardypad/somafm'>https://github.com/tardypad/somafm</a>
-                          <br/>
                           <br/>You can contact me for any remarks,
                           <br/>bugs, feature requests, ideas,... "
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere

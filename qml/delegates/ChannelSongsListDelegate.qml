@@ -17,6 +17,7 @@ ListItem {
     property bool isBookmark_d: isBookmark
 
     menu: listView.contextMenu
+    contentHeight: Theme.itemSizeSmall
     width: listView.width
 
     Rectangle {
@@ -30,7 +31,7 @@ ListItem {
         text: Qt.formatDateTime(date, 'hh:mm')
         anchors {
             left: parent.left
-            leftMargin: Theme.paddingMedium
+            leftMargin: Theme.paddingLarge
             verticalCenter: parent.verticalCenter
         }
         color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
@@ -38,6 +39,7 @@ ListItem {
     }
 
     Column {
+        spacing: Theme.paddingSmall
         anchors {
             left: dateLabel.right
             leftMargin: Theme.paddingMedium
@@ -69,7 +71,7 @@ ListItem {
         id: playImage
         source: somaTheme.getIconSource("play", "small")
         height: Theme.iconSizeSmall
-        width: visible ? Theme.iconSizeSmall : 0
+        width: visible ? height : 0
         anchors {
             right: bookmarkImage.left
             rightMargin: Theme.paddingMedium
@@ -83,10 +85,10 @@ ListItem {
         id: bookmarkImage
         source: somaTheme.getIconSource("bookmark", "small")
         height: Theme.iconSizeSmall
-        width: visible ? Theme.iconSizeSmall : 0
+        width: visible ? height : 0
         anchors {
             right: parent.right
-            rightMargin: Theme.paddingMedium
+            rightMargin: Theme.paddingLarge
             verticalCenter: parent.verticalCenter
         }
         fillMode: Image.PreserveAspectFit

@@ -46,12 +46,11 @@ DockedPanel {
         ChannelImage {
             id: channelImage
             size: BusyIndicatorSize.Small
-            height: parent.height - Theme.paddingSmall*2
+            height: parent.height
             width: height
             anchors {
                 left: parent.left
-                leftMargin: Theme.paddingSmall
-                verticalCenter: parent.verticalCenter
+                top: parent.top
             }
         }
 

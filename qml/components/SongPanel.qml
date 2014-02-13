@@ -19,6 +19,9 @@ DockedPanel {
                             + 2*Theme.paddingLarge + 2*Theme.paddingMedium
     property bool _hasAlbum: _album !== ""
 
+    property int _headerWidth: 80
+    property int _textWidth: width - _headerWidth - Theme.paddingLarge
+
     width: parent.width
     height: _hasAlbum ? _minHeight + albumLabel.height + Theme.paddingMedium : _minHeight
     dock: Dock.Bottom
@@ -45,7 +48,7 @@ DockedPanel {
                 Label {
                     id: artistHeaderLabel
                     text: "Artist"
-                    width: 80
+                    width: _headerWidth
                     font {
                         italic: true
                         pixelSize: Theme.fontSizeExtraSmall
@@ -55,8 +58,10 @@ DockedPanel {
                 }
                 Label {
                     id: artistLabel
+                    width:_textWidth
                     font.pixelSize: Theme.fontSizeSmall
                     anchors.baseline: artistHeaderLabel.baseline
+                    truncationMode: TruncationMode.Fade
                 }
             }
             Row {
@@ -64,7 +69,7 @@ DockedPanel {
                 Label {
                     id: titleHeaderLabel
                     text: "Title"
-                    width: 80
+                    width: _headerWidth
                     font {
                         italic: true
                         pixelSize: Theme.fontSizeExtraSmall
@@ -74,8 +79,10 @@ DockedPanel {
                 }
                 Label {
                     id: titleLabel
+                    width:_textWidth
                     font.pixelSize: Theme.fontSizeSmall
                     anchors.baseline: titleHeaderLabel.baseline
+                    truncationMode: TruncationMode.Fade
                 }
             }
             Row {
@@ -84,7 +91,7 @@ DockedPanel {
                 Label {
                     id: albumHeaderLabel
                     text: "Album"
-                    width: 80
+                    width: _headerWidth
                     font {
                         italic: true
                         pixelSize: Theme.fontSizeExtraSmall
@@ -94,8 +101,10 @@ DockedPanel {
                 }
                 Label {
                     id: albumLabel
+                    width:_textWidth
                     font.pixelSize: Theme.fontSizeSmall
                     anchors.baseline: albumHeaderLabel.baseline
+                    truncationMode: TruncationMode.Fade
                 }
             }
             Row {
@@ -103,7 +112,7 @@ DockedPanel {
                 Label {
                     id: dateHeaderLabel
                     text: "Added"
-                    width: 80
+                    width: _headerWidth
                     font {
                         italic: true
                         pixelSize: Theme.fontSizeExtraSmall
@@ -113,8 +122,10 @@ DockedPanel {
                 }
                 Label {
                     id: dateLabel
+                    width:_textWidth
                     font.pixelSize: Theme.fontSizeSmall
                     anchors.baseline: dateHeaderLabel.baseline
+                    truncationMode: TruncationMode.Fade
                 }
             }
         }

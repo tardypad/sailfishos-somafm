@@ -85,7 +85,7 @@ Page {
                 text: "Listener-supported,\ncommercial-free,\nunderground/alternative\nradio"
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: Theme.fontSizeSmall
+                font.pixelSize: Theme.fontSizeMedium
                 anchors {
                     bottom: homeTextExtra.top
                     bottomMargin: Theme.paddingMedium
@@ -98,7 +98,7 @@ Page {
                 text: "broadcasting from San Francisco"
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: Theme.fontSizeExtraSmall
+                font.pixelSize: Theme.fontSizeSmall
                 anchors {
                     bottom: parent.bottom
                     bottomMargin: parent.height * 0.1
