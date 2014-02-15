@@ -21,6 +21,8 @@ Item {
     property string emptyText
     property string emptyHintText
 
+    signal completed
+
     parent: flickable.contentItem
 
     y: flickable.originY + (Screen.height - height) / 2
@@ -102,6 +104,9 @@ Item {
     function _changeState(newState) {
         if (stopped) return
         state = newState
+
+        if (state == "complete")
+            completed()
     }
 
     function complete() {

@@ -57,10 +57,7 @@ Page {
 
     Connections {
         target: indicator
-        onStateChanged: {
-            if (indicator.state === "complete")
-                listView._displayAdditionalElements()
-        }
+        onCompleted: listView._displayAdditionalElements()
     }
 
     Component.onCompleted: {

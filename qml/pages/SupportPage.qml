@@ -52,10 +52,7 @@ Page {
 
     Connections {
         target: indicator
-        onStateChanged: {
-            if (indicator.state === "complete")
-                gridView._displayAdditionalElements()
-        }
+        onCompleted: gridView._displayAdditionalElements()
     }
 
     Component.onCompleted: {
