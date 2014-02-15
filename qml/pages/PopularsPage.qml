@@ -47,6 +47,7 @@ Page {
             defaultErrorText: "Can't display channels list"
             networkErrorText: "Can't download channels list"
             parsingErrorText: "Can't extract channels from list"
+            emptyText: "No channel to display"
         }
 
         Component {
@@ -108,7 +109,9 @@ Page {
 
     Component.onCompleted: {
         if (!_channelsModel.hasDataBeenFetchedOnce())
-            _channelsModel.fetch();
+            _channelsModel.fetch()
+        else
+            indicator.complete()
     }
 
     onStatusChanged: {

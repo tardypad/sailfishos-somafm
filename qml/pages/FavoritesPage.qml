@@ -80,12 +80,6 @@ Page {
             }
         }
 
-        ViewPlaceholder {
-            enabled: gridView.count === 0 && indicator.state == "complete" &&_favoritesManager.isEmpty()
-            text: "No Favorites"
-            hintText: "You can favorite a channel to access it quicker"
-        }
-
         LoadingIndicator {
             id: indicator
             model: _channelsModel
@@ -94,6 +88,8 @@ Page {
             defaultErrorText: "Can't display channels list"
             networkErrorText: "Can't download channels list"
             parsingErrorText: "Can't extract channels from list"
+            emptyText: "No favorites"
+            emptyHintText: "You can favorite a channel to access it quicker"
         }
 
         VerticalScrollDecorator { flickable: gridView }
@@ -117,7 +113,9 @@ Page {
 
     Component.onCompleted: {
         if (!_channelsModel.hasDataBeenFetchedOnce())
-            _channelsModel.fetch();
+            _channelsModel.fetch()
+        else
+            indicator.complete()
     }
 
     onStatusChanged: {

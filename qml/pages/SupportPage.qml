@@ -32,11 +32,14 @@ Page {
             defaultErrorText: "Can't display support items"
             networkErrorText: "Can't download support items list"
             parsingErrorText: "Can't extract support items list"
+            emptyText: "No support items to display"
         }
 
         VerticalScrollDecorator { flickable: gridView }
 
         function _displayAdditionalElements() {
+            if (_supportModel.isEmpty()) return
+
             headerItem.displayBanner()
             model = _supportModel
             footer = Qt.createComponent("../components/SupportPageFooter.qml")
@@ -59,7 +62,7 @@ Page {
         if (!_supportModel.hasDataBeenFetchedOnce())
             _supportModel.fetch()
         else
-            gridView._displayAdditionalElements()
+            indicator.complete()
     }
 
     onStatusChanged: {

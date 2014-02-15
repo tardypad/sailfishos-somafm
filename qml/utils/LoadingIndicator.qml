@@ -18,6 +18,8 @@ Item {
     property string defaultErrorText
     property string networkErrorText
     property string parsingErrorText
+    property string emptyText
+    property string emptyHintText
 
     parent: flickable.contentItem
 
@@ -36,13 +38,13 @@ Item {
     }
 
     Loader {
-        id: errorLoader
+        id: placeholderLoader
+        parent: flickable
     }
 
     Component {
         id: errorComponent
         ViewPlaceholder {
-            enabled: true
             text: "An error occured"
             hintText: defaultErrorText
 
@@ -54,7 +56,17 @@ Item {
                 icon.asynchronous: true
                 icon.source: somaTheme.getIconSource("refresh", "large")
                 onClicked: _fetch()
+                z: 10
             }
+        }
+    }
+
+    Component {
+        id: emptyComponent
+        ViewPlaceholder {
+            enabled: flickable.count === 0 && model.isEmpty()
+            text: emptyText
+            hintText: emptyHintText
         }
     }
 
@@ -83,8 +95,8 @@ Item {
 
     function _displayError(text, hintText) {
         _changeState("error")
-        errorLoader.item.text = text
-        errorLoader.item.hintText = hintText
+        placeholderLoader.item.text = text
+        placeholderLoader.item.hintText = hintText
     }
 
     function _changeState(newState) {
@@ -92,53 +104,45 @@ Item {
         state = newState
     }
 
+    function complete() {
+        _changeState("complete")
+    }
+
     states: [
         State {
             name: "init"
-            PropertyChanges {
-                target: loadingIndicator
-                visible: false
-            }
+            PropertyChanges { target: loadingIndicator; visible: false }
         },
         State {
             name: "fetching"
-            PropertyChanges {
-                target: loadingIndicator
-                visible: true
-            }
+            PropertyChanges { target: loadingIndicator; visible: true }
             StateChangeScript {
                 script: {
-                    if (errorLoader.status === Loader.Ready)
-                        errorLoader.item.visible = false
+                    if (placeholderLoader.status === Loader.Ready)
+                        placeholderLoader.item.enabled = false
                 }
             }
         },
         State {
             name: "error"
-            PropertyChanges {
-                target: loadingIndicator
-                visible: false
-            }
+            PropertyChanges { target: loadingIndicator; visible: false }
             StateChangeScript {
                 script: {
-                    if (errorLoader.status === Loader.Null) {
-                        errorLoader.parent = flickable
-                        errorLoader.sourceComponent = errorComponent
-                    }
-                    errorLoader.item.visible = true
+                    placeholderLoader.sourceComponent = errorComponent
+                    placeholderLoader.item.enabled = true
                 }
             }
         },
         State {
             name: "complete"
-            PropertyChanges {
-                target: loadingIndicator
-                visible: false
-            }
+            PropertyChanges { target: loadingIndicator; visible: false }
             StateChangeScript {
                 script: {
-                    if (errorLoader.status === Loader.Ready)
-                        errorLoader.item.visible = false
+                    if (model.isEmpty()) {
+                        placeholderLoader.sourceComponent = emptyComponent
+                    } else if (placeholderLoader.status === Loader.Ready) {
+                        placeholderLoader.item.enabled = false
+                    }
                 }
             }
         }]

@@ -36,11 +36,14 @@ Page {
             defaultErrorText: "Can't display news"
             networkErrorText: "Can't download news"
             parsingErrorText: "Can't extract news"
+            emptyText: "No news to display"
         }
 
         VerticalScrollDecorator { flickable: listView }
 
         function _displayAdditionalElements() {
+            if (_newsModel.isEmpty()) return
+
             headerItem.displayBanner()
             model = _newsModel
             footer = Qt.createComponent("../components/NewsPageFooter.qml")
@@ -64,7 +67,7 @@ Page {
         if (!_newsModel.hasDataBeenFetchedOnce())
             _newsModel.fetch()
         else
-            listView._displayAdditionalElements()
+            indicator.complete()
         _newsModel.sortByDate();
     }
 

@@ -84,6 +84,7 @@ Page {
             defaultErrorText: "Can't display songs list"
             networkErrorText: "Can't download songs list"
             parsingErrorText: "Can't extract songs from list"
+            emptyText: "No song to display"
         }
 
         Component {
