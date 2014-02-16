@@ -20,6 +20,7 @@ Page {
         property int minOffsetIndex: contextMenu && contextMenu.parent
                                      ? contextMenu.parent.idx - (contextMenu.parent.idx % 2) + 2
                                      : 0
+        property bool contextMenuActive: contextMenu && contextMenu.active
 
         anchors.fill: parent
         cellWidth: parent.width / 2
@@ -29,6 +30,18 @@ Page {
             iconSource: "favorite"
         }
         delegate: FavoritesGridDelegate { }
+
+        // inspired from jolla-gallery
+        Rectangle {
+            property bool active: gridView.currentItem && gridView.currentItem.down && !gridView.contextMenuActive
+            width: gridView.cellWidth
+            height: gridView.cellHeight
+            color: Theme.highlightBackgroundColor
+            opacity: active ? 0.5 : 0
+            x: gridView.currentItem != null ? gridView.currentItem.x : 0
+            y: gridView.currentItem != null ? gridView.currentItem.y - gridView.contentY : 0
+            z: gridView.currentItem != null ? gridView.currentItem.z + 1 : 0
+        }
 
         PullDownMenu {
             IconMenuItem {

@@ -16,6 +16,7 @@ Item {
 
     property int idx: index
     property string channelId: id
+    property bool down: channelItem.pressed && channelItem.containsMouse
 
     property bool _hasContextMenu: gridView.contextMenu && gridView.contextMenu.parent === itemcontainer
 
@@ -23,6 +24,8 @@ Item {
     height: _hasContextMenu
             ? gridView.cellHeight + gridView.contextMenu.height
             : gridView.cellHeight
+
+    opacity: !_hasContextMenu && gridView.contextMenuActive ? 0.2 : 1
 
     BackgroundItem {
         id: channelItem
@@ -47,5 +50,7 @@ Item {
         onPressAndHold: gridView._showContextMenu(itemcontainer)
 
         onClicked: gridView._goToChannelPage(id)
+
+        onPressed: gridView.currentIndex = index
     }
 }
