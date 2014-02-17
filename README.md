@@ -13,9 +13,12 @@ Features
 - choose quality/format of streams
 - view recently played songs per channel
 - read last SomaFM news
+- search songs on Google
+- play and bookmark from the cover
 - support SomaFM
 
-See the issues tab for current issues and upcoming features
+See the issues tab for current issues and possibly upcoming features
+See the screenshots folder for an overview of the application
 
 Licenses
 --------
