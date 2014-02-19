@@ -79,24 +79,36 @@ Page {
         VerticalScrollDecorator { flickable: listView }
     }
 
-    function _defineQualityOptions() {
-        var qualityOptions = _channelsModel.streamsQualities();
-        var selectedQuality = _settings.streamQuality();
+    function _fillQualityOptions() {
+        var qualityOptions = _channelsModel.streamsQualities()
         for (var i = 0; i < qualityOptions.length; ++i) {
             qualityListModel.append({"text": qualityOptions[i]})
-            if (qualityOptions[i] === selectedQuality) {
+        }
+    }
+
+    function _fillFormatOptions() {
+        var formatOptions = _channelsModel.streamsFormats()
+        for (var i = 0; i < formatOptions.length; ++i) {
+            formatListModel.append({"text": formatOptions[i]})
+        }
+    }
+
+    function _defineSelectedQuality() {
+        var selectedQuality = _settings.streamQuality()
+        for (var i = 0; i < qualityListModel.count; ++i) {
+            if (qualityListModel.get(i).text === selectedQuality) {
                 qualityComboBox.currentIndex = i
+                return
             }
         }
     }
 
-    function _defineFormatOptions() {
-        var formatOptions = _channelsModel.streamsFormats();
-        var selectedFormat = _settings.streamFormat();
-        for (var i = 0; i < formatOptions.length; ++i) {
-            formatListModel.append({"text": formatOptions[i]})
-            if (formatOptions[i] === selectedFormat) {
+    function _defineSelectedFormat() {
+        var selectedFormat = _settings.streamFormat()
+        for (var i = 0; i < formatListModel.count; ++i) {
+            if (formatListModel.get(i).text === selectedFormat) {
                 formatComboBox.currentIndex = i
+                return
             }
         }
     }
@@ -106,15 +118,26 @@ Page {
     }
 
     function _saveOptions() {
-        _settings.saveStreamQuality(qualityComboBox.value);
-        _settings.saveStreamFormat(formatComboBox.value);
-        _settings.saveLeftHanded(leftHandedTextSwitch.checked);
+        _settings.saveStreamQuality(qualityComboBox.value)
+        _settings.saveStreamFormat(formatComboBox.value)
+        _settings.saveLeftHanded(leftHandedTextSwitch.checked)
     }
 
     Component.onCompleted: {
-        _defineQualityOptions()
-        _defineFormatOptions()
+        _fillQualityOptions()
+        _fillFormatOptions()
         _defineLeftHanded()
+        afterResetTimer.start()
+    }
+
+    // hack: on device, currentIndex needs to be set after ComboBox updateCurrentTimer
+    Timer {
+        id: afterResetTimer
+        interval: 1
+        onTriggered: {
+            _defineSelectedQuality()
+            _defineSelectedFormat()
+        }
     }
 
     onStatusChanged: {
