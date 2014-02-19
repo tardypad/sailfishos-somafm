@@ -1,12 +1,12 @@
 Name: harbour-somafm
 Summary: SomaFM Application
-Version: 0.2
+Version: 1.0.0
 Release: 1
 Group: Applications/Multimedia
 License: MIT
 Sources:
 - '%{name}-%{version}.tar.bz2'
-Description: "An application to fully enjoy SomaFM"
+Description: "Fully featured SomaFM client"
 URL: http://somafm.com
 Configure: none
 Builder: qtc5

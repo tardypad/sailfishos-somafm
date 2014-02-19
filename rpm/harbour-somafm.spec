@@ -17,7 +17,7 @@ Name:       harbour-somafm
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    SomaFM Application
-Version:    0.2
+Version:    1.0.0
 Release:    1
 Group:      Applications/Multimedia
 License:    MIT
@@ -34,7 +34,7 @@ BuildRequires:  pkgconfig(sailfishapp)
 BuildRequires:  desktop-file-utils
 
 %description
-An application to fully enjoy SomaFM
+Fully featured SomaFM client
 
 %prep
 %setup -q -n %{name}-%{version}

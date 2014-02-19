@@ -41,14 +41,14 @@ int main(int argc, char *argv[])
 
     QQmlContext* context = view->rootContext();
 
-    qmlRegisterUncreatableType<XmlItem>("my.library", 1, 0, "XmlItem", "");
-    qmlRegisterUncreatableType<Channel>("my.library", 1, 0, "Channel", "");
-    qmlRegisterUncreatableType<Song>("my.library", 1, 0, "Song", "");
+    qmlRegisterUncreatableType<XmlItem>("SomaFM", 1, 0, "XmlItem", "");
+    qmlRegisterUncreatableType<Channel>("SomaFM", 1, 0, "Channel", "");
+    qmlRegisterUncreatableType<Song>("SomaFM", 1, 0, "Song", "");
 
-    QCoreApplication::setOrganizationName("SomaFM.com");
-    QCoreApplication::setOrganizationDomain("somafm.com");
+    QCoreApplication::setOrganizationName("tardypad");
+    QCoreApplication::setOrganizationDomain("tardypad.me");
     QCoreApplication::setApplicationName("SomaFM");
-    QCoreApplication::setApplicationVersion("0.2");
+    QCoreApplication::setApplicationVersion("1.0.0");
 
     QScopedPointer<ChannelsModel> channelsModel(new ChannelsModel());
     QScopedPointer<ChannelsProxyModel> channelsProxyModel(new ChannelsProxyModel());
