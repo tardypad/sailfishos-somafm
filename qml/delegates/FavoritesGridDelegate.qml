@@ -53,4 +53,9 @@ Item {
 
         onPressed: gridView.currentIndex = index
     }
+
+    GridView.onRemove: RemoveAnimation {
+        target: itemcontainer
+        duration: 700
+    }
 }
