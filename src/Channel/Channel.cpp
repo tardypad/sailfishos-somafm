@@ -271,7 +271,7 @@ Channel::StreamQuality Channel::defaultStreamQuality()
 
 Channel::StreamFormat Channel::defaultStreamFormat()
 {
-    return AacFormat;
+    return Mp3Format;
 }
 
 QString Channel::defaultStreamQualityText()
