@@ -18,6 +18,7 @@ Features
 - support SomaFM
 
 See the issues tab for current issues and possibly upcoming features
+
 See the screenshots folder for an overview of the application
 
 Licenses
