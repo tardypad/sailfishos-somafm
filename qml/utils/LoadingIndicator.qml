@@ -113,6 +113,17 @@ Item {
         _changeState("complete")
     }
 
+    function forceEmptyPlaceHolder() {
+        placeholderLoader.sourceComponent = emptyComponent
+        placeholderLoader.item.enabled = true
+    }
+
+    function removePlaceholder() {
+        if (placeholderLoader.status === Loader.Ready) {
+            placeholderLoader.item.enabled = false
+        }
+    }
+
     states: [
         State {
             name: "init"
@@ -122,10 +133,7 @@ Item {
             name: "fetching"
             PropertyChanges { target: loadingIndicator; visible: true }
             StateChangeScript {
-                script: {
-                    if (placeholderLoader.status === Loader.Ready)
-                        placeholderLoader.item.enabled = false
-                }
+                script: removePlaceholder()
             }
         },
         State {
@@ -145,8 +153,8 @@ Item {
                 script: {
                     if (model.isEmpty()) {
                         placeholderLoader.sourceComponent = emptyComponent
-                    } else if (placeholderLoader.status === Loader.Ready) {
-                        placeholderLoader.item.enabled = false
+                    } else {
+                        removePlaceholder()
                     }
                 }
             }

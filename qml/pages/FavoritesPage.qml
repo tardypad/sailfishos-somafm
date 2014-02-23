@@ -122,13 +122,27 @@ Page {
         function _removeFavorite(index) {
             _favoritesManager.removeFavorite(gridView.model.itemAt(index))
         }
+
+        Connections {
+            target: _favoritesManager
+            onBookmarkAdded: indicator.removePlaceholder()
+            onBookmarkRemoved: {
+                if (_favoritesManager.isEmpty()) {
+                    indicator.forceEmptyPlaceHolder()
+                }
+            }
+        }
     }
 
     Component.onCompleted: {
         if (!_channelsModel.hasDataBeenFetchedOnce())
             _channelsModel.fetch()
-        else
+        else {
             indicator.complete()
+            if (_favoritesManager.isEmpty()) {
+                indicator.forceEmptyPlaceHolder()
+            }
+        }
     }
 
     onStatusChanged: {
