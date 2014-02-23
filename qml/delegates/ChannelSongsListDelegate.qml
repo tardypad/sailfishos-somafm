@@ -74,7 +74,7 @@ ListItem {
         width: visible ? height : 0
         anchors {
             right: bookmarkImage.left
-            rightMargin: Theme.paddingMedium
+            rightMargin: bookmarkImage.visible ? Theme.paddingMedium : 0
             verticalCenter: parent.verticalCenter
         }
         fillMode: Image.PreserveAspectFit
