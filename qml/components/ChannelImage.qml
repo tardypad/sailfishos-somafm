@@ -13,7 +13,7 @@ Image {
 
     property alias size: busyIndicator.size
 
-    smooth: size !== BusyIndicatorSize.Small
+    smooth: true
     fillMode: Image.PreserveAspectCrop
     clip: true
 
