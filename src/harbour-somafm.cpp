@@ -45,9 +45,6 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<Channel>("SomaFM", 1, 0, "Channel", "");
     qmlRegisterUncreatableType<Song>("SomaFM", 1, 0, "Song", "");
 
-    QCoreApplication::setOrganizationName("tardypad");
-    QCoreApplication::setOrganizationDomain("tardypad.me");
-    QCoreApplication::setApplicationName("SomaFM");
     QCoreApplication::setApplicationVersion("1.0.0");
 
     QScopedPointer<ChannelsModel> channelsModel(new ChannelsModel());

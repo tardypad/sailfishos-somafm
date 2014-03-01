@@ -48,7 +48,7 @@ bool XmlItemBookmarksDatabaseManager::openDatabase()
 
 QString XmlItemBookmarksDatabaseManager::createDatabase()
 {
-    QString dbDirPath = QStandardPaths::standardLocations(QStandardPaths::DataLocation).first();
+    QString dbDirPath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
     QDir dbDir;
     dbDir.mkpath(dbDirPath);
     QString dbPath = dbDirPath.append(QDir::separator()).append(_databaseName);
