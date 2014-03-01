@@ -91,18 +91,20 @@ Page {
                         horizontalAlignment: Text.AlignLeft
                     }
 
-                    IconButton {
+                    Image {
                         anchors {
                             right: parent.right
                             rightMargin: Theme.paddingMedium
                             verticalCenter: parent.verticalCenter
                         }
-                        icon {
-                            height: Theme.iconSizeMedium
-                            width: Theme.iconSizeMedium
-                            source: somaTheme.getIconSource("support", "medium")
-                            fillMode: Image.PreserveAspectFit
-                        }
+                        height: Theme.iconSizeMedium
+                        width: Theme.iconSizeMedium
+                        source: somaTheme.getIconSource("support", "medium")
+                        fillMode: Image.PreserveAspectFit
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
                         onClicked: pageStack.push(Qt.resolvedUrl("SupportPage.qml"))
                     }
                 }
