@@ -43,6 +43,7 @@ Page {
                     }
 
                     Label {
+                        id: topText
                         anchors {
                             top: banner.bottom
                             topMargin: Theme.paddingSmall
@@ -50,6 +51,17 @@ Page {
                         width: parent.width
                         text: "Fully enjoy SomaFM on your Jolla"
                         font.pixelSize: Theme.fontSizeSmall
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+
+                    Label {
+                        anchors {
+                            top: topText.bottom
+                            topMargin: Theme.paddingSmall
+                        }
+                        width: parent.width
+                        text: "version " + _appVersion
+                        font.pixelSize: Theme.fontSizeExtraSmall
                         horizontalAlignment: Text.AlignHCenter
                     }
                 }

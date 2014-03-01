@@ -1,5 +1,7 @@
 TARGET = harbour-somafm
 
+VERSION = 1.0.0
+
 CONFIG += sailfishapp
 
 SOURCES += \
@@ -47,3 +49,5 @@ images.files = \
 images.path = /usr/share/$${TARGET}/images
 
 INSTALLS += images
+
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"

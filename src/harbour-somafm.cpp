@@ -45,7 +45,8 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<Channel>("SomaFM", 1, 0, "Channel", "");
     qmlRegisterUncreatableType<Song>("SomaFM", 1, 0, "Song", "");
 
-    QCoreApplication::setApplicationVersion("1.0.0");
+    QCoreApplication::setApplicationVersion(APP_VERSION);
+    context->setContextProperty("_appVersion", APP_VERSION);
 
     QScopedPointer<ChannelsModel> channelsModel(new ChannelsModel());
     QScopedPointer<ChannelsProxyModel> channelsProxyModel(new ChannelsProxyModel());
