@@ -48,6 +48,7 @@ void XmlItemModel::launchDownload()
     m_currentReply = NULL;
 
     QNetworkRequest request(resourceUrl());
+    request.setHeader(QNetworkRequest::UserAgentHeader, "sailfishos/tardypad/somafm");
     m_currentReply = m_networkManager->get(request);
 }
 

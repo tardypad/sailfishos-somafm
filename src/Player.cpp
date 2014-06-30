@@ -208,6 +208,7 @@ void Player::fetchPls()
 
     QNetworkRequest request(pls());
     QNetworkAccessManager* networkManager = new QNetworkAccessManager(this);
+    request.setHeader(QNetworkRequest::UserAgentHeader, "sailfishos/tardypad/somafm");
     networkManager->get(request);
 
     connect(networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(fillPlaylist(QNetworkReply*)));
