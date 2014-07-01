@@ -42,6 +42,8 @@ Page {
                 onClicked: _removeAllBookmarks()
                 inPullDown: true
             }
+
+            visible: listView.count != 0
         }
 
         ViewPlaceholder {
