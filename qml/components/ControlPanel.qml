@@ -154,6 +154,7 @@ DockedPanel {
             iconSource: "stream"
             text: "Change channel quality/format"
             onClicked: _openStreamsDialog()
+            visible: !_isDialogPage(pageStack.currentPage)
         }
         IconMenuItem {
             iconSource: !isSongBookmark ? "bookmark" : "unbookmark"
