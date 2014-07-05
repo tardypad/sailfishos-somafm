@@ -22,6 +22,7 @@
         <file alias="settings">images/icons/icon-l-settings.png</file>
         <file alias="stream">images/icons/icon-l-stream.png</file>
         <file alias="support">images/icons/icon-l-support.png</file>
+        <file alias="timer">images/icons/icon-l-timer.png</file>
         <file alias="twitter">images/icons/icon-l-twitter.png</file>
         <file alias="unbookmark">images/icons/icon-l-unbookmark.png</file>
         <file alias="unfavorite">images/icons/icon-l-unfavorite.png</file>
@@ -46,6 +47,7 @@
         <file alias="settings">images/icons/icon-m-settings.png</file>
         <file alias="stream">images/icons/icon-m-stream.png</file>
         <file alias="support">images/icons/icon-m-support.png</file>
+        <file alias="timer">images/icons/icon-m-timer.png</file>
         <file alias="twitter">images/icons/icon-m-twitter.png</file>
         <file alias="unbookmark">images/icons/icon-m-unbookmark.png</file>
         <file alias="unfavorite">images/icons/icon-m-unfavorite.png</file>
@@ -70,6 +72,7 @@
         <file alias="settings">images/icons/icon-s-settings.png</file>
         <file alias="stream">images/icons/icon-s-stream.png</file>
         <file alias="support">images/icons/icon-s-support.png</file>
+        <file alias="timer">images/icons/icon-s-timer.png</file>
         <file alias="twitter">images/icons/icon-s-twitter.png</file>
         <file alias="unbookmark">images/icons/icon-s-unbookmark.png</file>
         <file alias="unfavorite">images/icons/icon-s-unfavorite.png</file>

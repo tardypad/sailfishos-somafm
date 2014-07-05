@@ -22,6 +22,7 @@ DockedPanel {
     property alias artist: artistLabel.text
     property alias title: titleLabel.text
     property bool isSongBookmark
+    property bool isSleepTimerRunning
 
     signal close
 
@@ -167,6 +168,18 @@ DockedPanel {
                 }
             }
         }
+        IconMenuItem {
+            iconSource: "timer"
+            text: "Sleep timer"
+            onClicked: {
+                if (!isSleepTimerRunning) {
+                    _openSleepTimerDialog()
+                } else {
+                    _stopSleepTimer()
+                }
+            }
+            visible: !_isDialogPage(pageStack.currentPage)
+        }
     }
 
     Connections {
@@ -182,6 +195,8 @@ DockedPanel {
             title = _player.title()
             isSongBookmark = _bookmarksManager.isBookmark(_getCurrentSong())
         }
+        onSleepTimerStarted: isSleepTimerRunning = true
+        onSleepTimerEnded: isSleepTimerRunning = false
         onPlayCalled: open = true
         onPlayStarted: {
             _reinitProgressIndicator()
@@ -275,7 +290,7 @@ DockedPanel {
     }
 
     function _isDialogPage(page) {
-        return page.objectName === "StreamDialog"
+        return page.objectName.match(/Dialog/);
     }
 
     function _openStreamsDialog() {
@@ -284,6 +299,17 @@ DockedPanel {
 
         pageStack.push(Qt.resolvedUrl("../pages/StreamsDialog.qml"),
             {"channelId": channelId})
+    }
+
+    function _openSleepTimerDialog() {
+        if (_isDialogPage(pageStack.currentPage))
+            return
+
+        pageStack.push(Qt.resolvedUrl("../pages/SleepTimerDialog.qml"));
+    }
+
+    function _stopSleepTimer() {
+        _player.stopSleepTimer();
     }
 
     function pause() {

@@ -11,6 +11,7 @@
 #include <QObject>
 #include <QUrl>
 #include <QtMultimedia/QMediaPlayer>
+#include <QTimer>
 
 #include "Channel/Channel.h"
 
@@ -38,6 +39,9 @@ public:
     Q_INVOKABLE QString streamQualityText();
     Q_INVOKABLE QString streamFormatText();
     Q_INVOKABLE void changeStream(QString qualityText, QString formatText);
+
+    Q_INVOKABLE void startSleepTimer(int seconds);
+    Q_INVOKABLE void stopSleepTimer();
 
     Q_INVOKABLE inline Channel* channel() const { return m_channel; }
     Q_INVOKABLE inline bool isPlaying() const { return m_isPlaying; }
@@ -73,10 +77,13 @@ protected slots:
     void manageError(QMediaPlayer::Error error);
     void changeMediaStatus(QMediaPlayer::MediaStatus status);
     void changeState(QMediaPlayer::State state);
+    void onSleeperTimeout();
 
 signals:
     void channelChanged();
     void plsChanged();
+    void sleepTimerStarted();
+    void sleepTimerEnded();
     void playlistFilled();
     void playCalled();
     void playStarted();
@@ -100,6 +107,7 @@ private:
     QMediaPlayer* m_player;
     RefreshModel* m_refreshModel;
     Song* m_currentSong;
+    QTimer* m_sleepTimer;
 };
 
 #endif // PLAYER_H

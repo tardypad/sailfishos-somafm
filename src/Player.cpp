@@ -22,12 +22,16 @@ Player::Player(QObject *parent) :
     m_channel(NULL),
     m_pls(""),
     m_hasStreamManualChoice(false),
-    m_currentSong(new Song(this))
+    m_currentSong(new Song(this)),
+    m_sleepTimer(new QTimer(this))
 {
     m_playlist = new QMediaPlaylist(this);
     m_playlist->setPlaybackMode(QMediaPlaylist::Sequential);
     m_player = new QMediaPlayer(this, QMediaPlayer::StreamPlayback);
     m_player->setPlaylist(m_playlist);
+
+    m_sleepTimer->setSingleShot(true);
+    connect(m_sleepTimer, SIGNAL(timeout()), this, SLOT(onSleeperTimeout()));
 
     connect(m_player, SIGNAL(error(QMediaPlayer::Error)), this, SLOT(manageError(QMediaPlayer::Error)));
     connect(m_player, SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)), this, SLOT(changeMediaStatus(QMediaPlayer::MediaStatus)));
@@ -153,6 +157,26 @@ void Player::changeStream(QString qualityText, QString formatText)
     setHasStreamManualChoice(true);
     setStreamQualityManualChoice(quality);
     setStreamFormatManualChoice(format);
+}
+
+void Player::startSleepTimer(int seconds)
+{
+    m_sleepTimer->stop();
+    m_sleepTimer->setInterval(seconds*1000);
+    m_sleepTimer->start();
+    emit sleepTimerStarted();
+}
+
+void Player::stopSleepTimer()
+{
+    m_sleepTimer->stop();
+    emit sleepTimerEnded();
+}
+
+void Player::onSleeperTimeout()
+{
+    m_player->pause();
+    emit sleepTimerEnded();
 }
 
 bool Player::hasCurrentChannel()
