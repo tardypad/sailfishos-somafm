@@ -164,7 +164,7 @@ void Player::startSleepTimer(int seconds)
     m_sleepTimer->stop();
     m_sleepTimer->setInterval(seconds*1000);
     m_sleepTimer->start();
-    emit sleepTimerStarted();
+    emit sleepTimerStarted(seconds);
 }
 
 void Player::stopSleepTimer()

@@ -82,7 +82,7 @@ protected slots:
 signals:
     void channelChanged();
     void plsChanged();
-    void sleepTimerStarted();
+    void sleepTimerStarted(int seconds);
     void sleepTimerEnded();
     void playlistFilled();
     void playCalled();

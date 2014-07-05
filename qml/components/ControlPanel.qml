@@ -10,6 +10,8 @@ import Sailfish.Silica 1.0
 
 import "../utils"
 
+import "../scripts/DurationFormatter.js" as DurationFormatter
+
 DockedPanel {
     id: controlPanel
 
@@ -23,6 +25,7 @@ DockedPanel {
     property alias title: titleLabel.text
     property bool isSongBookmark
     property bool isSleepTimerRunning
+    property int sleepTimeRemaining
 
     signal close
 
@@ -170,7 +173,7 @@ DockedPanel {
         }
         IconMenuItem {
             iconSource: "timer"
-            text: "Sleep timer"
+            text: !isSleepTimerRunning ? "Sleep timer" : "Stop sleep in " + DurationFormatter.formatRemainingTime(sleepTimeRemaining)
             onClicked: {
                 if (!isSleepTimerRunning) {
                     _openSleepTimerDialog()
@@ -180,6 +183,14 @@ DockedPanel {
             }
             visible: !_isDialogPage(pageStack.currentPage)
         }
+    }
+
+    Timer {
+        id: remainingSleepTimeTimer
+        interval: 30000
+        repeat: true
+        running: isSleepTimerRunning
+        onTriggered: sleepTimeRemaining -= 30
     }
 
     Connections {
@@ -195,7 +206,10 @@ DockedPanel {
             title = _player.title()
             isSongBookmark = _bookmarksManager.isBookmark(_getCurrentSong())
         }
-        onSleepTimerStarted: isSleepTimerRunning = true
+        onSleepTimerStarted: {
+            sleepTimeRemaining = seconds
+            isSleepTimerRunning = true
+        }
         onSleepTimerEnded: isSleepTimerRunning = false
         onPlayCalled: open = true
         onPlayStarted: {
