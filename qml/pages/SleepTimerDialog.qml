@@ -28,6 +28,7 @@ Dialog {
         }
         TimePicker {
             id: timePicker
+            hour: 1
             anchors.horizontalCenter: parent.horizontalCenter
         }
     }
