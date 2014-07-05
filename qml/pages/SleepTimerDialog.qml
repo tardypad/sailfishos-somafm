@@ -8,6 +8,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../scripts/DurationFormatter.js" as DurationFormatter
+
 Dialog {
     id: dialog
     objectName: "SleepTimerDialog"
@@ -22,7 +24,7 @@ Dialog {
         spacing: Theme.paddingMedium
 
         DialogHeader {
-            acceptText: 'Sleep in '+ timePicker.hour + 'h ' + timePicker.minute + 'm'
+            acceptText: 'Sleep in '+ DurationFormatter.formatSleepTime(dialog.hour, dialog.minute)
         }
         TimePicker {
             id: timePicker

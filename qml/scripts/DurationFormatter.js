@@ -7,6 +7,17 @@
 
 .pragma library
 
+function formatSleepTime(hours, minutes)
+{
+    if (hours !== 0)
+        if (minutes !== 0)
+            return hours + 'H ' + minutes + 'min'
+        else
+            return hours + 'H'
+    else
+        return minutes + 'min'
+}
+
 function formatRemainingTime(seconds)
 {
     var hours = getHours(seconds)
