@@ -178,11 +178,19 @@ DockedPanel {
                 if (!isSleepTimerRunning) {
                     _openSleepTimerDialog()
                 } else {
-                    _stopSleepTimer()
+                    remorse.execute(qsTr("Sleep timer gets stopped"), function() {
+                        _stopSleepTimer();
+                    }, 3000)
                 }
             }
             visible: !_isDialogPage(pageStack.currentPage)
         }
+    }
+
+    RemorsePopup {
+        id: remorse
+        parent: controlPanel.parent
+        anchors.bottom: parent.bottom
     }
 
     Timer {
