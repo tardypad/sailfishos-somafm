@@ -49,7 +49,7 @@ Page {
                             topMargin: Theme.paddingSmall
                         }
                         width: parent.width
-                        text: "Fully enjoy SomaFM on your Jolla"
+                        text: "Fully enjoy SomaFM on your mobile"
                         font.pixelSize: Theme.fontSizeSmall
                         horizontalAlignment: Text.AlignHCenter
                     }
