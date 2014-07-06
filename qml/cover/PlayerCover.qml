@@ -8,6 +8,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../components"
+
 MainCover {
     property bool _isPlaying: controlPanel.state === "playing"
     property bool _isSongBookmark: controlPanel.isSongBookmark
@@ -26,9 +28,12 @@ MainCover {
             smooth: true
             clip: true
         },
-        Loader {
-            id: bookmarkLoader
-            anchors.fill: parent
+        CoverInfo {
+            id: coverInfo
+            artist: _artist
+            title: _title
+            isBookmark: _isSongBookmark
+            isPlaying: _isPlaying
         }
     ]
 
@@ -66,10 +71,7 @@ MainCover {
     function showBookmarkInfo() {
         if (status !== Cover.Active) return;
 
-        if (bookmarkLoader.status === Loader.Null)
-            bookmarkLoader.source = Qt.resolvedUrl("../components/BookmarkCoverInfo.qml")
-
-        bookmarkLoader.item.show(_artist, _title, _isSongBookmark)
+        coverInfo.showBookmark()
     }
 
     Connections {
@@ -77,5 +79,6 @@ MainCover {
         onBookmarkAdded: showBookmarkInfo()
         onBookmarkRemoved: showBookmarkInfo()
     }
+
 }
 

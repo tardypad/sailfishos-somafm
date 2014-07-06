@@ -11,13 +11,17 @@ import Sailfish.Silica 1.0
 Rectangle {
     id: info
 
-    property alias _artist: artistLabel.text
-    property alias _title: titleLabel.text
-    property bool _isBookmark
+    property alias artist: artistLabel.text
+    property alias title: titleLabel.text
+    property bool isPlaying
+    property bool isBookmark
+
+    property bool _isSongCoverDisplayed: _settings.songCover()
+    property bool _isShowingBookmark: false
 
     anchors.fill: parent
     color: Theme.rgba(Theme.highlightBackgroundColor, 0.9)
-    opacity: 0
+    opacity: isPlaying && (_isSongCoverDisplayed || _isShowingBookmark) ? 1 : 0
 
     Column {
         anchors {
@@ -51,20 +55,22 @@ Rectangle {
             width: parent.width
             font.pixelSize: Theme.fontSizeSmall
             horizontalAlignment: Text.AlignHCenter
-            text: _isBookmark ? "added" : "removed"
+            text: isBookmark ? "added" : "removed"
+            opacity: _isShowingBookmark ? 1 : 0
+
+            Behavior on opacity {
+                NumberAnimation { }
+            }
         }
     }
 
-    function show(artist, title, isBookmark) {
-        _artist = artist
-        _title = title
-        _isBookmark = isBookmark
-        opacity = 1
+    function showBookmark() {
+        _isShowingBookmark = true
         displayTimer.start()
     }
 
-    function hide() {
-        opacity = 0
+    function hide() {        
+        _isShowingBookmark = false
     }
 
     Timer {
@@ -75,5 +81,10 @@ Rectangle {
 
     Behavior on opacity {
         NumberAnimation { }
+    }
+
+    Connections {
+        target: _settings
+        onSongCoverChanged: _isSongCoverDisplayed = _settings.songCover()
     }
 }
