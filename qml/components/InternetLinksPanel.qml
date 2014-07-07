@@ -10,7 +10,7 @@ import Sailfish.Silica 1.0
 
 import "../scripts/ExternalLinks.js" as ExternalLinks
 
-DockedPanel {
+Rectangle {
     id: linksPanel
 
     property int _iconSize: Theme.iconSizeMedium
@@ -18,8 +18,9 @@ DockedPanel {
 
     height: column.height + 2*Theme.paddingLarge
     width: column.width + 2*Theme.paddingLarge
-    dock: Dock.Left
     anchors.verticalCenter: parent.verticalCenter
+    x: -width
+    color: "transparent"
 
     Column {
         id: column
@@ -86,4 +87,17 @@ DockedPanel {
             onClicked: ExternalLinks.browse(somaTheme.supportUrl)
         }
     }
+
+    function show() {
+        x = 0
+    }
+
+    function hide() {
+        x = -width
+    }
+
+    Behavior on x {
+        NumberAnimation { }
+    }
+
 }
