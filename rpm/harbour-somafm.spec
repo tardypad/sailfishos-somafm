@@ -17,7 +17,7 @@ Name:       harbour-somafm
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    SomaFM Application
-Version:    1.0.0
+Version:    1.1.0
 Release:    1
 Group:      Applications/Multimedia
 License:    MIT
