@@ -46,7 +46,6 @@ Page {
 
             headerItem.displayBanner()
             model = _newsModel
-            footer = Qt.createComponent("../components/NewsPageFooter.qml")
         }
 
         function _browse(link) {
