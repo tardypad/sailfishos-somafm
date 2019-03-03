@@ -115,10 +115,6 @@ Page {
             }
         }
 
-        InternetLinksPanel {
-            id: linksPanel
-        }
-
         PullDownMenu {
             IconMenuItem {
                 text: "Settings"
@@ -149,14 +145,4 @@ Page {
         }
     }
 
-    onStatusChanged: {
-        switch (status) {
-        case PageStatus.Active:
-            linksPanel.show()
-            break
-        case PageStatus.Inactive:
-            linksPanel.hide()
-            break
-        }
-    }
 }
