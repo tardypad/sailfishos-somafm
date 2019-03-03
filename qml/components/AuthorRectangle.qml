@@ -69,18 +69,6 @@ Rectangle {
         spacing: Theme.paddingLarge
 
         IconButton {
-            id: twitterButton
-            height: Theme.iconSizeMedium
-            width: Theme.iconSizeMedium
-            icon {
-                source: somaTheme.getIconSource("twitter", "medium")
-                height: Theme.iconSizeMedium
-                fillMode: Image.PreserveAspectFit
-            }
-            onClicked: ExternalLinks.browse("https://twitter.com/tardypad")
-        }
-
-        IconButton {
             id: githubButton
             height: Theme.iconSizeMedium
             width: Theme.iconSizeMedium
