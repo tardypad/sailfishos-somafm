@@ -7,9 +7,7 @@
     <qresource prefix="/icon/large">
         <file alias="about">images/icons/icon-l-about.png</file>
         <file alias="bookmark">images/icons/icon-l-bookmark.png</file>
-        <file alias="facebook">images/icons/icon-l-facebook.png</file>
         <file alias="favorite">images/icons/icon-l-favorite.png</file>
-        <file alias="flickr">images/icons/icon-l-flickr.png</file>
         <file alias="genre">images/icons/icon-l-genre.png</file>
         <file alias="github">images/icons/icon-l-github.png</file>
         <file alias="google">images/icons/icon-l-google.png</file>
@@ -23,7 +21,6 @@
         <file alias="stream">images/icons/icon-l-stream.png</file>
         <file alias="support">images/icons/icon-l-support.png</file>
         <file alias="timer">images/icons/icon-l-timer.png</file>
-        <file alias="twitter">images/icons/icon-l-twitter.png</file>
         <file alias="unbookmark">images/icons/icon-l-unbookmark.png</file>
         <file alias="unfavorite">images/icons/icon-l-unfavorite.png</file>
         <file alias="web">images/icons/icon-l-web.png</file>
@@ -32,9 +29,7 @@
     <qresource prefix="/icon/medium">
         <file alias="about">images/icons/icon-m-about.png</file>
         <file alias="bookmark">images/icons/icon-m-bookmark.png</file>
-        <file alias="facebook">images/icons/icon-m-facebook.png</file>
         <file alias="favorite">images/icons/icon-m-favorite.png</file>
-        <file alias="flickr">images/icons/icon-m-flickr.png</file>
         <file alias="genre">images/icons/icon-m-genre.png</file>
         <file alias="github">images/icons/icon-m-github.png</file>
         <file alias="google">images/icons/icon-m-google.png</file>
@@ -48,7 +43,6 @@
         <file alias="stream">images/icons/icon-m-stream.png</file>
         <file alias="support">images/icons/icon-m-support.png</file>
         <file alias="timer">images/icons/icon-m-timer.png</file>
-        <file alias="twitter">images/icons/icon-m-twitter.png</file>
         <file alias="unbookmark">images/icons/icon-m-unbookmark.png</file>
         <file alias="unfavorite">images/icons/icon-m-unfavorite.png</file>
         <file alias="web">images/icons/icon-m-web.png</file>
@@ -57,9 +51,7 @@
     <qresource prefix="/icon/small">
         <file alias="about">images/icons/icon-s-about.png</file>
         <file alias="bookmark">images/icons/icon-s-bookmark.png</file>
-        <file alias="facebook">images/icons/icon-s-facebook.png</file>
         <file alias="favorite">images/icons/icon-s-favorite.png</file>
-        <file alias="flickr">images/icons/icon-s-flickr.png</file>
         <file alias="genre">images/icons/icon-s-genre.png</file>
         <file alias="github">images/icons/icon-s-github.png</file>
         <file alias="google">images/icons/icon-s-google.png</file>
@@ -73,7 +65,6 @@
         <file alias="stream">images/icons/icon-s-stream.png</file>
         <file alias="support">images/icons/icon-s-support.png</file>
         <file alias="timer">images/icons/icon-s-timer.png</file>
-        <file alias="twitter">images/icons/icon-s-twitter.png</file>
         <file alias="unbookmark">images/icons/icon-s-unbookmark.png</file>
         <file alias="unfavorite">images/icons/icon-s-unfavorite.png</file>
         <file alias="web">images/icons/icon-s-web.png</file>
