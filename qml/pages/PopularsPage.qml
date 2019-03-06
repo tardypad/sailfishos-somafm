@@ -22,7 +22,9 @@ Page {
             title: "Populars"
             iconSource: "listener"
         }
-        delegate: PopularsListDelegate { }
+        delegate: ChannelsListDelegate {
+            showListeners: true
+        }
 
         PullDownMenu {
             IconMenuItem {

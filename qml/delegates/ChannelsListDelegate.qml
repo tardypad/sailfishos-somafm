@@ -15,6 +15,7 @@ ListItem {
     property int idx: index
     property bool isFavorite: isBookmark
     property string channelId: id
+    property bool showListeners: false
 
     property alias column: column
 
@@ -42,16 +43,16 @@ ListItem {
             verticalCenter: parent.verticalCenter
         }
 
-        Row {
-            spacing: Theme.paddingSmall
-            anchors.left: parent.left
+        Item {
+            width: parent.width
+            height: channelNameLabel.height
 
             Image {
                 id: favoriteImage
                 source: somaTheme.getIconSource("favorite", "small")
                 height: Theme.iconSizeSmall
-                width: height
-                anchors.verticalCenter: channelNameLabel.verticalCenter
+                width: visible ? height : 0
+                anchors.left: parent.left
                 fillMode: Image.PreserveAspectFit
                 visible: isBookmark
             }
@@ -60,6 +61,46 @@ ListItem {
                 id: channelNameLabel
                 text: name
                 color: highlighted ? Theme.highlightColor : Theme.primaryColor
+                truncationMode: TruncationMode.Fade
+                anchors {
+                    left: favoriteImage.right
+                    leftMargin: favoriteImage.visible ? Theme.paddingSmall : 0
+                    right: channelListenersLabel.left
+                    rightMargin: channelListenersLabel.visible ? Theme.paddingSmall : 0
+                    verticalCenter: favoriteImage.verticalCenter
+                }
+            }
+
+            Label {
+                id: channelListenersLabel
+                text: listeners
+                anchors {
+                    right: listenerIcon.left
+                    rightMargin: Theme.paddingSmall
+                    verticalCenter: favoriteImage.verticalCenter
+                }
+                width: visible ? implicitWidth : 0
+                color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+                font {
+                    pixelSize: Theme.fontSizeExtraSmall * 0.8;
+                    italic: true
+                }
+                visible: showListeners
+            }
+
+            Image {
+                id: listenerIcon
+                source: somaTheme.getIconSource("listener", "small")
+                smooth: true
+                height: Theme.iconSizeSmall * 0.8
+                width: visible ? height : 0
+                anchors {
+                    right: parent.right
+                    verticalCenter: favoriteImage.verticalCenter
+                }
+                opacity: 0.1 + (listeners / maximumListeners) * 0.9
+                fillMode: Image.PreserveAspectFit
+                visible: showListeners
             }
         }
 
