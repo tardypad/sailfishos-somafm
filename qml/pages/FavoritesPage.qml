@@ -58,6 +58,29 @@ Page {
             }
         }
 
+        PushUpMenu {
+            IconMenuItem {
+                text: "News"
+                iconSource: "news"
+                onClicked: pageStack.push(Qt.resolvedUrl("NewsPage.qml"))
+            }
+            IconMenuItem {
+                text: "Song bookmarks"
+                iconSource: "bookmark"
+                onClicked: pageStack.push(Qt.resolvedUrl("BookmarksPage.qml"))
+            }
+            IconMenuItem {
+                text: "Settings"
+                iconSource: "settings"
+                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+            }
+            IconMenuItem {
+                text: "About"
+                iconSource: "about"
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+        }
+
         function _showContextMenu(item) {
             if (!contextMenu)
                 contextMenu = actionsComponent.createObject(gridView)
@@ -153,4 +176,5 @@ Page {
             gridView.model = _channelsModel
         }
     }
+
 }

@@ -17,7 +17,7 @@ ApplicationWindow
 {
     id: window
 
-    initialPage: Component { HomePage { } }
+    initialPage: Component { FavoritesPage { } }
     cover: DefaultCover { }
     bottomMargin: controlPanel.visibleSize
 
