@@ -13,39 +13,13 @@ import "../scripts/ExternalLinks.js" as ExternalLinks
 Rectangle {
     id: authorRect
 
-    property bool _expanded: false
-
     width: parent.width
-    height: workLabel.height + authorLabel.height + linksRow.height + 3 * Theme.paddingMedium + workLabel.topMargin
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: _expanded = !_expanded
-    }
-
-    Label {
-        id: workLabel
-
-        property int topMargin: Theme.paddingMedium * opacity
-
-        anchors {
-            top: parent.top
-            topMargin: topMargin
-            horizontalCenter: parent.horizontalCenter
-        }
-        opacity: 0
-        height: 0
-        width: parent.width - 2 * Theme.paddingMedium
-        font.pixelSize: Theme.fontSizeExtraSmall
-        horizontalAlignment: Text.AlignHCenter
-        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-        text: "Application definition, design, development, graphics, testing, bugfixing, packaging, maintenance, support,... and much more :-)"
-    }
+    height: authorLabel.height + linksRow.height + 3 * Theme.paddingMedium
 
     Label {
         id: authorLabel
         anchors {
-            top: workLabel.bottom
+            top: parent.top
             topMargin: Theme.paddingMedium
             horizontalCenter: parent.horizontalCenter
         }
@@ -90,21 +64,6 @@ Rectangle {
                 fillMode: Image.PreserveAspectFit
             }
             onClicked: ExternalLinks.mail("damien@tardypad.me", "[SomaFM Sailfish app] ")
-        }
-    }
-
-    states: State {
-        name: "shown"; when: _expanded
-        PropertyChanges { target: workLabel; height: workLabel.implicitHeight }
-        PropertyChanges { target: workLabel; opacity: 1 }
-    }
-
-    transitions: Transition {
-        from: ""; to: "shown"
-        reversible: true
-        SequentialAnimation {
-            NumberAnimation { target: workLabel; property: "height"; duration: 150  }
-            NumberAnimation { target: workLabel; property: "opacity"; duration: 100 }
         }
     }
 }
