@@ -15,8 +15,7 @@ MenuItem {
     property int _iconSize: Theme.iconSizeSmall
     property string _iconSizeName: "small"
 
-    property bool _isLeftHanded: false
-    property bool _onRightSide: inPullDown || _isLeftHanded
+    property bool _onRightSide: inPullDown
 
     Image {
         id: icon
@@ -32,6 +31,4 @@ MenuItem {
         }
         fillMode: Image.PreserveAspectFit
     }
-
-    Component.onCompleted: _isLeftHanded = _settings.leftHanded()
 }

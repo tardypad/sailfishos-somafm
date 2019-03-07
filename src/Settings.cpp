@@ -14,7 +14,6 @@
 const QString Settings::_qualityField = QString("stream/quality");
 const QString Settings::_formatField = QString("stream/format");
 const QString Settings::_songCoverField = QString("display/songcover");
-const QString Settings::_leftHandedField = QString("accessibility/lefthanded");
 
 Settings::Settings(QObject *parent) :
     QObject(parent)
@@ -54,15 +53,6 @@ bool Settings::songCover()
     return value(_songCoverField).toBool();
 }
 
-bool Settings::leftHanded()
-{
-    if (!m_settings->contains(_leftHandedField)) {
-        return false;
-    }
-
-    return value(_leftHandedField).toBool();
-}
-
 QVariant Settings::value(const QString &key)
 {
    return m_settings->value(key);
@@ -89,9 +79,4 @@ void Settings::saveSongCover(bool songCover)
     setValue(_songCoverField, songCover);
     if (oldSongCover != songCover)
         emit songCoverChanged();
-}
-
-void Settings::saveLeftHanded(bool leftHanded)
-{
-    setValue(_leftHandedField, leftHanded);
 }

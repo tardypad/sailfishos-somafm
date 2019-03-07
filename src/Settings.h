@@ -18,7 +18,6 @@ class Settings : public QObject
     static const QString _qualityField;
     static const QString _formatField;
     static const QString _songCoverField;
-    static const QString _leftHandedField;
 
 public:
     explicit Settings(QObject *parent = 0);
@@ -26,11 +25,9 @@ public:
     Q_INVOKABLE QString streamQuality();
     Q_INVOKABLE QString streamFormat();
     Q_INVOKABLE bool songCover();
-    Q_INVOKABLE bool leftHanded();
     Q_INVOKABLE void saveStreamQuality(QString quality);
     Q_INVOKABLE void saveStreamFormat(QString format);
     Q_INVOKABLE void saveSongCover(bool songCover);
-    Q_INVOKABLE void saveLeftHanded(bool leftHanded);
 
 protected:
     QVariant value(const QString &key);

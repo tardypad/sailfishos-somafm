@@ -74,15 +74,6 @@ Page {
                 id: songCoverTextSwitch
                 text: "Artist and song in cover"
             }
-
-            SectionHeader {
-                text: "Accessibility"
-            }
-
-            TextSwitch {
-                id: leftHandedTextSwitch
-                text: "Left-handed"
-            }
         }
 
         VerticalScrollDecorator { flickable: listView }
@@ -126,22 +117,16 @@ Page {
         songCoverTextSwitch.checked = _settings.songCover()
     }
 
-    function _defineLeftHanded() {
-        leftHandedTextSwitch.checked = _settings.leftHanded()
-    }
-
     function _saveOptions() {
         _settings.saveStreamQuality(qualityComboBox.value)
         _settings.saveStreamFormat(formatComboBox.value)
         _settings.saveSongCover(songCoverTextSwitch.checked)
-        _settings.saveLeftHanded(leftHandedTextSwitch.checked)
     }
 
     Component.onCompleted: {
         _fillQualityOptions()
         _fillFormatOptions()
         _defineSongCover()
-        _defineLeftHanded()
         afterResetTimer.start()
     }
 
