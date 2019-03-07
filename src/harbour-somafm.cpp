@@ -29,7 +29,6 @@
 #include "src/Song/SongsBookmarksProxyModel.h"
 #include "src/News/NewsModel.h"
 #include "src/News/NewsProxyModel.h"
-#include "src/Support/SupportModel.h"
 #include "src/Refresh/RefreshModel.h"
 #include "src/Player.h"
 #include "src/Settings.h"
@@ -70,9 +69,6 @@ int main(int argc, char *argv[])
     QScopedPointer<NewsProxyModel> newsProxyModel(new NewsProxyModel());
     newsProxyModel->setSourceModel(newsModel.data());
     context->setContextProperty("_newsModel", newsProxyModel.data());
-
-    QScopedPointer<SupportModel> supportModel(new SupportModel());
-    context->setContextProperty("_supportModel", supportModel.data());
 
     QScopedPointer<RefreshModel> refreshModel(RefreshModel::instance());
     context->setContextProperty("_refreshModel", refreshModel.data());

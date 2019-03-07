@@ -117,7 +117,7 @@ Page {
 
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: pageStack.push(Qt.resolvedUrl("SupportPage.qml"))
+                        onClicked: ExternalLinks.browse(somaTheme.supportUrl)
                     }
                 }
 

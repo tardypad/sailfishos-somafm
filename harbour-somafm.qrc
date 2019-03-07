@@ -24,7 +24,6 @@
         <file alias="unbookmark">images/icons/icon-l-unbookmark.png</file>
         <file alias="unfavorite">images/icons/icon-l-unfavorite.png</file>
         <file alias="web">images/icons/icon-l-web.png</file>
-        <file alias="websupport">images/icons/icon-l-websupport.png</file>
     </qresource>
     <qresource prefix="/icon/medium">
         <file alias="about">images/icons/icon-m-about.png</file>
@@ -46,7 +45,6 @@
         <file alias="unbookmark">images/icons/icon-m-unbookmark.png</file>
         <file alias="unfavorite">images/icons/icon-m-unfavorite.png</file>
         <file alias="web">images/icons/icon-m-web.png</file>
-        <file alias="websupport">images/icons/icon-m-websupport.png</file>
     </qresource>
     <qresource prefix="/icon/small">
         <file alias="about">images/icons/icon-s-about.png</file>
@@ -68,6 +66,5 @@
         <file alias="unbookmark">images/icons/icon-s-unbookmark.png</file>
         <file alias="unfavorite">images/icons/icon-s-unfavorite.png</file>
         <file alias="web">images/icons/icon-s-web.png</file>
-        <file alias="websupport">images/icons/icon-s-websupport.png</file>
     </qresource>
 </RCC>

@@ -10,6 +10,8 @@ import Sailfish.Silica 1.0
 
 import "../utils"
 
+import "../scripts/ExternalLinks.js" as ExternalLinks
+
 Item {
     height: childrenRect.height
     width: listView.width
@@ -41,7 +43,7 @@ Item {
             top: bannerLabel.bottom
             horizontalCenter: parent.horizontalCenter
         }
-        onClicked: pageStack.push(Qt.resolvedUrl("../pages/SupportPage.qml"))
+        onClicked: ExternalLinks.browse(somaTheme.supportUrl)
     }
 
     function displayBanner() {
