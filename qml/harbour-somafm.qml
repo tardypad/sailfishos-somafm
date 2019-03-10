@@ -35,6 +35,10 @@ ApplicationWindow
         id: controlPanel
     }
 
+    ControlItem {
+        id: control
+    }
+
     Connections {
         target: controlPanel
         onOpenChanged: {
@@ -72,7 +76,7 @@ ApplicationWindow
 
     Timer {
         id: refreshTimer
-        running: applicationActive || controlPanel.state === "playing"
+        running: applicationActive || control.state === "playing"
         repeat: true
         interval: 20000
         onTriggered: _refresh()

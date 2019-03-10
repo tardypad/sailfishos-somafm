@@ -17,19 +17,7 @@ DockedPanel {
 
     property alias isPushMenuActive: pushUpMenu.active
 
-    property string channelId
-    property alias channelName: channelLabel.text
-    property alias channelImageUrl: channelImage.source
-    property url channelImageMediumUrl
-    property alias artist: artistLabel.text
-    property alias title: titleLabel.text
-    property bool isSongBookmark
-    property bool isSleepTimerRunning
-    property int sleepTimeRemaining
-
     signal close
-
-    state: "pause"
 
     width: parent.width
     height: backgroundItem.height
@@ -49,6 +37,7 @@ DockedPanel {
 
         ChannelImage {
             id: channelImage
+            source: control.channelImageUrl
             size: BusyIndicatorSize.Small
             height: parent.height
             width: height
@@ -60,6 +49,7 @@ DockedPanel {
 
         Label {
             id: channelLabel
+            text: control.channelName
             anchors {
                 left: channelImage.right
                 leftMargin: Theme.paddingMedium
@@ -74,6 +64,7 @@ DockedPanel {
 
         Label {
             id: artistLabel
+            text: control.artist
             anchors {
                 left: channelImage.right
                 leftMargin: Theme.paddingMedium
@@ -89,6 +80,7 @@ DockedPanel {
 
         Label {
             id: titleLabel
+            text: control.title
             anchors {
                 left: channelImage.right
                 leftMargin: Theme.paddingMedium
@@ -132,7 +124,8 @@ DockedPanel {
             icon.asynchronous: true
             icon.source: somaTheme.getIconSource("pause", "medium")
             highlighted: true
-            onClicked: pause()
+            visible: false
+            onClicked: control.pause()
         }
 
         IconButton {
@@ -146,7 +139,7 @@ DockedPanel {
             }
             icon.asynchronous: true
             icon.source: somaTheme.getIconSource("play", "medium")
-            onClicked: play()
+            onClicked: control.play()
         }
 
         onClicked: _goToChannelPage()
@@ -161,25 +154,25 @@ DockedPanel {
             visible: !_isDialogPage(pageStack.currentPage)
         }
         IconMenuItem {
-            iconSource: !isSongBookmark ? "bookmark" : "unbookmark"
-            text: !isSongBookmark ? "Add song to bookmarks" : "Remove song from bookmarks"
+            iconSource: !control.isSongBookmark ? "bookmark" : "unbookmark"
+            text: !control.isSongBookmark ? "Add song to bookmarks" : "Remove song from bookmarks"
             onClicked: {
-                if (!isSongBookmark) {
-                    addSongToBookmarks()
+                if (!control.isSongBookmark) {
+                    control.addSongToBookmarks()
                 } else {
-                    removeSongFromBookmarks()
+                    control.removeSongFromBookmarks()
                 }
             }
         }
         IconMenuItem {
             iconSource: "timer"
-            text: !isSleepTimerRunning ? "Sleep timer" : "Stop sleep in " + DurationFormatter.formatRemainingTime(sleepTimeRemaining)
+            text: !control.isSleepTimerRunning ? "Sleep timer" : "Stop sleep in " + DurationFormatter.formatRemainingTime(control.sleepTimeRemaining)
             onClicked: {
-                if (!isSleepTimerRunning) {
+                if (!control.isSleepTimerRunning) {
                     _openSleepTimerDialog()
                 } else {
                     remorse.execute(qsTr("Sleep timer gets stopped"), function() {
-                        _stopSleepTimer();
+                        control.stopSleepTimer();
                     }, 3000)
                 }
             }
@@ -197,89 +190,21 @@ DockedPanel {
         id: remainingSleepTimeTimer
         interval: 30000
         repeat: true
-        running: isSleepTimerRunning
-        onTriggered: sleepTimeRemaining -= 30
+        running: control.isSleepTimerRunning
+        onTriggered: control.sleepTimeRemaining -= 30
     }
 
-    Connections {
-        target: _player
-        onChannelChanged: {
-            channelName = _player.channelName()
-            channelImageUrl = _player.channelImageUrl()
-            channelImageMediumUrl = _player.channelImageMediumUrl()
-            channelId = _player.channelId()
-        }
-        onSongChanged: {
-            artist = _player.artist()
-            title = _player.title()
-            isSongBookmark = _bookmarksManager.isBookmark(_getCurrentSong())
-        }
-        onSleepTimerStarted: {
-            sleepTimeRemaining = seconds
-            isSleepTimerRunning = true
-        }
-        onSleepTimerEnded: isSleepTimerRunning = false
-        onPlayCalled: open = true
-        onPlayStarted: {
-            _reinitProgressIndicator()
-            state = "playing"
-        }
-        onPauseStarted: {
-            _reinitProgressIndicator()
-            state = "pause"
-        }
-        onMediaLoading: {
-            if (state === "playing")
-                progressTimer.stop()
-        }
-        onMediaLoaded: {
-            if (state === "playing")
-                progressTimer.start()
-        }
-        onPlaylistError: showErrorInfo("playlist", error)
-        onMediaError: showErrorInfo("media", error)
-    }
-
-    Connections {
-        target: _bookmarksManager
-        onBookmarkAdded: {
-            if (_isCurrentSong(xmlItem)) {
-                isSongBookmark = true
-                showInfo("song added to bookmarks")
-            }
-        }
-        onBookmarkRemoved: {
-            if (_isCurrentSong(xmlItem)) {
-                isSongBookmark = false
-                showInfo("song removed from bookmarks")
-            }
-        }
-        onAllBookmarksRemoved: {
-            if (isSongBookmark) {
-                isSongBookmark = false
-                showInfo("song removed from bookmarks")
-            }
-        }
-        onAllChannelBookmarksRemoved: {
-            if (isSongBookmark && channelId === controlPanel.channelId) {
-                isSongBookmark = false
-                showInfo("song removed from bookmarks")
-            }
-        }
-    }
-
-    function showErrorInfo(type, error) {
-        showInfo("a "+type+" error occured: "+error+" error")
-    }
-
-    function showInfo(text) {
-        if (open)
-            showMessage(text)
-    }
-
-    function _reinitProgressIndicator() {
+    function reinitProgressIndicator() {
         progressIndicator.value = 0
         progressIndicator.inAlternateCycle = true
+    }
+
+    function startProgressTimer() {
+        progressTimer.start()
+    }
+
+    function stopProgressTimer() {
+        progressTimer.stop()
     }
 
     function _goToChannelPage() {
@@ -287,11 +212,11 @@ DockedPanel {
             return
 
         var url = Qt.resolvedUrl("../pages/ChannelPage.qml")
-        var properties = {"id": channelId}
+        var properties = {"id": control.channelId}
 
         var currentPage = pageStack.currentPage
         if (_isChannelPage(currentPage)) {
-            if (currentPage.id !== channelId) {
+            if (currentPage.id !== control.channelId) {
                 currentPage.stopUpdates()
                 pageStack.replace(url, properties)
             }
@@ -320,7 +245,7 @@ DockedPanel {
             return
 
         pageStack.push(Qt.resolvedUrl("../pages/StreamsDialog.qml"),
-            {"channelId": channelId})
+            {"channelId": control.channelId})
     }
 
     function _openSleepTimerDialog() {
@@ -330,61 +255,31 @@ DockedPanel {
         pageStack.push(Qt.resolvedUrl("../pages/SleepTimerDialog.qml"));
     }
 
-    function _stopSleepTimer() {
-        _player.stopSleepTimer();
+    Connections {
+        target: control
+        onStateChanged: {
+            if (control.state === "playing") {
+                mediaButtonPlay.visible = false;
+                mediaButtonPause.visible = true;
+                progressTimer.isRunning = true;
+                channelLabel.color = Theme.highlightColor;
+                artistLabel.color = Theme.highlightColor;
+                titleLabel.color = Theme.highlightColor;
+            } else {
+                mediaButtonPlay.visible = true;
+                mediaButtonPause.visible = false;
+                progressTimer.isRunning = false;
+                channelLabel.color = Theme.primaryColor;
+                artistLabel.color = Theme.primaryColor;
+                titleLabel.color = Theme.primaryColor;
+            }
+        }
     }
-
-    function pause() {
-        _player.pause()
-    }
-
-    function play() {
-        _player.play()
-    }
-
-    function _isCurrentSong(song) {
-        return _bookmarksManager.areEquals(song, _getCurrentSong())
-    }
-
-    function _getCurrentSong() {
-        return _player.currentSong()
-    }
-
-    function addSongToBookmarks() {
-        var result = _bookmarksManager.addBookmark(_getCurrentSong())
-        if (result) isSongBookmark = true
-    }
-
-    function removeSongFromBookmarks() {
-        var result = _bookmarksManager.removeBookmark(_getCurrentSong())
-        if (result) isSongBookmark = false
-    }
-
-    states: [
-        State {
-            name: "pause"
-            PropertyChanges { target: mediaButtonPlay;   visible: true }
-            PropertyChanges { target: mediaButtonPause;  visible: false }
-            PropertyChanges { target: progressTimer;     isRunning: false }
-            PropertyChanges { target: channelLabel;      color: Theme.primaryColor}
-            PropertyChanges { target: artistLabel;       color: Theme.primaryColor}
-            PropertyChanges { target: titleLabel;        color: Theme.primaryColor}
-        },
-        State {
-            name: "playing"
-            PropertyChanges { target: mediaButtonPlay;   visible: false }
-            PropertyChanges { target: mediaButtonPause;  visible: true }
-            PropertyChanges { target: controlPanel;      open: true; restoreEntryValues: false }
-            PropertyChanges { target: progressTimer;     isRunning: true }
-            PropertyChanges { target: channelLabel;      color: Theme.highlightColor }
-            PropertyChanges { target: artistLabel;       color: Theme.highlightColor }
-            PropertyChanges { target: titleLabel;        color: Theme.highlightColor }
-        }]
 
     onOpenChanged: {
         if (!open) {
-            if (state === "playing")
-                pause()
+            if (control.state === "playing")
+                control.pause()
             close()
         }
     }

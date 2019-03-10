@@ -11,11 +11,11 @@ import Sailfish.Silica 1.0
 import "../components"
 
 MainCover {
-    property bool _isPlaying: controlPanel.state === "playing"
-    property bool _isSongBookmark: controlPanel.isSongBookmark
-    property url _channelImageMediumUrl: controlPanel.channelImageMediumUrl
-    property string _artist: controlPanel.artist
-    property string _title: controlPanel.title
+    property bool _isPlaying: control.state === "playing"
+    property bool _isSongBookmark: control.isSongBookmark
+    property url _channelImageMediumUrl: control.channelImageMediumUrl
+    property string _artist: control.artist
+    property string _title: control.title
 
     content: [
         Image {
@@ -44,15 +44,15 @@ MainCover {
 
         CoverAction {
             iconSource: somaTheme.getIconSource("pause", "cover")
-            onTriggered: controlPanel.pause()
+            onTriggered: control.pause()
         }
         CoverAction {
             iconSource: _isSongBookmark ? somaTheme.getIconSource("unbookmark", "cover") : somaTheme.getIconSource("bookmark", "cover")
             onTriggered: {
                 if (_isSongBookmark)
-                    controlPanel.removeSongFromBookmarks()
+                    control.removeSongFromBookmarks()
                 else
-                    controlPanel.addSongToBookmarks()
+                    control.addSongToBookmarks()
             }
         }
     }
@@ -64,7 +64,7 @@ MainCover {
 
         CoverAction {
             iconSource: somaTheme.getIconSource("play", "cover")
-            onTriggered: controlPanel.play()
+            onTriggered: control.play()
         }
     }
 
