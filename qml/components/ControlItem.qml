@@ -32,7 +32,7 @@ Item {
             isSongBookmark = _bookmarksManager.isBookmark(_getCurrentSong())
         }
         onSleepTimerStarted: {
-            sleepTimeRemaining = seconds
+            sleepTimeRemaining = 0
             isSleepTimerRunning = true
         }
         onSleepTimerEnded: isSleepTimerRunning = false
