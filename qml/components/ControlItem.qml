@@ -18,6 +18,8 @@ Item {
     property bool isSleepTimerRunning
     property int sleepTimeRemaining
 
+    state: "pause"
+
     Connections {
         target: _player
         onChannelChanged: {

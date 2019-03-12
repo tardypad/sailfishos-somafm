@@ -50,6 +50,7 @@ DockedPanel {
         Label {
             id: channelLabel
             text: control.channelName
+            color: control.state === "playing" ? Theme.highlightColor : Theme.primaryColor
             anchors {
                 left: channelImage.right
                 leftMargin: Theme.paddingMedium
@@ -65,6 +66,7 @@ DockedPanel {
         Label {
             id: artistLabel
             text: control.artist
+            color: control.state === "playing" ? Theme.highlightColor : Theme.primaryColor
             anchors {
                 left: channelImage.right
                 leftMargin: Theme.paddingMedium
@@ -81,6 +83,7 @@ DockedPanel {
         Label {
             id: titleLabel
             text: control.title
+            color: control.state === "playing" ? Theme.highlightColor : Theme.primaryColor
             anchors {
                 left: channelImage.right
                 leftMargin: Theme.paddingMedium
@@ -104,8 +107,7 @@ DockedPanel {
             anchors.centerIn: mediaButtonPause
             Timer {
                 id: progressTimer
-                property bool isRunning
-                running: window.applicationActive && isRunning
+                running: window.applicationActive && control.state === "playing"
                 interval: 250
                 repeat: true
                 onTriggered: progressIndicator.value = (progressIndicator.value + 1/240) % 1.0
@@ -124,8 +126,8 @@ DockedPanel {
             icon.asynchronous: true
             icon.source: somaTheme.getIconSource("pause", "medium")
             highlighted: true
-            visible: false
             onClicked: control.pause()
+            visible: control.state === "playing"
         }
 
         IconButton {
@@ -140,6 +142,7 @@ DockedPanel {
             icon.asynchronous: true
             icon.source: somaTheme.getIconSource("play", "medium")
             onClicked: control.play()
+            visible: control.state === "pause"
         }
 
         onClicked: _goToChannelPage()
@@ -253,27 +256,6 @@ DockedPanel {
             return
 
         pageStack.push(Qt.resolvedUrl("../pages/SleepTimerDialog.qml"));
-    }
-
-    Connections {
-        target: control
-        onStateChanged: {
-            if (control.state === "playing") {
-                mediaButtonPlay.visible = false;
-                mediaButtonPause.visible = true;
-                progressTimer.isRunning = true;
-                channelLabel.color = Theme.highlightColor;
-                artistLabel.color = Theme.highlightColor;
-                titleLabel.color = Theme.highlightColor;
-            } else {
-                mediaButtonPlay.visible = true;
-                mediaButtonPause.visible = false;
-                progressTimer.isRunning = false;
-                channelLabel.color = Theme.primaryColor;
-                artistLabel.color = Theme.primaryColor;
-                titleLabel.color = Theme.primaryColor;
-            }
-        }
     }
 
     onOpenChanged: {
