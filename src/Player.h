@@ -75,7 +75,6 @@ protected slots:
     void fillPlaylist(QNetworkReply* plsReply);
     void updateCurrentSong();
     void manageError(QMediaPlayer::Error error);
-    void changeMediaStatus(QMediaPlayer::MediaStatus status);
     void changeState(QMediaPlayer::State state);
     void onSleeperTimeout();
 
@@ -91,8 +90,6 @@ signals:
     void songChanged();
     void playlistError(QString error);
     void mediaError(QString error);
-    void mediaLoaded();
-    void mediaLoading();
 
 private:
     Channel* m_channel;

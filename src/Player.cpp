@@ -34,7 +34,6 @@ Player::Player(QObject *parent) :
     connect(m_sleepTimer, SIGNAL(timeout()), this, SLOT(onSleeperTimeout()));
 
     connect(m_player, SIGNAL(error(QMediaPlayer::Error)), this, SLOT(manageError(QMediaPlayer::Error)));
-    connect(m_player, SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)), this, SLOT(changeMediaStatus(QMediaPlayer::MediaStatus)));
     connect(m_player, SIGNAL(stateChanged(QMediaPlayer::State)), this, SLOT(changeState(QMediaPlayer::State)));
 
     connect(this, SIGNAL(channelChanged()), this, SLOT(chosePls()));
@@ -223,7 +222,7 @@ void Player::chosePls()
 
     setStreamQuality(quality);
     setStreamFormat(format);
-    setPls(pls);    
+    setPls(pls);
 }
 
 void Player::fetchPls()
@@ -319,26 +318,6 @@ void Player::manageError(QMediaPlayer::Error error)
     }
 
     emit mediaError(errorText);
-}
-
-void Player::changeMediaStatus(QMediaPlayer::MediaStatus status)
-{
-    switch (status) {
-    case QMediaPlayer::UnknownMediaStatus:
-    case QMediaPlayer::InvalidMedia:
-    case QMediaPlayer::EndOfMedia:
-    case QMediaPlayer::NoMedia:
-        return;
-    case QMediaPlayer::LoadingMedia:
-    case QMediaPlayer::StalledMedia:
-    case QMediaPlayer::BufferingMedia:
-        emit mediaLoading();
-        break;
-    case QMediaPlayer::LoadedMedia:
-    case QMediaPlayer::BufferedMedia:
-        emit mediaLoaded();
-        break;
-    }
 }
 
 void Player::changeState(QMediaPlayer::State state)

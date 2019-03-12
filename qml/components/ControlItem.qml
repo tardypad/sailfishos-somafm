@@ -39,22 +39,8 @@ Item {
         }
         onSleepTimerEnded: isSleepTimerRunning = false
         onPlayCalled: controlPanel.open = true
-        onPlayStarted: {
-            controlPanel.reinitProgressIndicator()
-            state = "playing"
-        }
-        onPauseStarted: {
-            controlPanel.reinitProgressIndicator()
-            state = "pause"
-        }
-        onMediaLoading: {
-            if (state === "playing")
-                controlPanel.stopProgressTimer()
-        }
-        onMediaLoaded: {
-            if (state === "playing")
-                controlPanel.startProgressTimer()
-        }
+        onPlayStarted: state = "playing"
+        onPauseStarted: state = "pause"
         onPlaylistError: showErrorInfo("playlist", error)
         onMediaError: showErrorInfo("media", error)
     }

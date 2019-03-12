@@ -100,20 +100,6 @@ DockedPanel {
             horizontalAlignment: implicitWidth < width ? Text.AlignHCenter : Text.AlignLeft
         }
 
-        ProgressCircle {
-            id: progressIndicator
-            width: Theme.iconSizeLarge
-            height: Theme.iconSizeLarge
-            anchors.centerIn: mediaButtonPause
-            Timer {
-                id: progressTimer
-                running: window.applicationActive && control.state === "playing"
-                interval: 250
-                repeat: true
-                onTriggered: progressIndicator.value = (progressIndicator.value + 1/240) % 1.0
-            }
-        }
-
         IconButton {
             id: mediaButtonPause
             icon.width: Theme.iconSizeMedium
@@ -195,19 +181,6 @@ DockedPanel {
         repeat: true
         running: control.isSleepTimerRunning
         onTriggered: control.sleepTimeRemaining -= 30
-    }
-
-    function reinitProgressIndicator() {
-        progressIndicator.value = 0
-        progressIndicator.inAlternateCycle = true
-    }
-
-    function startProgressTimer() {
-        progressTimer.start()
-    }
-
-    function stopProgressTimer() {
-        progressTimer.stop()
     }
 
     function _goToChannelPage() {
