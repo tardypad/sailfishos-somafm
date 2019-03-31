@@ -41,7 +41,7 @@ XmlItem* ChannelsModel::parseXmlItem()
     QString id = "";
     QString name = "";
     QString description = "";
-    QString imageUrl = "";
+    QString imageSmallUrl = "";
     QString imageMediumUrl = "";
     QString imageBigUrl = "";
     QString dj = "";
@@ -65,7 +65,7 @@ XmlItem* ChannelsModel::parseXmlItem()
                 description = m_xmlReader->text().toString();
             } else if (m_xmlReader->name() == "image") {
                 m_xmlReader->readNext();
-                imageUrl = m_xmlReader->text().toString();
+                imageSmallUrl = m_xmlReader->text().toString();
             } else if (m_xmlReader->name() == "largeimage") {
                 m_xmlReader->readNext();
                 imageMediumUrl = m_xmlReader->text().toString();
@@ -109,20 +109,12 @@ XmlItem* ChannelsModel::parseXmlItem()
     channel->setData(sortGenre, Channel::SortGenreRole);
     channel->setData(listeners, Channel::ListenersRole);
 
-    channel->setData(imageUrl, Channel::ImageUrlRole);
-    if (!imageMediumUrl.isEmpty()) {
-        channel->setData(imageMediumUrl, Channel::ImageMediumUrlRole);
-    } else if (!imageBigUrl.isEmpty()) {
-        channel->setData(imageBigUrl, Channel::ImageMediumUrlRole);
-    } else {
-        channel->setData(imageUrl, Channel::ImageMediumUrlRole);
-    }
     if (!imageBigUrl.isEmpty()) {
-        channel->setData(imageBigUrl, Channel::ImageBigUrlRole);
+        channel->setData(imageBigUrl, Channel::ImageUrlRole);
     } else if (!imageMediumUrl.isEmpty()){
-        channel->setData(imageMediumUrl, Channel::ImageBigUrlRole);
+        channel->setData(imageMediumUrl, Channel::ImageUrlRole);
     } else {
-        channel->setData(imageUrl, Channel::ImageBigUrlRole);
+        channel->setData(imageSmallUrl, Channel::ImageUrlRole);
     }
 
     if (m_bookmarksManager->isBookmark(channel)) {

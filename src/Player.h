@@ -33,7 +33,6 @@ public:
     Q_INVOKABLE QString channelId();
     Q_INVOKABLE QString channelName();
     Q_INVOKABLE QString channelImageUrl();
-    Q_INVOKABLE QString channelImageMediumUrl();
     Q_INVOKABLE QString artist();
     Q_INVOKABLE QString title();
     Q_INVOKABLE QString streamQualityText();

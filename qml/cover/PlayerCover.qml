@@ -13,7 +13,7 @@ import "../components"
 MainCover {
     property bool _isPlaying: control.state === "playing"
     property bool _isSongBookmark: control.isSongBookmark
-    property url _channelImageMediumUrl: control.channelImageMediumUrl
+    property url _channelImageUrl: control.channelImageUrl
     property string _artist: control.artist
     property string _title: control.title
 
@@ -21,7 +21,7 @@ MainCover {
         Image {
             id: channelImage
             anchors.fill: parent
-            source: _channelImageMediumUrl
+            source: _channelImageUrl
             fillMode: Image.PreserveAspectCrop
             verticalAlignment:Image.AlignTop
             horizontalAlignment: Image.AlignLeft

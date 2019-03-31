@@ -11,7 +11,6 @@ Item {
     property string channelId
     property string channelName
     property url channelImageUrl
-    property url channelImageMediumUrl
     property string artist
     property string title
     property bool isSongBookmark
@@ -25,7 +24,6 @@ Item {
         onChannelChanged: {
             channelName = _player.channelName()
             channelImageUrl = _player.channelImageUrl()
-            channelImageMediumUrl = _player.channelImageMediumUrl()
             channelId = _player.channelId()
         }
         onSongChanged: {

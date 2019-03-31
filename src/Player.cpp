@@ -109,13 +109,6 @@ QString Player::channelImageUrl()
     return channel()->data(Channel::ImageUrlRole).toString();
 }
 
-QString Player::channelImageMediumUrl()
-{
-    if (!hasCurrentChannel()) return "";
-
-    return channel()->data(Channel::ImageMediumUrlRole).toString();
-}
-
 QString Player::artist()
 {
     return currentSong()->data(Song::ArtistRole).toString();

@@ -43,7 +43,7 @@ Item {
             size: BusyIndicatorSize.Medium
             width: gridView.cellWidth
             height: gridView.cellHeight
-            source: imageMediumUrl
+            source: imageUrl
             anchors.fill: parent
         }
 

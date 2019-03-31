@@ -25,8 +25,6 @@ Page {
     property string _dj
     property string _djMail
     property url _imageUrl
-    property url _mediumImageUrl
-    property url _bigImageUrl
     property int _listeners
     property bool _isFavorite
     property bool _isPlaying
@@ -146,8 +144,6 @@ Page {
         _dj = channelData.dj
         _djMail = channelData.djMail
         _imageUrl = channelData.imageUrl
-        _mediumImageUrl = channelData.imageMediumUrl
-        _bigImageUrl = channelData.imageBigUrl
         _listeners = channelData.listeners
         _isFavorite = channelData.isBookmark
     }
