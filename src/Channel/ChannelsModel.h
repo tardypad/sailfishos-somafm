@@ -17,6 +17,7 @@ class QNetworkAccessManager;
 class ChannelsModel : public XmlItemModel
 {
     static const QUrl _channelsUrl;
+    static const int _imageCacheDays;
 
     Q_OBJECT
 public:

@@ -17,12 +17,14 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QFile>
+#include <QDateTime>
 
 #include "Channel.h"
 #include "ChannelsFavoritesManager.h"
 #include "../Refresh/RefreshModel.h"
 
 const QUrl ChannelsModel::_channelsUrl = QUrl("http://somafm.com/channels.xml");
+const int ChannelsModel::_imageCacheDays = 30;
 
 ChannelsModel::ChannelsModel(QObject *parent) :
     XmlItemModel(new Channel(), parent)
@@ -121,8 +123,10 @@ XmlItem* ChannelsModel::parseXmlItem()
     channel->setData(listeners, Channel::ListenersRole);
 
     imagePath = imagesDirPath().append(QDir::separator()).append(id);
+    QFileInfo imageFileInfo = QFileInfo(imagePath);
 
-    if (QFileInfo::exists(imagePath)) {
+    if (imageFileInfo.exists()
+        && imageFileInfo.lastModified().daysTo(QDateTime::currentDateTime()) < _imageCacheDays) {
         channel->setData(imagePath.prepend("file://"), Channel::ImageUrlRole);
     } else if (!imageBigUrl.isEmpty()) {
         channel->setData(imageBigUrl, Channel::ImageUrlRole);
