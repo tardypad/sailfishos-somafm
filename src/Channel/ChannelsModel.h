@@ -12,6 +12,7 @@
 
 class Channel;
 class RefreshModel;
+class QNetworkAccessManager;
 
 class ChannelsModel : public XmlItemModel
 {
@@ -30,6 +31,7 @@ private slots:
     void removeFromFavorites(XmlItem* xmlItem);
     void removeAllFromFavorites();
     void updateListeners();
+    void onFetchImageFinished(QNetworkReply* networkReply);
 
 private:
     virtual XmlItem* parseXmlItem();
@@ -38,10 +40,14 @@ private:
     void duplicateGenre();
     void duplicateGenre(const QModelIndex &index);
     void calculMaximumListeners();
+    void cacheImages();
+    void fetchImage(QString id, QUrl imageUrl);
+    QString imagesDirPath();
+    void saveImage(QString id, QByteArray data);
 
 private:
     RefreshModel* m_refreshModel;
-
+    QNetworkAccessManager* m_imagesNetworkManager;
 };
 
 #endif // CHANNELSMODEL_H

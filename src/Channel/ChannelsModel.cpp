@@ -10,6 +10,13 @@
 #include <QDebug>
 #include <QXmlStreamReader>
 #include <QXmlStreamAttributes>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkRequest>
+#include <QtNetwork/QNetworkReply>
+#include <QStandardPaths>
+#include <QFileInfo>
+#include <QDir>
+#include <QFile>
 
 #include "Channel.h"
 #include "ChannelsFavoritesManager.h"
@@ -20,6 +27,8 @@ const QUrl ChannelsModel::_channelsUrl = QUrl("http://somafm.com/channels.xml");
 ChannelsModel::ChannelsModel(QObject *parent) :
     XmlItemModel(new Channel(), parent)
 {
+    m_imagesNetworkManager = new QNetworkAccessManager(this);
+
     setResourceUrl(_channelsUrl);
 
     m_bookmarksManager = ChannelsFavoritesManager::instance();
@@ -33,6 +42,7 @@ ChannelsModel::ChannelsModel(QObject *parent) :
 
 ChannelsModel::~ChannelsModel()
 {
+    delete m_imagesNetworkManager;
 }
 
 XmlItem* ChannelsModel::parseXmlItem()
@@ -44,6 +54,7 @@ XmlItem* ChannelsModel::parseXmlItem()
     QString imageSmallUrl = "";
     QString imageMediumUrl = "";
     QString imageBigUrl = "";
+    QString imagePath = "";
     QString dj = "";
     QString djMail = "";
     QStringList genres = QStringList();
@@ -109,7 +120,11 @@ XmlItem* ChannelsModel::parseXmlItem()
     channel->setData(sortGenre, Channel::SortGenreRole);
     channel->setData(listeners, Channel::ListenersRole);
 
-    if (!imageBigUrl.isEmpty()) {
+    imagePath = imagesDirPath().append(QDir::separator()).append(id);
+
+    if (QFileInfo::exists(imagePath)) {
+        channel->setData(imagePath.prepend("file://"), Channel::ImageUrlRole);
+    } else if (!imageBigUrl.isEmpty()) {
         channel->setData(imageBigUrl, Channel::ImageUrlRole);
     } else if (!imageMediumUrl.isEmpty()){
         channel->setData(imageMediumUrl, Channel::ImageUrlRole);
@@ -161,6 +176,7 @@ void ChannelsModel::parseAfter()
 {
     duplicateGenre();
     calculMaximumListeners();
+    cacheImages();
 }
 
 Channel *ChannelsModel::channelItem(QString channelId)
@@ -285,4 +301,82 @@ void ChannelsModel::calculMaximumListeners()
     }
 
     setDataAll(max, Channel::MaximumListenersRole);
+}
+
+QString ChannelsModel::imagesDirPath()
+{
+    return QStandardPaths::writableLocation(QStandardPaths::DataLocation)
+           .append(QDir::separator()).append("images");
+}
+
+void ChannelsModel::cacheImages()
+{
+    QString id;
+    QUrl imageUrl;
+
+    connect(m_imagesNetworkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onFetchImageFinished(QNetworkReply*)));
+
+    for(int row = 0; row < m_list.size(); ++row) {
+        imageUrl = m_list.at(row)->data(Channel::ImageUrlRole).toUrl() ;
+
+        if (imageUrl.isLocalFile())
+            continue;
+
+        id = m_list.at(row)->data(Channel::IdRole).toString();
+        fetchImage(id, imageUrl);
+    }
+}
+
+void ChannelsModel::fetchImage(QString id, QUrl imageUrl)
+{
+    QNetworkRequest request(imageUrl);
+    request.setHeader(QNetworkRequest::UserAgentHeader, "sailfishos/tardypad/somafm");
+
+    QNetworkReply* networkReply = m_imagesNetworkManager->get(request);
+    networkReply->setProperty("id", id);
+}
+
+void ChannelsModel::onFetchImageFinished(QNetworkReply* networkReply)
+{
+    if (networkReply->error() != QNetworkReply::NoError)
+        return;
+
+    QString id = networkReply->property("id").toString();
+
+    QVariant redirectAttribute = networkReply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+
+    if (redirectAttribute.isValid()) {
+        QUrl redirectUrl = redirectAttribute.toUrl();
+
+        if (redirectUrl.isRelative())
+            redirectUrl = networkReply->url().resolved(redirectUrl);
+
+        fetchImage(id, redirectUrl);
+        return;
+    }
+
+    QByteArray data = networkReply->readAll();
+    networkReply->deleteLater();
+
+    saveImage(id, data);
+}
+
+void ChannelsModel::saveImage(QString id, QByteArray data)
+{
+    QString dirPath = imagesDirPath();
+    QDir dir = QDir(dirPath);
+    if (!dir.exists())
+        dir.mkpath(dirPath);
+
+    QFile* file = new QFile();
+    file->setFileName(dirPath.append(QDir::separator()).append(id));
+
+    bool openResult = file->open(QIODevice::WriteOnly);
+    if (!openResult)
+        return;
+
+    file->write(data);
+
+    file->close();
+    file->deleteLater();
 }
