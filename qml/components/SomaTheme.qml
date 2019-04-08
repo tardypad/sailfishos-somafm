@@ -12,11 +12,11 @@ QtObject {
     property url websiteUrl: "http://somafm.com"
     property url supportUrl: "http://somafm.com/support"
 
-    function getIconSource(name, size) {
-        if (size === "cover")
-            return Qt.resolvedUrl("../../images/icons/icon-cover-"+name+".png")
+    function getIconSource(name, type) {
+        if (type === "cover")
+            return Qt.resolvedUrl("../../images/icons/cover-"+name+".png")
 
-        return "qrc:/icon/"+size+"/"+name
+        return "qrc:/icon/"+name
     }
 
     function getImageSource(name) {

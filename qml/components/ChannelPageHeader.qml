@@ -20,7 +20,7 @@ Item {
 
         Image {
             id: favoriteImage
-            source: somaTheme.getIconSource("favorite", "small")
+            source: somaTheme.getIconSource("favorite")
             height: Theme.iconSizeSmall
             width: Theme.iconSizeSmall
             anchors {
@@ -93,7 +93,7 @@ Item {
         height: Theme.iconSizeSmall / 2
         width: Theme.iconSizeSmall / 2
         icon {
-            source: somaTheme.getIconSource("mail", "small")
+            source: somaTheme.getIconSource("mail")
             height: Theme.iconSizeSmall / 2
             fillMode: Image.PreserveAspectFit
         }

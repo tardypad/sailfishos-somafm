@@ -12,7 +12,6 @@ PageHeader {
     property string iconSource
 
     property int _iconSize: Theme.iconSizeMedium
-    property string _iconSizeName: "medium"
 
     state: "reanchored"
 
@@ -21,7 +20,7 @@ PageHeader {
         smooth: true
         height: _iconSize
         width: _iconSize
-        source: somaTheme.getIconSource(iconSource, _iconSizeName)
+        source: somaTheme.getIconSource(iconSource)
         anchors {
             verticalCenter: parent.verticalCenter
             verticalCenterOffset: 4

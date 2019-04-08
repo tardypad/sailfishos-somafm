@@ -56,7 +56,7 @@ Item {
                 icon.width: Theme.iconSizeLarge
                 icon.height: Theme.iconSizeLarge
                 icon.asynchronous: true
-                icon.source: somaTheme.getIconSource("refresh", "large")
+                icon.source: somaTheme.getIconSource("refresh")
                 onClicked: _fetch()
                 z: 10
             }

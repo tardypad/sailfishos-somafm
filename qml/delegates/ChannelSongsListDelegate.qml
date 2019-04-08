@@ -69,7 +69,7 @@ ListItem {
 
     Image {
         id: playImage
-        source: somaTheme.getIconSource("play", "small")
+        source: somaTheme.getIconSource("play")
         height: Theme.iconSizeSmall
         width: visible ? height : 0
         anchors {
@@ -83,7 +83,7 @@ ListItem {
 
     Image {
         id: bookmarkImage
-        source: somaTheme.getIconSource("bookmark", "small")
+        source: somaTheme.getIconSource("bookmark")
         height: Theme.iconSizeSmall
         width: visible ? height : 0
         anchors {

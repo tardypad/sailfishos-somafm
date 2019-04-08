@@ -49,7 +49,7 @@ ListItem {
 
             Image {
                 id: favoriteImage
-                source: somaTheme.getIconSource("favorite", "small")
+                source: somaTheme.getIconSource("favorite")
                 height: Theme.iconSizeSmall
                 width: visible ? height : 0
                 anchors.left: parent.left
@@ -90,7 +90,7 @@ ListItem {
 
             Image {
                 id: listenerIcon
-                source: somaTheme.getIconSource("listener", "small")
+                source: somaTheme.getIconSource("listener")
                 smooth: true
                 height: Theme.iconSizeSmall * 0.8
                 width: visible ? height : 0

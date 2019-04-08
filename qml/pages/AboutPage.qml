@@ -111,7 +111,7 @@ Page {
                         }
                         height: Theme.iconSizeMedium
                         width: Theme.iconSizeMedium
-                        source: somaTheme.getIconSource("support", "medium")
+                        source: somaTheme.getIconSource("support")
                         fillMode: Image.PreserveAspectFit
                     }
 

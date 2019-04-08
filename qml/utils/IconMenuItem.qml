@@ -13,7 +13,6 @@ MenuItem {
     property bool inPullDown: false
 
     property int _iconSize: Theme.iconSizeSmall
-    property string _iconSizeName: "small"
 
     property bool _onRightSide: inPullDown
 
@@ -21,7 +20,7 @@ MenuItem {
         id: icon
         height: _iconSize
         width: _iconSize
-        source: somaTheme.getIconSource(iconSource, _iconSizeName)
+        source: somaTheme.getIconSource(iconSource)
         anchors {
             left: !_onRightSide ? parent.left : undefined
             leftMargin: !_onRightSide ? Theme.paddingLarge : undefined

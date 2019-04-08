@@ -47,7 +47,7 @@ Rectangle {
             height: Theme.iconSizeMedium
             width: Theme.iconSizeMedium
             icon {
-                source: somaTheme.getIconSource("github", "medium")
+                source: somaTheme.getIconSource("github")
                 height: Theme.iconSizeMedium
                 fillMode: Image.PreserveAspectFit
             }
@@ -59,7 +59,7 @@ Rectangle {
             height: Theme.iconSizeMedium
             width: Theme.iconSizeMedium
             icon {
-                source: somaTheme.getIconSource("mail", "medium")
+                source: somaTheme.getIconSource("mail")
                 height: Theme.iconSizeMedium
                 fillMode: Image.PreserveAspectFit
             }

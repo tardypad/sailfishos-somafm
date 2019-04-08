@@ -110,7 +110,7 @@ DockedPanel {
                 verticalCenter: parent.verticalCenter
             }
             icon.asynchronous: true
-            icon.source: somaTheme.getIconSource("pause", "medium")
+            icon.source: somaTheme.getIconSource("pause")
             highlighted: true
             onClicked: control.pause()
             visible: control.state === "playing"
@@ -126,7 +126,7 @@ DockedPanel {
                 verticalCenter: parent.verticalCenter
             }
             icon.asynchronous: true
-            icon.source: somaTheme.getIconSource("play", "medium")
+            icon.source: somaTheme.getIconSource("play")
             onClicked: control.play()
             visible: control.state === "pause"
         }
