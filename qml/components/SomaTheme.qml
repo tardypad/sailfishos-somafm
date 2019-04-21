@@ -13,10 +13,16 @@ QtObject {
     property url supportUrl: "http://somafm.com/support"
 
     function getIconSource(name, type) {
-        if (type === "cover")
-            return Qt.resolvedUrl("../../images/icons/cover-"+name+".png")
+        var color
+        if (Theme.colorScheme == 0)
+            color = "light"
+        else
+            color = "dark"
 
-        return "qrc:/icon/"+name
+        if (type === "cover")
+            return Qt.resolvedUrl("../../images/icons/"+color+"/cover_"+name+".png")
+
+        return "qrc:/icon/"+color+"/"+name
     }
 
     function getImageSource(name) {
