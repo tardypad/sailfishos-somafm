@@ -128,10 +128,10 @@ XmlItem* ChannelsModel::parseXmlItem()
     if (imageFileInfo.exists()
         && imageFileInfo.lastModified().daysTo(QDateTime::currentDateTime()) < _imageCacheDays) {
         channel->setData(imagePath.prepend("file://"), Channel::ImageUrlRole);
-    } else if (!imageBigUrl.isEmpty()) {
-        channel->setData(imageBigUrl, Channel::ImageUrlRole);
-    } else if (!imageMediumUrl.isEmpty()){
+    } else if (!imageMediumUrl.isEmpty()) {
         channel->setData(imageMediumUrl, Channel::ImageUrlRole);
+    } else if (!imageBigUrl.isEmpty()){
+        channel->setData(imageBigUrl, Channel::ImageUrlRole);
     } else {
         channel->setData(imageSmallUrl, Channel::ImageUrlRole);
     }
