@@ -32,7 +32,7 @@ DockedPanel {
 
         Rectangle {
             anchors.fill: parent
-            color: Theme.secondaryHighlightColor
+            color: Theme.highlightDimmerColor
         }
 
         ChannelImage {
@@ -50,7 +50,7 @@ DockedPanel {
         Label {
             id: channelLabel
             text: control.channelName
-            color: control.state === "playing" ? Theme.highlightColor : Theme.primaryColor
+            color: Theme.primaryColor
             anchors {
                 left: channelImage.right
                 leftMargin: Theme.paddingMedium
@@ -66,7 +66,7 @@ DockedPanel {
         Label {
             id: artistLabel
             text: control.artist
-            color: control.state === "playing" ? Theme.highlightColor : Theme.primaryColor
+            color: Theme.primaryColor
             anchors {
                 left: channelImage.right
                 leftMargin: Theme.paddingMedium
@@ -83,7 +83,7 @@ DockedPanel {
         Label {
             id: titleLabel
             text: control.title
-            color: control.state === "playing" ? Theme.highlightColor : Theme.primaryColor
+            color: Theme.primaryColor
             anchors {
                 left: channelImage.right
                 leftMargin: Theme.paddingMedium
@@ -111,7 +111,6 @@ DockedPanel {
             }
             icon.asynchronous: true
             icon.source: somaTheme.getIconSource("pause")
-            highlighted: true
             onClicked: control.pause()
             visible: control.state === "playing"
         }
