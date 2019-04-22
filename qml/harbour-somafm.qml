@@ -17,7 +17,7 @@ ApplicationWindow
 {
     id: window
 
-    initialPage: Component { FavoritesPage { } }
+    initialPage: Qt.resolvedUrl(_favoritesManager.isEmpty() ? "pages/PopularsPage.qml" : "pages/FavoritesPage.qml")
     cover: DefaultCover { }
     bottomMargin: controlPanel.visibleSize
 
